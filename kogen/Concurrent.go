@@ -9,6 +9,10 @@ const (
 	_ConcurrentTableName   = "CONCURRENT"
 )
 
+func init() {
+	ModelList = append(ModelList, &Concurrent{})
+}
+
 // Concurrent: Keeps track of concurrent user counts
 type Concurrent struct {
 	ServerId   uint8   `gorm:"column:serverid;not null" json:"serverid"`

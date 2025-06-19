@@ -9,6 +9,10 @@ const (
 	_AccountCharTableName   = "ACCOUNT_CHAR"
 )
 
+func init() {
+	ModelList = append(ModelList, &AccountChar{})
+}
+
 // AccountChar: Represents the relationship between accounts and characters
 type AccountChar struct {
 	AccountId string  `gorm:"column:strAccountID;primaryKey;not null" json:"strAccountID"`

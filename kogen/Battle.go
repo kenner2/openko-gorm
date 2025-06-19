@@ -9,6 +9,10 @@ const (
 	_BattleTableName   = "BATTLE"
 )
 
+func init() {
+	ModelList = append(ModelList, &Battle{})
+}
+
 // Battle: Battle data for the game server
 type Battle struct {
 	Index          int16  `gorm:"column:sIndex;not null" json:"sIndex"`

@@ -5,9 +5,13 @@ import (
 )
 
 const (
-	_CoefficientTableName   = "COEFFICIENT"
 	_CoefficientDatabaseNbr = 0
+	_CoefficientTableName   = "COEFFICIENT"
 )
+
+func init() {
+	ModelList = append(ModelList, &Coefficient{})
+}
 
 // Coefficient: Coefficient relationship between a character class, weapon types, and stats
 type Coefficient struct {

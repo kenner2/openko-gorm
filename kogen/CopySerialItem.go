@@ -9,6 +9,10 @@ const (
 	_CopySerialItemTableName   = "COPY_SERIAL_ITEM"
 )
 
+func init() {
+	ModelList = append(ModelList, &CopySerialItem{})
+}
+
 // CopySerialItem: Represents the relationship between accounts and characters
 type CopySerialItem struct {
 	AccountId  *string `gorm:"column:strAccountID" json:"strAccountID,omitempty"`
