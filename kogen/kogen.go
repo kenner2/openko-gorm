@@ -1,7 +1,6 @@
 package kogen
 
-type Binary []byte
-
+/** Enums **/
 type DbType uint8
 
 const (
@@ -9,6 +8,25 @@ const (
 	GAME  DbType = 1
 	LOG   DbType = 2
 )
+
+type TSqlType string
+
+// doc: https://learn.microsoft.com/en-us/sql/t-sql/data-types/data-types-transact-sql?view=sql-server-ver17#binary-strings
+const (
+	TinyInt   TSqlType = "tinyint"   //uint8
+	SmallInt  TSqlType = "smallint"  //int16
+	Int       TSqlType = "int"       // int32
+	BigInt    TSqlType = "bigint"    // int64
+	Float     TSqlType = "float"     // float64 but value interpretation depends on (n)
+	Real      TSqlType = "real"      // float32
+	Char      TSqlType = "char"      // byte, fixed length
+	Varchar   TSqlType = "varchar"   // byte, variable length
+	NChar     TSqlType = "nchar"     // unicode byte, fixed length
+	NVarchar  TSqlType = "nvarchar"  // unicode byte, variable length
+	Binary    TSqlType = "binary"    // fixed length byte array
+	Varbinary TSqlType = "varbinary" // variable-length byte array
+)
+/** End Enums **/
 
 var (
 	// These can be changed by the importing program for customized output at runtime
@@ -45,6 +63,7 @@ type Model interface {
 	GetDatabaseName() string
 	GetTableName() string
 	GetInsertString() string
+	GetCreateTableString() string
 }
 
 // GetOptionalStringVal Returns the sql format for an optional string
@@ -64,7 +83,8 @@ func GetOptionalDecVal(val interface{}) string {
 }
 
 // GetOptionalBinaryVal Returns the sql format for an optional binary array
-func GetOptionalBinaryVal(val *Binary) string {
+// we use interface as the type to support both fixed-length and variable-length byte arrays
+func GetOptionalBinaryVal(val interface{}) string {
 	if val == nil {
 		return "NULL"
 	}

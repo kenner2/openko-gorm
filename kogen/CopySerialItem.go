@@ -13,13 +13,13 @@ func init() {
 	ModelList = append(ModelList, &CopySerialItem{})
 }
 
-// CopySerialItem: Represents the relationship between accounts and characters
+// CopySerialItem: TODO: Doc
 type CopySerialItem struct {
-	AccountId  *string `gorm:"column:strAccountID" json:"strAccountID,omitempty"`
-	Type       *uint8  `gorm:"column:byType" json:"byType,omitempty"`
-	Pos        *int16  `gorm:"column:nPos" json:"nPos,omitempty"`
-	ItemNum    *Binary `gorm:"column:ItemNum;type:binary(4)" json:"ItemNum,omitempty"`
-	ItemSerial *Binary `gorm:"column:ItemSerial;type:binary(8)" json:"ItemSerial,omitempty"`
+	AccountId  [21]byte `gorm:"column:strAccountID;type:char(21)" json:"strAccountID,omitempty"`
+	Type       *uint8   `gorm:"column:byType;type:tinyint" json:"byType,omitempty"`
+	Pos        *int16   `gorm:"column:nPos;type:smallint" json:"nPos,omitempty"`
+	ItemNum    [4]byte  `gorm:"column:ItemNum;type:binary(4)" json:"ItemNum,omitempty"`
+	ItemSerial [8]byte  `gorm:"column:ItemSerial;type:binary(8)" json:"ItemSerial,omitempty"`
 }
 
 /* Helper Functions */
@@ -36,9 +36,15 @@ func (this *CopySerialItem) GetTableName() string {
 
 // GetInsertString Returns the insert statement for the table populated with record from the object
 func (this *CopySerialItem) GetInsertString() string {
-	return fmt.Sprintf("INSERT INTO [COPY_SERIAL_ITEM] (strAccountID, byType, nPos, ItemNum, ItemSerial) \nVALUES (%s, %s, %s, %s, %s)", GetOptionalStringVal(this.AccountId),
+	return fmt.Sprintf("INSERT INTO [COPY_SERIAL_ITEM] (strAccountID, byType, nPos, ItemNum, ItemSerial) \nVALUES (%s, %s, %s, %s, %s)", GetOptionalBinaryVal(this.AccountId),
 		GetOptionalDecVal(this.Type),
 		GetOptionalDecVal(this.Pos),
 		GetOptionalBinaryVal(this.ItemNum),
 		GetOptionalBinaryVal(this.ItemSerial))
+}
+
+// GetCreateTableString Returns the create table statement for this object
+func (this *CopySerialItem) GetCreateTableString() string {
+	query := "CREATE TABLE \"COPY_SERIAL_ITEM\" (\n\t\"strAccountID\" char(21),\n\t\"byType\" tinyint,\n\t\"nPos\" smallint,\n\t\"ItemNum\" binary(4),\n\t\"ItemSerial\" binary(8)\n\n)"
+	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
