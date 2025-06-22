@@ -45,6 +45,6 @@ func (this *Concurrent) GetInsertString() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this *Concurrent) GetCreateTableString() string {
-	query := "CREATE TABLE [CONCURRENT] (\n\t\"serverid\" tinyint NOT NULL,\n\t\"zone1_count\" smallint,\n\t\"zone2_count\" smallint,\n\t\"zone3_count\" smallint,\n\t\"bz\" varchar(50)\n\n)"
+	query := "CREATE TABLE [CONCURRENT] (\n\t[serverid] tinyint NOT NULL,\n\t[zone1_count] smallint,\n\t[zone2_count] smallint,\n\t[zone3_count] smallint,\n\t[bz] varchar(50)\n\n)"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }

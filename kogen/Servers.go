@@ -43,6 +43,6 @@ func (this *Servers) GetInsertString() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this *Servers) GetCreateTableString() string {
-	query := "CREATE TABLE [SERVERS] (\n\t\"id\" int NOT NULL,\n\t\"sName\" varchar(64) NOT NULL,\n\t\"sHost\" varchar(64) NOT NULL,\n\t\"players\" int NOT NULL\n\n)"
+	query := "CREATE TABLE [SERVERS] (\n\t[id] int NOT NULL,\n\t[sName] varchar(64) NOT NULL,\n\t[sHost] varchar(64) NOT NULL,\n\t[players] int NOT NULL\n\n)"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }

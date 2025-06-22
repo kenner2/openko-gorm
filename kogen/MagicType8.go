@@ -49,6 +49,6 @@ func (this *MagicType8) GetInsertString() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this *MagicType8) GetCreateTableString() string {
-	query := "CREATE TABLE [MAGIC_TYPE8] (\n\t\"iNum\" int NOT NULL,\n\t\"Name\" varchar(50),\n\t\"Description\" varchar(100),\n\t\"Target\" tinyint NOT NULL,\n\t\"Radius\" smallint NOT NULL,\n\t\"WarpType\" tinyint NOT NULL,\n\t\"ExpRecover\" smallint NOT NULL\n\n)"
+	query := "CREATE TABLE [MAGIC_TYPE8] (\n\t[iNum] int NOT NULL,\n\t[Name] varchar(50),\n\t[Description] varchar(100),\n\t[Target] tinyint NOT NULL,\n\t[Radius] smallint NOT NULL,\n\t[WarpType] tinyint NOT NULL,\n\t[ExpRecover] smallint NOT NULL\n\n)"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }

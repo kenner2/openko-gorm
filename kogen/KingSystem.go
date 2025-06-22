@@ -5,8 +5,8 @@ import (
 )
 
 const (
-	_KingSystemTableName   = "KING_SYSTEM"
 	_KingSystemDatabaseNbr = 0
+	_KingSystemTableName   = "KING_SYSTEM"
 )
 
 func init() {
@@ -93,6 +93,6 @@ func (this *KingSystem) GetInsertString() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this *KingSystem) GetCreateTableString() string {
-	query := "CREATE TABLE [KING_SYSTEM] (\n\t\"byNation\" tinyint NOT NULL,\n\t\"byType\" tinyint NOT NULL,\n\t\"sYear\" smallint NOT NULL,\n\t\"byMonth\" tinyint NOT NULL,\n\t\"byDay\" tinyint NOT NULL,\n\t\"byHour\" tinyint NOT NULL,\n\t\"byMinute\" tinyint NOT NULL,\n\t\"byImType\" tinyint NOT NULL,\n\t\"sImYear\" smallint NOT NULL,\n\t\"byImMonth\" tinyint NOT NULL,\n\t\"byImDay\" tinyint NOT NULL,\n\t\"byImHour\" tinyint NOT NULL,\n\t\"byImMinute\" tinyint NOT NULL,\n\t\"byNoahEvent\" tinyint NOT NULL,\n\t\"byNoahEvent_Day\" tinyint NOT NULL,\n\t\"byNoahEvent_Hour\" tinyint NOT NULL,\n\t\"byNoahEvent_Minute\" tinyint NOT NULL,\n\t\"sNoahEvent_Duration\" smallint NOT NULL,\n\t\"byExpEvent\" tinyint NOT NULL,\n\t\"byExpEvent_Day\" tinyint NOT NULL,\n\t\"byExpEvent_Hour\" tinyint NOT NULL,\n\t\"byExpEvent_Minute\" tinyint NOT NULL,\n\t\"sExpEvent_Duration\" smallint NOT NULL,\n\t\"nTribute\" int NOT NULL,\n\t\"byTerritoryTariff\" tinyint NOT NULL,\n\t\"nTerritoryTax\" int NOT NULL,\n\t\"nNationalTreasury\" int NOT NULL,\n\t\"strKingName\" varchar(21),\n\t\"strImRequestID\" varchar(21)\n\n)"
+	query := "CREATE TABLE [KING_SYSTEM] (\n\t[byNation] tinyint NOT NULL,\n\t[byType] tinyint NOT NULL,\n\t[sYear] smallint NOT NULL,\n\t[byMonth] tinyint NOT NULL,\n\t[byDay] tinyint NOT NULL,\n\t[byHour] tinyint NOT NULL,\n\t[byMinute] tinyint NOT NULL,\n\t[byImType] tinyint NOT NULL,\n\t[sImYear] smallint NOT NULL,\n\t[byImMonth] tinyint NOT NULL,\n\t[byImDay] tinyint NOT NULL,\n\t[byImHour] tinyint NOT NULL,\n\t[byImMinute] tinyint NOT NULL,\n\t[byNoahEvent] tinyint NOT NULL,\n\t[byNoahEvent_Day] tinyint NOT NULL,\n\t[byNoahEvent_Hour] tinyint NOT NULL,\n\t[byNoahEvent_Minute] tinyint NOT NULL,\n\t[sNoahEvent_Duration] smallint NOT NULL,\n\t[byExpEvent] tinyint NOT NULL,\n\t[byExpEvent_Day] tinyint NOT NULL,\n\t[byExpEvent_Hour] tinyint NOT NULL,\n\t[byExpEvent_Minute] tinyint NOT NULL,\n\t[sExpEvent_Duration] smallint NOT NULL,\n\t[nTribute] int NOT NULL,\n\t[byTerritoryTariff] tinyint NOT NULL,\n\t[nTerritoryTax] int NOT NULL,\n\t[nNationalTreasury] int NOT NULL,\n\t[strKingName] varchar(21),\n\t[strImRequestID] varchar(21)\n\n)"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }

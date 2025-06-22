@@ -36,7 +36,7 @@ type Knights struct {
 	CreateTime      int        `gorm:"column:CreateTime;type:smalldatetime;not null;default:getdate()" json:"CreateTime"`
 	MarkVersion     int16      `gorm:"column:sMarkVersion;type:smallint;not null;default:0" json:"sMarkVersion"`
 	MarkLength      int16      `gorm:"column:sMarkLen;type:smallint;not null;default:0" json:"sMarkLen"`
-	Mark            []byte     `gorm:"column:Mark;type:image(2147483647)" json:"Mark,omitempty"`
+	Mark            *byte      `gorm:"column:Mark;type:image" json:"Mark,omitempty"`
 	Stash           [1600]byte `gorm:"column:Stash;type:varchar(1600)" json:"Stash,omitempty"`
 	SiegeFlag       uint8      `gorm:"column:bySiegeFlag;type:tinyint;not null;default:0" json:"bySiegeFlag"`
 	AllianceKnights int16      `gorm:"column:sAllianceKnights;type:smallint;not null;default:0" json:"sAllianceKnights"`
@@ -87,6 +87,6 @@ func (this *Knights) GetInsertString() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this *Knights) GetCreateTableString() string {
-	query := "CREATE TABLE [KNIGHTS] (\n\t\"IDNum\" smallint NOT NULL,\n\t\"Flag\" tinyint NOT NULL,\n\t\"Nation\" tinyint NOT NULL,\n\t\"Ranking\" tinyint NOT NULL,\n\t\"IDName\" varchar(21) NOT NULL,\n\t\"Members\" smallint NOT NULL,\n\t\"Chief\" varchar(21) NOT NULL,\n\t\"ViceChief_1\" varchar(21),\n\t\"ViceChief_2\" varchar(21),\n\t\"ViceChief_3\" varchar(21),\n\t\"strEnemyName\" varchar(21),\n\t\"byOldWarResult\" tinyint NOT NULL,\n\t\"nWarEnemyID\" int NOT NULL,\n\t\"nVictory\" int NOT NULL,\n\t\"nLose\" int NOT NULL,\n\t\"Gold\" bigint NOT NULL,\n\t\"Domination\" smallint NOT NULL,\n\t\"Points\" int,\n\t\"CreateTime\" smalldatetime NOT NULL,\n\t\"sMarkVersion\" smallint NOT NULL,\n\t\"sMarkLen\" smallint NOT NULL,\n\t\"Mark\" image(2147483647),\n\t\"Stash\" varchar(1600),\n\t\"bySiegeFlag\" tinyint NOT NULL,\n\t\"sAllianceKnights\" smallint NOT NULL,\n\t\"sCape\" smallint NOT NULL\n\tPRIMARY KEY (\"IDNum\")\n)"
+	query := "CREATE TABLE [KNIGHTS] (\n\t[IDNum] smallint NOT NULL,\n\t[Flag] tinyint NOT NULL,\n\t[Nation] tinyint NOT NULL,\n\t[Ranking] tinyint NOT NULL,\n\t[IDName] varchar(21) NOT NULL,\n\t[Members] smallint NOT NULL,\n\t[Chief] varchar(21) NOT NULL,\n\t[ViceChief_1] varchar(21),\n\t[ViceChief_2] varchar(21),\n\t[ViceChief_3] varchar(21),\n\t[strEnemyName] varchar(21),\n\t[byOldWarResult] tinyint NOT NULL,\n\t[nWarEnemyID] int NOT NULL,\n\t[nVictory] int NOT NULL,\n\t[nLose] int NOT NULL,\n\t[Gold] bigint NOT NULL,\n\t[Domination] smallint NOT NULL,\n\t[Points] int,\n\t[CreateTime] smalldatetime NOT NULL,\n\t[sMarkVersion] smallint NOT NULL,\n\t[sMarkLen] smallint NOT NULL,\n\t[Mark] image,\n\t[Stash] varchar(1600),\n\t[bySiegeFlag] tinyint NOT NULL,\n\t[sAllianceKnights] smallint NOT NULL,\n\t[sCape] smallint NOT NULL\n\tPRIMARY KEY (\"IDNum\")\n)"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }

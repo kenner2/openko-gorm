@@ -61,6 +61,6 @@ func (this *UserRentalItem) GetInsertString() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this *UserRentalItem) GetCreateTableString() string {
-	query := "CREATE TABLE [USER_RENTAL_ITEM] (\n\t\"strUserID\" varchar(50) NOT NULL,\n\t\"strAccountID\" varchar(50) NOT NULL,\n\t\"byRentalType\" tinyint NOT NULL,\n\t\"byRegType\" tinyint NOT NULL,\n\t\"nRentalIndex\" int NOT NULL,\n\t\"nItemIndex\" int NOT NULL,\n\t\"sDurability\" smallint NOT NULL,\n\t\"nSerialNumber\" bigint NOT NULL,\n\t\"nRentalMoney\" int NOT NULL,\n\t\"sRentalTime\" smallint NOT NULL,\n\t\"sDuringTime\" smallint NOT NULL,\n\t\"timeRental\" smalldatetime,\n\t\"timeRegister\" smalldatetime\n\n)"
+	query := "CREATE TABLE [USER_RENTAL_ITEM] (\n\t[strUserID] varchar(50) NOT NULL,\n\t[strAccountID] varchar(50) NOT NULL,\n\t[byRentalType] tinyint NOT NULL,\n\t[byRegType] tinyint NOT NULL,\n\t[nRentalIndex] int NOT NULL,\n\t[nItemIndex] int NOT NULL,\n\t[sDurability] smallint NOT NULL,\n\t[nSerialNumber] bigint NOT NULL,\n\t[nRentalMoney] int NOT NULL,\n\t[sRentalTime] smallint NOT NULL,\n\t[sDuringTime] smallint NOT NULL,\n\t[timeRental] smalldatetime,\n\t[timeRegister] smalldatetime\n\n)"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }

@@ -45,6 +45,6 @@ func (this *KnightsCape) GetInsertString() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this *KnightsCape) GetCreateTableString() string {
-	query := "CREATE TABLE [KNIGHTS_CAPE] (\n\t\"sCapeIndex\" smallint NOT NULL,\n\t\"strName\" varchar(30) NOT NULL,\n\t\"nBuyPrice\" int NOT NULL,\n\t\"nDuration\" int NOT NULL,\n\t\"byGrade\" tinyint NOT NULL\n\n)"
+	query := "CREATE TABLE [KNIGHTS_CAPE] (\n\t[sCapeIndex] smallint NOT NULL,\n\t[strName] varchar(30) NOT NULL,\n\t[nBuyPrice] int NOT NULL,\n\t[nDuration] int NOT NULL,\n\t[byGrade] tinyint NOT NULL\n\n)"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }

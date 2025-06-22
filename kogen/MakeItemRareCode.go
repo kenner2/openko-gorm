@@ -45,6 +45,6 @@ func (this *MakeItemRareCode) GetInsertString() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this *MakeItemRareCode) GetCreateTableString() string {
-	query := "CREATE TABLE [MAKE_ITEM_LARECODE] (\n\t\"byLevelGrade\" tinyint NOT NULL,\n\t\"sUpgradeItem\" smallint NOT NULL,\n\t\"sLareItem\" smallint NOT NULL,\n\t\"sMagicItem\" smallint NOT NULL,\n\t\"sGereralItem\" smallint NOT NULL\n\n)"
+	query := "CREATE TABLE [MAKE_ITEM_LARECODE] (\n\t[byLevelGrade] tinyint NOT NULL,\n\t[sUpgradeItem] smallint NOT NULL,\n\t[sLareItem] smallint NOT NULL,\n\t[sMagicItem] smallint NOT NULL,\n\t[sGereralItem] smallint NOT NULL\n\n)"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }

@@ -41,6 +41,6 @@ func (this *UserDataSkillShortcut) GetInsertString() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this *UserDataSkillShortcut) GetCreateTableString() string {
-	query := "CREATE TABLE [USERDATA_SKILLSHORTCUT] (\n\t\"strCharID\" varchar(21) NOT NULL,\n\t\"nCount\" smallint NOT NULL,\n\t\"strSkillData\" varchar(260) NOT NULL\n\tPRIMARY KEY (\"strCharID\")\n)"
+	query := "CREATE TABLE [USERDATA_SKILLSHORTCUT] (\n\t[strCharID] varchar(21) NOT NULL,\n\t[nCount] smallint NOT NULL,\n\t[strSkillData] varchar(260) NOT NULL\n\tPRIMARY KEY (\"strCharID\")\n)"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }

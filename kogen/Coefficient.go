@@ -65,6 +65,6 @@ func (this *Coefficient) GetInsertString() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this *Coefficient) GetCreateTableString() string {
-	query := "CREATE TABLE [COEFFICIENT] (\n\t\"sClass\" smallint NOT NULL,\n\t\"ShortSword\" float NOT NULL,\n\t\"Sword\" float NOT NULL,\n\t\"Axe\" float NOT NULL,\n\t\"Club\" float NOT NULL,\n\t\"Spear\" float NOT NULL,\n\t\"Pole\" float NOT NULL,\n\t\"Staff\" float NOT NULL,\n\t\"Bow\" float,\n\t\"Hp\" float NOT NULL,\n\t\"Mp\" float NOT NULL,\n\t\"Sp\" float NOT NULL,\n\t\"Ac\" float NOT NULL,\n\t\"Hitrate\" float NOT NULL,\n\t\"Evasionrate\" float NOT NULL\n\n)"
+	query := "CREATE TABLE [COEFFICIENT] (\n\t[sClass] smallint NOT NULL,\n\t[ShortSword] float NOT NULL,\n\t[Sword] float NOT NULL,\n\t[Axe] float NOT NULL,\n\t[Club] float NOT NULL,\n\t[Spear] float NOT NULL,\n\t[Pole] float NOT NULL,\n\t[Staff] float NOT NULL,\n\t[Bow] float,\n\t[Hp] float NOT NULL,\n\t[Mp] float NOT NULL,\n\t[Sp] float NOT NULL,\n\t[Ac] float NOT NULL,\n\t[Hitrate] float NOT NULL,\n\t[Evasionrate] float NOT NULL\n\n)"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }

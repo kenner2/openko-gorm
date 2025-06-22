@@ -45,6 +45,6 @@ func (this *ProgramListLog) GetInsertString() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this *ProgramListLog) GetCreateTableString() string {
-	query := "CREATE TABLE [PROGRAMLIST_LOG] (\n\t\"id\" int NOT NULL,\n\t\"strAccountID\" varchar(21) NOT NULL,\n\t\"strCharID\" varchar(21) NOT NULL,\n\t\"strHackToolName\" varchar(1024) NOT NULL,\n\t\"tWriteTime\" smalldatetime NOT NULL\n\tPRIMARY KEY (\"id\")\n)"
+	query := "CREATE TABLE [PROGRAMLIST_LOG] (\n\t[id] int NOT NULL,\n\t[strAccountID] varchar(21) NOT NULL,\n\t[strCharID] varchar(21) NOT NULL,\n\t[strHackToolName] varchar(1024) NOT NULL,\n\t[tWriteTime] smalldatetime NOT NULL\n\tPRIMARY KEY (\"id\")\n)"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }

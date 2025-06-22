@@ -5,8 +5,8 @@ import (
 )
 
 const (
-	_UserDataTableName   = "USERDATA"
 	_UserDataDatabaseNbr = 0
+	_UserDataTableName   = "USERDATA"
 )
 
 func init() {
@@ -115,6 +115,6 @@ func (this *UserData) GetInsertString() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this *UserData) GetCreateTableString() string {
-	query := "CREATE TABLE [USERDATA] (\n\t\"strUserId\" varchar(21) NOT NULL,\n\t\"Nation\" tinyint NOT NULL,\n\t\"Race\" tinyint NOT NULL,\n\t\"Class\" smallint NOT NULL,\n\t\"HairColor\" tinyint NOT NULL,\n\t\"Rank\" tinyint NOT NULL,\n\t\"Title\" tinyint NOT NULL,\n\t\"Level\" tinyint NOT NULL,\n\t\"Exp\" int NOT NULL,\n\t\"Loyalty\" int NOT NULL,\n\t\"Face\" tinyint NOT NULL,\n\t\"City\" tinyint NOT NULL,\n\t\"Knights\" smallint NOT NULL,\n\t\"Fame\" tinyint NOT NULL,\n\t\"Hp\" smallint NOT NULL,\n\t\"Mp\" smallint NOT NULL,\n\t\"Sp\" smallint NOT NULL,\n\t\"Strong\" tinyint NOT NULL,\n\t\"Sta\" tinyint NOT NULL,\n\t\"Dex\" tinyint NOT NULL,\n\t\"Intel\" tinyint NOT NULL,\n\t\"Cha\" tinyint NOT NULL,\n\t\"Authority\" tinyint NOT NULL,\n\t\"Points\" tinyint NOT NULL,\n\t\"Gold\" int NOT NULL,\n\t\"Zone\" tinyint NOT NULL,\n\t\"Bind\" smallint,\n\t\"PX\" int NOT NULL,\n\t\"PZ\" int NOT NULL,\n\t\"PY\" int NOT NULL,\n\t\"dwTime\" int NOT NULL,\n\t\"strSkill\" varchar(10),\n\t\"strItem\" varchar(400),\n\t\"strSerial\" varchar(400),\n\t\"sQuestCount\" smallint NOT NULL,\n\t\"strQuest\" varchar(400),\n\t\"MannerPoint\" int NOT NULL,\n\t\"LoyaltyMonthly\" int NOT NULL,\n\t\"CreateTime\" smalldatetime NOT NULL,\n\t\"UpdateTime\" smalldatetime\n\tPRIMARY KEY (\"strUserId\")\n)"
+	query := "CREATE TABLE [USERDATA] (\n\t[strUserId] varchar(21) NOT NULL,\n\t[Nation] tinyint NOT NULL,\n\t[Race] tinyint NOT NULL,\n\t[Class] smallint NOT NULL,\n\t[HairColor] tinyint NOT NULL,\n\t[Rank] tinyint NOT NULL,\n\t[Title] tinyint NOT NULL,\n\t[Level] tinyint NOT NULL,\n\t[Exp] int NOT NULL,\n\t[Loyalty] int NOT NULL,\n\t[Face] tinyint NOT NULL,\n\t[City] tinyint NOT NULL,\n\t[Knights] smallint NOT NULL,\n\t[Fame] tinyint NOT NULL,\n\t[Hp] smallint NOT NULL,\n\t[Mp] smallint NOT NULL,\n\t[Sp] smallint NOT NULL,\n\t[Strong] tinyint NOT NULL,\n\t[Sta] tinyint NOT NULL,\n\t[Dex] tinyint NOT NULL,\n\t[Intel] tinyint NOT NULL,\n\t[Cha] tinyint NOT NULL,\n\t[Authority] tinyint NOT NULL,\n\t[Points] tinyint NOT NULL,\n\t[Gold] int NOT NULL,\n\t[Zone] tinyint NOT NULL,\n\t[Bind] smallint,\n\t[PX] int NOT NULL,\n\t[PZ] int NOT NULL,\n\t[PY] int NOT NULL,\n\t[dwTime] int NOT NULL,\n\t[strSkill] varchar(10),\n\t[strItem] varchar(400),\n\t[strSerial] varchar(400),\n\t[sQuestCount] smallint NOT NULL,\n\t[strQuest] varchar(400),\n\t[MannerPoint] int NOT NULL,\n\t[LoyaltyMonthly] int NOT NULL,\n\t[CreateTime] smalldatetime NOT NULL,\n\t[UpdateTime] smalldatetime\n\tPRIMARY KEY (\"strUserId\")\n)"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }

@@ -55,6 +55,6 @@ func (this *MakeItemGradeCode) GetInsertString() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this *MakeItemGradeCode) GetCreateTableString() string {
-	query := "CREATE TABLE [MAKE_ITEM_GRADECODE] (\n\t\"byItemIndex\" tinyint NOT NULL,\n\t\"byGrade_1\" smallint NOT NULL,\n\t\"byGrade_2\" smallint,\n\t\"byGrade_3\" smallint,\n\t\"byGrade_4\" smallint,\n\t\"byGrade_5\" smallint,\n\t\"byGrade_6\" smallint,\n\t\"byGrade_7\" smallint,\n\t\"byGrade_8\" smallint,\n\t\"byGrade_9\" smallint\n\n)"
+	query := "CREATE TABLE [MAKE_ITEM_GRADECODE] (\n\t[byItemIndex] tinyint NOT NULL,\n\t[byGrade_1] smallint NOT NULL,\n\t[byGrade_2] smallint,\n\t[byGrade_3] smallint,\n\t[byGrade_4] smallint,\n\t[byGrade_5] smallint,\n\t[byGrade_6] smallint,\n\t[byGrade_7] smallint,\n\t[byGrade_8] smallint,\n\t[byGrade_9] smallint\n\n)"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }

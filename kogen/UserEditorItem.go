@@ -55,6 +55,6 @@ func (this *UserEditorItem) GetInsertString() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this *UserEditorItem) GetCreateTableString() string {
-	query := "CREATE TABLE [USER_EDITOR_ITEM] (\n\t\"strCharID\" char(21) NOT NULL,\n\t\"strAccountID\" char(21) NOT NULL,\n\t\"strOpID\" char(21) NOT NULL,\n\t\"strOpIP\" char(21) NOT NULL,\n\t\"sDBIndex\" smallint NOT NULL,\n\t\"sPos\" smallint NOT NULL,\n\t\"byType\" tinyint NOT NULL,\n\t\"nItemID1\" int NOT NULL,\n\t\"nItemID2\" int NOT NULL,\n\t\"UpdateTime\" smalldatetime\n\n)"
+	query := "CREATE TABLE [USER_EDITOR_ITEM] (\n\t[strCharID] char(21) NOT NULL,\n\t[strAccountID] char(21) NOT NULL,\n\t[strOpID] char(21) NOT NULL,\n\t[strOpIP] char(21) NOT NULL,\n\t[sDBIndex] smallint NOT NULL,\n\t[sPos] smallint NOT NULL,\n\t[byType] tinyint NOT NULL,\n\t[nItemID1] int NOT NULL,\n\t[nItemID2] int NOT NULL,\n\t[UpdateTime] smalldatetime\n\n)"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }

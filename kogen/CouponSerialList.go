@@ -43,6 +43,6 @@ func (this *CouponSerialList) GetInsertString() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this *CouponSerialList) GetCreateTableString() string {
-	query := "CREATE TABLE [COUPON_SERIAL_LIST] (\n\t\"nIndex\" int NOT NULL,\n\t\"strSerialNum\" char(16) NOT NULL,\n\t\"nItemNum\" int NOT NULL,\n\t\"sItemCount\" smallint NOT NULL\n\n)"
+	query := "CREATE TABLE [COUPON_SERIAL_LIST] (\n\t[nIndex] int NOT NULL,\n\t[strSerialNum] char(16) NOT NULL,\n\t[nItemNum] int NOT NULL,\n\t[sItemCount] smallint NOT NULL\n\n)"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }

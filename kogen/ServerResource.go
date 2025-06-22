@@ -41,6 +41,6 @@ func (this *ServerResource) GetInsertString() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this *ServerResource) GetCreateTableString() string {
-	query := "CREATE TABLE [SERVER_RESOURCE] (\n\t\"nResourceID\" int NOT NULL,\n\t\"strName\" varchar(50) NOT NULL,\n\t\"strResource\" varchar(100)\n\n)"
+	query := "CREATE TABLE [SERVER_RESOURCE] (\n\t[nResourceID] int NOT NULL,\n\t[strName] varchar(50) NOT NULL,\n\t[strResource] varchar(100)\n\n)"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }

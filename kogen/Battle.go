@@ -71,6 +71,6 @@ func (this *Battle) GetInsertString() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this *Battle) GetCreateTableString() string {
-	query := "CREATE TABLE [BATTLE] (\n\t\"sIndex\" smallint NOT NULL,\n\t\"byNation\" tinyint NOT NULL,\n\t\"strUserName\" varchar(21),\n\t\"byElmoArea\" tinyint NOT NULL,\n\t\"byKarusArea\" tinyint NOT NULL,\n\t\"byElmoAdvantage\" tinyint NOT NULL,\n\t\"byKarusAdvantage\" tinyint NOT NULL,\n\t\"byArea_1\" tinyint NOT NULL,\n\t\"byArea_2\" tinyint NOT NULL,\n\t\"byArea_3\" tinyint NOT NULL,\n\t\"byArea_4\" tinyint NOT NULL,\n\t\"byArea_5\" tinyint NOT NULL,\n\t\"byArea_6\" tinyint NOT NULL,\n\t\"byArea_7\" tinyint NOT NULL,\n\t\"byArea_8\" tinyint NOT NULL,\n\t\"byArea_9\" tinyint NOT NULL,\n\t\"byArea_10\" tinyint NOT NULL,\n\t\"byArea_11\" tinyint NOT NULL\n\n)"
+	query := "CREATE TABLE [BATTLE] (\n\t[sIndex] smallint NOT NULL,\n\t[byNation] tinyint NOT NULL,\n\t[strUserName] varchar(21),\n\t[byElmoArea] tinyint NOT NULL,\n\t[byKarusArea] tinyint NOT NULL,\n\t[byElmoAdvantage] tinyint NOT NULL,\n\t[byKarusAdvantage] tinyint NOT NULL,\n\t[byArea_1] tinyint NOT NULL,\n\t[byArea_2] tinyint NOT NULL,\n\t[byArea_3] tinyint NOT NULL,\n\t[byArea_4] tinyint NOT NULL,\n\t[byArea_5] tinyint NOT NULL,\n\t[byArea_6] tinyint NOT NULL,\n\t[byArea_7] tinyint NOT NULL,\n\t[byArea_8] tinyint NOT NULL,\n\t[byArea_9] tinyint NOT NULL,\n\t[byArea_10] tinyint NOT NULL,\n\t[byArea_11] tinyint NOT NULL\n\n)"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }

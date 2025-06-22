@@ -45,6 +45,6 @@ func (this *ItemUpProbability) GetInsertString() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this *ItemUpProbability) GetCreateTableString() string {
-	query := "CREATE TABLE [ITEMUP_PROBABILITY] (\n\t\"bType\" tinyint NOT NULL,\n\t\"nMaxSuccess\" smallint NOT NULL,\n\t\"nMaxFail\" smallint NOT NULL,\n\t\"nCurSuccess\" smallint NOT NULL,\n\t\"nCurFail\" smallint NOT NULL\n\tPRIMARY KEY (\"bType\")\n)"
+	query := "CREATE TABLE [ITEMUP_PROBABILITY] (\n\t[bType] tinyint NOT NULL,\n\t[nMaxSuccess] smallint NOT NULL,\n\t[nMaxFail] smallint NOT NULL,\n\t[nCurSuccess] smallint NOT NULL,\n\t[nCurFail] smallint NOT NULL\n\tPRIMARY KEY (\"bType\")\n)"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }

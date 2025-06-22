@@ -5,8 +5,8 @@ import (
 )
 
 const (
-	_MagicType5TableName   = "MAGIC_TYPE5"
 	_MagicType5DatabaseNbr = 0
+	_MagicType5TableName   = "MAGIC_TYPE5"
 )
 
 func init() {
@@ -47,6 +47,6 @@ func (this *MagicType5) GetInsertString() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this *MagicType5) GetCreateTableString() string {
-	query := "CREATE TABLE [MAGIC_TYPE5] (\n\t\"iNum\" int NOT NULL,\n\t\"Name\" varchar(50),\n\t\"Description\" varchar(100),\n\t\"Type\" tinyint NOT NULL,\n\t\"ExpRecover\" tinyint NOT NULL,\n\t\"NeedStone\" smallint NOT NULL\n\n)"
+	query := "CREATE TABLE [MAGIC_TYPE5] (\n\t[iNum] int NOT NULL,\n\t[Name] varchar(50),\n\t[Description] varchar(100),\n\t[Type] tinyint NOT NULL,\n\t[ExpRecover] tinyint NOT NULL,\n\t[NeedStone] smallint NOT NULL\n\n)"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }

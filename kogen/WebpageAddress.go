@@ -39,6 +39,6 @@ func (this *WebpageAddress) GetInsertString() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this *WebpageAddress) GetCreateTableString() string {
-	query := "CREATE TABLE [WEBPAGE_ADDRESS] (\n\t\"nIndex\" varchar(10),\n\t\"strWebPageAddress\" varchar(10)\n\n)"
+	query := "CREATE TABLE [WEBPAGE_ADDRESS] (\n\t[nIndex] varchar(10),\n\t[strWebPageAddress] varchar(10)\n\n)"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }

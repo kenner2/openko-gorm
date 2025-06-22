@@ -43,6 +43,6 @@ func (this *Version) GetInsertString() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this *Version) GetCreateTableString() string {
-	query := "CREATE TABLE [VERSION] (\n\t\"sVersion\" smallint NOT NULL,\n\t\"strFileName\" varchar(50) NOT NULL,\n\t\"strCompressName\" varchar(50) NOT NULL,\n\t\"sHistoryVersion\" smallint NOT NULL\n\n)"
+	query := "CREATE TABLE [VERSION] (\n\t[sVersion] smallint NOT NULL,\n\t[strFileName] varchar(50) NOT NULL,\n\t[strCompressName] varchar(50) NOT NULL,\n\t[sHistoryVersion] smallint NOT NULL\n\n)"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }

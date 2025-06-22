@@ -43,6 +43,6 @@ func (this *KingCandidacyNoticeBoard) GetInsertString() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this *KingCandidacyNoticeBoard) GetCreateTableString() string {
-	query := "CREATE TABLE [KING_CANDIDACY_NOTICE_BOARD] (\n\t\"strUserID\" varchar(21) NOT NULL,\n\t\"byNation\" tinyint NOT NULL,\n\t\"sNoticeLen\" smallint NOT NULL,\n\t\"strNotice\" varbinary(1024) NOT NULL\n\tPRIMARY KEY (\"strUserID\")\n)"
+	query := "CREATE TABLE [KING_CANDIDACY_NOTICE_BOARD] (\n\t[strUserID] varchar(21) NOT NULL,\n\t[byNation] tinyint NOT NULL,\n\t[sNoticeLen] smallint NOT NULL,\n\t[strNotice] varbinary(1024) NOT NULL\n\tPRIMARY KEY (\"strUserID\")\n)"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }

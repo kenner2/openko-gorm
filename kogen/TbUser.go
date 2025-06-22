@@ -48,6 +48,6 @@ func (this *TbUser) GetInsertString() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this *TbUser) GetCreateTableString() string {
-	query := "CREATE TABLE [TB_USER] (\n\t\"strAccountID\" varchar(21) NOT NULL,\n\t\"strPasswd\" varchar(13) NOT NULL,\n\t\"strSocNo\" varchar(20) NOT NULL,\n\t\"strEmail\" varchar(250) NOT NULL,\n\t\"strAuthority\" tinyint NOT NULL,\n\t\"PremiumExpire\" datetime NOT NULL\n\n)"
+	query := "CREATE TABLE [TB_USER] (\n\t[strAccountID] varchar(21) NOT NULL,\n\t[strPasswd] varchar(13) NOT NULL,\n\t[strSocNo] varchar(20) NOT NULL,\n\t[strEmail] varchar(250) NOT NULL,\n\t[strAuthority] tinyint NOT NULL,\n\t[PremiumExpire] datetime NOT NULL\n\n)"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }

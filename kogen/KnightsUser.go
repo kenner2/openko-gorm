@@ -39,6 +39,6 @@ func (this *KnightsUser) GetInsertString() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this *KnightsUser) GetCreateTableString() string {
-	query := "CREATE TABLE [KNIGHTS_USER] (\n\t\"sIDNum\" smallint NOT NULL,\n\t\"strUserID\" varchar(21)\n\n)"
+	query := "CREATE TABLE [KNIGHTS_USER] (\n\t[sIDNum] smallint NOT NULL,\n\t[strUserID] varchar(21)\n\n)"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }

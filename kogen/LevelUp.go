@@ -39,6 +39,6 @@ func (this *LevelUp) GetInsertString() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this *LevelUp) GetCreateTableString() string {
-	query := "CREATE TABLE [LEVEL_UP] (\n\t\"level\" tinyint NOT NULL,\n\t\"Exp\" int NOT NULL\n\n)"
+	query := "CREATE TABLE [LEVEL_UP] (\n\t[level] tinyint NOT NULL,\n\t[Exp] int NOT NULL\n\n)"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }

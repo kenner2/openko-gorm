@@ -51,6 +51,6 @@ func (this *MakeDefensive) GetInsertString() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this *MakeDefensive) GetCreateTableString() string {
-	query := "CREATE TABLE [MAKE_DEFENSIVE] (\n\t\"byLevel\" tinyint NOT NULL,\n\t\"sClass_1\" smallint,\n\t\"sClass_2\" smallint,\n\t\"sClass_3\" smallint,\n\t\"sClass_4\" smallint,\n\t\"sClass_5\" smallint,\n\t\"sClass_6\" smallint,\n\t\"sClass_7\" smallint\n\n)"
+	query := "CREATE TABLE [MAKE_DEFENSIVE] (\n\t[byLevel] tinyint NOT NULL,\n\t[sClass_1] smallint,\n\t[sClass_2] smallint,\n\t[sClass_3] smallint,\n\t[sClass_4] smallint,\n\t[sClass_5] smallint,\n\t[sClass_6] smallint,\n\t[sClass_7] smallint\n\n)"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }

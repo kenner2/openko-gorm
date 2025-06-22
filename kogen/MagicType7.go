@@ -63,6 +63,6 @@ func (this *MagicType7) GetInsertString() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this *MagicType7) GetCreateTableString() string {
-	query := "CREATE TABLE [MAGIC_TYPE7] (\n\t\"nIndex\" int NOT NULL,\n\t\"strName\" varchar(50),\n\t\"strNote\" varchar(100),\n\t\"byValidGroup\" tinyint NOT NULL,\n\t\"byNatoinChange\" tinyint NOT NULL,\n\t\"shMonsterNum\" smallint NOT NULL,\n\t\"byTargetChange\" tinyint NOT NULL,\n\t\"byStateChange\" tinyint NOT NULL,\n\t\"byRadius\" tinyint NOT NULL,\n\t\"shHitrate\" smallint NOT NULL,\n\t\"shDuration\" smallint NOT NULL,\n\t\"shDamage\" smallint NOT NULL,\n\t\"byVisoin\" tinyint NOT NULL,\n\t\"nNeedItem\" int NOT NULL\n\n)"
+	query := "CREATE TABLE [MAGIC_TYPE7] (\n\t[nIndex] int NOT NULL,\n\t[strName] varchar(50),\n\t[strNote] varchar(100),\n\t[byValidGroup] tinyint NOT NULL,\n\t[byNatoinChange] tinyint NOT NULL,\n\t[shMonsterNum] smallint NOT NULL,\n\t[byTargetChange] tinyint NOT NULL,\n\t[byStateChange] tinyint NOT NULL,\n\t[byRadius] tinyint NOT NULL,\n\t[shHitrate] smallint NOT NULL,\n\t[shDuration] smallint NOT NULL,\n\t[shDamage] smallint NOT NULL,\n\t[byVisoin] tinyint NOT NULL,\n\t[nNeedItem] int NOT NULL\n\n)"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }

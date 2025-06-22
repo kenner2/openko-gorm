@@ -59,6 +59,6 @@ func (this *UserPersonalRank) GetInsertString() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this *UserPersonalRank) GetCreateTableString() string {
-	query := "CREATE TABLE [USER_PERSONAL_RANK] (\n\t\"nRank\" smallint NOT NULL,\n\t\"strPosition\" varchar(21) NOT NULL,\n\t\"nElmoUP\" smallint NOT NULL,\n\t\"strElmoUserID\" varchar(21),\n\t\"nElmoLoyaltyMonthly\" int,\n\t\"nElmoCheck\" int NOT NULL,\n\t\"nKarusUP\" smallint NOT NULL,\n\t\"strKarusUserID\" varchar(21),\n\t\"nKarusLoyaltyMonthly\" int,\n\t\"nKarusCheck\" int NOT NULL,\n\t\"nSalary\" int NOT NULL,\n\t\"UpdateDate\" smalldatetime NOT NULL\n\tPRIMARY KEY (\"nRank\")\n)"
+	query := "CREATE TABLE [USER_PERSONAL_RANK] (\n\t[nRank] smallint NOT NULL,\n\t[strPosition] varchar(21) NOT NULL,\n\t[nElmoUP] smallint NOT NULL,\n\t[strElmoUserID] varchar(21),\n\t[nElmoLoyaltyMonthly] int,\n\t[nElmoCheck] int NOT NULL,\n\t[nKarusUP] smallint NOT NULL,\n\t[strKarusUserID] varchar(21),\n\t[nKarusLoyaltyMonthly] int,\n\t[nKarusCheck] int NOT NULL,\n\t[nSalary] int NOT NULL,\n\t[UpdateDate] smalldatetime NOT NULL\n\tPRIMARY KEY (\"nRank\")\n)"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
