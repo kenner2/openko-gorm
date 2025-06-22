@@ -13,12 +13,12 @@ func init() {
 	ModelList = append(ModelList, &HacktoolUserLog{})
 }
 
-// HacktoolUserLog: Tracks possible detections of a hack tool by a user
+// HacktoolUserLog Tracks possible detections of a hack tool by a user
 type HacktoolUserLog struct {
 	AccountId    [21]byte  `gorm:"column:strAccountID;type:varchar(21);not null" json:"strAccountID"`
 	CharId       [21]byte  `gorm:"column:strCharID;type:varchar(21);not null" json:"strCharID"`
 	HackToolName [512]byte `gorm:"column:strHackToolName;type:varchar(512)" json:"strHackToolName,omitempty"`
-	WriteTime    int       `gorm:"column:tWriteTime;type:smalldatetime;not null" json:"tWriteTime"`
+	WriteTime    int       `gorm:"column:tWriteTime;type:smalldatetime;not null;default:getdate()" json:"tWriteTime"`
 }
 
 /* Helper Functions */
@@ -43,6 +43,6 @@ func (this *HacktoolUserLog) GetInsertString() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this *HacktoolUserLog) GetCreateTableString() string {
-	query := "CREATE TABLE \"HACKTOOL_USERLOG\" (\n\t\"strAccountID\" varchar(21) NOT NULL,\n\t\"strCharID\" varchar(21) NOT NULL,\n\t\"strHackToolName\" varchar(512),\n\t\"tWriteTime\" smalldatetime NOT NULL\n\n)"
+	query := "CREATE TABLE [HACKTOOL_USERLOG] (\n\t\"strAccountID\" varchar(21) NOT NULL,\n\t\"strCharID\" varchar(21) NOT NULL,\n\t\"strHackToolName\" varchar(512),\n\t\"tWriteTime\" smalldatetime NOT NULL\n\n)"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }

@@ -13,11 +13,11 @@ func init() {
 	ModelList = append(ModelList, &AccountChar{})
 }
 
-// AccountChar: Represents the relationship between accounts and characters
+// AccountChar Represents the relationship between accounts and characters
 type AccountChar struct {
 	AccountId [21]byte `gorm:"column:strAccountID;type:varchar(21);primaryKey;not null" json:"strAccountID"`
 	Nation    uint8    `gorm:"column:bNation;type:tinyint;not null" json:"bNation"`
-	CharNum   uint8    `gorm:"column:bCharNum;type:tinyint;not null" json:"bCharNum"`
+	CharNum   uint8    `gorm:"column:bCharNum;type:tinyint;not null;default:0" json:"bCharNum"`
 	CharId1   [21]byte `gorm:"column:strCharID1;type:varchar(21)" json:"strCharID1,omitempty"`
 	CharId2   [21]byte `gorm:"column:strCharID2;type:varchar(21)" json:"strCharID2,omitempty"`
 	CharId3   [21]byte `gorm:"column:strCharID3;type:varchar(21)" json:"strCharID3,omitempty"`
@@ -47,6 +47,6 @@ func (this *AccountChar) GetInsertString() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this *AccountChar) GetCreateTableString() string {
-	query := "CREATE TABLE \"ACCOUNT_CHAR\" (\n\t\"strAccountID\" varchar(21) NOT NULL,\n\t\"bNation\" tinyint NOT NULL,\n\t\"bCharNum\" tinyint NOT NULL,\n\t\"strCharID1\" varchar(21),\n\t\"strCharID2\" varchar(21),\n\t\"strCharID3\" varchar(21)\n\tPRIMARY KEY (\"strAccountID\")\n)"
+	query := "CREATE TABLE [ACCOUNT_CHAR] (\n\t\"strAccountID\" varchar(21) NOT NULL,\n\t\"bNation\" tinyint NOT NULL,\n\t\"bCharNum\" tinyint NOT NULL,\n\t\"strCharID1\" varchar(21),\n\t\"strCharID2\" varchar(21),\n\t\"strCharID3\" varchar(21)\n\tPRIMARY KEY (\"strAccountID\")\n)"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }

@@ -13,7 +13,7 @@ func init() {
 	ModelList = append(ModelList, &HeroUser{})
 }
 
-// HeroUser: TODO Doc
+// HeroUser TODO Doc
 type HeroUser struct {
 	Index       int16    `gorm:"column:shIndex;type:smallint;not null" json:"shIndex"`
 	UserId      [21]byte `gorm:"column:strUserID;type:varchar(21)" json:"strUserID,omitempty"`
@@ -45,6 +45,6 @@ func (this *HeroUser) GetInsertString() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this *HeroUser) GetCreateTableString() string {
-	query := "CREATE TABLE \"HERO_USER\" (\n\t\"shIndex\" smallint NOT NULL,\n\t\"strUserID\" varchar(21),\n\t\"strNation\" varchar(20),\n\t\"strClass\" varchar(30),\n\t\"strAchievement\" varchar(50)\n\n)"
+	query := "CREATE TABLE [HERO_USER] (\n\t\"shIndex\" smallint NOT NULL,\n\t\"strUserID\" varchar(21),\n\t\"strNation\" varchar(20),\n\t\"strClass\" varchar(30),\n\t\"strAchievement\" varchar(50)\n\n)"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }

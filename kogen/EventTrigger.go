@@ -13,7 +13,7 @@ func init() {
 	ModelList = append(ModelList, &EventTrigger{})
 }
 
-// EventTrigger: NPC Event Triggers
+// EventTrigger NPC Event Triggers
 type EventTrigger struct {
 	Index         int   `gorm:"column:nIndex;type:int;not null" json:"nIndex"`
 	NpcType       uint8 `gorm:"column:bNpcType;type:tinyint;not null" json:"bNpcType"`
@@ -43,6 +43,6 @@ func (this *EventTrigger) GetInsertString() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this *EventTrigger) GetCreateTableString() string {
-	query := "CREATE TABLE \"EVENT_TRIGGER\" (\n\t\"nIndex\" int NOT NULL,\n\t\"bNpcType\" tinyint NOT NULL,\n\t\"sNpcID\" smallint NOT NULL,\n\t\"nTriggerNum\" int NOT NULL\n\n)"
+	query := "CREATE TABLE [EVENT_TRIGGER] (\n\t\"nIndex\" int NOT NULL,\n\t\"bNpcType\" tinyint NOT NULL,\n\t\"sNpcID\" smallint NOT NULL,\n\t\"nTriggerNum\" int NOT NULL\n\n)"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }

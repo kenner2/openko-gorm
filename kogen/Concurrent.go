@@ -5,15 +5,15 @@ import (
 )
 
 const (
-	_ConcurrentTableName   = "CONCURRENT"
 	_ConcurrentDatabaseNbr = 0
+	_ConcurrentTableName   = "CONCURRENT"
 )
 
 func init() {
 	ModelList = append(ModelList, &Concurrent{})
 }
 
-// Concurrent: Keeps track of concurrent user counts
+// Concurrent Keeps track of concurrent user counts
 type Concurrent struct {
 	ServerId   uint8    `gorm:"column:serverid;type:tinyint;not null" json:"serverid"`
 	Zone1Count *int16   `gorm:"column:zone1_count;type:smallint" json:"zone1_count,omitempty"`
@@ -45,6 +45,6 @@ func (this *Concurrent) GetInsertString() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this *Concurrent) GetCreateTableString() string {
-	query := "CREATE TABLE \"CONCURRENT\" (\n\t\"serverid\" tinyint NOT NULL,\n\t\"zone1_count\" smallint,\n\t\"zone2_count\" smallint,\n\t\"zone3_count\" smallint,\n\t\"bz\" varchar(50)\n\n)"
+	query := "CREATE TABLE [CONCURRENT] (\n\t\"serverid\" tinyint NOT NULL,\n\t\"zone1_count\" smallint,\n\t\"zone2_count\" smallint,\n\t\"zone3_count\" smallint,\n\t\"bz\" varchar(50)\n\n)"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }

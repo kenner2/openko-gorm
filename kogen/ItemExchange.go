@@ -13,7 +13,7 @@ func init() {
 	ModelList = append(ModelList, &ItemExchange{})
 }
 
-// ItemExchange: Enables players to be able to give items in exchange for an item from an NPC
+// ItemExchange Enables players to be able to give items in exchange for an item from an NPC
 type ItemExchange struct {
 	Index               int       `gorm:"column:nIndex;type:int;not null" json:"nIndex"`
 	NpcNumber           int16     `gorm:"column:nNpcNum;type:smallint;not null" json:"nNpcNum"`
@@ -85,6 +85,6 @@ func (this *ItemExchange) GetInsertString() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this *ItemExchange) GetCreateTableString() string {
-	query := "CREATE TABLE \"ITEM_EXCHANGE\" (\n\t\"nIndex\" int NOT NULL,\n\t\"nNpcNum\" smallint NOT NULL,\n\t\"strNpcName\" varchar(50),\n\t\"strNote\" varchar(100),\n\t\"bRandomFlag\" tinyint NOT NULL,\n\t\"nOriginItemNum1\" int NOT NULL,\n\t\"nOriginItemCount1\" smallint NOT NULL,\n\t\"nOriginItemNum2\" int NOT NULL,\n\t\"nOriginItemCount2\" smallint NOT NULL,\n\t\"nOriginItemNum3\" int NOT NULL,\n\t\"nOriginItemCount3\" smallint NOT NULL,\n\t\"nOriginItemNum4\" int NOT NULL,\n\t\"nOriginItemCount4\" smallint NOT NULL,\n\t\"nOriginItemNum5\" int NOT NULL,\n\t\"nOriginItemCount5\" smallint NOT NULL,\n\t\"nExchangeItemNum1\" int NOT NULL,\n\t\"nExchangeItemCount1\" smallint NOT NULL,\n\t\"nExchangeItemNum2\" int NOT NULL,\n\t\"nExchangeItemCount2\" smallint NOT NULL,\n\t\"nExchangeItemNum3\" int NOT NULL,\n\t\"nExchangeItemCount3\" smallint NOT NULL,\n\t\"nExchangeItemNum4\" int NOT NULL,\n\t\"nExchangeItemCount4\" smallint NOT NULL,\n\t\"nExchangeItemNum5\" int NOT NULL,\n\t\"nExchangeItemCount5\" smallint NOT NULL\n\n)"
+	query := "CREATE TABLE [ITEM_EXCHANGE] (\n\t\"nIndex\" int NOT NULL,\n\t\"nNpcNum\" smallint NOT NULL,\n\t\"strNpcName\" varchar(50),\n\t\"strNote\" varchar(100),\n\t\"bRandomFlag\" tinyint NOT NULL,\n\t\"nOriginItemNum1\" int NOT NULL,\n\t\"nOriginItemCount1\" smallint NOT NULL,\n\t\"nOriginItemNum2\" int NOT NULL,\n\t\"nOriginItemCount2\" smallint NOT NULL,\n\t\"nOriginItemNum3\" int NOT NULL,\n\t\"nOriginItemCount3\" smallint NOT NULL,\n\t\"nOriginItemNum4\" int NOT NULL,\n\t\"nOriginItemCount4\" smallint NOT NULL,\n\t\"nOriginItemNum5\" int NOT NULL,\n\t\"nOriginItemCount5\" smallint NOT NULL,\n\t\"nExchangeItemNum1\" int NOT NULL,\n\t\"nExchangeItemCount1\" smallint NOT NULL,\n\t\"nExchangeItemNum2\" int NOT NULL,\n\t\"nExchangeItemCount2\" smallint NOT NULL,\n\t\"nExchangeItemNum3\" int NOT NULL,\n\t\"nExchangeItemCount3\" smallint NOT NULL,\n\t\"nExchangeItemNum4\" int NOT NULL,\n\t\"nExchangeItemCount4\" smallint NOT NULL,\n\t\"nExchangeItemNum5\" int NOT NULL,\n\t\"nExchangeItemCount5\" smallint NOT NULL\n\n)"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }

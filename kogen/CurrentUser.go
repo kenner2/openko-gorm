@@ -13,7 +13,7 @@ func init() {
 	ModelList = append(ModelList, &CurrentUser{})
 }
 
-// CurrentUser: Keeps track of users currently connected to the server
+// CurrentUser Keeps track of users currently connected to the server
 type CurrentUser struct {
 	ServerNumber int      `gorm:"column:nServerNo;type:int;not null" json:"nServerNo"`
 	ServerIP     [20]byte `gorm:"column:strServerIP;type:varchar(20);not null" json:"strServerIP"`
@@ -45,6 +45,6 @@ func (this *CurrentUser) GetInsertString() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this *CurrentUser) GetCreateTableString() string {
-	query := "CREATE TABLE \"CURRENTUSER\" (\n\t\"nServerNo\" int NOT NULL,\n\t\"strServerIP\" varchar(20) NOT NULL,\n\t\"strAccountID\" varchar(20) NOT NULL,\n\t\"strCharID\" varchar(20) NOT NULL,\n\t\"strClientIP\" varchar(20) NOT NULL\n\n)"
+	query := "CREATE TABLE [CURRENTUSER] (\n\t\"nServerNo\" int NOT NULL,\n\t\"strServerIP\" varchar(20) NOT NULL,\n\t\"strAccountID\" varchar(20) NOT NULL,\n\t\"strCharID\" varchar(20) NOT NULL,\n\t\"strClientIP\" varchar(20) NOT NULL\n\n)"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }

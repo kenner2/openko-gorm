@@ -13,26 +13,26 @@ func init() {
 	ModelList = append(ModelList, &Battle{})
 }
 
-// Battle: Battle data for the game server
+// Battle Battle data for the game server
 type Battle struct {
 	Index          int16    `gorm:"column:sIndex;type:smallint;not null" json:"sIndex"`
 	Nation         uint8    `gorm:"column:byNation;type:tinyint;not null" json:"byNation"`
 	UserName       [21]byte `gorm:"column:strUserName;type:varchar(21)" json:"strUserName,omitempty"`
-	ElmoArea       uint8    `gorm:"column:byElmoArea;type:tinyint;not null" json:"byElmoArea"`
-	KarusArea      uint8    `gorm:"column:byKarusArea;type:tinyint;not null" json:"byKarusArea"`
-	ElmoAdvantage  uint8    `gorm:"column:byElmoAdvantage;type:tinyint;not null" json:"byElmoAdvantage"`
-	KarusAdvantage uint8    `gorm:"column:byKarusAdvantage;type:tinyint;not null" json:"byKarusAdvantage"`
-	Area1          uint8    `gorm:"column:byArea_1;type:tinyint;not null" json:"byArea_1"`
-	Area2          uint8    `gorm:"column:byArea_2;type:tinyint;not null" json:"byArea_2"`
-	Area3          uint8    `gorm:"column:byArea_3;type:tinyint;not null" json:"byArea_3"`
-	Area4          uint8    `gorm:"column:byArea_4;type:tinyint;not null" json:"byArea_4"`
-	Area5          uint8    `gorm:"column:byArea_5;type:tinyint;not null" json:"byArea_5"`
-	Area6          uint8    `gorm:"column:byArea_6;type:tinyint;not null" json:"byArea_6"`
-	Area7          uint8    `gorm:"column:byArea_7;type:tinyint;not null" json:"byArea_7"`
-	Area8          uint8    `gorm:"column:byArea_8;type:tinyint;not null" json:"byArea_8"`
-	Area9          uint8    `gorm:"column:byArea_9;type:tinyint;not null" json:"byArea_9"`
-	Area10         uint8    `gorm:"column:byArea_10;type:tinyint;not null" json:"byArea_10"`
-	Area11         uint8    `gorm:"column:byArea_11;type:tinyint;not null" json:"byArea_11"`
+	ElmoArea       uint8    `gorm:"column:byElmoArea;type:tinyint;not null;default:0" json:"byElmoArea"`
+	KarusArea      uint8    `gorm:"column:byKarusArea;type:tinyint;not null;default:0" json:"byKarusArea"`
+	ElmoAdvantage  uint8    `gorm:"column:byElmoAdvantage;type:tinyint;not null;default:0" json:"byElmoAdvantage"`
+	KarusAdvantage uint8    `gorm:"column:byKarusAdvantage;type:tinyint;not null;default:0" json:"byKarusAdvantage"`
+	Area1          uint8    `gorm:"column:byArea_1;type:tinyint;not null;default:0" json:"byArea_1"`
+	Area2          uint8    `gorm:"column:byArea_2;type:tinyint;not null;default:0" json:"byArea_2"`
+	Area3          uint8    `gorm:"column:byArea_3;type:tinyint;not null;default:0" json:"byArea_3"`
+	Area4          uint8    `gorm:"column:byArea_4;type:tinyint;not null;default:0" json:"byArea_4"`
+	Area5          uint8    `gorm:"column:byArea_5;type:tinyint;not null;default:0" json:"byArea_5"`
+	Area6          uint8    `gorm:"column:byArea_6;type:tinyint;not null;default:0" json:"byArea_6"`
+	Area7          uint8    `gorm:"column:byArea_7;type:tinyint;not null;default:0" json:"byArea_7"`
+	Area8          uint8    `gorm:"column:byArea_8;type:tinyint;not null;default:0" json:"byArea_8"`
+	Area9          uint8    `gorm:"column:byArea_9;type:tinyint;not null;default:0" json:"byArea_9"`
+	Area10         uint8    `gorm:"column:byArea_10;type:tinyint;not null;default:0" json:"byArea_10"`
+	Area11         uint8    `gorm:"column:byArea_11;type:tinyint;not null;default:0" json:"byArea_11"`
 }
 
 /* Helper Functions */
@@ -71,6 +71,6 @@ func (this *Battle) GetInsertString() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this *Battle) GetCreateTableString() string {
-	query := "CREATE TABLE \"BATTLE\" (\n\t\"sIndex\" smallint NOT NULL,\n\t\"byNation\" tinyint NOT NULL,\n\t\"strUserName\" varchar(21),\n\t\"byElmoArea\" tinyint NOT NULL,\n\t\"byKarusArea\" tinyint NOT NULL,\n\t\"byElmoAdvantage\" tinyint NOT NULL,\n\t\"byKarusAdvantage\" tinyint NOT NULL,\n\t\"byArea_1\" tinyint NOT NULL,\n\t\"byArea_2\" tinyint NOT NULL,\n\t\"byArea_3\" tinyint NOT NULL,\n\t\"byArea_4\" tinyint NOT NULL,\n\t\"byArea_5\" tinyint NOT NULL,\n\t\"byArea_6\" tinyint NOT NULL,\n\t\"byArea_7\" tinyint NOT NULL,\n\t\"byArea_8\" tinyint NOT NULL,\n\t\"byArea_9\" tinyint NOT NULL,\n\t\"byArea_10\" tinyint NOT NULL,\n\t\"byArea_11\" tinyint NOT NULL\n\n)"
+	query := "CREATE TABLE [BATTLE] (\n\t\"sIndex\" smallint NOT NULL,\n\t\"byNation\" tinyint NOT NULL,\n\t\"strUserName\" varchar(21),\n\t\"byElmoArea\" tinyint NOT NULL,\n\t\"byKarusArea\" tinyint NOT NULL,\n\t\"byElmoAdvantage\" tinyint NOT NULL,\n\t\"byKarusAdvantage\" tinyint NOT NULL,\n\t\"byArea_1\" tinyint NOT NULL,\n\t\"byArea_2\" tinyint NOT NULL,\n\t\"byArea_3\" tinyint NOT NULL,\n\t\"byArea_4\" tinyint NOT NULL,\n\t\"byArea_5\" tinyint NOT NULL,\n\t\"byArea_6\" tinyint NOT NULL,\n\t\"byArea_7\" tinyint NOT NULL,\n\t\"byArea_8\" tinyint NOT NULL,\n\t\"byArea_9\" tinyint NOT NULL,\n\t\"byArea_10\" tinyint NOT NULL,\n\t\"byArea_11\" tinyint NOT NULL\n\n)"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }

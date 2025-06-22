@@ -13,7 +13,7 @@ func init() {
 	ModelList = append(ModelList, &CopyTest{})
 }
 
-// CopyTest: TODO: Doc
+// CopyTest TODO: Doc
 type CopyTest struct {
 	ItemSerial int64 `gorm:"column:ITEMSERIAL;type:bigint;not null" json:"ITEMSERIAL"`
 }
@@ -37,6 +37,6 @@ func (this *CopyTest) GetInsertString() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this *CopyTest) GetCreateTableString() string {
-	query := "CREATE TABLE \"COPY_TEST\" (\n\t\"ITEMSERIAL\" bigint NOT NULL\n\n)"
+	query := "CREATE TABLE [COPY_TEST] (\n\t\"ITEMSERIAL\" bigint NOT NULL\n\n)"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }

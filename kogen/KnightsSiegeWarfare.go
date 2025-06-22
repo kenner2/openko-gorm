@@ -1,0 +1,116 @@
+package kogen
+
+import (
+	"fmt"
+)
+
+const (
+	_KnightsSiegeWarfareDatabaseNbr = 0
+	_KnightsSiegeWarfareTableName   = "KNIGHTS_SIEGE_WARFARE"
+)
+
+func init() {
+	ModelList = append(ModelList, &KnightsSiegeWarfare{})
+}
+
+// KnightsSiegeWarfare Knights Siege Warfare
+type KnightsSiegeWarfare struct {
+	CastleIndex        int16    `gorm:"column:sCastleIndex;type:smallint;not null" json:"sCastleIndex"`
+	MasterKnights      int16    `gorm:"column:sMasterKnights;type:smallint;not null" json:"sMasterKnights"`
+	SiegeType          uint8    `gorm:"column:bySiegeType;type:tinyint;not null" json:"bySiegeType"`
+	WarDay             uint8    `gorm:"column:byWarDay;type:tinyint;not null" json:"byWarDay"`
+	WarTime            uint8    `gorm:"column:byWarTime;type:tinyint;not null" json:"byWarTime"`
+	WarMinute          uint8    `gorm:"column:byWarMinute;type:tinyint;not null" json:"byWarMinute"`
+	ChallengeList1     int16    `gorm:"column:sChallengeList_1;type:smallint;not null" json:"sChallengeList_1"`
+	ChallengeList2     int16    `gorm:"column:sChallengeList_2;type:smallint;not null" json:"sChallengeList_2"`
+	ChallengeList3     int16    `gorm:"column:sChallengeList_3;type:smallint;not null" json:"sChallengeList_3"`
+	ChallengeList4     int16    `gorm:"column:sChallengeList_4;type:smallint;not null" json:"sChallengeList_4"`
+	ChallengeList5     int16    `gorm:"column:sChallengeList_5;type:smallint;not null" json:"sChallengeList_5"`
+	ChallengeList6     int16    `gorm:"column:sChallengeList_6;type:smallint;not null" json:"sChallengeList_6"`
+	ChallengeList7     int16    `gorm:"column:sChallengeList_7;type:smallint;not null;default:0" json:"sChallengeList_7"`
+	ChallengeList8     int16    `gorm:"column:sChallengeList_8;type:smallint;not null;default:0" json:"sChallengeList_8"`
+	ChallengeList9     int16    `gorm:"column:sChallengeList_9;type:smallint;not null;default:0" json:"sChallengeList_9"`
+	ChallengeList10    int16    `gorm:"column:sChallengeList_10;type:smallint;not null;default:0" json:"sChallengeList_10"`
+	WarRequestDay      uint8    `gorm:"column:byWarRequestDay;type:tinyint;not null;default:3" json:"byWarRequestDay"`
+	WarRequestTime     uint8    `gorm:"column:byWarRequestTime;type:tinyint;not null;default:9" json:"byWarRequestTime"`
+	WarRequestMinute   uint8    `gorm:"column:byWarRequestMinute;type:tinyint;not null;default:0" json:"byWarRequestMinute"`
+	GuerrillaWarDay    uint8    `gorm:"column:byGuerrillaWarDay;type:tinyint;not null;default:1" json:"byGuerrillaWarDay"`
+	GuerrillaWarTime   uint8    `gorm:"column:byGuerrillaWarTime;type:tinyint;not null;default:20" json:"byGuerrillaWarTime"`
+	GuerrillaWarMinute uint8    `gorm:"column:byGuerrillaWarMinute;type:tinyint;not null;default:0" json:"byGuerrillaWarMinute"`
+	ChallengeList      [50]byte `gorm:"column:strChallengeList;type:char(50)" json:"strChallengeList,omitempty"`
+	MoradonTariff      int16    `gorm:"column:sMoradonTariff;type:smallint;not null;default:0" json:"sMoradonTariff"`
+	DelosTariff        int16    `gorm:"column:sDellosTariff;type:smallint;not null;default:0" json:"sDellosTariff"`
+	DungeonCharge      int      `gorm:"column:nDungeonCharge;type:int;not null;default:0" json:"nDungeonCharge"`
+	MoradonTax         int      `gorm:"column:nMoradonTax;type:int;not null;default:0" json:"nMoradonTax"`
+	DelosTax           int      `gorm:"column:nDellosTax;type:int;not null;default:0" json:"nDellosTax"`
+	RequestList1       int16    `gorm:"column:sRequestList_1;type:smallint;not null;default:0" json:"sRequestList_1"`
+	RequestList2       int16    `gorm:"column:sRequestList_2;type:smallint;not null;default:0" json:"sRequestList_2"`
+	RequestList3       int16    `gorm:"column:sRequestList_3;type:smallint;not null;default:0" json:"sRequestList_3"`
+	RequestList4       int16    `gorm:"column:sRequestList_4;type:smallint;not null;default:0" json:"sRequestList_4"`
+	RequestList5       int16    `gorm:"column:sRequestList_5;type:smallint;not null;default:0" json:"sRequestList_5"`
+	RequestList6       int16    `gorm:"column:sRequestList_6;type:smallint;not null;default:0" json:"sRequestList_6"`
+	RequestList7       int16    `gorm:"column:sRequestList_7;type:smallint;not null;default:0" json:"sRequestList_7"`
+	RequestList8       int16    `gorm:"column:sRequestList_8;type:smallint;not null;default:0" json:"sRequestList_8"`
+	RequestList9       int16    `gorm:"column:sRequestList_9;type:smallint;not null;default:0" json:"sRequestList_9"`
+	RequestList10      int16    `gorm:"column:sRequestList_10;type:smallint;not null;default:0" json:"sRequestList_10"`
+}
+
+/* Helper Functions */
+
+// GetDatabaseName Returns the table's database name
+func (this *KnightsSiegeWarfare) GetDatabaseName() string {
+	return GetDatabaseName(DbType(_KnightsSiegeWarfareDatabaseNbr))
+}
+
+// GetTableName Returns the table name
+func (this *KnightsSiegeWarfare) GetTableName() string {
+	return _KnightsSiegeWarfareTableName
+}
+
+// GetInsertString Returns the insert statement for the table populated with record from the object
+func (this *KnightsSiegeWarfare) GetInsertString() string {
+	return fmt.Sprintf("INSERT INTO [KNIGHTS_SIEGE_WARFARE] (sCastleIndex, sMasterKnights, bySiegeType, byWarDay, byWarTime, byWarMinute, sChallengeList_1, sChallengeList_2, sChallengeList_3, sChallengeList_4, sChallengeList_5, sChallengeList_6, sChallengeList_7, sChallengeList_8, sChallengeList_9, sChallengeList_10, byWarRequestDay, byWarRequestTime, byWarRequestMinute, byGuerrillaWarDay, byGuerrillaWarTime, byGuerrillaWarMinute, strChallengeList, sMoradonTariff, sDellosTariff, nDungeonCharge, nMoradonTax, nDellosTax, sRequestList_1, sRequestList_2, sRequestList_3, sRequestList_4, sRequestList_5, sRequestList_6, sRequestList_7, sRequestList_8, sRequestList_9, sRequestList_10) \nVALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", GetOptionalDecVal(&this.CastleIndex),
+		GetOptionalDecVal(&this.MasterKnights),
+		GetOptionalDecVal(&this.SiegeType),
+		GetOptionalDecVal(&this.WarDay),
+		GetOptionalDecVal(&this.WarTime),
+		GetOptionalDecVal(&this.WarMinute),
+		GetOptionalDecVal(&this.ChallengeList1),
+		GetOptionalDecVal(&this.ChallengeList2),
+		GetOptionalDecVal(&this.ChallengeList3),
+		GetOptionalDecVal(&this.ChallengeList4),
+		GetOptionalDecVal(&this.ChallengeList5),
+		GetOptionalDecVal(&this.ChallengeList6),
+		GetOptionalDecVal(&this.ChallengeList7),
+		GetOptionalDecVal(&this.ChallengeList8),
+		GetOptionalDecVal(&this.ChallengeList9),
+		GetOptionalDecVal(&this.ChallengeList10),
+		GetOptionalDecVal(&this.WarRequestDay),
+		GetOptionalDecVal(&this.WarRequestTime),
+		GetOptionalDecVal(&this.WarRequestMinute),
+		GetOptionalDecVal(&this.GuerrillaWarDay),
+		GetOptionalDecVal(&this.GuerrillaWarTime),
+		GetOptionalDecVal(&this.GuerrillaWarMinute),
+		GetOptionalBinaryVal(this.ChallengeList),
+		GetOptionalDecVal(&this.MoradonTariff),
+		GetOptionalDecVal(&this.DelosTariff),
+		GetOptionalDecVal(&this.DungeonCharge),
+		GetOptionalDecVal(&this.MoradonTax),
+		GetOptionalDecVal(&this.DelosTax),
+		GetOptionalDecVal(&this.RequestList1),
+		GetOptionalDecVal(&this.RequestList2),
+		GetOptionalDecVal(&this.RequestList3),
+		GetOptionalDecVal(&this.RequestList4),
+		GetOptionalDecVal(&this.RequestList5),
+		GetOptionalDecVal(&this.RequestList6),
+		GetOptionalDecVal(&this.RequestList7),
+		GetOptionalDecVal(&this.RequestList8),
+		GetOptionalDecVal(&this.RequestList9),
+		GetOptionalDecVal(&this.RequestList10))
+}
+
+// GetCreateTableString Returns the create table statement for this object
+func (this *KnightsSiegeWarfare) GetCreateTableString() string {
+	query := "CREATE TABLE [KNIGHTS_SIEGE_WARFARE] (\n\t\"sCastleIndex\" smallint NOT NULL,\n\t\"sMasterKnights\" smallint NOT NULL,\n\t\"bySiegeType\" tinyint NOT NULL,\n\t\"byWarDay\" tinyint NOT NULL,\n\t\"byWarTime\" tinyint NOT NULL,\n\t\"byWarMinute\" tinyint NOT NULL,\n\t\"sChallengeList_1\" smallint NOT NULL,\n\t\"sChallengeList_2\" smallint NOT NULL,\n\t\"sChallengeList_3\" smallint NOT NULL,\n\t\"sChallengeList_4\" smallint NOT NULL,\n\t\"sChallengeList_5\" smallint NOT NULL,\n\t\"sChallengeList_6\" smallint NOT NULL,\n\t\"sChallengeList_7\" smallint NOT NULL,\n\t\"sChallengeList_8\" smallint NOT NULL,\n\t\"sChallengeList_9\" smallint NOT NULL,\n\t\"sChallengeList_10\" smallint NOT NULL,\n\t\"byWarRequestDay\" tinyint NOT NULL,\n\t\"byWarRequestTime\" tinyint NOT NULL,\n\t\"byWarRequestMinute\" tinyint NOT NULL,\n\t\"byGuerrillaWarDay\" tinyint NOT NULL,\n\t\"byGuerrillaWarTime\" tinyint NOT NULL,\n\t\"byGuerrillaWarMinute\" tinyint NOT NULL,\n\t\"strChallengeList\" char(50),\n\t\"sMoradonTariff\" smallint NOT NULL,\n\t\"sDellosTariff\" smallint NOT NULL,\n\t\"nDungeonCharge\" int NOT NULL,\n\t\"nMoradonTax\" int NOT NULL,\n\t\"nDellosTax\" int NOT NULL,\n\t\"sRequestList_1\" smallint NOT NULL,\n\t\"sRequestList_2\" smallint NOT NULL,\n\t\"sRequestList_3\" smallint NOT NULL,\n\t\"sRequestList_4\" smallint NOT NULL,\n\t\"sRequestList_5\" smallint NOT NULL,\n\t\"sRequestList_6\" smallint NOT NULL,\n\t\"sRequestList_7\" smallint NOT NULL,\n\t\"sRequestList_8\" smallint NOT NULL,\n\t\"sRequestList_9\" smallint NOT NULL,\n\t\"sRequestList_10\" smallint NOT NULL\n\n)"
+	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
+}

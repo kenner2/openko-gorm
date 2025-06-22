@@ -13,7 +13,7 @@ func init() {
 	ModelList = append(ModelList, &ItemUpgrade{})
 }
 
-// ItemUpgrade: Item upgrade configuration
+// ItemUpgrade Item upgrade configuration
 type ItemUpgrade struct {
 	Index        int       `gorm:"column:nIndex;type:int;not null" json:"nIndex"`
 	NpcNumber    int16     `gorm:"column:nNPCNum;type:smallint;not null" json:"nNPCNum"`
@@ -71,6 +71,6 @@ func (this *ItemUpgrade) GetInsertString() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this *ItemUpgrade) GetCreateTableString() string {
-	query := "CREATE TABLE \"ITEM_UPGRADE\" (\n\t\"nIndex\" int NOT NULL,\n\t\"nNPCNum\" smallint NOT NULL,\n\t\"strName\" varchar(50),\n\t\"strNote\" varchar(100),\n\t\"nOriginType\" smallint NOT NULL,\n\t\"nOriginItem\" smallint NOT NULL,\n\t\"nReqItem1\" int NOT NULL,\n\t\"nReqItem2\" int NOT NULL,\n\t\"nReqItem3\" int NOT NULL,\n\t\"nReqItem4\" int NOT NULL,\n\t\"nReqItem5\" int NOT NULL,\n\t\"nReqItem6\" int NOT NULL,\n\t\"nReqItem7\" int NOT NULL,\n\t\"nReqItem8\" int NOT NULL,\n\t\"nReqNoah\" int NOT NULL,\n\t\"bRateType\" tinyint NOT NULL,\n\t\"nGenRate\" smallint NOT NULL,\n\t\"nGiveItem\" smallint NOT NULL\n\n)"
+	query := "CREATE TABLE [ITEM_UPGRADE] (\n\t\"nIndex\" int NOT NULL,\n\t\"nNPCNum\" smallint NOT NULL,\n\t\"strName\" varchar(50),\n\t\"strNote\" varchar(100),\n\t\"nOriginType\" smallint NOT NULL,\n\t\"nOriginItem\" smallint NOT NULL,\n\t\"nReqItem1\" int NOT NULL,\n\t\"nReqItem2\" int NOT NULL,\n\t\"nReqItem3\" int NOT NULL,\n\t\"nReqItem4\" int NOT NULL,\n\t\"nReqItem5\" int NOT NULL,\n\t\"nReqItem6\" int NOT NULL,\n\t\"nReqItem7\" int NOT NULL,\n\t\"nReqItem8\" int NOT NULL,\n\t\"nReqNoah\" int NOT NULL,\n\t\"bRateType\" tinyint NOT NULL,\n\t\"nGenRate\" smallint NOT NULL,\n\t\"nGiveItem\" smallint NOT NULL\n\n)"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
