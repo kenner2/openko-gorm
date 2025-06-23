@@ -43,6 +43,6 @@ func (this *KingBallotBox) GetInsertString() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this *KingBallotBox) GetCreateTableString() string {
-	query := "CREATE TABLE [KING_BALLOT_BOX] (\n\t[strAccountID] varchar(21) NOT NULL,\n\t[strCharID] varchar(21) NOT NULL,\n\t[byNation] tinyint NOT NULL,\n\t[strCandidacyID] varchar(21) NOT NULL\n\n)"
+	query := "CREATE TABLE [KING_BALLOT_BOX] (\n\t[strAccountID] varchar(21) NOT NULL,\n\t[strCharID] varchar(21) NOT NULL,\n\t[byNation] tinyint NOT NULL,\n\t[strCandidacyID] varchar(21) NOT NULL\n\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }

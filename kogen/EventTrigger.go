@@ -43,6 +43,6 @@ func (this *EventTrigger) GetInsertString() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this *EventTrigger) GetCreateTableString() string {
-	query := "CREATE TABLE [EVENT_TRIGGER] (\n\t[nIndex] int NOT NULL,\n\t[bNpcType] tinyint NOT NULL,\n\t[sNpcID] smallint NOT NULL,\n\t[nTriggerNum] int NOT NULL\n\n)"
+	query := "CREATE TABLE [EVENT_TRIGGER] (\n\t[nIndex] int NOT NULL,\n\t[bNpcType] tinyint NOT NULL,\n\t[sNpcID] smallint NOT NULL,\n\t[nTriggerNum] int NOT NULL\n\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }

@@ -61,6 +61,6 @@ func (this *MakeWeapon) GetInsertString() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this *MakeWeapon) GetCreateTableString() string {
-	query := "CREATE TABLE [MAKE_WEAPON] (\n\t[byLevel] tinyint NOT NULL,\n\t[sClass_1] smallint,\n\t[sClass_2] smallint,\n\t[sClass_3] smallint,\n\t[sClass_4] smallint,\n\t[sClass_5] smallint,\n\t[sClass_6] smallint,\n\t[sClass_7] smallint,\n\t[sClass_8] smallint,\n\t[sClass_9] smallint,\n\t[sClass_10] smallint,\n\t[sClass_11] smallint,\n\t[sClass_12] smallint\n\n)"
+	query := "CREATE TABLE [MAKE_WEAPON] (\n\t[byLevel] tinyint NOT NULL,\n\t[sClass_1] smallint,\n\t[sClass_2] smallint,\n\t[sClass_3] smallint,\n\t[sClass_4] smallint,\n\t[sClass_5] smallint,\n\t[sClass_6] smallint,\n\t[sClass_7] smallint,\n\t[sClass_8] smallint,\n\t[sClass_9] smallint,\n\t[sClass_10] smallint,\n\t[sClass_11] smallint,\n\t[sClass_12] smallint\n\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }

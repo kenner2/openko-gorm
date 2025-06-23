@@ -53,6 +53,6 @@ func (this *ZoneInfo) GetInsertString() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this *ZoneInfo) GetCreateTableString() string {
-	query := "CREATE TABLE [ZONE_INFO] (\n\t[ServerNo] tinyint NOT NULL,\n\t[ZoneNo] smallint NOT NULL,\n\t[strZoneName] varchar(50) NOT NULL,\n\t[InitX] int NOT NULL,\n\t[InitZ] int NOT NULL,\n\t[InitY] int NOT NULL,\n\t[Type] tinyint NOT NULL,\n\t[RoomEvent] tinyint NOT NULL,\n\t[bz] varchar(50)\n\n)"
+	query := "CREATE TABLE [ZONE_INFO] (\n\t[ServerNo] tinyint NOT NULL,\n\t[ZoneNo] smallint NOT NULL,\n\t[strZoneName] varchar(50) NOT NULL,\n\t[InitX] int NOT NULL,\n\t[InitZ] int NOT NULL,\n\t[InitY] int NOT NULL,\n\t[Type] tinyint NOT NULL,\n\t[RoomEvent] tinyint NOT NULL,\n\t[bz] varchar(50)\n\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }

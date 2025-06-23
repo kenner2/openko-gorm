@@ -47,6 +47,6 @@ func (this *AccountChar) GetInsertString() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this *AccountChar) GetCreateTableString() string {
-	query := "CREATE TABLE [ACCOUNT_CHAR] (\n\t[strAccountID] varchar(21) NOT NULL,\n\t[bNation] tinyint NOT NULL,\n\t[bCharNum] tinyint NOT NULL,\n\t[strCharID1] varchar(21),\n\t[strCharID2] varchar(21),\n\t[strCharID3] varchar(21)\n\tPRIMARY KEY (\"strAccountID\")\n)"
+	query := "CREATE TABLE [ACCOUNT_CHAR] (\n\t[strAccountID] varchar(21) NOT NULL,\n\t[bNation] tinyint NOT NULL,\n\t[bCharNum] tinyint NOT NULL,\n\t[strCharID1] varchar(21),\n\t[strCharID2] varchar(21),\n\t[strCharID3] varchar(21)\n\tCONSTRAINT [PK_ACCOUNT_CHAR] PRIMARY KEY ([strAccountID])\n)\nGO\nALTER TABLE [ACCOUNT_CHAR] ADD CONSTRAINT [DF_ACCOUNT_CHAR_bCharNum] DEFAULT 0 FOR [bCharNum]\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }

@@ -37,6 +37,6 @@ func (this *CopyTest) GetInsertString() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this *CopyTest) GetCreateTableString() string {
-	query := "CREATE TABLE [COPY_TEST] (\n\t[ITEMSERIAL] bigint NOT NULL\n\n)"
+	query := "CREATE TABLE [COPY_TEST] (\n\t[ITEMSERIAL] bigint NOT NULL\n\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }

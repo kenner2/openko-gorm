@@ -63,6 +63,6 @@ func (this *MagicType9) GetInsertString() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this *MagicType9) GetCreateTableString() string {
-	query := "CREATE TABLE [MAGIC_TYPE9] (\n\t[iNum] int NOT NULL,\n\t[Name] varchar(50),\n\t[Description] varchar(100),\n\t[ValidGroup] tinyint NOT NULL,\n\t[NationChange] tinyint NOT NULL,\n\t[MonsterNum] smallint NOT NULL,\n\t[TargetChange] tinyint NOT NULL,\n\t[StateChange] tinyint NOT NULL,\n\t[Radius] smallint NOT NULL,\n\t[Hitrate] smallint NOT NULL,\n\t[Duration] smallint NOT NULL,\n\t[AddDamage] smallint NOT NULL,\n\t[Vision] smallint NOT NULL,\n\t[NeedItem] int NOT NULL\n\n)"
+	query := "CREATE TABLE [MAGIC_TYPE9] (\n\t[iNum] int NOT NULL,\n\t[Name] varchar(50),\n\t[Description] varchar(100),\n\t[ValidGroup] tinyint NOT NULL,\n\t[NationChange] tinyint NOT NULL,\n\t[MonsterNum] smallint NOT NULL,\n\t[TargetChange] tinyint NOT NULL,\n\t[StateChange] tinyint NOT NULL,\n\t[Radius] smallint NOT NULL,\n\t[Hitrate] smallint NOT NULL,\n\t[Duration] smallint NOT NULL,\n\t[AddDamage] smallint NOT NULL,\n\t[Vision] smallint NOT NULL,\n\t[NeedItem] int NOT NULL\n\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }

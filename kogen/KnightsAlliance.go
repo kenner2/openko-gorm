@@ -43,6 +43,6 @@ func (this *KnightsAlliance) GetInsertString() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this *KnightsAlliance) GetCreateTableString() string {
-	query := "CREATE TABLE [KNIGHTS_ALLIANCE] (\n\t[sMainAllianceKnights] smallint NOT NULL,\n\t[sSubAllianceKnights] smallint NOT NULL,\n\t[sMercenaryClan_1] smallint NOT NULL,\n\t[sMercenaryClan_2] smallint NOT NULL\n\n)"
+	query := "CREATE TABLE [KNIGHTS_ALLIANCE] (\n\t[sMainAllianceKnights] smallint NOT NULL,\n\t[sSubAllianceKnights] smallint NOT NULL,\n\t[sMercenaryClan_1] smallint NOT NULL,\n\t[sMercenaryClan_2] smallint NOT NULL\n\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }

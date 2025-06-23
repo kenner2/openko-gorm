@@ -45,6 +45,6 @@ func (this *MakeItemRareCode) GetInsertString() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this *MakeItemRareCode) GetCreateTableString() string {
-	query := "CREATE TABLE [MAKE_ITEM_LARECODE] (\n\t[byLevelGrade] tinyint NOT NULL,\n\t[sUpgradeItem] smallint NOT NULL,\n\t[sLareItem] smallint NOT NULL,\n\t[sMagicItem] smallint NOT NULL,\n\t[sGereralItem] smallint NOT NULL\n\n)"
+	query := "CREATE TABLE [MAKE_ITEM_LARECODE] (\n\t[byLevelGrade] tinyint NOT NULL,\n\t[sUpgradeItem] smallint NOT NULL,\n\t[sLareItem] smallint NOT NULL,\n\t[sMagicItem] smallint NOT NULL,\n\t[sGereralItem] smallint NOT NULL\n\n)\nGO\nALTER TABLE [MAKE_ITEM_LARECODE] ADD CONSTRAINT [DF_MAKE_ITEM_LARECODE_sUpgradeItem] DEFAULT 0 FOR [sUpgradeItem]\nGO\nALTER TABLE [MAKE_ITEM_LARECODE] ADD CONSTRAINT [DF_MAKE_ITEM_LARECODE_sLareItem] DEFAULT 0 FOR [sLareItem]\nGO\nALTER TABLE [MAKE_ITEM_LARECODE] ADD CONSTRAINT [DF_MAKE_ITEM_LARECODE_sMagicItem] DEFAULT 0 FOR [sMagicItem]\nGO\nALTER TABLE [MAKE_ITEM_LARECODE] ADD CONSTRAINT [DF_MAKE_ITEM_LARECODE_sGereralItem] DEFAULT 0 FOR [sGereralItem]\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }

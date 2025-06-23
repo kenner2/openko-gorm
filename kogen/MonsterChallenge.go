@@ -47,6 +47,6 @@ func (this *MonsterChallenge) GetInsertString() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this *MonsterChallenge) GetCreateTableString() string {
-	query := "CREATE TABLE [MONSTER_CHALLENGE] (\n\t[sIndex] smallint NOT NULL,\n\t[bStartTime1] tinyint NOT NULL,\n\t[bStartTime2] tinyint NOT NULL,\n\t[bStartTime3] tinyint NOT NULL,\n\t[bLevelMin] tinyint NOT NULL,\n\t[bLevelMax] tinyint NOT NULL\n\n)"
+	query := "CREATE TABLE [MONSTER_CHALLENGE] (\n\t[sIndex] smallint NOT NULL,\n\t[bStartTime1] tinyint NOT NULL,\n\t[bStartTime2] tinyint NOT NULL,\n\t[bStartTime3] tinyint NOT NULL,\n\t[bLevelMin] tinyint NOT NULL,\n\t[bLevelMax] tinyint NOT NULL\n\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
