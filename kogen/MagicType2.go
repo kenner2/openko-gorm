@@ -2,6 +2,9 @@ package kogen
 
 import (
 	"fmt"
+	mssql "github.com/microsoft/go-mssqldb"
+	"gorm.io/gorm"
+	"gorm.io/gorm/clause"
 )
 
 const (
@@ -15,34 +18,50 @@ func init() {
 
 // MagicType2 Type 2 covers bow abilities
 type MagicType2 struct {
-	MagicNumber   int       `gorm:"column:iNum;type:int;not null" json:"iNum"`
-	Name          [50]byte  `gorm:"column:Name;type:varchar(50)" json:"Name,omitempty"`
-	Description   [100]byte `gorm:"column:Description;type:varchar(100)" json:"Description,omitempty"`
-	HitType       uint8     `gorm:"column:HitType;type:tinyint;not null" json:"HitType"`
-	HitRateMod    int16     `gorm:"column:HitRate;type:smallint;not null" json:"HitRate"`
-	DamageMod     int16     `gorm:"column:AddDamage;type:smallint;not null" json:"AddDamage"`
-	RangeMod      int16     `gorm:"column:AddRange;type:smallint;not null" json:"AddRange"`
-	NeedArrow     uint8     `gorm:"column:NeedArrow;type:tinyint;not null" json:"NeedArrow"`
-	AddDamagePlus *int16    `gorm:"column:AddDamagePlus;type:smallint" json:"AddDamagePlus,omitempty"`
+	MagicNumber   int            `gorm:"column:iNum;type:int;primaryKey;not null" json:"iNum"`
+	Name          *mssql.VarChar `gorm:"column:Name;type:varchar(50)" json:"Name,omitempty"`
+	Description   *mssql.VarChar `gorm:"column:Description;type:varchar(100)" json:"Description,omitempty"`
+	HitType       uint8          `gorm:"column:HitType;type:tinyint;not null" json:"HitType"`
+	HitRateMod    int16          `gorm:"column:HitRate;type:smallint;not null" json:"HitRate"`
+	DamageMod     int16          `gorm:"column:AddDamage;type:smallint;not null" json:"AddDamage"`
+	RangeMod      int16          `gorm:"column:AddRange;type:smallint;not null" json:"AddRange"`
+	NeedArrow     uint8          `gorm:"column:NeedArrow;type:tinyint;not null" json:"NeedArrow"`
+	AddDamagePlus *int16         `gorm:"column:AddDamagePlus;type:smallint" json:"AddDamagePlus,omitempty"`
 }
 
-/* Helper Functions */
-
 // GetDatabaseName Returns the table's database name
-func (this *MagicType2) GetDatabaseName() string {
+func (this MagicType2) GetDatabaseName() string {
 	return GetDatabaseName(DbType(_MagicType2DatabaseNbr))
 }
 
-// GetTableName Returns the table name
-func (this *MagicType2) GetTableName() string {
+// TableName Returns the table name
+func (this MagicType2) TableName() string {
 	return _MagicType2TableName
 }
 
 // GetInsertString Returns the insert statement for the table populated with record from the object
-func (this *MagicType2) GetInsertString() string {
-	return fmt.Sprintf("INSERT INTO [MAGIC_TYPE2] (iNum, Name, Description, HitType, HitRate, AddDamage, AddRange, NeedArrow, AddDamagePlus) \nVALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)", GetOptionalDecVal(&this.MagicNumber),
-		GetOptionalBinaryVal(this.Name),
-		GetOptionalBinaryVal(this.Description),
+func (this MagicType2) GetInsertString() string {
+	return fmt.Sprintf("INSERT INTO [MAGIC_TYPE2] ([iNum], [Name], [Description], [HitType], [HitRate], [AddDamage], [AddRange], [NeedArrow], [AddDamagePlus]) VALUES\n(%s, %s, %s, %s, %s, %s, %s, %s, %s)", GetOptionalDecVal(&this.MagicNumber),
+		GetOptionalVarCharVal(this.Name, false),
+		GetOptionalVarCharVal(this.Description, false),
+		GetOptionalDecVal(&this.HitType),
+		GetOptionalDecVal(&this.HitRateMod),
+		GetOptionalDecVal(&this.DamageMod),
+		GetOptionalDecVal(&this.RangeMod),
+		GetOptionalDecVal(&this.NeedArrow),
+		GetOptionalDecVal(this.AddDamagePlus))
+}
+
+// GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
+func (this MagicType2) GetInsertHeader() string {
+	return "INSERT INTO [MAGIC_TYPE2] (iNum, Name, Description, HitType, HitRate, AddDamage, AddRange, NeedArrow, AddDamagePlus) VALUES\n"
+}
+
+// GetInsertData Returns the record data for the table insert dump
+func (this MagicType2) GetInsertData() string {
+	return fmt.Sprintf("(%s, %s, %s, %s, %s, %s, %s, %s, %s)", GetOptionalDecVal(&this.MagicNumber),
+		GetOptionalVarCharVal(this.Name, false),
+		GetOptionalVarCharVal(this.Description, false),
 		GetOptionalDecVal(&this.HitType),
 		GetOptionalDecVal(&this.HitRateMod),
 		GetOptionalDecVal(&this.DamageMod),
@@ -52,7 +71,58 @@ func (this *MagicType2) GetInsertString() string {
 }
 
 // GetCreateTableString Returns the create table statement for this object
-func (this *MagicType2) GetCreateTableString() string {
-	query := "CREATE TABLE [MAGIC_TYPE2] (\n\t[iNum] int NOT NULL,\n\t[Name] varchar(50),\n\t[Description] varchar(100),\n\t[HitType] tinyint NOT NULL,\n\t[HitRate] smallint NOT NULL,\n\t[AddDamage] smallint NOT NULL,\n\t[AddRange] smallint NOT NULL,\n\t[NeedArrow] tinyint NOT NULL,\n\t[AddDamagePlus] smallint\n\n)\nGO\n"
+func (this MagicType2) GetCreateTableString() string {
+	query := "CREATE TABLE [MAGIC_TYPE2] (\n\t[iNum] int NOT NULL,\n\t[Name] varchar(50),\n\t[Description] varchar(100),\n\t[HitType] tinyint NOT NULL,\n\t[HitRate] smallint NOT NULL,\n\t[AddDamage] smallint NOT NULL,\n\t[AddRange] smallint NOT NULL,\n\t[NeedArrow] tinyint NOT NULL,\n\t[AddDamagePlus] smallint\n\tCONSTRAINT [PK_MAGIC_TYPE2] PRIMARY KEY ([iNum])\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
+}
+
+// SelectClause Returns a safe select clause for the model
+func (this MagicType2) SelectClause() (selectClause clause.Select) {
+	return _MagicType2SelectClause
+}
+
+// GetAllTableData Returns a list of all table data
+func (this MagicType2) GetAllTableData(db *gorm.DB) (results []Model, err error) {
+	res := []MagicType2{}
+	rawSql := "SELECT [iNum], [Name], [Description], [HitType], [HitRate], [AddDamage], [AddRange], [NeedArrow], [AddDamagePlus] FROM [MAGIC_TYPE2]"
+	err = db.Raw(rawSql).Find(&res).Error
+	if err != nil {
+		return nil, err
+	}
+	for i := range res {
+		results = append(results, &res[i])
+	}
+	return results, nil
+}
+
+var _MagicType2SelectClause = clause.Select{
+	Columns: []clause.Column{
+		clause.Column{
+			Name: "[iNum]",
+		},
+		clause.Column{
+			Name: "[Name]",
+		},
+		clause.Column{
+			Name: "[Description]",
+		},
+		clause.Column{
+			Name: "[HitType]",
+		},
+		clause.Column{
+			Name: "[HitRate]",
+		},
+		clause.Column{
+			Name: "[AddDamage]",
+		},
+		clause.Column{
+			Name: "[AddRange]",
+		},
+		clause.Column{
+			Name: "[NeedArrow]",
+		},
+		clause.Column{
+			Name: "[AddDamagePlus]",
+		},
+	},
 }

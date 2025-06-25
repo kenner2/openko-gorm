@@ -2,6 +2,8 @@ package kogen
 
 import (
 	"fmt"
+	"gorm.io/gorm"
+	"gorm.io/gorm/clause"
 )
 
 const (
@@ -48,21 +50,59 @@ type MakeItemGroup struct {
 	Item30          int `gorm:"column:iItem_30;type:int;not null" json:"iItem_30"`
 }
 
-/* Helper Functions */
-
 // GetDatabaseName Returns the table's database name
-func (this *MakeItemGroup) GetDatabaseName() string {
+func (this MakeItemGroup) GetDatabaseName() string {
 	return GetDatabaseName(DbType(_MakeItemGroupDatabaseNbr))
 }
 
-// GetTableName Returns the table name
-func (this *MakeItemGroup) GetTableName() string {
+// TableName Returns the table name
+func (this MakeItemGroup) TableName() string {
 	return _MakeItemGroupTableName
 }
 
 // GetInsertString Returns the insert statement for the table populated with record from the object
-func (this *MakeItemGroup) GetInsertString() string {
-	return fmt.Sprintf("INSERT INTO [MAKE_ITEM_GROUP] (iItemGroupNum, iItem_1, iItem_2, iItem_3, iItem_4, iItem_5, iItem_6, iItem_7, iItem_8, iItem_9, iItem_10, iItem_11, iItem_12, iItem_13, iItem_14, iItem_15, iItem_16, iItem_17, iItem_18, iItem_19, iItem_20, iItem_21, iItem_22, iItem_23, iItem_24, iItem_25, iItem_26, iItem_27, iItem_28, iItem_29, iItem_30) \nVALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", GetOptionalDecVal(&this.ItemGroupNumber),
+func (this MakeItemGroup) GetInsertString() string {
+	return fmt.Sprintf("INSERT INTO [MAKE_ITEM_GROUP] ([iItemGroupNum], [iItem_1], [iItem_2], [iItem_3], [iItem_4], [iItem_5], [iItem_6], [iItem_7], [iItem_8], [iItem_9], [iItem_10], [iItem_11], [iItem_12], [iItem_13], [iItem_14], [iItem_15], [iItem_16], [iItem_17], [iItem_18], [iItem_19], [iItem_20], [iItem_21], [iItem_22], [iItem_23], [iItem_24], [iItem_25], [iItem_26], [iItem_27], [iItem_28], [iItem_29], [iItem_30]) VALUES\n(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", GetOptionalDecVal(&this.ItemGroupNumber),
+		GetOptionalDecVal(&this.Item1),
+		GetOptionalDecVal(&this.Item2),
+		GetOptionalDecVal(&this.Item3),
+		GetOptionalDecVal(&this.Item4),
+		GetOptionalDecVal(&this.Item5),
+		GetOptionalDecVal(&this.Item6),
+		GetOptionalDecVal(&this.Item7),
+		GetOptionalDecVal(&this.Item8),
+		GetOptionalDecVal(&this.Item9),
+		GetOptionalDecVal(&this.Item10),
+		GetOptionalDecVal(&this.Item11),
+		GetOptionalDecVal(&this.Item12),
+		GetOptionalDecVal(&this.Item13),
+		GetOptionalDecVal(&this.Item14),
+		GetOptionalDecVal(&this.Item15),
+		GetOptionalDecVal(&this.Item16),
+		GetOptionalDecVal(&this.Item17),
+		GetOptionalDecVal(&this.Item18),
+		GetOptionalDecVal(&this.Item19),
+		GetOptionalDecVal(&this.Item20),
+		GetOptionalDecVal(&this.Item21),
+		GetOptionalDecVal(&this.Item22),
+		GetOptionalDecVal(&this.Item23),
+		GetOptionalDecVal(&this.Item24),
+		GetOptionalDecVal(&this.Item25),
+		GetOptionalDecVal(&this.Item26),
+		GetOptionalDecVal(&this.Item27),
+		GetOptionalDecVal(&this.Item28),
+		GetOptionalDecVal(&this.Item29),
+		GetOptionalDecVal(&this.Item30))
+}
+
+// GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
+func (this MakeItemGroup) GetInsertHeader() string {
+	return "INSERT INTO [MAKE_ITEM_GROUP] (iItemGroupNum, iItem_1, iItem_2, iItem_3, iItem_4, iItem_5, iItem_6, iItem_7, iItem_8, iItem_9, iItem_10, iItem_11, iItem_12, iItem_13, iItem_14, iItem_15, iItem_16, iItem_17, iItem_18, iItem_19, iItem_20, iItem_21, iItem_22, iItem_23, iItem_24, iItem_25, iItem_26, iItem_27, iItem_28, iItem_29, iItem_30) VALUES\n"
+}
+
+// GetInsertData Returns the record data for the table insert dump
+func (this MakeItemGroup) GetInsertData() string {
+	return fmt.Sprintf("(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", GetOptionalDecVal(&this.ItemGroupNumber),
 		GetOptionalDecVal(&this.Item1),
 		GetOptionalDecVal(&this.Item2),
 		GetOptionalDecVal(&this.Item3),
@@ -96,7 +136,124 @@ func (this *MakeItemGroup) GetInsertString() string {
 }
 
 // GetCreateTableString Returns the create table statement for this object
-func (this *MakeItemGroup) GetCreateTableString() string {
+func (this MakeItemGroup) GetCreateTableString() string {
 	query := "CREATE TABLE [MAKE_ITEM_GROUP] (\n\t[iItemGroupNum] int NOT NULL,\n\t[iItem_1] int NOT NULL,\n\t[iItem_2] int NOT NULL,\n\t[iItem_3] int NOT NULL,\n\t[iItem_4] int NOT NULL,\n\t[iItem_5] int NOT NULL,\n\t[iItem_6] int NOT NULL,\n\t[iItem_7] int NOT NULL,\n\t[iItem_8] int NOT NULL,\n\t[iItem_9] int NOT NULL,\n\t[iItem_10] int NOT NULL,\n\t[iItem_11] int NOT NULL,\n\t[iItem_12] int NOT NULL,\n\t[iItem_13] int NOT NULL,\n\t[iItem_14] int NOT NULL,\n\t[iItem_15] int NOT NULL,\n\t[iItem_16] int NOT NULL,\n\t[iItem_17] int NOT NULL,\n\t[iItem_18] int NOT NULL,\n\t[iItem_19] int NOT NULL,\n\t[iItem_20] int NOT NULL,\n\t[iItem_21] int NOT NULL,\n\t[iItem_22] int NOT NULL,\n\t[iItem_23] int NOT NULL,\n\t[iItem_24] int NOT NULL,\n\t[iItem_25] int NOT NULL,\n\t[iItem_26] int NOT NULL,\n\t[iItem_27] int NOT NULL,\n\t[iItem_28] int NOT NULL,\n\t[iItem_29] int NOT NULL,\n\t[iItem_30] int NOT NULL\n\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
+}
+
+// SelectClause Returns a safe select clause for the model
+func (this MakeItemGroup) SelectClause() (selectClause clause.Select) {
+	return _MakeItemGroupSelectClause
+}
+
+// GetAllTableData Returns a list of all table data
+func (this MakeItemGroup) GetAllTableData(db *gorm.DB) (results []Model, err error) {
+	res := []MakeItemGroup{}
+	rawSql := "SELECT [iItemGroupNum], [iItem_1], [iItem_2], [iItem_3], [iItem_4], [iItem_5], [iItem_6], [iItem_7], [iItem_8], [iItem_9], [iItem_10], [iItem_11], [iItem_12], [iItem_13], [iItem_14], [iItem_15], [iItem_16], [iItem_17], [iItem_18], [iItem_19], [iItem_20], [iItem_21], [iItem_22], [iItem_23], [iItem_24], [iItem_25], [iItem_26], [iItem_27], [iItem_28], [iItem_29], [iItem_30] FROM [MAKE_ITEM_GROUP]"
+	err = db.Raw(rawSql).Find(&res).Error
+	if err != nil {
+		return nil, err
+	}
+	for i := range res {
+		results = append(results, &res[i])
+	}
+	return results, nil
+}
+
+var _MakeItemGroupSelectClause = clause.Select{
+	Columns: []clause.Column{
+		clause.Column{
+			Name: "[iItemGroupNum]",
+		},
+		clause.Column{
+			Name: "[iItem_1]",
+		},
+		clause.Column{
+			Name: "[iItem_2]",
+		},
+		clause.Column{
+			Name: "[iItem_3]",
+		},
+		clause.Column{
+			Name: "[iItem_4]",
+		},
+		clause.Column{
+			Name: "[iItem_5]",
+		},
+		clause.Column{
+			Name: "[iItem_6]",
+		},
+		clause.Column{
+			Name: "[iItem_7]",
+		},
+		clause.Column{
+			Name: "[iItem_8]",
+		},
+		clause.Column{
+			Name: "[iItem_9]",
+		},
+		clause.Column{
+			Name: "[iItem_10]",
+		},
+		clause.Column{
+			Name: "[iItem_11]",
+		},
+		clause.Column{
+			Name: "[iItem_12]",
+		},
+		clause.Column{
+			Name: "[iItem_13]",
+		},
+		clause.Column{
+			Name: "[iItem_14]",
+		},
+		clause.Column{
+			Name: "[iItem_15]",
+		},
+		clause.Column{
+			Name: "[iItem_16]",
+		},
+		clause.Column{
+			Name: "[iItem_17]",
+		},
+		clause.Column{
+			Name: "[iItem_18]",
+		},
+		clause.Column{
+			Name: "[iItem_19]",
+		},
+		clause.Column{
+			Name: "[iItem_20]",
+		},
+		clause.Column{
+			Name: "[iItem_21]",
+		},
+		clause.Column{
+			Name: "[iItem_22]",
+		},
+		clause.Column{
+			Name: "[iItem_23]",
+		},
+		clause.Column{
+			Name: "[iItem_24]",
+		},
+		clause.Column{
+			Name: "[iItem_25]",
+		},
+		clause.Column{
+			Name: "[iItem_26]",
+		},
+		clause.Column{
+			Name: "[iItem_27]",
+		},
+		clause.Column{
+			Name: "[iItem_28]",
+		},
+		clause.Column{
+			Name: "[iItem_29]",
+		},
+		clause.Column{
+			Name: "[iItem_30]",
+		},
+	},
 }

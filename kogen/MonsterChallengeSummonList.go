@@ -2,6 +2,8 @@ package kogen
 
 import (
 	"fmt"
+	"gorm.io/gorm"
+	"gorm.io/gorm/clause"
 )
 
 const (
@@ -27,21 +29,38 @@ type MonsterChallengeSummonList struct {
 	Range      uint8 `gorm:"column:bRange;type:tinyint;not null" json:"bRange"`
 }
 
-/* Helper Functions */
-
 // GetDatabaseName Returns the table's database name
-func (this *MonsterChallengeSummonList) GetDatabaseName() string {
+func (this MonsterChallengeSummonList) GetDatabaseName() string {
 	return GetDatabaseName(DbType(_MonsterChallengeSummonListDatabaseNbr))
 }
 
-// GetTableName Returns the table name
-func (this *MonsterChallengeSummonList) GetTableName() string {
+// TableName Returns the table name
+func (this MonsterChallengeSummonList) TableName() string {
 	return _MonsterChallengeSummonListTableName
 }
 
 // GetInsertString Returns the insert statement for the table populated with record from the object
-func (this *MonsterChallengeSummonList) GetInsertString() string {
-	return fmt.Sprintf("INSERT INTO [MONSTER_CHALLENGE_SUMMON_LIST] (sIndex, bLevel, bStage, bStageLevel, sTime, sSid, sCount, sPosX, sPosZ, bRange) \nVALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", GetOptionalDecVal(&this.Index),
+func (this MonsterChallengeSummonList) GetInsertString() string {
+	return fmt.Sprintf("INSERT INTO [MONSTER_CHALLENGE_SUMMON_LIST] ([sIndex], [bLevel], [bStage], [bStageLevel], [sTime], [sSid], [sCount], [sPosX], [sPosZ], [bRange]) VALUES\n(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", GetOptionalDecVal(&this.Index),
+		GetOptionalDecVal(&this.Level),
+		GetOptionalDecVal(&this.Stage),
+		GetOptionalDecVal(&this.StageLevel),
+		GetOptionalDecVal(&this.Time),
+		GetOptionalDecVal(&this.MonsterId),
+		GetOptionalDecVal(&this.Count),
+		GetOptionalDecVal(&this.PosX),
+		GetOptionalDecVal(&this.PosZ),
+		GetOptionalDecVal(&this.Range))
+}
+
+// GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
+func (this MonsterChallengeSummonList) GetInsertHeader() string {
+	return "INSERT INTO [MONSTER_CHALLENGE_SUMMON_LIST] (sIndex, bLevel, bStage, bStageLevel, sTime, sSid, sCount, sPosX, sPosZ, bRange) VALUES\n"
+}
+
+// GetInsertData Returns the record data for the table insert dump
+func (this MonsterChallengeSummonList) GetInsertData() string {
+	return fmt.Sprintf("(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", GetOptionalDecVal(&this.Index),
 		GetOptionalDecVal(&this.Level),
 		GetOptionalDecVal(&this.Stage),
 		GetOptionalDecVal(&this.StageLevel),
@@ -54,7 +73,61 @@ func (this *MonsterChallengeSummonList) GetInsertString() string {
 }
 
 // GetCreateTableString Returns the create table statement for this object
-func (this *MonsterChallengeSummonList) GetCreateTableString() string {
+func (this MonsterChallengeSummonList) GetCreateTableString() string {
 	query := "CREATE TABLE [MONSTER_CHALLENGE_SUMMON_LIST] (\n\t[sIndex] smallint NOT NULL,\n\t[bLevel] tinyint NOT NULL,\n\t[bStage] tinyint NOT NULL,\n\t[bStageLevel] tinyint NOT NULL,\n\t[sTime] smallint NOT NULL,\n\t[sSid] smallint NOT NULL,\n\t[sCount] smallint NOT NULL,\n\t[sPosX] smallint NOT NULL,\n\t[sPosZ] smallint NOT NULL,\n\t[bRange] tinyint NOT NULL\n\n)\nGO\nALTER TABLE [MONSTER_CHALLENGE_SUMMON_LIST] ADD CONSTRAINT [DF_MONSTER_CHALLENGE_SUMMON_LIST_bStageLevel] DEFAULT 0 FOR [bStageLevel]\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
+}
+
+// SelectClause Returns a safe select clause for the model
+func (this MonsterChallengeSummonList) SelectClause() (selectClause clause.Select) {
+	return _MonsterChallengeSummonListSelectClause
+}
+
+// GetAllTableData Returns a list of all table data
+func (this MonsterChallengeSummonList) GetAllTableData(db *gorm.DB) (results []Model, err error) {
+	res := []MonsterChallengeSummonList{}
+	rawSql := "SELECT [sIndex], [bLevel], [bStage], [bStageLevel], [sTime], [sSid], [sCount], [sPosX], [sPosZ], [bRange] FROM [MONSTER_CHALLENGE_SUMMON_LIST]"
+	err = db.Raw(rawSql).Find(&res).Error
+	if err != nil {
+		return nil, err
+	}
+	for i := range res {
+		results = append(results, &res[i])
+	}
+	return results, nil
+}
+
+var _MonsterChallengeSummonListSelectClause = clause.Select{
+	Columns: []clause.Column{
+		clause.Column{
+			Name: "[sIndex]",
+		},
+		clause.Column{
+			Name: "[bLevel]",
+		},
+		clause.Column{
+			Name: "[bStage]",
+		},
+		clause.Column{
+			Name: "[bStageLevel]",
+		},
+		clause.Column{
+			Name: "[sTime]",
+		},
+		clause.Column{
+			Name: "[sSid]",
+		},
+		clause.Column{
+			Name: "[sCount]",
+		},
+		clause.Column{
+			Name: "[sPosX]",
+		},
+		clause.Column{
+			Name: "[sPosZ]",
+		},
+		clause.Column{
+			Name: "[bRange]",
+		},
+	},
 }

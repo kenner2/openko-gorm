@@ -2,6 +2,8 @@ package kogen
 
 import (
 	"fmt"
+	"gorm.io/gorm"
+	"gorm.io/gorm/clause"
 )
 
 const (
@@ -28,21 +30,39 @@ type MonsterItemTest struct {
 	Percent5 *int16 `gorm:"column:sPersent05;type:smallint" json:"sPersent05,omitempty"`
 }
 
-/* Helper Functions */
-
 // GetDatabaseName Returns the table's database name
-func (this *MonsterItemTest) GetDatabaseName() string {
+func (this MonsterItemTest) GetDatabaseName() string {
 	return GetDatabaseName(DbType(_MonsterItemTestDatabaseNbr))
 }
 
-// GetTableName Returns the table name
-func (this *MonsterItemTest) GetTableName() string {
+// TableName Returns the table name
+func (this MonsterItemTest) TableName() string {
 	return _MonsterItemTestTableName
 }
 
 // GetInsertString Returns the insert statement for the table populated with record from the object
-func (this *MonsterItemTest) GetInsertString() string {
-	return fmt.Sprintf("INSERT INTO [MONSTER_ITEM_TEST] (sIndex, iItem01, sPersent01, iItem02, sPersent02, iItem03, sPersent03, iItem04, sPersent04, iItem05, sPersent05) \nVALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", GetOptionalDecVal(&this.Index),
+func (this MonsterItemTest) GetInsertString() string {
+	return fmt.Sprintf("INSERT INTO [MONSTER_ITEM_TEST] ([sIndex], [iItem01], [sPersent01], [iItem02], [sPersent02], [iItem03], [sPersent03], [iItem04], [sPersent04], [iItem05], [sPersent05]) VALUES\n(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", GetOptionalDecVal(&this.Index),
+		GetOptionalDecVal(this.Item1),
+		GetOptionalDecVal(this.Percent1),
+		GetOptionalDecVal(this.Item2),
+		GetOptionalDecVal(this.Percent2),
+		GetOptionalDecVal(this.Item3),
+		GetOptionalDecVal(this.Percent3),
+		GetOptionalDecVal(this.Item4),
+		GetOptionalDecVal(this.Percent4),
+		GetOptionalDecVal(this.Item5),
+		GetOptionalDecVal(this.Percent5))
+}
+
+// GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
+func (this MonsterItemTest) GetInsertHeader() string {
+	return "INSERT INTO [MONSTER_ITEM_TEST] (sIndex, iItem01, sPersent01, iItem02, sPersent02, iItem03, sPersent03, iItem04, sPersent04, iItem05, sPersent05) VALUES\n"
+}
+
+// GetInsertData Returns the record data for the table insert dump
+func (this MonsterItemTest) GetInsertData() string {
+	return fmt.Sprintf("(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", GetOptionalDecVal(&this.Index),
 		GetOptionalDecVal(this.Item1),
 		GetOptionalDecVal(this.Percent1),
 		GetOptionalDecVal(this.Item2),
@@ -56,7 +76,64 @@ func (this *MonsterItemTest) GetInsertString() string {
 }
 
 // GetCreateTableString Returns the create table statement for this object
-func (this *MonsterItemTest) GetCreateTableString() string {
+func (this MonsterItemTest) GetCreateTableString() string {
 	query := "CREATE TABLE [MONSTER_ITEM_TEST] (\n\t[sIndex] smallint NOT NULL,\n\t[iItem01] int,\n\t[sPersent01] smallint,\n\t[iItem02] int,\n\t[sPersent02] smallint,\n\t[iItem03] int,\n\t[sPersent03] smallint,\n\t[iItem04] int,\n\t[sPersent04] smallint,\n\t[iItem05] int,\n\t[sPersent05] smallint\n\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
+}
+
+// SelectClause Returns a safe select clause for the model
+func (this MonsterItemTest) SelectClause() (selectClause clause.Select) {
+	return _MonsterItemTestSelectClause
+}
+
+// GetAllTableData Returns a list of all table data
+func (this MonsterItemTest) GetAllTableData(db *gorm.DB) (results []Model, err error) {
+	res := []MonsterItemTest{}
+	rawSql := "SELECT [sIndex], [iItem01], [sPersent01], [iItem02], [sPersent02], [iItem03], [sPersent03], [iItem04], [sPersent04], [iItem05], [sPersent05] FROM [MONSTER_ITEM_TEST]"
+	err = db.Raw(rawSql).Find(&res).Error
+	if err != nil {
+		return nil, err
+	}
+	for i := range res {
+		results = append(results, &res[i])
+	}
+	return results, nil
+}
+
+var _MonsterItemTestSelectClause = clause.Select{
+	Columns: []clause.Column{
+		clause.Column{
+			Name: "[sIndex]",
+		},
+		clause.Column{
+			Name: "[iItem01]",
+		},
+		clause.Column{
+			Name: "[sPersent01]",
+		},
+		clause.Column{
+			Name: "[iItem02]",
+		},
+		clause.Column{
+			Name: "[sPersent02]",
+		},
+		clause.Column{
+			Name: "[iItem03]",
+		},
+		clause.Column{
+			Name: "[sPersent03]",
+		},
+		clause.Column{
+			Name: "[iItem04]",
+		},
+		clause.Column{
+			Name: "[sPersent04]",
+		},
+		clause.Column{
+			Name: "[iItem05]",
+		},
+		clause.Column{
+			Name: "[sPersent05]",
+		},
+	},
 }

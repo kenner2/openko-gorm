@@ -2,6 +2,8 @@ package kogen
 
 import (
 	"fmt"
+	"gorm.io/gorm"
+	"gorm.io/gorm/clause"
 )
 
 const (
@@ -27,21 +29,38 @@ type MakeItemGradeCode struct {
 	Grade9    *int16 `gorm:"column:byGrade_9;type:smallint" json:"byGrade_9,omitempty"`
 }
 
-/* Helper Functions */
-
 // GetDatabaseName Returns the table's database name
-func (this *MakeItemGradeCode) GetDatabaseName() string {
+func (this MakeItemGradeCode) GetDatabaseName() string {
 	return GetDatabaseName(DbType(_MakeItemGradeCodeDatabaseNbr))
 }
 
-// GetTableName Returns the table name
-func (this *MakeItemGradeCode) GetTableName() string {
+// TableName Returns the table name
+func (this MakeItemGradeCode) TableName() string {
 	return _MakeItemGradeCodeTableName
 }
 
 // GetInsertString Returns the insert statement for the table populated with record from the object
-func (this *MakeItemGradeCode) GetInsertString() string {
-	return fmt.Sprintf("INSERT INTO [MAKE_ITEM_GRADECODE] (byItemIndex, byGrade_1, byGrade_2, byGrade_3, byGrade_4, byGrade_5, byGrade_6, byGrade_7, byGrade_8, byGrade_9) \nVALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", GetOptionalDecVal(&this.ItemIndex),
+func (this MakeItemGradeCode) GetInsertString() string {
+	return fmt.Sprintf("INSERT INTO [MAKE_ITEM_GRADECODE] ([byItemIndex], [byGrade_1], [byGrade_2], [byGrade_3], [byGrade_4], [byGrade_5], [byGrade_6], [byGrade_7], [byGrade_8], [byGrade_9]) VALUES\n(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", GetOptionalDecVal(&this.ItemIndex),
+		GetOptionalDecVal(&this.Grade1),
+		GetOptionalDecVal(this.Grade2),
+		GetOptionalDecVal(this.Grade3),
+		GetOptionalDecVal(this.Grade4),
+		GetOptionalDecVal(this.Grade5),
+		GetOptionalDecVal(this.Grade6),
+		GetOptionalDecVal(this.Grade7),
+		GetOptionalDecVal(this.Grade8),
+		GetOptionalDecVal(this.Grade9))
+}
+
+// GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
+func (this MakeItemGradeCode) GetInsertHeader() string {
+	return "INSERT INTO [MAKE_ITEM_GRADECODE] (byItemIndex, byGrade_1, byGrade_2, byGrade_3, byGrade_4, byGrade_5, byGrade_6, byGrade_7, byGrade_8, byGrade_9) VALUES\n"
+}
+
+// GetInsertData Returns the record data for the table insert dump
+func (this MakeItemGradeCode) GetInsertData() string {
+	return fmt.Sprintf("(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", GetOptionalDecVal(&this.ItemIndex),
 		GetOptionalDecVal(&this.Grade1),
 		GetOptionalDecVal(this.Grade2),
 		GetOptionalDecVal(this.Grade3),
@@ -54,7 +73,61 @@ func (this *MakeItemGradeCode) GetInsertString() string {
 }
 
 // GetCreateTableString Returns the create table statement for this object
-func (this *MakeItemGradeCode) GetCreateTableString() string {
+func (this MakeItemGradeCode) GetCreateTableString() string {
 	query := "CREATE TABLE [MAKE_ITEM_GRADECODE] (\n\t[byItemIndex] tinyint NOT NULL,\n\t[byGrade_1] smallint NOT NULL,\n\t[byGrade_2] smallint,\n\t[byGrade_3] smallint,\n\t[byGrade_4] smallint,\n\t[byGrade_5] smallint,\n\t[byGrade_6] smallint,\n\t[byGrade_7] smallint,\n\t[byGrade_8] smallint,\n\t[byGrade_9] smallint\n\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
+}
+
+// SelectClause Returns a safe select clause for the model
+func (this MakeItemGradeCode) SelectClause() (selectClause clause.Select) {
+	return _MakeItemGradeCodeSelectClause
+}
+
+// GetAllTableData Returns a list of all table data
+func (this MakeItemGradeCode) GetAllTableData(db *gorm.DB) (results []Model, err error) {
+	res := []MakeItemGradeCode{}
+	rawSql := "SELECT [byItemIndex], [byGrade_1], [byGrade_2], [byGrade_3], [byGrade_4], [byGrade_5], [byGrade_6], [byGrade_7], [byGrade_8], [byGrade_9] FROM [MAKE_ITEM_GRADECODE]"
+	err = db.Raw(rawSql).Find(&res).Error
+	if err != nil {
+		return nil, err
+	}
+	for i := range res {
+		results = append(results, &res[i])
+	}
+	return results, nil
+}
+
+var _MakeItemGradeCodeSelectClause = clause.Select{
+	Columns: []clause.Column{
+		clause.Column{
+			Name: "[byItemIndex]",
+		},
+		clause.Column{
+			Name: "[byGrade_1]",
+		},
+		clause.Column{
+			Name: "[byGrade_2]",
+		},
+		clause.Column{
+			Name: "[byGrade_3]",
+		},
+		clause.Column{
+			Name: "[byGrade_4]",
+		},
+		clause.Column{
+			Name: "[byGrade_5]",
+		},
+		clause.Column{
+			Name: "[byGrade_6]",
+		},
+		clause.Column{
+			Name: "[byGrade_7]",
+		},
+		clause.Column{
+			Name: "[byGrade_8]",
+		},
+		clause.Column{
+			Name: "[byGrade_9]",
+		},
+	},
 }

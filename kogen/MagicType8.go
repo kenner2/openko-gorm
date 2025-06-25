@@ -2,6 +2,9 @@ package kogen
 
 import (
 	"fmt"
+	mssql "github.com/microsoft/go-mssqldb"
+	"gorm.io/gorm"
+	"gorm.io/gorm/clause"
 )
 
 const (
@@ -15,32 +18,46 @@ func init() {
 
 // MagicType8 Type 8 supports warp magic
 type MagicType8 struct {
-	MagicNumber int       `gorm:"column:iNum;type:int;not null" json:"iNum"`
-	Name        [50]byte  `gorm:"column:Name;type:varchar(50)" json:"Name,omitempty"`
-	Description [100]byte `gorm:"column:Description;type:varchar(100)" json:"Description,omitempty"`
-	Target      uint8     `gorm:"column:Target;type:tinyint;not null" json:"Target"`
-	Radius      int16     `gorm:"column:Radius;type:smallint;not null" json:"Radius"`
-	WarpType    uint8     `gorm:"column:WarpType;type:tinyint;not null" json:"WarpType"`
-	ExpRecover  int16     `gorm:"column:ExpRecover;type:smallint;not null" json:"ExpRecover"`
+	MagicNumber int            `gorm:"column:iNum;type:int;primaryKey;not null" json:"iNum"`
+	Name        *mssql.VarChar `gorm:"column:Name;type:varchar(50)" json:"Name,omitempty"`
+	Description *mssql.VarChar `gorm:"column:Description;type:varchar(100)" json:"Description,omitempty"`
+	Target      uint8          `gorm:"column:Target;type:tinyint;not null" json:"Target"`
+	Radius      int16          `gorm:"column:Radius;type:smallint;not null" json:"Radius"`
+	WarpType    uint8          `gorm:"column:WarpType;type:tinyint;not null" json:"WarpType"`
+	ExpRecover  int16          `gorm:"column:ExpRecover;type:smallint;not null" json:"ExpRecover"`
 }
 
-/* Helper Functions */
-
 // GetDatabaseName Returns the table's database name
-func (this *MagicType8) GetDatabaseName() string {
+func (this MagicType8) GetDatabaseName() string {
 	return GetDatabaseName(DbType(_MagicType8DatabaseNbr))
 }
 
-// GetTableName Returns the table name
-func (this *MagicType8) GetTableName() string {
+// TableName Returns the table name
+func (this MagicType8) TableName() string {
 	return _MagicType8TableName
 }
 
 // GetInsertString Returns the insert statement for the table populated with record from the object
-func (this *MagicType8) GetInsertString() string {
-	return fmt.Sprintf("INSERT INTO [MAGIC_TYPE8] (iNum, Name, Description, Target, Radius, WarpType, ExpRecover) \nVALUES (%s, %s, %s, %s, %s, %s, %s)", GetOptionalDecVal(&this.MagicNumber),
-		GetOptionalBinaryVal(this.Name),
-		GetOptionalBinaryVal(this.Description),
+func (this MagicType8) GetInsertString() string {
+	return fmt.Sprintf("INSERT INTO [MAGIC_TYPE8] ([iNum], [Name], [Description], [Target], [Radius], [WarpType], [ExpRecover]) VALUES\n(%s, %s, %s, %s, %s, %s, %s)", GetOptionalDecVal(&this.MagicNumber),
+		GetOptionalVarCharVal(this.Name, false),
+		GetOptionalVarCharVal(this.Description, false),
+		GetOptionalDecVal(&this.Target),
+		GetOptionalDecVal(&this.Radius),
+		GetOptionalDecVal(&this.WarpType),
+		GetOptionalDecVal(&this.ExpRecover))
+}
+
+// GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
+func (this MagicType8) GetInsertHeader() string {
+	return "INSERT INTO [MAGIC_TYPE8] (iNum, Name, Description, Target, Radius, WarpType, ExpRecover) VALUES\n"
+}
+
+// GetInsertData Returns the record data for the table insert dump
+func (this MagicType8) GetInsertData() string {
+	return fmt.Sprintf("(%s, %s, %s, %s, %s, %s, %s)", GetOptionalDecVal(&this.MagicNumber),
+		GetOptionalVarCharVal(this.Name, false),
+		GetOptionalVarCharVal(this.Description, false),
 		GetOptionalDecVal(&this.Target),
 		GetOptionalDecVal(&this.Radius),
 		GetOptionalDecVal(&this.WarpType),
@@ -48,7 +65,52 @@ func (this *MagicType8) GetInsertString() string {
 }
 
 // GetCreateTableString Returns the create table statement for this object
-func (this *MagicType8) GetCreateTableString() string {
-	query := "CREATE TABLE [MAGIC_TYPE8] (\n\t[iNum] int NOT NULL,\n\t[Name] varchar(50),\n\t[Description] varchar(100),\n\t[Target] tinyint NOT NULL,\n\t[Radius] smallint NOT NULL,\n\t[WarpType] tinyint NOT NULL,\n\t[ExpRecover] smallint NOT NULL\n\n)\nGO\n"
+func (this MagicType8) GetCreateTableString() string {
+	query := "CREATE TABLE [MAGIC_TYPE8] (\n\t[iNum] int NOT NULL,\n\t[Name] varchar(50),\n\t[Description] varchar(100),\n\t[Target] tinyint NOT NULL,\n\t[Radius] smallint NOT NULL,\n\t[WarpType] tinyint NOT NULL,\n\t[ExpRecover] smallint NOT NULL\n\tCONSTRAINT [PK_MAGIC_TYPE8] PRIMARY KEY ([iNum])\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
+}
+
+// SelectClause Returns a safe select clause for the model
+func (this MagicType8) SelectClause() (selectClause clause.Select) {
+	return _MagicType8SelectClause
+}
+
+// GetAllTableData Returns a list of all table data
+func (this MagicType8) GetAllTableData(db *gorm.DB) (results []Model, err error) {
+	res := []MagicType8{}
+	rawSql := "SELECT [iNum], [Name], [Description], [Target], [Radius], [WarpType], [ExpRecover] FROM [MAGIC_TYPE8]"
+	err = db.Raw(rawSql).Find(&res).Error
+	if err != nil {
+		return nil, err
+	}
+	for i := range res {
+		results = append(results, &res[i])
+	}
+	return results, nil
+}
+
+var _MagicType8SelectClause = clause.Select{
+	Columns: []clause.Column{
+		clause.Column{
+			Name: "[iNum]",
+		},
+		clause.Column{
+			Name: "[Name]",
+		},
+		clause.Column{
+			Name: "[Description]",
+		},
+		clause.Column{
+			Name: "[Target]",
+		},
+		clause.Column{
+			Name: "[Radius]",
+		},
+		clause.Column{
+			Name: "[WarpType]",
+		},
+		clause.Column{
+			Name: "[ExpRecover]",
+		},
+	},
 }

@@ -2,6 +2,9 @@ package kogen
 
 import (
 	"fmt"
+	mssql "github.com/microsoft/go-mssqldb"
+	"gorm.io/gorm"
+	"gorm.io/gorm/clause"
 )
 
 const (
@@ -15,32 +18,75 @@ func init() {
 
 // ServerResource Server resource
 type ServerResource struct {
-	ResourceId int       `gorm:"column:nResourceID;type:int;not null" json:"nResourceID"`
-	Name       [50]byte  `gorm:"column:strName;type:varchar(50);not null" json:"strName"`
-	Resource   [100]byte `gorm:"column:strResource;type:varchar(100)" json:"strResource,omitempty"`
+	ResourceId int            `gorm:"column:nResourceID;type:int;primaryKey;not null" json:"nResourceID"`
+	Name       mssql.VarChar  `gorm:"column:strName;type:varchar(50);not null" json:"strName"`
+	Resource   *mssql.VarChar `gorm:"column:strResource;type:varchar(100)" json:"strResource,omitempty"`
 }
 
-/* Helper Functions */
-
 // GetDatabaseName Returns the table's database name
-func (this *ServerResource) GetDatabaseName() string {
+func (this ServerResource) GetDatabaseName() string {
 	return GetDatabaseName(DbType(_ServerResourceDatabaseNbr))
 }
 
-// GetTableName Returns the table name
-func (this *ServerResource) GetTableName() string {
+// TableName Returns the table name
+func (this ServerResource) TableName() string {
 	return _ServerResourceTableName
 }
 
 // GetInsertString Returns the insert statement for the table populated with record from the object
-func (this *ServerResource) GetInsertString() string {
-	return fmt.Sprintf("INSERT INTO [SERVER_RESOURCE] (nResourceID, strName, strResource) \nVALUES (%s, %s, %s)", GetOptionalDecVal(&this.ResourceId),
-		GetOptionalBinaryVal(this.Name),
-		GetOptionalBinaryVal(this.Resource))
+func (this ServerResource) GetInsertString() string {
+	return fmt.Sprintf("INSERT INTO [SERVER_RESOURCE] ([nResourceID], [strName], [strResource]) VALUES\n(%s, %s, CONVERT(varchar(100), %s))", GetOptionalDecVal(&this.ResourceId),
+		GetOptionalVarCharVal(&this.Name, false),
+		GetOptionalVarCharVal(this.Resource, true))
+}
+
+// GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
+func (this ServerResource) GetInsertHeader() string {
+	return "INSERT INTO [SERVER_RESOURCE] (nResourceID, strName, strResource) VALUES\n"
+}
+
+// GetInsertData Returns the record data for the table insert dump
+func (this ServerResource) GetInsertData() string {
+	return fmt.Sprintf("(%s, %s, CONVERT(varchar(100), %s))", GetOptionalDecVal(&this.ResourceId),
+		GetOptionalVarCharVal(&this.Name, false),
+		GetOptionalVarCharVal(this.Resource, true))
 }
 
 // GetCreateTableString Returns the create table statement for this object
-func (this *ServerResource) GetCreateTableString() string {
-	query := "CREATE TABLE [SERVER_RESOURCE] (\n\t[nResourceID] int NOT NULL,\n\t[strName] varchar(50) NOT NULL,\n\t[strResource] varchar(100)\n\n)\nGO\n"
+func (this ServerResource) GetCreateTableString() string {
+	query := "CREATE TABLE [SERVER_RESOURCE] (\n\t[nResourceID] int NOT NULL,\n\t[strName] varchar(50) NOT NULL,\n\t[strResource] varchar(100)\n\tCONSTRAINT [PK_SERVER_RESOURCE] PRIMARY KEY ([nResourceID])\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
+}
+
+// SelectClause Returns a safe select clause for the model
+func (this ServerResource) SelectClause() (selectClause clause.Select) {
+	return _ServerResourceSelectClause
+}
+
+// GetAllTableData Returns a list of all table data
+func (this ServerResource) GetAllTableData(db *gorm.DB) (results []Model, err error) {
+	res := []ServerResource{}
+	rawSql := "SELECT [nResourceID], [strName], CONVERT(VARBINARY(100), [strResource]) as [strResource] FROM [SERVER_RESOURCE]"
+	err = db.Raw(rawSql).Find(&res).Error
+	if err != nil {
+		return nil, err
+	}
+	for i := range res {
+		results = append(results, &res[i])
+	}
+	return results, nil
+}
+
+var _ServerResourceSelectClause = clause.Select{
+	Columns: []clause.Column{
+		clause.Column{
+			Name: "[nResourceID]",
+		},
+		clause.Column{
+			Name: "[strName]",
+		},
+		clause.Column{
+			Name: "CONVERT(VARBINARY(100), [strResource]) as [strResource]",
+		},
+	},
 }
