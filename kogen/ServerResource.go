@@ -35,9 +35,9 @@ func (this ServerResource) TableName() string {
 
 // GetInsertString Returns the insert statement for the table populated with record from the object
 func (this ServerResource) GetInsertString() string {
-	return fmt.Sprintf("INSERT INTO [SERVER_RESOURCE] ([nResourceID], [strName], [strResource]) VALUES\n(%s, %s, CONVERT(varchar(100), %s))", GetOptionalDecVal(&this.ResourceId),
+	return fmt.Sprintf("INSERT INTO [SERVER_RESOURCE] ([nResourceID], [strName], [strResource]) VALUES\n(%s, %s, %s)", GetOptionalDecVal(&this.ResourceId),
 		GetOptionalVarCharVal(&this.Name, false),
-		GetOptionalVarCharVal(this.Resource, true))
+		GetOptionalVarCharVal(this.Resource, false))
 }
 
 // GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
@@ -47,9 +47,9 @@ func (this ServerResource) GetInsertHeader() string {
 
 // GetInsertData Returns the record data for the table insert dump
 func (this ServerResource) GetInsertData() string {
-	return fmt.Sprintf("(%s, %s, CONVERT(varchar(100), %s))", GetOptionalDecVal(&this.ResourceId),
+	return fmt.Sprintf("(%s, %s, %s)", GetOptionalDecVal(&this.ResourceId),
 		GetOptionalVarCharVal(&this.Name, false),
-		GetOptionalVarCharVal(this.Resource, true))
+		GetOptionalVarCharVal(this.Resource, false))
 }
 
 // GetCreateTableString Returns the create table statement for this object
@@ -66,7 +66,7 @@ func (this ServerResource) SelectClause() (selectClause clause.Select) {
 // GetAllTableData Returns a list of all table data
 func (this ServerResource) GetAllTableData(db *gorm.DB) (results []Model, err error) {
 	res := []ServerResource{}
-	rawSql := "SELECT [nResourceID], [strName], CONVERT(VARBINARY(100), [strResource]) as [strResource] FROM [SERVER_RESOURCE]"
+	rawSql := "SELECT [nResourceID], [strName], [strResource] FROM [SERVER_RESOURCE]"
 	err = db.Raw(rawSql).Find(&res).Error
 	if err != nil {
 		return nil, err
@@ -86,7 +86,7 @@ var _ServerResourceSelectClause = clause.Select{
 			Name: "[strName]",
 		},
 		clause.Column{
-			Name: "CONVERT(VARBINARY(100), [strResource]) as [strResource]",
+			Name: "[strResource]",
 		},
 	},
 }
