@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	_KingCandidacyNoticeBoardDatabaseNbr = 0
+	_KingCandidacyNoticeBoardDatabaseNbr = 1
 	_KingCandidacyNoticeBoardTableName   = "KING_CANDIDACY_NOTICE_BOARD"
 )
 

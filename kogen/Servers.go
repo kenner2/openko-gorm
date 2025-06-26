@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	_ServersDatabaseNbr = 0
+	_ServersDatabaseNbr = 1
 	_ServersTableName   = "SERVERS"
 )
 

@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	_MakeItemRareCodeDatabaseNbr = 0
+	_MakeItemRareCodeDatabaseNbr = 1
 	_MakeItemRareCodeTableName   = "MAKE_ITEM_LARECODE"
 )
 

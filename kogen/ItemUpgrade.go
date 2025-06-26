@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	_ItemUpgradeDatabaseNbr = 0
+	_ItemUpgradeDatabaseNbr = 1
 	_ItemUpgradeTableName   = "ITEM_UPGRADE"
 )
 

@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	_ItemUpProbabilityDatabaseNbr = 0
+	_ItemUpProbabilityDatabaseNbr = 1
 	_ItemUpProbabilityTableName   = "ITEMUP_PROBABILITY"
 )
 

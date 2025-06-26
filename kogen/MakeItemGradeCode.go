@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	_MakeItemGradeCodeDatabaseNbr = 0
+	_MakeItemGradeCodeDatabaseNbr = 1
 	_MakeItemGradeCodeTableName   = "MAKE_ITEM_GRADECODE"
 )
 

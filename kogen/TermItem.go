@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	_TermItemDatabaseNbr = 0
+	_TermItemDatabaseNbr = 1
 	_TermItemTableName   = "TERM_ITEM"
 )
 

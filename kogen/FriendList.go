@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	_FriendListDatabaseNbr = 0
+	_FriendListDatabaseNbr = 1
 	_FriendListTableName   = "FRIEND_LIST"
 )
 

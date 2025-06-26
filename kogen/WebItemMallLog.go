@@ -9,7 +9,7 @@ import (
 )
 
 const (
-	_WebItemMallLogDatabaseNbr = 0
+	_WebItemMallLogDatabaseNbr = 1
 	_WebItemMallLogTableName   = "WEB_ITEMMALL_LOG"
 )
 

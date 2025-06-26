@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	_MakeItemGroupDatabaseNbr = 0
+	_MakeItemGroupDatabaseNbr = 1
 	_MakeItemGroupTableName   = "MAKE_ITEM_GROUP"
 )
 

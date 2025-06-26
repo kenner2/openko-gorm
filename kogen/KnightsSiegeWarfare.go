@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	_KnightsSiegeWarfareDatabaseNbr = 0
+	_KnightsSiegeWarfareDatabaseNbr = 1
 	_KnightsSiegeWarfareTableName   = "KNIGHTS_SIEGE_WARFARE"
 )
 

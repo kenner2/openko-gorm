@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	_ItemExchangeDatabaseNbr = 0
+	_ItemExchangeDatabaseNbr = 1
 	_ItemExchangeTableName   = "ITEM_EXCHANGE"
 )
 

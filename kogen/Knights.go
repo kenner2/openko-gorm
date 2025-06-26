@@ -9,7 +9,7 @@ import (
 )
 
 const (
-	_KnightsDatabaseNbr = 0
+	_KnightsDatabaseNbr = 1
 	_KnightsTableName   = "KNIGHTS"
 )
 

@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	_MakeWeaponDatabaseNbr = 0
+	_MakeWeaponDatabaseNbr = 1
 	_MakeWeaponTableName   = "MAKE_WEAPON"
 )
 

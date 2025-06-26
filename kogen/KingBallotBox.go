@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	_KingBallotBoxDatabaseNbr = 0
+	_KingBallotBoxDatabaseNbr = 1
 	_KingBallotBoxTableName   = "KING_BALLOT_BOX"
 )
 

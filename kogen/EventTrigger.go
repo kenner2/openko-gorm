@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	_EventTriggerDatabaseNbr = 0
+	_EventTriggerDatabaseNbr = 1
 	_EventTriggerTableName   = "EVENT_TRIGGER"
 )
 

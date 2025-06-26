@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	_CoefficientDatabaseNbr = 0
+	_CoefficientDatabaseNbr = 1
 	_CoefficientTableName   = "COEFFICIENT"
 )
 

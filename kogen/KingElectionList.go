@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	_KingElectionListDatabaseNbr = 0
+	_KingElectionListDatabaseNbr = 1
 	_KingElectionListTableName   = "KING_ELECTION_LIST"
 )
 

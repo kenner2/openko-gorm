@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	_ZoneInfoDatabaseNbr = 0
+	_ZoneInfoDatabaseNbr = 1
 	_ZoneInfoTableName   = "ZONE_INFO"
 )
 

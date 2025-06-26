@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	_UserSavedMagicDatabaseNbr = 0
+	_UserSavedMagicDatabaseNbr = 1
 	_UserSavedMagicTableName   = "USER_SAVED_MAGIC"
 )
 

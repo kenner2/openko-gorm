@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	_KnightsAllianceDatabaseNbr = 0
+	_KnightsAllianceDatabaseNbr = 1
 	_KnightsAllianceTableName   = "KNIGHTS_ALLIANCE"
 )
 

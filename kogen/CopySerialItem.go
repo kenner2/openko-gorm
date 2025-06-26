@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	_CopySerialItemDatabaseNbr = 0
+	_CopySerialItemDatabaseNbr = 1
 	_CopySerialItemTableName   = "COPY_SERIAL_ITEM"
 )
 

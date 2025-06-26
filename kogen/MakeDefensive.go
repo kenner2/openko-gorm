@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	_MakeDefensiveDatabaseNbr = 0
+	_MakeDefensiveDatabaseNbr = 1
 	_MakeDefensiveTableName   = "MAKE_DEFENSIVE"
 )
 

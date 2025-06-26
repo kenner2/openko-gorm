@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	_MonsterItemDatabaseNbr = 0
+	_MonsterItemDatabaseNbr = 1
 	_MonsterItemTableName   = "K_MONSTER_ITEM"
 )
 

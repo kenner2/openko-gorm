@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	_CouponSerialListDatabaseNbr = 0
+	_CouponSerialListDatabaseNbr = 1
 	_CouponSerialListTableName   = "COUPON_SERIAL_LIST"
 )
 

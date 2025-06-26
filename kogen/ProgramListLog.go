@@ -9,7 +9,7 @@ import (
 )
 
 const (
-	_ProgramListLogDatabaseNbr = 0
+	_ProgramListLogDatabaseNbr = 1
 	_ProgramListLogTableName   = "PROGRAMLIST_LOG"
 )
 

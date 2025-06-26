@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	_ServerResourceDatabaseNbr = 0
+	_ServerResourceDatabaseNbr = 1
 	_ServerResourceTableName   = "SERVER_RESOURCE"
 )
 

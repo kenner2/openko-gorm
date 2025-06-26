@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	_MagicType5DatabaseNbr = 0
+	_MagicType5DatabaseNbr = 1
 	_MagicType5TableName   = "MAGIC_TYPE5"
 )
 

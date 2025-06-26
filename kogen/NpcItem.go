@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	_NpcItemDatabaseNbr = 0
+	_NpcItemDatabaseNbr = 1
 	_NpcItemTableName   = "K_NPC_ITEM"
 )
 

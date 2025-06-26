@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	_LevelUpDatabaseNbr = 0
+	_LevelUpDatabaseNbr = 1
 	_LevelUpTableName   = "LEVEL_UP"
 )
 

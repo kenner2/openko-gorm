@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	_BattleDatabaseNbr = 0
+	_BattleDatabaseNbr = 1
 	_BattleTableName   = "BATTLE"
 )
 

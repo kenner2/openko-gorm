@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	_CopyTestDatabaseNbr = 0
+	_CopyTestDatabaseNbr = 1
 	_CopyTestTableName   = "COPY_TEST"
 )
 

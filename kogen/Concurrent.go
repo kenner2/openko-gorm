@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	_ConcurrentDatabaseNbr = 0
+	_ConcurrentDatabaseNbr = 1
 	_ConcurrentTableName   = "CONCURRENT"
 )
 

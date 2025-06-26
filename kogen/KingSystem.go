@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	_KingSystemDatabaseNbr = 0
+	_KingSystemDatabaseNbr = 1
 	_KingSystemTableName   = "KING_SYSTEM"
 )
 

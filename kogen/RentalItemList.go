@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	_RentalItemListDatabaseNbr = 0
+	_RentalItemListDatabaseNbr = 1
 	_RentalItemListTableName   = "RENTAL_ITEM_LIST"
 )
 

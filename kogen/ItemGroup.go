@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	_ItemGroupDatabaseNbr = 0
+	_ItemGroupDatabaseNbr = 1
 	_ItemGroupTableName   = "ITEM_GROUP"
 )
 

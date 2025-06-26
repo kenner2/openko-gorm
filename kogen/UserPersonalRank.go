@@ -9,7 +9,7 @@ import (
 )
 
 const (
-	_UserPersonalRankDatabaseNbr = 0
+	_UserPersonalRankDatabaseNbr = 1
 	_UserPersonalRankTableName   = "USER_PERSONAL_RANK"
 )
 

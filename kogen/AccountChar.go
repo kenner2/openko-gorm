@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	_AccountCharDatabaseNbr = 0
+	_AccountCharDatabaseNbr = 1
 	_AccountCharTableName   = "ACCOUNT_CHAR"
 )
 

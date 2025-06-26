@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	_VersionDatabaseNbr = 0
+	_VersionDatabaseNbr = 1
 	_VersionTableName   = "VERSION"
 )
 

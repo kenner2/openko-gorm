@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	_MonsterChallengeDatabaseNbr = 0
+	_MonsterChallengeDatabaseNbr = 1
 	_MonsterChallengeTableName   = "MONSTER_CHALLENGE"
 )
 

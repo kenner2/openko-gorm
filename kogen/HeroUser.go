@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	_HeroUserDatabaseNbr = 0
+	_HeroUserDatabaseNbr = 1
 	_HeroUserTableName   = "HERO_USER"
 )
 

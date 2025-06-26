@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	_StartPositionDatabaseNbr = 0
+	_StartPositionDatabaseNbr = 1
 	_StartPositionTableName   = "START_POSITION"
 )
 

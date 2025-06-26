@@ -9,7 +9,7 @@ import (
 )
 
 const (
-	_HacktoolUserLogDatabaseNbr = 0
+	_HacktoolUserLogDatabaseNbr = 1
 	_HacktoolUserLogTableName   = "HACKTOOL_USERLOG"
 )
 

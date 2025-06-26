@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	_UserDataSkillShortcutDatabaseNbr = 0
+	_UserDataSkillShortcutDatabaseNbr = 1
 	_UserDataSkillShortcutTableName   = "USERDATA_SKILLSHORTCUT"
 )
 

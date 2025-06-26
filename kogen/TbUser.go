@@ -9,7 +9,7 @@ import (
 )
 
 const (
-	_TbUserDatabaseNbr = 0
+	_TbUserDatabaseNbr = 1
 	_TbUserTableName   = "TB_USER"
 )
 

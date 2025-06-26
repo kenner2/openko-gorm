@@ -9,7 +9,7 @@ import (
 )
 
 const (
-	_WebItemMallDatabaseNbr = 0
+	_WebItemMallDatabaseNbr = 1
 	_WebItemMallTableName   = "WEB_ITEMMALL"
 )
 

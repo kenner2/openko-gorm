@@ -9,7 +9,7 @@ import (
 )
 
 const (
-	_UserDataDatabaseNbr = 0
+	_UserDataDatabaseNbr = 1
 	_UserDataTableName   = "USERDATA"
 )
 

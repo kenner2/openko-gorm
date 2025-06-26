@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	_UserEditorItemDatabaseNbr = 0
+	_UserEditorItemDatabaseNbr = 1
 	_UserEditorItemTableName   = "USER_EDITOR_ITEM"
 )
 

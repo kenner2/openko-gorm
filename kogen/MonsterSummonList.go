@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	_MonsterSummonListDatabaseNbr = 0
+	_MonsterSummonListDatabaseNbr = 1
 	_MonsterSummonListTableName   = "MONSTER_SUMMON_LIST"
 )
 

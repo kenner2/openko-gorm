@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	_WarehouseDatabaseNbr = 0
+	_WarehouseDatabaseNbr = 1
 	_WarehouseTableName   = "WAREHOUSE"
 )
 
