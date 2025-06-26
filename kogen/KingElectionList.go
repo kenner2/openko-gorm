@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	_KingElectionListDatabaseNbr = 1
+	_KingElectionListDatabaseNbr = "GAME"
 	_KingElectionListTableName   = "KING_ELECTION_LIST"
 )
 
@@ -27,7 +27,7 @@ type KingElectionList struct {
 
 // GetDatabaseName Returns the table's database name
 func (this KingElectionList) GetDatabaseName() string {
-	return GetDatabaseName(DbType(_KingElectionListDatabaseNbr))
+	return GetDatabaseName(_KingElectionListDatabaseNbr)
 }
 
 // TableName Returns the table name
@@ -46,7 +46,7 @@ func (this KingElectionList) GetInsertString() string {
 
 // GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
 func (this KingElectionList) GetInsertHeader() string {
-	return "INSERT INTO [KING_ELECTION_LIST] (byType, byNation, nKnights, strName, nMoney) VALUES\n"
+	return "INSERT INTO [KING_ELECTION_LIST] ([byType], [byNation], [nKnights], [strName], [nMoney]) VALUES\n"
 }
 
 // GetInsertData Returns the record data for the table insert dump

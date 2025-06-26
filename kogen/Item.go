@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	_ItemDatabaseNbr = 1
+	_ItemDatabaseNbr = "GAME"
 	_ItemTableName   = "ITEM"
 )
 
@@ -80,7 +80,7 @@ type Item struct {
 
 // GetDatabaseName Returns the table's database name
 func (this Item) GetDatabaseName() string {
-	return GetDatabaseName(DbType(_ItemDatabaseNbr))
+	return GetDatabaseName(_ItemDatabaseNbr)
 }
 
 // TableName Returns the table name
@@ -152,7 +152,7 @@ func (this Item) GetInsertString() string {
 
 // GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
 func (this Item) GetInsertHeader() string {
-	return "INSERT INTO [ITEM] (Num, strName, Kind, Slot, Race, Class, Damage, Delay, Range, Weight, Duration, BuyPrice, SellPrice, Ac, Countable, Effect1, Effect2, ReqLevel, ReqLevelMax, ReqRank, ReqTitle, ReqStr, ReqSta, ReqDex, ReqIntel, ReqCha, SellingGroup, ItemType, Hitrate, Evasionrate, DaggerAc, SwordAc, MaceAc, AxeAc, SpearAc, BowAc, FireDamage, IceDamage, LightningDamage, PoisonDamage, HPDrain, MPDamage, MPDrain, MirrorDamage, Droprate, StrB, StaB, DexB, IntelB, ChaB, MaxHpB, MaxMpB, FireR, ColdR, LightningR, MagicR, PoisonR, CurseR) VALUES\n"
+	return "INSERT INTO [ITEM] ([Num], [strName], [Kind], [Slot], [Race], [Class], [Damage], [Delay], [Range], [Weight], [Duration], [BuyPrice], [SellPrice], [Ac], [Countable], [Effect1], [Effect2], [ReqLevel], [ReqLevelMax], [ReqRank], [ReqTitle], [ReqStr], [ReqSta], [ReqDex], [ReqIntel], [ReqCha], [SellingGroup], [ItemType], [Hitrate], [Evasionrate], [DaggerAc], [SwordAc], [MaceAc], [AxeAc], [SpearAc], [BowAc], [FireDamage], [IceDamage], [LightningDamage], [PoisonDamage], [HPDrain], [MPDamage], [MPDrain], [MirrorDamage], [Droprate], [StrB], [StaB], [DexB], [IntelB], [ChaB], [MaxHpB], [MaxMpB], [FireR], [ColdR], [LightningR], [MagicR], [PoisonR], [CurseR]) VALUES\n"
 }
 
 // GetInsertData Returns the record data for the table insert dump

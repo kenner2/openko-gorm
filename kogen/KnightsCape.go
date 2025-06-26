@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	_KnightsCapeDatabaseNbr = 1
+	_KnightsCapeDatabaseNbr = "GAME"
 	_KnightsCapeTableName   = "KNIGHTS_CAPE"
 )
 
@@ -27,7 +27,7 @@ type KnightsCape struct {
 
 // GetDatabaseName Returns the table's database name
 func (this KnightsCape) GetDatabaseName() string {
-	return GetDatabaseName(DbType(_KnightsCapeDatabaseNbr))
+	return GetDatabaseName(_KnightsCapeDatabaseNbr)
 }
 
 // TableName Returns the table name
@@ -46,7 +46,7 @@ func (this KnightsCape) GetInsertString() string {
 
 // GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
 func (this KnightsCape) GetInsertHeader() string {
-	return "INSERT INTO [KNIGHTS_CAPE] (sCapeIndex, strName, nBuyPrice, nDuration, byGrade) VALUES\n"
+	return "INSERT INTO [KNIGHTS_CAPE] ([sCapeIndex], [strName], [nBuyPrice], [nDuration], [byGrade]) VALUES\n"
 }
 
 // GetInsertData Returns the record data for the table insert dump

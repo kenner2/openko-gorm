@@ -9,7 +9,7 @@ import (
 )
 
 const (
-	_UserRentalItemDatabaseNbr = 1
+	_UserRentalItemDatabaseNbr = "GAME"
 	_UserRentalItemTableName   = "USER_RENTAL_ITEM"
 )
 
@@ -36,7 +36,7 @@ type UserRentalItem struct {
 
 // GetDatabaseName Returns the table's database name
 func (this UserRentalItem) GetDatabaseName() string {
-	return GetDatabaseName(DbType(_UserRentalItemDatabaseNbr))
+	return GetDatabaseName(_UserRentalItemDatabaseNbr)
 }
 
 // TableName Returns the table name
@@ -63,7 +63,7 @@ func (this UserRentalItem) GetInsertString() string {
 
 // GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
 func (this UserRentalItem) GetInsertHeader() string {
-	return "INSERT INTO [USER_RENTAL_ITEM] (strUserID, strAccountID, byRentalType, byRegType, nRentalIndex, nItemIndex, sDurability, nSerialNumber, nRentalMoney, sRentalTime, sDuringTime, timeRental, timeRegister) VALUES\n"
+	return "INSERT INTO [USER_RENTAL_ITEM] ([strUserID], [strAccountID], [byRentalType], [byRegType], [nRentalIndex], [nItemIndex], [sDurability], [nSerialNumber], [nRentalMoney], [sRentalTime], [sDuringTime], [timeRental], [timeRegister]) VALUES\n"
 }
 
 // GetInsertData Returns the record data for the table insert dump

@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	_MonsterItemTestDatabaseNbr = 1
+	_MonsterItemTestDatabaseNbr = "GAME"
 	_MonsterItemTestTableName   = "MONSTER_ITEM_TEST"
 )
 
@@ -32,7 +32,7 @@ type MonsterItemTest struct {
 
 // GetDatabaseName Returns the table's database name
 func (this MonsterItemTest) GetDatabaseName() string {
-	return GetDatabaseName(DbType(_MonsterItemTestDatabaseNbr))
+	return GetDatabaseName(_MonsterItemTestDatabaseNbr)
 }
 
 // TableName Returns the table name
@@ -57,7 +57,7 @@ func (this MonsterItemTest) GetInsertString() string {
 
 // GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
 func (this MonsterItemTest) GetInsertHeader() string {
-	return "INSERT INTO [MONSTER_ITEM_TEST] (sIndex, iItem01, sPersent01, iItem02, sPersent02, iItem03, sPersent03, iItem04, sPersent04, iItem05, sPersent05) VALUES\n"
+	return "INSERT INTO [MONSTER_ITEM_TEST] ([sIndex], [iItem01], [sPersent01], [iItem02], [sPersent02], [iItem03], [sPersent03], [iItem04], [sPersent04], [iItem05], [sPersent05]) VALUES\n"
 }
 
 // GetInsertData Returns the record data for the table insert dump

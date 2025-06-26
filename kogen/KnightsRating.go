@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	_KnightsRatingDatabaseNbr = 1
+	_KnightsRatingDatabaseNbr = "GAME"
 	_KnightsRatingTableName   = "KNIGHTS_RATING"
 )
 
@@ -26,7 +26,7 @@ type KnightsRating struct {
 
 // GetDatabaseName Returns the table's database name
 func (this KnightsRating) GetDatabaseName() string {
-	return GetDatabaseName(DbType(_KnightsRatingDatabaseNbr))
+	return GetDatabaseName(_KnightsRatingDatabaseNbr)
 }
 
 // TableName Returns the table name
@@ -44,7 +44,7 @@ func (this KnightsRating) GetInsertString() string {
 
 // GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
 func (this KnightsRating) GetInsertHeader() string {
-	return "INSERT INTO [KNIGHTS_RATING] (nRank, shIndex, strName, nPoints) VALUES\n"
+	return "INSERT INTO [KNIGHTS_RATING] ([nRank], [shIndex], [strName], [nPoints]) VALUES\n"
 }
 
 // GetInsertData Returns the record data for the table insert dump

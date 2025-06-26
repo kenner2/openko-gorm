@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	_ItemUpProbabilityDatabaseNbr = 1
+	_ItemUpProbabilityDatabaseNbr = "GAME"
 	_ItemUpProbabilityTableName   = "ITEMUP_PROBABILITY"
 )
 
@@ -26,7 +26,7 @@ type ItemUpProbability struct {
 
 // GetDatabaseName Returns the table's database name
 func (this ItemUpProbability) GetDatabaseName() string {
-	return GetDatabaseName(DbType(_ItemUpProbabilityDatabaseNbr))
+	return GetDatabaseName(_ItemUpProbabilityDatabaseNbr)
 }
 
 // TableName Returns the table name
@@ -45,7 +45,7 @@ func (this ItemUpProbability) GetInsertString() string {
 
 // GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
 func (this ItemUpProbability) GetInsertHeader() string {
-	return "INSERT INTO [ITEMUP_PROBABILITY] (bType, nMaxSuccess, nMaxFail, nCurSuccess, nCurFail) VALUES\n"
+	return "INSERT INTO [ITEMUP_PROBABILITY] ([bType], [nMaxSuccess], [nMaxFail], [nCurSuccess], [nCurFail]) VALUES\n"
 }
 
 // GetInsertData Returns the record data for the table insert dump

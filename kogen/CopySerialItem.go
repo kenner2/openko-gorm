@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	_CopySerialItemDatabaseNbr = 1
+	_CopySerialItemDatabaseNbr = "GAME"
 	_CopySerialItemTableName   = "COPY_SERIAL_ITEM"
 )
 
@@ -26,7 +26,7 @@ type CopySerialItem struct {
 
 // GetDatabaseName Returns the table's database name
 func (this CopySerialItem) GetDatabaseName() string {
-	return GetDatabaseName(DbType(_CopySerialItemDatabaseNbr))
+	return GetDatabaseName(_CopySerialItemDatabaseNbr)
 }
 
 // TableName Returns the table name
@@ -45,7 +45,7 @@ func (this CopySerialItem) GetInsertString() string {
 
 // GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
 func (this CopySerialItem) GetInsertHeader() string {
-	return "INSERT INTO [COPY_SERIAL_ITEM] (strUserId, byType, nPos, ItemNum, ItemSerial) VALUES\n"
+	return "INSERT INTO [COPY_SERIAL_ITEM] ([strUserId], [byType], [nPos], [ItemNum], [ItemSerial]) VALUES\n"
 }
 
 // GetInsertData Returns the record data for the table insert dump

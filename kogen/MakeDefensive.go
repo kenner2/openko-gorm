@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	_MakeDefensiveDatabaseNbr = 1
+	_MakeDefensiveDatabaseNbr = "GAME"
 	_MakeDefensiveTableName   = "MAKE_DEFENSIVE"
 )
 
@@ -29,7 +29,7 @@ type MakeDefensive struct {
 
 // GetDatabaseName Returns the table's database name
 func (this MakeDefensive) GetDatabaseName() string {
-	return GetDatabaseName(DbType(_MakeDefensiveDatabaseNbr))
+	return GetDatabaseName(_MakeDefensiveDatabaseNbr)
 }
 
 // TableName Returns the table name
@@ -51,7 +51,7 @@ func (this MakeDefensive) GetInsertString() string {
 
 // GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
 func (this MakeDefensive) GetInsertHeader() string {
-	return "INSERT INTO [MAKE_DEFENSIVE] (byLevel, sClass_1, sClass_2, sClass_3, sClass_4, sClass_5, sClass_6, sClass_7) VALUES\n"
+	return "INSERT INTO [MAKE_DEFENSIVE] ([byLevel], [sClass_1], [sClass_2], [sClass_3], [sClass_4], [sClass_5], [sClass_6], [sClass_7]) VALUES\n"
 }
 
 // GetInsertData Returns the record data for the table insert dump

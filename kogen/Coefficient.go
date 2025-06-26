@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	_CoefficientDatabaseNbr = 1
+	_CoefficientDatabaseNbr = "GAME"
 	_CoefficientTableName   = "COEFFICIENT"
 )
 
@@ -36,7 +36,7 @@ type Coefficient struct {
 
 // GetDatabaseName Returns the table's database name
 func (this Coefficient) GetDatabaseName() string {
-	return GetDatabaseName(DbType(_CoefficientDatabaseNbr))
+	return GetDatabaseName(_CoefficientDatabaseNbr)
 }
 
 // TableName Returns the table name
@@ -65,7 +65,7 @@ func (this Coefficient) GetInsertString() string {
 
 // GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
 func (this Coefficient) GetInsertHeader() string {
-	return "INSERT INTO [COEFFICIENT] (sClass, ShortSword, Sword, Axe, Club, Spear, Pole, Staff, Bow, Hp, Mp, Sp, Ac, Hitrate, Evasionrate) VALUES\n"
+	return "INSERT INTO [COEFFICIENT] ([sClass], [ShortSword], [Sword], [Axe], [Club], [Spear], [Pole], [Staff], [Bow], [Hp], [Mp], [Sp], [Ac], [Hitrate], [Evasionrate]) VALUES\n"
 }
 
 // GetInsertData Returns the record data for the table insert dump

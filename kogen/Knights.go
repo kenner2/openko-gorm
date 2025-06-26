@@ -9,7 +9,7 @@ import (
 )
 
 const (
-	_KnightsDatabaseNbr = 1
+	_KnightsDatabaseNbr = "GAME"
 	_KnightsTableName   = "KNIGHTS"
 )
 
@@ -49,7 +49,7 @@ type Knights struct {
 
 // GetDatabaseName Returns the table's database name
 func (this Knights) GetDatabaseName() string {
-	return GetDatabaseName(DbType(_KnightsDatabaseNbr))
+	return GetDatabaseName(_KnightsDatabaseNbr)
 }
 
 // TableName Returns the table name
@@ -89,7 +89,7 @@ func (this Knights) GetInsertString() string {
 
 // GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
 func (this Knights) GetInsertHeader() string {
-	return "INSERT INTO [KNIGHTS] (IDNum, Flag, Nation, Ranking, IDName, Members, Chief, ViceChief_1, ViceChief_2, ViceChief_3, strEnemyName, byOldWarResult, nWarEnemyID, nVictory, nLose, Gold, Domination, Points, CreateTime, sMarkVersion, sMarkLen, Mark, Stash, bySiegeFlag, sAllianceKnights, sCape) VALUES\n"
+	return "INSERT INTO [KNIGHTS] ([IDNum], [Flag], [Nation], [Ranking], [IDName], [Members], [Chief], [ViceChief_1], [ViceChief_2], [ViceChief_3], [strEnemyName], [byOldWarResult], [nWarEnemyID], [nVictory], [nLose], [Gold], [Domination], [Points], [CreateTime], [sMarkVersion], [sMarkLen], [Mark], [Stash], [bySiegeFlag], [sAllianceKnights], [sCape]) VALUES\n"
 }
 
 // GetInsertData Returns the record data for the table insert dump

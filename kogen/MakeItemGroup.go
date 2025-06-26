@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	_MakeItemGroupDatabaseNbr = 1
+	_MakeItemGroupDatabaseNbr = "GAME"
 	_MakeItemGroupTableName   = "MAKE_ITEM_GROUP"
 )
 
@@ -52,7 +52,7 @@ type MakeItemGroup struct {
 
 // GetDatabaseName Returns the table's database name
 func (this MakeItemGroup) GetDatabaseName() string {
-	return GetDatabaseName(DbType(_MakeItemGroupDatabaseNbr))
+	return GetDatabaseName(_MakeItemGroupDatabaseNbr)
 }
 
 // TableName Returns the table name
@@ -97,7 +97,7 @@ func (this MakeItemGroup) GetInsertString() string {
 
 // GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
 func (this MakeItemGroup) GetInsertHeader() string {
-	return "INSERT INTO [MAKE_ITEM_GROUP] (iItemGroupNum, iItem_1, iItem_2, iItem_3, iItem_4, iItem_5, iItem_6, iItem_7, iItem_8, iItem_9, iItem_10, iItem_11, iItem_12, iItem_13, iItem_14, iItem_15, iItem_16, iItem_17, iItem_18, iItem_19, iItem_20, iItem_21, iItem_22, iItem_23, iItem_24, iItem_25, iItem_26, iItem_27, iItem_28, iItem_29, iItem_30) VALUES\n"
+	return "INSERT INTO [MAKE_ITEM_GROUP] ([iItemGroupNum], [iItem_1], [iItem_2], [iItem_3], [iItem_4], [iItem_5], [iItem_6], [iItem_7], [iItem_8], [iItem_9], [iItem_10], [iItem_11], [iItem_12], [iItem_13], [iItem_14], [iItem_15], [iItem_16], [iItem_17], [iItem_18], [iItem_19], [iItem_20], [iItem_21], [iItem_22], [iItem_23], [iItem_24], [iItem_25], [iItem_26], [iItem_27], [iItem_28], [iItem_29], [iItem_30]) VALUES\n"
 }
 
 // GetInsertData Returns the record data for the table insert dump

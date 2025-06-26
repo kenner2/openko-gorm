@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	_ServerResourceDatabaseNbr = 1
+	_ServerResourceDatabaseNbr = "GAME"
 	_ServerResourceTableName   = "SERVER_RESOURCE"
 )
 
@@ -25,7 +25,7 @@ type ServerResource struct {
 
 // GetDatabaseName Returns the table's database name
 func (this ServerResource) GetDatabaseName() string {
-	return GetDatabaseName(DbType(_ServerResourceDatabaseNbr))
+	return GetDatabaseName(_ServerResourceDatabaseNbr)
 }
 
 // TableName Returns the table name
@@ -42,7 +42,7 @@ func (this ServerResource) GetInsertString() string {
 
 // GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
 func (this ServerResource) GetInsertHeader() string {
-	return "INSERT INTO [SERVER_RESOURCE] (nResourceID, strName, strResource) VALUES\n"
+	return "INSERT INTO [SERVER_RESOURCE] ([nResourceID], [strName], [strResource]) VALUES\n"
 }
 
 // GetInsertData Returns the record data for the table insert dump

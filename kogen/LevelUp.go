@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	_LevelUpDatabaseNbr = 1
+	_LevelUpDatabaseNbr = "GAME"
 	_LevelUpTableName   = "LEVEL_UP"
 )
 
@@ -23,7 +23,7 @@ type LevelUp struct {
 
 // GetDatabaseName Returns the table's database name
 func (this LevelUp) GetDatabaseName() string {
-	return GetDatabaseName(DbType(_LevelUpDatabaseNbr))
+	return GetDatabaseName(_LevelUpDatabaseNbr)
 }
 
 // TableName Returns the table name
@@ -39,7 +39,7 @@ func (this LevelUp) GetInsertString() string {
 
 // GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
 func (this LevelUp) GetInsertHeader() string {
-	return "INSERT INTO [LEVEL_UP] (level, Exp) VALUES\n"
+	return "INSERT INTO [LEVEL_UP] ([level], [Exp]) VALUES\n"
 }
 
 // GetInsertData Returns the record data for the table insert dump

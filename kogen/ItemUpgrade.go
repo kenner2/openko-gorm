@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	_ItemUpgradeDatabaseNbr = 1
+	_ItemUpgradeDatabaseNbr = "GAME"
 	_ItemUpgradeTableName   = "ITEM_UPGRADE"
 )
 
@@ -40,7 +40,7 @@ type ItemUpgrade struct {
 
 // GetDatabaseName Returns the table's database name
 func (this ItemUpgrade) GetDatabaseName() string {
-	return GetDatabaseName(DbType(_ItemUpgradeDatabaseNbr))
+	return GetDatabaseName(_ItemUpgradeDatabaseNbr)
 }
 
 // TableName Returns the table name
@@ -72,7 +72,7 @@ func (this ItemUpgrade) GetInsertString() string {
 
 // GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
 func (this ItemUpgrade) GetInsertHeader() string {
-	return "INSERT INTO [ITEM_UPGRADE] (nIndex, nNPCNum, strName, strNote, nOriginType, nOriginItem, nReqItem1, nReqItem2, nReqItem3, nReqItem4, nReqItem5, nReqItem6, nReqItem7, nReqItem8, nReqNoah, bRateType, nGenRate, nGiveItem) VALUES\n"
+	return "INSERT INTO [ITEM_UPGRADE] ([nIndex], [nNPCNum], [strName], [strNote], [nOriginType], [nOriginItem], [nReqItem1], [nReqItem2], [nReqItem3], [nReqItem4], [nReqItem5], [nReqItem6], [nReqItem7], [nReqItem8], [nReqNoah], [bRateType], [nGenRate], [nGiveItem]) VALUES\n"
 }
 
 // GetInsertData Returns the record data for the table insert dump

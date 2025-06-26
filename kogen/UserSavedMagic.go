@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	_UserSavedMagicDatabaseNbr = 1
+	_UserSavedMagicDatabaseNbr = "GAME"
 	_UserSavedMagicTableName   = "USER_SAVED_MAGIC"
 )
 
@@ -43,7 +43,7 @@ type UserSavedMagic struct {
 
 // GetDatabaseName Returns the table's database name
 func (this UserSavedMagic) GetDatabaseName() string {
-	return GetDatabaseName(DbType(_UserSavedMagicDatabaseNbr))
+	return GetDatabaseName(_UserSavedMagicDatabaseNbr)
 }
 
 // TableName Returns the table name
@@ -78,7 +78,7 @@ func (this UserSavedMagic) GetInsertString() string {
 
 // GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
 func (this UserSavedMagic) GetInsertHeader() string {
-	return "INSERT INTO [USER_SAVED_MAGIC] (strCharID, nSkill1, nDuring1, nSkill2, nDuring2, nSkill3, nDuring3, nSkill4, nDuring4, nSkill5, nDuring5, nSkill6, nDuring6, nSkill7, nDuring7, nSkill8, nDuring8, nSkill9, nDuring9, nSkill10, nDuring10) VALUES\n"
+	return "INSERT INTO [USER_SAVED_MAGIC] ([strCharID], [nSkill1], [nDuring1], [nSkill2], [nDuring2], [nSkill3], [nDuring3], [nSkill4], [nDuring4], [nSkill5], [nDuring5], [nSkill6], [nDuring6], [nSkill7], [nDuring7], [nSkill8], [nDuring8], [nSkill9], [nDuring9], [nSkill10], [nDuring10]) VALUES\n"
 }
 
 // GetInsertData Returns the record data for the table insert dump

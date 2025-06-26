@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	_KingSystemDatabaseNbr = 1
+	_KingSystemDatabaseNbr = "GAME"
 	_KingSystemTableName   = "KING_SYSTEM"
 )
 
@@ -51,7 +51,7 @@ type KingSystem struct {
 
 // GetDatabaseName Returns the table's database name
 func (this KingSystem) GetDatabaseName() string {
-	return GetDatabaseName(DbType(_KingSystemDatabaseNbr))
+	return GetDatabaseName(_KingSystemDatabaseNbr)
 }
 
 // TableName Returns the table name
@@ -94,7 +94,7 @@ func (this KingSystem) GetInsertString() string {
 
 // GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
 func (this KingSystem) GetInsertHeader() string {
-	return "INSERT INTO [KING_SYSTEM] (byNation, byType, sYear, byMonth, byDay, byHour, byMinute, byImType, sImYear, byImMonth, byImDay, byImHour, byImMinute, byNoahEvent, byNoahEvent_Day, byNoahEvent_Hour, byNoahEvent_Minute, sNoahEvent_Duration, byExpEvent, byExpEvent_Day, byExpEvent_Hour, byExpEvent_Minute, sExpEvent_Duration, nTribute, byTerritoryTariff, nTerritoryTax, nNationalTreasury, strKingName, strImRequestID) VALUES\n"
+	return "INSERT INTO [KING_SYSTEM] ([byNation], [byType], [sYear], [byMonth], [byDay], [byHour], [byMinute], [byImType], [sImYear], [byImMonth], [byImDay], [byImHour], [byImMinute], [byNoahEvent], [byNoahEvent_Day], [byNoahEvent_Hour], [byNoahEvent_Minute], [sNoahEvent_Duration], [byExpEvent], [byExpEvent_Day], [byExpEvent_Hour], [byExpEvent_Minute], [sExpEvent_Duration], [nTribute], [byTerritoryTariff], [nTerritoryTax], [nNationalTreasury], [strKingName], [strImRequestID]) VALUES\n"
 }
 
 // GetInsertData Returns the record data for the table insert dump

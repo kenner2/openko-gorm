@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	_KingCandidacyNoticeBoardDatabaseNbr = 1
+	_KingCandidacyNoticeBoardDatabaseNbr = "GAME"
 	_KingCandidacyNoticeBoardTableName   = "KING_CANDIDACY_NOTICE_BOARD"
 )
 
@@ -26,7 +26,7 @@ type KingCandidacyNoticeBoard struct {
 
 // GetDatabaseName Returns the table's database name
 func (this KingCandidacyNoticeBoard) GetDatabaseName() string {
-	return GetDatabaseName(DbType(_KingCandidacyNoticeBoardDatabaseNbr))
+	return GetDatabaseName(_KingCandidacyNoticeBoardDatabaseNbr)
 }
 
 // TableName Returns the table name
@@ -44,7 +44,7 @@ func (this KingCandidacyNoticeBoard) GetInsertString() string {
 
 // GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
 func (this KingCandidacyNoticeBoard) GetInsertHeader() string {
-	return "INSERT INTO [KING_CANDIDACY_NOTICE_BOARD] (strUserID, byNation, sNoticeLen, strNotice) VALUES\n"
+	return "INSERT INTO [KING_CANDIDACY_NOTICE_BOARD] ([strUserID], [byNation], [sNoticeLen], [strNotice]) VALUES\n"
 }
 
 // GetInsertData Returns the record data for the table insert dump

@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	_UserDataSkillShortcutDatabaseNbr = 1
+	_UserDataSkillShortcutDatabaseNbr = "GAME"
 	_UserDataSkillShortcutTableName   = "USERDATA_SKILLSHORTCUT"
 )
 
@@ -25,7 +25,7 @@ type UserDataSkillShortcut struct {
 
 // GetDatabaseName Returns the table's database name
 func (this UserDataSkillShortcut) GetDatabaseName() string {
-	return GetDatabaseName(DbType(_UserDataSkillShortcutDatabaseNbr))
+	return GetDatabaseName(_UserDataSkillShortcutDatabaseNbr)
 }
 
 // TableName Returns the table name
@@ -42,7 +42,7 @@ func (this UserDataSkillShortcut) GetInsertString() string {
 
 // GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
 func (this UserDataSkillShortcut) GetInsertHeader() string {
-	return "INSERT INTO [USERDATA_SKILLSHORTCUT] (strCharID, nCount, strSkillData) VALUES\n"
+	return "INSERT INTO [USERDATA_SKILLSHORTCUT] ([strCharID], [nCount], [strSkillData]) VALUES\n"
 }
 
 // GetInsertData Returns the record data for the table insert dump

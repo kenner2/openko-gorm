@@ -9,7 +9,7 @@ import (
 )
 
 const (
-	_TbUserDatabaseNbr = 1
+	_TbUserDatabaseNbr = "GAME"
 	_TbUserTableName   = "TB_USER"
 )
 
@@ -29,7 +29,7 @@ type TbUser struct {
 
 // GetDatabaseName Returns the table's database name
 func (this TbUser) GetDatabaseName() string {
-	return GetDatabaseName(DbType(_TbUserDatabaseNbr))
+	return GetDatabaseName(_TbUserDatabaseNbr)
 }
 
 // TableName Returns the table name
@@ -39,25 +39,25 @@ func (this TbUser) TableName() string {
 
 // GetInsertString Returns the insert statement for the table populated with record from the object
 func (this TbUser) GetInsertString() string {
-	return fmt.Sprintf("INSERT INTO [TB_USER] ([strAccountID], [strPasswd], [strSocNo], [strEmail], [strAuthority], [PremiumExpire]) VALUES\n(%s, CONVERT(varchar(13), %s), CONVERT(varchar(20), %s), CONVERT(varchar(250), %s), %s, %s)", GetOptionalVarCharVal(&this.AccountId, false),
-		GetOptionalVarCharVal(&this.Password, true),
-		GetOptionalVarCharVal(&this.SocNo, true),
-		GetOptionalVarCharVal(&this.Email, true),
+	return fmt.Sprintf("INSERT INTO [TB_USER] ([strAccountID], [strPasswd], [strSocNo], [strEmail], [strAuthority], [PremiumExpire]) VALUES\n(%s, %s, %s, %s, %s, %s)", GetOptionalVarCharVal(&this.AccountId, false),
+		GetOptionalVarCharVal(&this.Password, false),
+		GetOptionalVarCharVal(&this.SocNo, false),
+		GetOptionalVarCharVal(&this.Email, false),
 		GetOptionalDecVal(&this.Authority),
 		GetDateTimeExportFmt(&this.PremiumExpire))
 }
 
 // GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
 func (this TbUser) GetInsertHeader() string {
-	return "INSERT INTO [TB_USER] (strAccountID, strPasswd, strSocNo, strEmail, strAuthority, PremiumExpire) VALUES\n"
+	return "INSERT INTO [TB_USER] ([strAccountID], [strPasswd], [strSocNo], [strEmail], [strAuthority], [PremiumExpire]) VALUES\n"
 }
 
 // GetInsertData Returns the record data for the table insert dump
 func (this TbUser) GetInsertData() string {
-	return fmt.Sprintf("(%s, CONVERT(varchar(13), %s), CONVERT(varchar(20), %s), CONVERT(varchar(250), %s), %s, %s)", GetOptionalVarCharVal(&this.AccountId, false),
-		GetOptionalVarCharVal(&this.Password, true),
-		GetOptionalVarCharVal(&this.SocNo, true),
-		GetOptionalVarCharVal(&this.Email, true),
+	return fmt.Sprintf("(%s, %s, %s, %s, %s, %s)", GetOptionalVarCharVal(&this.AccountId, false),
+		GetOptionalVarCharVal(&this.Password, false),
+		GetOptionalVarCharVal(&this.SocNo, false),
+		GetOptionalVarCharVal(&this.Email, false),
 		GetOptionalDecVal(&this.Authority),
 		GetDateTimeExportFmt(&this.PremiumExpire))
 }
@@ -76,7 +76,7 @@ func (this TbUser) SelectClause() (selectClause clause.Select) {
 // GetAllTableData Returns a list of all table data
 func (this TbUser) GetAllTableData(db *gorm.DB) (results []Model, err error) {
 	res := []TbUser{}
-	rawSql := "SELECT [strAccountID], CONVERT(VARBINARY(13), [strPasswd]) as [strPasswd], CONVERT(VARBINARY(20), [strSocNo]) as [strSocNo], CONVERT(VARBINARY(250), [strEmail]) as [strEmail], [strAuthority], [PremiumExpire] FROM [TB_USER]"
+	rawSql := "SELECT [strAccountID], [strPasswd], [strSocNo], [strEmail], [strAuthority], [PremiumExpire] FROM [TB_USER]"
 	err = db.Raw(rawSql).Find(&res).Error
 	if err != nil {
 		return nil, err
@@ -93,13 +93,13 @@ var _TbUserSelectClause = clause.Select{
 			Name: "[strAccountID]",
 		},
 		clause.Column{
-			Name: "CONVERT(VARBINARY(13), [strPasswd]) as [strPasswd]",
+			Name: "[strPasswd]",
 		},
 		clause.Column{
-			Name: "CONVERT(VARBINARY(20), [strSocNo]) as [strSocNo]",
+			Name: "[strSocNo]",
 		},
 		clause.Column{
-			Name: "CONVERT(VARBINARY(250), [strEmail]) as [strEmail]",
+			Name: "[strEmail]",
 		},
 		clause.Column{
 			Name: "[strAuthority]",

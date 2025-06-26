@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	_MagicType4DatabaseNbr = 1
+	_MagicType4DatabaseNbr = "GAME"
 	_MagicType4TableName   = "MAGIC_TYPE4"
 )
 
@@ -52,7 +52,7 @@ type MagicType4 struct {
 
 // GetDatabaseName Returns the table's database name
 func (this MagicType4) GetDatabaseName() string {
-	return GetDatabaseName(DbType(_MagicType4DatabaseNbr))
+	return GetDatabaseName(_MagicType4DatabaseNbr)
 }
 
 // TableName Returns the table name
@@ -96,7 +96,7 @@ func (this MagicType4) GetInsertString() string {
 
 // GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
 func (this MagicType4) GetInsertHeader() string {
-	return "INSERT INTO [MAGIC_TYPE4] (iNum, Name, Description, BuffType, Radius, Duration, AttackSpeed, Speed, AC, ACPct, Attack, MagicAttack, MaxHP, MaxHpPct, MaxMP, MaxMpPct, HitRate, AvoidRate, Str, Sta, Dex, Intel, Cha, FireR, ColdR, LightningR, MagicR, DiseaseR, PoisonR, ExpPct) VALUES\n"
+	return "INSERT INTO [MAGIC_TYPE4] ([iNum], [Name], [Description], [BuffType], [Radius], [Duration], [AttackSpeed], [Speed], [AC], [ACPct], [Attack], [MagicAttack], [MaxHP], [MaxHpPct], [MaxMP], [MaxMpPct], [HitRate], [AvoidRate], [Str], [Sta], [Dex], [Intel], [Cha], [FireR], [ColdR], [LightningR], [MagicR], [DiseaseR], [PoisonR], [ExpPct]) VALUES\n"
 }
 
 // GetInsertData Returns the record data for the table insert dump

@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	_MonsterSummonListDatabaseNbr = 1
+	_MonsterSummonListDatabaseNbr = "GAME"
 	_MonsterSummonListTableName   = "MONSTER_SUMMON_LIST"
 )
 
@@ -27,7 +27,7 @@ type MonsterSummonList struct {
 
 // GetDatabaseName Returns the table's database name
 func (this MonsterSummonList) GetDatabaseName() string {
-	return GetDatabaseName(DbType(_MonsterSummonListDatabaseNbr))
+	return GetDatabaseName(_MonsterSummonListDatabaseNbr)
 }
 
 // TableName Returns the table name
@@ -46,7 +46,7 @@ func (this MonsterSummonList) GetInsertString() string {
 
 // GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
 func (this MonsterSummonList) GetInsertHeader() string {
-	return "INSERT INTO [MONSTER_SUMMON_LIST] (sSid, strName, sLevel, sProbability, bType) VALUES\n"
+	return "INSERT INTO [MONSTER_SUMMON_LIST] ([sSid], [strName], [sLevel], [sProbability], [bType]) VALUES\n"
 }
 
 // GetInsertData Returns the record data for the table insert dump

@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	_MonsterDatabaseNbr = 1
+	_MonsterDatabaseNbr = "GAME"
 	_MonsterTableName   = "K_MONSTER"
 )
 
@@ -68,7 +68,7 @@ type Monster struct {
 
 // GetDatabaseName Returns the table's database name
 func (this Monster) GetDatabaseName() string {
-	return GetDatabaseName(DbType(_MonsterDatabaseNbr))
+	return GetDatabaseName(_MonsterDatabaseNbr)
 }
 
 // TableName Returns the table name
@@ -128,7 +128,7 @@ func (this Monster) GetInsertString() string {
 
 // GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
 func (this Monster) GetInsertHeader() string {
-	return "INSERT INTO [K_MONSTER] (sSid, strName, sPid, sSize, iWeapon1, iWeapon2, byGroup, byActType, byType, byFamily, byRank, byTitle, iSellingGroup, sLevel, iExp, iLoyalty, iHpPoint, sMpPoint, sAtk, sAc, sHitRate, sEvadeRate, sDamage, sAttackDelay, bySpeed1, bySpeed2, sStandtime, iMagic1, iMagic2, iMagic3, sFireR, sColdR, sLightningR, sMagicR, sDiseaseR, sPoisonR, sLightR, sBulk, byAttackRange, bySearchRange, byTracingRange, iMoney, sItem, byDirectAttack, byMagicAttack, byMoneyType) VALUES\n"
+	return "INSERT INTO [K_MONSTER] ([sSid], [strName], [sPid], [sSize], [iWeapon1], [iWeapon2], [byGroup], [byActType], [byType], [byFamily], [byRank], [byTitle], [iSellingGroup], [sLevel], [iExp], [iLoyalty], [iHpPoint], [sMpPoint], [sAtk], [sAc], [sHitRate], [sEvadeRate], [sDamage], [sAttackDelay], [bySpeed1], [bySpeed2], [sStandtime], [iMagic1], [iMagic2], [iMagic3], [sFireR], [sColdR], [sLightningR], [sMagicR], [sDiseaseR], [sPoisonR], [sLightR], [sBulk], [byAttackRange], [bySearchRange], [byTracingRange], [iMoney], [sItem], [byDirectAttack], [byMagicAttack], [byMoneyType]) VALUES\n"
 }
 
 // GetInsertData Returns the record data for the table insert dump

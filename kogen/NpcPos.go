@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	_NpcPosDatabaseNbr = 1
+	_NpcPosDatabaseNbr = "GAME"
 	_NpcPosTableName   = "K_NPCPOS"
 )
 
@@ -41,7 +41,7 @@ type NpcPos struct {
 
 // GetDatabaseName Returns the table's database name
 func (this NpcPos) GetDatabaseName() string {
-	return GetDatabaseName(DbType(_NpcPosDatabaseNbr))
+	return GetDatabaseName(_NpcPosDatabaseNbr)
 }
 
 // TableName Returns the table name
@@ -75,7 +75,7 @@ func (this NpcPos) GetInsertString() string {
 
 // GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
 func (this NpcPos) GetInsertHeader() string {
-	return "INSERT INTO [K_NPCPOS] (ZoneID, NpcID, ActType, RegenType, DungeonFamily, SpecialType, TrapNumber, LeftX, TopZ, RightX, BottomZ, LimitMinZ, LimitMinX, LimitMaxX, LimitMaxZ, NumNPC, RegTime, byDirection, DotCnt, path) VALUES\n"
+	return "INSERT INTO [K_NPCPOS] ([ZoneID], [NpcID], [ActType], [RegenType], [DungeonFamily], [SpecialType], [TrapNumber], [LeftX], [TopZ], [RightX], [BottomZ], [LimitMinZ], [LimitMinX], [LimitMaxX], [LimitMaxZ], [NumNPC], [RegTime], [byDirection], [DotCnt], [path]) VALUES\n"
 }
 
 // GetInsertData Returns the record data for the table insert dump

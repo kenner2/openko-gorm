@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	_EventDatabaseNbr = 1
+	_EventDatabaseNbr = "GAME"
 	_EventTableName   = "EVENT"
 )
 
@@ -35,7 +35,7 @@ type Event struct {
 
 // GetDatabaseName Returns the table's database name
 func (this Event) GetDatabaseName() string {
-	return GetDatabaseName(DbType(_EventDatabaseNbr))
+	return GetDatabaseName(_EventDatabaseNbr)
 }
 
 // TableName Returns the table name
@@ -45,41 +45,41 @@ func (this Event) TableName() string {
 
 // GetInsertString Returns the insert statement for the table populated with record from the object
 func (this Event) GetInsertString() string {
-	return fmt.Sprintf("INSERT INTO [EVENT] ([ZoneNum], [EventNum], [Type], [Cond1], [Cond2], [Cond3], [Cond4], [Cond5], [Exec1], [Exec2], [Exec3], [Exec4], [Exec5]) VALUES\n(%s, %s, %s, CONVERT(varchar(128), %s), CONVERT(varchar(128), %s), CONVERT(varchar(128), %s), CONVERT(varchar(128), %s), CONVERT(varchar(128), %s), CONVERT(varchar(128), %s), CONVERT(varchar(128), %s), CONVERT(varchar(128), %s), CONVERT(varchar(128), %s), CONVERT(varchar(128), %s))", GetOptionalDecVal(&this.ZoneNumber),
+	return fmt.Sprintf("INSERT INTO [EVENT] ([ZoneNum], [EventNum], [Type], [Cond1], [Cond2], [Cond3], [Cond4], [Cond5], [Exec1], [Exec2], [Exec3], [Exec4], [Exec5]) VALUES\n(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", GetOptionalDecVal(&this.ZoneNumber),
 		GetOptionalDecVal(&this.EventNumber),
 		GetOptionalDecVal(&this.EventType),
-		GetOptionalVarCharVal(this.Condition1, true),
-		GetOptionalVarCharVal(this.Condition2, true),
-		GetOptionalVarCharVal(this.Condition3, true),
-		GetOptionalVarCharVal(this.Condition4, true),
-		GetOptionalVarCharVal(this.Condition5, true),
-		GetOptionalVarCharVal(this.Execute1, true),
-		GetOptionalVarCharVal(this.Execute2, true),
-		GetOptionalVarCharVal(this.Execute3, true),
-		GetOptionalVarCharVal(this.Execute4, true),
-		GetOptionalVarCharVal(this.Execute5, true))
+		GetOptionalVarCharVal(this.Condition1, false),
+		GetOptionalVarCharVal(this.Condition2, false),
+		GetOptionalVarCharVal(this.Condition3, false),
+		GetOptionalVarCharVal(this.Condition4, false),
+		GetOptionalVarCharVal(this.Condition5, false),
+		GetOptionalVarCharVal(this.Execute1, false),
+		GetOptionalVarCharVal(this.Execute2, false),
+		GetOptionalVarCharVal(this.Execute3, false),
+		GetOptionalVarCharVal(this.Execute4, false),
+		GetOptionalVarCharVal(this.Execute5, false))
 }
 
 // GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
 func (this Event) GetInsertHeader() string {
-	return "INSERT INTO [EVENT] (ZoneNum, EventNum, Type, Cond1, Cond2, Cond3, Cond4, Cond5, Exec1, Exec2, Exec3, Exec4, Exec5) VALUES\n"
+	return "INSERT INTO [EVENT] ([ZoneNum], [EventNum], [Type], [Cond1], [Cond2], [Cond3], [Cond4], [Cond5], [Exec1], [Exec2], [Exec3], [Exec4], [Exec5]) VALUES\n"
 }
 
 // GetInsertData Returns the record data for the table insert dump
 func (this Event) GetInsertData() string {
-	return fmt.Sprintf("(%s, %s, %s, CONVERT(varchar(128), %s), CONVERT(varchar(128), %s), CONVERT(varchar(128), %s), CONVERT(varchar(128), %s), CONVERT(varchar(128), %s), CONVERT(varchar(128), %s), CONVERT(varchar(128), %s), CONVERT(varchar(128), %s), CONVERT(varchar(128), %s), CONVERT(varchar(128), %s))", GetOptionalDecVal(&this.ZoneNumber),
+	return fmt.Sprintf("(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", GetOptionalDecVal(&this.ZoneNumber),
 		GetOptionalDecVal(&this.EventNumber),
 		GetOptionalDecVal(&this.EventType),
-		GetOptionalVarCharVal(this.Condition1, true),
-		GetOptionalVarCharVal(this.Condition2, true),
-		GetOptionalVarCharVal(this.Condition3, true),
-		GetOptionalVarCharVal(this.Condition4, true),
-		GetOptionalVarCharVal(this.Condition5, true),
-		GetOptionalVarCharVal(this.Execute1, true),
-		GetOptionalVarCharVal(this.Execute2, true),
-		GetOptionalVarCharVal(this.Execute3, true),
-		GetOptionalVarCharVal(this.Execute4, true),
-		GetOptionalVarCharVal(this.Execute5, true))
+		GetOptionalVarCharVal(this.Condition1, false),
+		GetOptionalVarCharVal(this.Condition2, false),
+		GetOptionalVarCharVal(this.Condition3, false),
+		GetOptionalVarCharVal(this.Condition4, false),
+		GetOptionalVarCharVal(this.Condition5, false),
+		GetOptionalVarCharVal(this.Execute1, false),
+		GetOptionalVarCharVal(this.Execute2, false),
+		GetOptionalVarCharVal(this.Execute3, false),
+		GetOptionalVarCharVal(this.Execute4, false),
+		GetOptionalVarCharVal(this.Execute5, false))
 }
 
 // GetCreateTableString Returns the create table statement for this object
@@ -96,7 +96,7 @@ func (this Event) SelectClause() (selectClause clause.Select) {
 // GetAllTableData Returns a list of all table data
 func (this Event) GetAllTableData(db *gorm.DB) (results []Model, err error) {
 	res := []Event{}
-	rawSql := "SELECT [ZoneNum], [EventNum], [Type], CONVERT(VARBINARY(128), [Cond1]) as [Cond1], CONVERT(VARBINARY(128), [Cond2]) as [Cond2], CONVERT(VARBINARY(128), [Cond3]) as [Cond3], CONVERT(VARBINARY(128), [Cond4]) as [Cond4], CONVERT(VARBINARY(128), [Cond5]) as [Cond5], CONVERT(VARBINARY(128), [Exec1]) as [Exec1], CONVERT(VARBINARY(128), [Exec2]) as [Exec2], CONVERT(VARBINARY(128), [Exec3]) as [Exec3], CONVERT(VARBINARY(128), [Exec4]) as [Exec4], CONVERT(VARBINARY(128), [Exec5]) as [Exec5] FROM [EVENT]"
+	rawSql := "SELECT [ZoneNum], [EventNum], [Type], [Cond1], [Cond2], [Cond3], [Cond4], [Cond5], [Exec1], [Exec2], [Exec3], [Exec4], [Exec5] FROM [EVENT]"
 	err = db.Raw(rawSql).Find(&res).Error
 	if err != nil {
 		return nil, err
@@ -119,34 +119,34 @@ var _EventSelectClause = clause.Select{
 			Name: "[Type]",
 		},
 		clause.Column{
-			Name: "CONVERT(VARBINARY(128), [Cond1]) as [Cond1]",
+			Name: "[Cond1]",
 		},
 		clause.Column{
-			Name: "CONVERT(VARBINARY(128), [Cond2]) as [Cond2]",
+			Name: "[Cond2]",
 		},
 		clause.Column{
-			Name: "CONVERT(VARBINARY(128), [Cond3]) as [Cond3]",
+			Name: "[Cond3]",
 		},
 		clause.Column{
-			Name: "CONVERT(VARBINARY(128), [Cond4]) as [Cond4]",
+			Name: "[Cond4]",
 		},
 		clause.Column{
-			Name: "CONVERT(VARBINARY(128), [Cond5]) as [Cond5]",
+			Name: "[Cond5]",
 		},
 		clause.Column{
-			Name: "CONVERT(VARBINARY(128), [Exec1]) as [Exec1]",
+			Name: "[Exec1]",
 		},
 		clause.Column{
-			Name: "CONVERT(VARBINARY(128), [Exec2]) as [Exec2]",
+			Name: "[Exec2]",
 		},
 		clause.Column{
-			Name: "CONVERT(VARBINARY(128), [Exec3]) as [Exec3]",
+			Name: "[Exec3]",
 		},
 		clause.Column{
-			Name: "CONVERT(VARBINARY(128), [Exec4]) as [Exec4]",
+			Name: "[Exec4]",
 		},
 		clause.Column{
-			Name: "CONVERT(VARBINARY(128), [Exec5]) as [Exec5]",
+			Name: "[Exec5]",
 		},
 	},
 }

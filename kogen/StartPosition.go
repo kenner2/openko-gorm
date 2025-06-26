@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	_StartPositionDatabaseNbr = 1
+	_StartPositionDatabaseNbr = "GAME"
 	_StartPositionTableName   = "START_POSITION"
 )
 
@@ -32,7 +32,7 @@ type StartPosition struct {
 
 // GetDatabaseName Returns the table's database name
 func (this StartPosition) GetDatabaseName() string {
-	return GetDatabaseName(DbType(_StartPositionDatabaseNbr))
+	return GetDatabaseName(_StartPositionDatabaseNbr)
 }
 
 // TableName Returns the table name
@@ -57,7 +57,7 @@ func (this StartPosition) GetInsertString() string {
 
 // GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
 func (this StartPosition) GetInsertHeader() string {
-	return "INSERT INTO [START_POSITION] (ZoneID, sKarusX, sKarusZ, sElmoradX, sElmoradZ, bRangeX, bRangeZ, sKarusGateX, sKarusGateZ, sElmoGateX, sElmoGateZ) VALUES\n"
+	return "INSERT INTO [START_POSITION] ([ZoneID], [sKarusX], [sKarusZ], [sElmoradX], [sElmoradZ], [bRangeX], [bRangeZ], [sKarusGateX], [sKarusGateZ], [sElmoGateX], [sElmoGateZ]) VALUES\n"
 }
 
 // GetInsertData Returns the record data for the table insert dump

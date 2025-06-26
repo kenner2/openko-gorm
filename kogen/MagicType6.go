@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	_MagicType6DatabaseNbr = 1
+	_MagicType6DatabaseNbr = "GAME"
 	_MagicType6TableName   = "MAGIC_TYPE6"
 )
 
@@ -47,7 +47,7 @@ type MagicType6 struct {
 
 // GetDatabaseName Returns the table's database name
 func (this MagicType6) GetDatabaseName() string {
-	return GetDatabaseName(DbType(_MagicType6DatabaseNbr))
+	return GetDatabaseName(_MagicType6DatabaseNbr)
 }
 
 // TableName Returns the table name
@@ -86,7 +86,7 @@ func (this MagicType6) GetInsertString() string {
 
 // GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
 func (this MagicType6) GetInsertHeader() string {
-	return "INSERT INTO [MAGIC_TYPE6] (iNum, Name, Description, Size, TransformID, Duration, MaxHp, MaxMp, Speed, AttackSpeed, TotalHit, TotalAc, TotalHitRate, TotalEvasionRate, TotalFireR, TotalColdR, TotalLightningR, TotalMagicR, TotalDiseaseR, TotalPoisonR, Class, UserSkillUse, NeedItem, SkillSuccessRate, MonsterFriendly) VALUES\n"
+	return "INSERT INTO [MAGIC_TYPE6] ([iNum], [Name], [Description], [Size], [TransformID], [Duration], [MaxHp], [MaxMp], [Speed], [AttackSpeed], [TotalHit], [TotalAc], [TotalHitRate], [TotalEvasionRate], [TotalFireR], [TotalColdR], [TotalLightningR], [TotalMagicR], [TotalDiseaseR], [TotalPoisonR], [Class], [UserSkillUse], [NeedItem], [SkillSuccessRate], [MonsterFriendly]) VALUES\n"
 }
 
 // GetInsertData Returns the record data for the table insert dump

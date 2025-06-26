@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	_ConcurrentDatabaseNbr = 1
+	_ConcurrentDatabaseNbr = "GAME"
 	_ConcurrentTableName   = "CONCURRENT"
 )
 
@@ -27,7 +27,7 @@ type Concurrent struct {
 
 // GetDatabaseName Returns the table's database name
 func (this Concurrent) GetDatabaseName() string {
-	return GetDatabaseName(DbType(_ConcurrentDatabaseNbr))
+	return GetDatabaseName(_ConcurrentDatabaseNbr)
 }
 
 // TableName Returns the table name
@@ -46,7 +46,7 @@ func (this Concurrent) GetInsertString() string {
 
 // GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
 func (this Concurrent) GetInsertHeader() string {
-	return "INSERT INTO [CONCURRENT] (serverid, zone1_count, zone2_count, zone3_count, bz) VALUES\n"
+	return "INSERT INTO [CONCURRENT] ([serverid], [zone1_count], [zone2_count], [zone3_count], [bz]) VALUES\n"
 }
 
 // GetInsertData Returns the record data for the table insert dump

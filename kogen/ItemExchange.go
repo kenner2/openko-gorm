@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	_ItemExchangeDatabaseNbr = 1
+	_ItemExchangeDatabaseNbr = "GAME"
 	_ItemExchangeTableName   = "ITEM_EXCHANGE"
 )
 
@@ -47,7 +47,7 @@ type ItemExchange struct {
 
 // GetDatabaseName Returns the table's database name
 func (this ItemExchange) GetDatabaseName() string {
-	return GetDatabaseName(DbType(_ItemExchangeDatabaseNbr))
+	return GetDatabaseName(_ItemExchangeDatabaseNbr)
 }
 
 // TableName Returns the table name
@@ -86,7 +86,7 @@ func (this ItemExchange) GetInsertString() string {
 
 // GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
 func (this ItemExchange) GetInsertHeader() string {
-	return "INSERT INTO [ITEM_EXCHANGE] (nIndex, nNpcNum, strNpcName, strNote, bRandomFlag, nOriginItemNum1, nOriginItemCount1, nOriginItemNum2, nOriginItemCount2, nOriginItemNum3, nOriginItemCount3, nOriginItemNum4, nOriginItemCount4, nOriginItemNum5, nOriginItemCount5, nExchangeItemNum1, nExchangeItemCount1, nExchangeItemNum2, nExchangeItemCount2, nExchangeItemNum3, nExchangeItemCount3, nExchangeItemNum4, nExchangeItemCount4, nExchangeItemNum5, nExchangeItemCount5) VALUES\n"
+	return "INSERT INTO [ITEM_EXCHANGE] ([nIndex], [nNpcNum], [strNpcName], [strNote], [bRandomFlag], [nOriginItemNum1], [nOriginItemCount1], [nOriginItemNum2], [nOriginItemCount2], [nOriginItemNum3], [nOriginItemCount3], [nOriginItemNum4], [nOriginItemCount4], [nOriginItemNum5], [nOriginItemCount5], [nExchangeItemNum1], [nExchangeItemCount1], [nExchangeItemNum2], [nExchangeItemCount2], [nExchangeItemNum3], [nExchangeItemCount3], [nExchangeItemNum4], [nExchangeItemCount4], [nExchangeItemNum5], [nExchangeItemCount5]) VALUES\n"
 }
 
 // GetInsertData Returns the record data for the table insert dump

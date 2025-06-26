@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	_CurrentUserDatabaseNbr = 1
+	_CurrentUserDatabaseNbr = "GAME"
 	_CurrentUserTableName   = "CURRENTUSER"
 )
 
@@ -27,7 +27,7 @@ type CurrentUser struct {
 
 // GetDatabaseName Returns the table's database name
 func (this CurrentUser) GetDatabaseName() string {
-	return GetDatabaseName(DbType(_CurrentUserDatabaseNbr))
+	return GetDatabaseName(_CurrentUserDatabaseNbr)
 }
 
 // TableName Returns the table name
@@ -46,7 +46,7 @@ func (this CurrentUser) GetInsertString() string {
 
 // GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
 func (this CurrentUser) GetInsertHeader() string {
-	return "INSERT INTO [CURRENTUSER] (nServerNo, strServerIP, strAccountID, strCharID, strClientIP) VALUES\n"
+	return "INSERT INTO [CURRENTUSER] ([nServerNo], [strServerIP], [strAccountID], [strCharID], [strClientIP]) VALUES\n"
 }
 
 // GetInsertData Returns the record data for the table insert dump

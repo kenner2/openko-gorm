@@ -9,7 +9,7 @@ import (
 )
 
 const (
-	_HacktoolUserLogDatabaseNbr = 1
+	_HacktoolUserLogDatabaseNbr = "GAME"
 	_HacktoolUserLogTableName   = "HACKTOOL_USERLOG"
 )
 
@@ -27,7 +27,7 @@ type HacktoolUserLog struct {
 
 // GetDatabaseName Returns the table's database name
 func (this HacktoolUserLog) GetDatabaseName() string {
-	return GetDatabaseName(DbType(_HacktoolUserLogDatabaseNbr))
+	return GetDatabaseName(_HacktoolUserLogDatabaseNbr)
 }
 
 // TableName Returns the table name
@@ -45,7 +45,7 @@ func (this HacktoolUserLog) GetInsertString() string {
 
 // GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
 func (this HacktoolUserLog) GetInsertHeader() string {
-	return "INSERT INTO [HACKTOOL_USERLOG] (strAccountID, strCharID, strHackToolName, tWriteTime) VALUES\n"
+	return "INSERT INTO [HACKTOOL_USERLOG] ([strAccountID], [strCharID], [strHackToolName], [tWriteTime]) VALUES\n"
 }
 
 // GetInsertData Returns the record data for the table insert dump

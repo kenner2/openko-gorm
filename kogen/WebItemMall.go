@@ -9,7 +9,7 @@ import (
 )
 
 const (
-	_WebItemMallDatabaseNbr = 1
+	_WebItemMallDatabaseNbr = "GAME"
 	_WebItemMallTableName   = "WEB_ITEMMALL"
 )
 
@@ -19,8 +19,8 @@ func init() {
 
 // WebItemMall Power-up store purchases
 type WebItemMall struct {
-	AccountId   []byte         `gorm:"column:strAccountID;type:char(21);not null" json:"strAccountID"`
-	CharId      []byte         `gorm:"column:strCharID;type:char(21);not null" json:"strCharID"`
+	AccountId   mssql.VarChar  `gorm:"column:strAccountID;type:varchar(21);not null" json:"strAccountID"`
+	CharId      mssql.VarChar  `gorm:"column:strCharID;type:varchar(21);not null" json:"strCharID"`
 	ServerId    int16          `gorm:"column:ServerNo;type:smallint;not null" json:"ServerNo"`
 	ItemId      int            `gorm:"column:ItemID;type:int;not null" json:"ItemID"`
 	ItemCount   int16          `gorm:"column:ItemCount;type:smallint;not null;default:1" json:"ItemCount"`
@@ -33,7 +33,7 @@ type WebItemMall struct {
 
 // GetDatabaseName Returns the table's database name
 func (this WebItemMall) GetDatabaseName() string {
-	return GetDatabaseName(DbType(_WebItemMallDatabaseNbr))
+	return GetDatabaseName(_WebItemMallDatabaseNbr)
 }
 
 // TableName Returns the table name
@@ -43,8 +43,8 @@ func (this WebItemMall) TableName() string {
 
 // GetInsertString Returns the insert statement for the table populated with record from the object
 func (this WebItemMall) GetInsertString() string {
-	return fmt.Sprintf("INSERT INTO [WEB_ITEMMALL] ([strAccountID], [strCharID], [ServerNo], [ItemID], [ItemCount], [BuyTime], [img_file_name], [strItemName], [price], [pay_type]) VALUES\n(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", GetOptionalByteArrayVal(&this.AccountId, false),
-		GetOptionalByteArrayVal(&this.CharId, false),
+	return fmt.Sprintf("INSERT INTO [WEB_ITEMMALL] ([strAccountID], [strCharID], [ServerNo], [ItemID], [ItemCount], [BuyTime], [img_file_name], [strItemName], [price], [pay_type]) VALUES\n(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", GetOptionalVarCharVal(&this.AccountId, false),
+		GetOptionalVarCharVal(&this.CharId, false),
 		GetOptionalDecVal(&this.ServerId),
 		GetOptionalDecVal(&this.ItemId),
 		GetOptionalDecVal(&this.ItemCount),
@@ -57,13 +57,13 @@ func (this WebItemMall) GetInsertString() string {
 
 // GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
 func (this WebItemMall) GetInsertHeader() string {
-	return "INSERT INTO [WEB_ITEMMALL] (strAccountID, strCharID, ServerNo, ItemID, ItemCount, BuyTime, img_file_name, strItemName, price, pay_type) VALUES\n"
+	return "INSERT INTO [WEB_ITEMMALL] ([strAccountID], [strCharID], [ServerNo], [ItemID], [ItemCount], [BuyTime], [img_file_name], [strItemName], [price], [pay_type]) VALUES\n"
 }
 
 // GetInsertData Returns the record data for the table insert dump
 func (this WebItemMall) GetInsertData() string {
-	return fmt.Sprintf("(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", GetOptionalByteArrayVal(&this.AccountId, false),
-		GetOptionalByteArrayVal(&this.CharId, false),
+	return fmt.Sprintf("(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", GetOptionalVarCharVal(&this.AccountId, false),
+		GetOptionalVarCharVal(&this.CharId, false),
 		GetOptionalDecVal(&this.ServerId),
 		GetOptionalDecVal(&this.ItemId),
 		GetOptionalDecVal(&this.ItemCount),
@@ -76,7 +76,7 @@ func (this WebItemMall) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this WebItemMall) GetCreateTableString() string {
-	query := "CREATE TABLE [WEB_ITEMMALL] (\n\t[strAccountID] char(21) NOT NULL,\n\t[strCharID] char(21) NOT NULL,\n\t[ServerNo] smallint NOT NULL,\n\t[ItemID] int NOT NULL,\n\t[ItemCount] smallint NOT NULL,\n\t[BuyTime] smalldatetime NOT NULL,\n\t[img_file_name] varchar(50),\n\t[strItemName] varchar(100),\n\t[price] int,\n\t[pay_type] int\n\n)\nGO\nALTER TABLE [WEB_ITEMMALL] ADD CONSTRAINT [DF_WEB_ITEMMALL_ItemCount] DEFAULT 1 FOR [ItemCount]\nGO\nALTER TABLE [WEB_ITEMMALL] ADD CONSTRAINT [DF_WEB_ITEMMALL_BuyTime] DEFAULT getdate() FOR [BuyTime]\nGO\n"
+	query := "CREATE TABLE [WEB_ITEMMALL] (\n\t[strAccountID] varchar(21) NOT NULL,\n\t[strCharID] varchar(21) NOT NULL,\n\t[ServerNo] smallint NOT NULL,\n\t[ItemID] int NOT NULL,\n\t[ItemCount] smallint NOT NULL,\n\t[BuyTime] smalldatetime NOT NULL,\n\t[img_file_name] varchar(50),\n\t[strItemName] varchar(100),\n\t[price] int,\n\t[pay_type] int\n\n)\nGO\nALTER TABLE [WEB_ITEMMALL] ADD CONSTRAINT [DF_WEB_ITEMMALL_ItemCount] DEFAULT 1 FOR [ItemCount]\nGO\nALTER TABLE [WEB_ITEMMALL] ADD CONSTRAINT [DF_WEB_ITEMMALL_BuyTime] DEFAULT getdate() FOR [BuyTime]\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

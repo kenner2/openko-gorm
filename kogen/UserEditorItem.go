@@ -2,13 +2,14 @@ package kogen
 
 import (
 	"fmt"
+	mssql "github.com/microsoft/go-mssqldb"
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 	"time"
 )
 
 const (
-	_UserEditorItemDatabaseNbr = 1
+	_UserEditorItemDatabaseNbr = "GAME"
 	_UserEditorItemTableName   = "USER_EDITOR_ITEM"
 )
 
@@ -18,21 +19,21 @@ func init() {
 
 // UserEditorItem User editor item
 type UserEditorItem struct {
-	CharId     []byte     `gorm:"column:strCharID;type:char(21);not null" json:"strCharID"`
-	AccountId  []byte     `gorm:"column:strAccountID;type:char(21);not null" json:"strAccountID"`
-	OpId       []byte     `gorm:"column:strOpID;type:char(21);not null" json:"strOpID"`
-	OpIP       []byte     `gorm:"column:strOpIP;type:char(21);not null" json:"strOpIP"`
-	DbIndex    int16      `gorm:"column:sDBIndex;type:smallint;not null" json:"sDBIndex"`
-	Pos        int16      `gorm:"column:sPos;type:smallint;not null" json:"sPos"`
-	Type       uint8      `gorm:"column:byType;type:tinyint;not null" json:"byType"`
-	ItemId1    int        `gorm:"column:nItemID1;type:int;not null" json:"nItemID1"`
-	ItemId2    int        `gorm:"column:nItemID2;type:int;not null" json:"nItemID2"`
-	UpdateTime *time.Time `gorm:"column:UpdateTime;type:smalldatetime" json:"UpdateTime,omitempty"`
+	CharId     mssql.VarChar `gorm:"column:strCharID;type:varchar(21);not null" json:"strCharID"`
+	AccountId  mssql.VarChar `gorm:"column:strAccountID;type:varchar(21);not null" json:"strAccountID"`
+	OpId       mssql.VarChar `gorm:"column:strOpID;type:varchar(21);not null" json:"strOpID"`
+	OpIP       mssql.VarChar `gorm:"column:strOpIP;type:varchar(21);not null" json:"strOpIP"`
+	DbIndex    int16         `gorm:"column:sDBIndex;type:smallint;not null" json:"sDBIndex"`
+	Pos        int16         `gorm:"column:sPos;type:smallint;not null" json:"sPos"`
+	Type       uint8         `gorm:"column:byType;type:tinyint;not null" json:"byType"`
+	ItemId1    int           `gorm:"column:nItemID1;type:int;not null" json:"nItemID1"`
+	ItemId2    int           `gorm:"column:nItemID2;type:int;not null" json:"nItemID2"`
+	UpdateTime *time.Time    `gorm:"column:UpdateTime;type:smalldatetime" json:"UpdateTime,omitempty"`
 }
 
 // GetDatabaseName Returns the table's database name
 func (this UserEditorItem) GetDatabaseName() string {
-	return GetDatabaseName(DbType(_UserEditorItemDatabaseNbr))
+	return GetDatabaseName(_UserEditorItemDatabaseNbr)
 }
 
 // TableName Returns the table name
@@ -42,10 +43,10 @@ func (this UserEditorItem) TableName() string {
 
 // GetInsertString Returns the insert statement for the table populated with record from the object
 func (this UserEditorItem) GetInsertString() string {
-	return fmt.Sprintf("INSERT INTO [USER_EDITOR_ITEM] ([strCharID], [strAccountID], [strOpID], [strOpIP], [sDBIndex], [sPos], [byType], [nItemID1], [nItemID2], [UpdateTime]) VALUES\n(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", GetOptionalByteArrayVal(&this.CharId, false),
-		GetOptionalByteArrayVal(&this.AccountId, false),
-		GetOptionalByteArrayVal(&this.OpId, false),
-		GetOptionalByteArrayVal(&this.OpIP, false),
+	return fmt.Sprintf("INSERT INTO [USER_EDITOR_ITEM] ([strCharID], [strAccountID], [strOpID], [strOpIP], [sDBIndex], [sPos], [byType], [nItemID1], [nItemID2], [UpdateTime]) VALUES\n(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", GetOptionalVarCharVal(&this.CharId, false),
+		GetOptionalVarCharVal(&this.AccountId, false),
+		GetOptionalVarCharVal(&this.OpId, false),
+		GetOptionalVarCharVal(&this.OpIP, false),
 		GetOptionalDecVal(&this.DbIndex),
 		GetOptionalDecVal(&this.Pos),
 		GetOptionalDecVal(&this.Type),
@@ -56,15 +57,15 @@ func (this UserEditorItem) GetInsertString() string {
 
 // GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
 func (this UserEditorItem) GetInsertHeader() string {
-	return "INSERT INTO [USER_EDITOR_ITEM] (strCharID, strAccountID, strOpID, strOpIP, sDBIndex, sPos, byType, nItemID1, nItemID2, UpdateTime) VALUES\n"
+	return "INSERT INTO [USER_EDITOR_ITEM] ([strCharID], [strAccountID], [strOpID], [strOpIP], [sDBIndex], [sPos], [byType], [nItemID1], [nItemID2], [UpdateTime]) VALUES\n"
 }
 
 // GetInsertData Returns the record data for the table insert dump
 func (this UserEditorItem) GetInsertData() string {
-	return fmt.Sprintf("(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", GetOptionalByteArrayVal(&this.CharId, false),
-		GetOptionalByteArrayVal(&this.AccountId, false),
-		GetOptionalByteArrayVal(&this.OpId, false),
-		GetOptionalByteArrayVal(&this.OpIP, false),
+	return fmt.Sprintf("(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", GetOptionalVarCharVal(&this.CharId, false),
+		GetOptionalVarCharVal(&this.AccountId, false),
+		GetOptionalVarCharVal(&this.OpId, false),
+		GetOptionalVarCharVal(&this.OpIP, false),
 		GetOptionalDecVal(&this.DbIndex),
 		GetOptionalDecVal(&this.Pos),
 		GetOptionalDecVal(&this.Type),
@@ -75,7 +76,7 @@ func (this UserEditorItem) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this UserEditorItem) GetCreateTableString() string {
-	query := "CREATE TABLE [USER_EDITOR_ITEM] (\n\t[strCharID] char(21) NOT NULL,\n\t[strAccountID] char(21) NOT NULL,\n\t[strOpID] char(21) NOT NULL,\n\t[strOpIP] char(21) NOT NULL,\n\t[sDBIndex] smallint NOT NULL,\n\t[sPos] smallint NOT NULL,\n\t[byType] tinyint NOT NULL,\n\t[nItemID1] int NOT NULL,\n\t[nItemID2] int NOT NULL,\n\t[UpdateTime] smalldatetime\n\n)\nGO\n"
+	query := "CREATE TABLE [USER_EDITOR_ITEM] (\n\t[strCharID] varchar(21) NOT NULL,\n\t[strAccountID] varchar(21) NOT NULL,\n\t[strOpID] varchar(21) NOT NULL,\n\t[strOpIP] varchar(21) NOT NULL,\n\t[sDBIndex] smallint NOT NULL,\n\t[sPos] smallint NOT NULL,\n\t[byType] tinyint NOT NULL,\n\t[nItemID1] int NOT NULL,\n\t[nItemID2] int NOT NULL,\n\t[UpdateTime] smalldatetime\n\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	_EventTriggerDatabaseNbr = 1
+	_EventTriggerDatabaseNbr = "GAME"
 	_EventTriggerTableName   = "EVENT_TRIGGER"
 )
 
@@ -25,7 +25,7 @@ type EventTrigger struct {
 
 // GetDatabaseName Returns the table's database name
 func (this EventTrigger) GetDatabaseName() string {
-	return GetDatabaseName(DbType(_EventTriggerDatabaseNbr))
+	return GetDatabaseName(_EventTriggerDatabaseNbr)
 }
 
 // TableName Returns the table name
@@ -43,7 +43,7 @@ func (this EventTrigger) GetInsertString() string {
 
 // GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
 func (this EventTrigger) GetInsertHeader() string {
-	return "INSERT INTO [EVENT_TRIGGER] (nIndex, bNpcType, sNpcID, nTriggerNum) VALUES\n"
+	return "INSERT INTO [EVENT_TRIGGER] ([nIndex], [bNpcType], [sNpcID], [nTriggerNum]) VALUES\n"
 }
 
 // GetInsertData Returns the record data for the table insert dump

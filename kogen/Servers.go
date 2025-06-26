@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	_ServersDatabaseNbr = 1
+	_ServersDatabaseNbr = "GAME"
 	_ServersTableName   = "SERVERS"
 )
 
@@ -26,7 +26,7 @@ type Servers struct {
 
 // GetDatabaseName Returns the table's database name
 func (this Servers) GetDatabaseName() string {
-	return GetDatabaseName(DbType(_ServersDatabaseNbr))
+	return GetDatabaseName(_ServersDatabaseNbr)
 }
 
 // TableName Returns the table name
@@ -44,7 +44,7 @@ func (this Servers) GetInsertString() string {
 
 // GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
 func (this Servers) GetInsertHeader() string {
-	return "INSERT INTO [SERVERS] (id, sName, sHost, players) VALUES\n"
+	return "INSERT INTO [SERVERS] ([id], [sName], [sHost], [players]) VALUES\n"
 }
 
 // GetInsertData Returns the record data for the table insert dump

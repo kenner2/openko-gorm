@@ -2,13 +2,14 @@ package kogen
 
 import (
 	"fmt"
+	mssql "github.com/microsoft/go-mssqldb"
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 	"time"
 )
 
 const (
-	_UserEditorDatabaseNbr = 1
+	_UserEditorDatabaseNbr = "GAME"
 	_UserEditorTableName   = "USER_EDITOR"
 )
 
@@ -18,26 +19,26 @@ func init() {
 
 // UserEditor User editor
 type UserEditor struct {
-	CharId            []byte    `gorm:"column:strCharID;type:char(21);not null" json:"strCharID"`
-	AccountId         []byte    `gorm:"column:strAccountID;type:char(21);not null" json:"strAccountID"`
-	OpId              []byte    `gorm:"column:strOpID;type:char(21);not null" json:"strOpID"`
-	OpIP              []byte    `gorm:"column:strOpIP;type:char(21);not null" json:"strOpIP"`
-	OldUserValue      []byte    `gorm:"column:strOldUserValue;type:char(600);not null" json:"strOldUserValue"`
-	NewUserValue      []byte    `gorm:"column:strNewUserValue;type:char(600);not null" json:"strNewUserValue"`
-	OldUserSkill      []byte    `gorm:"column:strOldUserSkill;type:char(10);not null" json:"strOldUserSkill"`
-	NewUserSkill      []byte    `gorm:"column:strNewUserSkill;type:char(10);not null" json:"strNewUserSkill"`
-	OldUserItem       []byte    `gorm:"column:strOldUserItem;type:char(400);not null" json:"strOldUserItem"`
-	NewUserItem       []byte    `gorm:"column:strNewUserItem;type:char(400);not null" json:"strNewUserItem"`
-	OldWarehouseValue []byte    `gorm:"column:strOldWHValue;type:char(100);not null" json:"strOldWHValue"`
-	NewWarehouseValue []byte    `gorm:"column:strNewWHValue;type:char(100);not null" json:"strNewWHValue"`
-	OldWarehouseItem  []byte    `gorm:"column:strOldWHItem;type:char(1600);not null" json:"strOldWHItem"`
-	NewWarehouseItem  []byte    `gorm:"column:strNewWHItem;type:char(1600);not null" json:"strNewWHItem"`
-	EditorTime        time.Time `gorm:"column:EditorTime;type:smalldatetime;not null;default:getdate()" json:"EditorTime"`
+	CharId            mssql.VarChar `gorm:"column:strCharID;type:varchar(21);not null" json:"strCharID"`
+	AccountId         mssql.VarChar `gorm:"column:strAccountID;type:varchar(21);not null" json:"strAccountID"`
+	OpId              mssql.VarChar `gorm:"column:strOpID;type:varchar(21);not null" json:"strOpID"`
+	OpIP              mssql.VarChar `gorm:"column:strOpIP;type:varchar(21);not null" json:"strOpIP"`
+	OldUserValue      []byte        `gorm:"column:strOldUserValue;type:char(600);not null" json:"strOldUserValue"`
+	NewUserValue      []byte        `gorm:"column:strNewUserValue;type:char(600);not null" json:"strNewUserValue"`
+	OldUserSkill      []byte        `gorm:"column:strOldUserSkill;type:char(10);not null" json:"strOldUserSkill"`
+	NewUserSkill      []byte        `gorm:"column:strNewUserSkill;type:char(10);not null" json:"strNewUserSkill"`
+	OldUserItem       []byte        `gorm:"column:strOldUserItem;type:char(400);not null" json:"strOldUserItem"`
+	NewUserItem       []byte        `gorm:"column:strNewUserItem;type:char(400);not null" json:"strNewUserItem"`
+	OldWarehouseValue []byte        `gorm:"column:strOldWHValue;type:char(100);not null" json:"strOldWHValue"`
+	NewWarehouseValue []byte        `gorm:"column:strNewWHValue;type:char(100);not null" json:"strNewWHValue"`
+	OldWarehouseItem  []byte        `gorm:"column:strOldWHItem;type:char(1600);not null" json:"strOldWHItem"`
+	NewWarehouseItem  []byte        `gorm:"column:strNewWHItem;type:char(1600);not null" json:"strNewWHItem"`
+	EditorTime        time.Time     `gorm:"column:EditorTime;type:smalldatetime;not null;default:getdate()" json:"EditorTime"`
 }
 
 // GetDatabaseName Returns the table's database name
 func (this UserEditor) GetDatabaseName() string {
-	return GetDatabaseName(DbType(_UserEditorDatabaseNbr))
+	return GetDatabaseName(_UserEditorDatabaseNbr)
 }
 
 // TableName Returns the table name
@@ -47,10 +48,10 @@ func (this UserEditor) TableName() string {
 
 // GetInsertString Returns the insert statement for the table populated with record from the object
 func (this UserEditor) GetInsertString() string {
-	return fmt.Sprintf("INSERT INTO [USER_EDITOR] ([strCharID], [strAccountID], [strOpID], [strOpIP], [strOldUserValue], [strNewUserValue], [strOldUserSkill], [strNewUserSkill], [strOldUserItem], [strNewUserItem], [strOldWHValue], [strNewWHValue], [strOldWHItem], [strNewWHItem], [EditorTime]) VALUES\n(%s, %s, %s, %s, %s, %s, CONVERT(char(10), %s), CONVERT(char(10), %s), CONVERT(char(400), %s), CONVERT(char(400), %s), CONVERT(char(100), %s), CONVERT(char(100), %s), CONVERT(char(1600), %s), CONVERT(char(1600), %s), %s)", GetOptionalByteArrayVal(&this.CharId, false),
-		GetOptionalByteArrayVal(&this.AccountId, false),
-		GetOptionalByteArrayVal(&this.OpId, false),
-		GetOptionalByteArrayVal(&this.OpIP, false),
+	return fmt.Sprintf("INSERT INTO [USER_EDITOR] ([strCharID], [strAccountID], [strOpID], [strOpIP], [strOldUserValue], [strNewUserValue], [strOldUserSkill], [strNewUserSkill], [strOldUserItem], [strNewUserItem], [strOldWHValue], [strNewWHValue], [strOldWHItem], [strNewWHItem], [EditorTime]) VALUES\n(%s, %s, %s, %s, %s, %s, CONVERT(char(10), %s), CONVERT(char(10), %s), CONVERT(char(400), %s), CONVERT(char(400), %s), CONVERT(char(100), %s), CONVERT(char(100), %s), CONVERT(char(1600), %s), CONVERT(char(1600), %s), %s)", GetOptionalVarCharVal(&this.CharId, false),
+		GetOptionalVarCharVal(&this.AccountId, false),
+		GetOptionalVarCharVal(&this.OpId, false),
+		GetOptionalVarCharVal(&this.OpIP, false),
 		GetOptionalByteArrayVal(&this.OldUserValue, false),
 		GetOptionalByteArrayVal(&this.NewUserValue, false),
 		GetOptionalByteArrayVal(&this.OldUserSkill, true),
@@ -66,15 +67,15 @@ func (this UserEditor) GetInsertString() string {
 
 // GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
 func (this UserEditor) GetInsertHeader() string {
-	return "INSERT INTO [USER_EDITOR] (strCharID, strAccountID, strOpID, strOpIP, strOldUserValue, strNewUserValue, strOldUserSkill, strNewUserSkill, strOldUserItem, strNewUserItem, strOldWHValue, strNewWHValue, strOldWHItem, strNewWHItem, EditorTime) VALUES\n"
+	return "INSERT INTO [USER_EDITOR] ([strCharID], [strAccountID], [strOpID], [strOpIP], [strOldUserValue], [strNewUserValue], [strOldUserSkill], [strNewUserSkill], [strOldUserItem], [strNewUserItem], [strOldWHValue], [strNewWHValue], [strOldWHItem], [strNewWHItem], [EditorTime]) VALUES\n"
 }
 
 // GetInsertData Returns the record data for the table insert dump
 func (this UserEditor) GetInsertData() string {
-	return fmt.Sprintf("(%s, %s, %s, %s, %s, %s, CONVERT(char(10), %s), CONVERT(char(10), %s), CONVERT(char(400), %s), CONVERT(char(400), %s), CONVERT(char(100), %s), CONVERT(char(100), %s), CONVERT(char(1600), %s), CONVERT(char(1600), %s), %s)", GetOptionalByteArrayVal(&this.CharId, false),
-		GetOptionalByteArrayVal(&this.AccountId, false),
-		GetOptionalByteArrayVal(&this.OpId, false),
-		GetOptionalByteArrayVal(&this.OpIP, false),
+	return fmt.Sprintf("(%s, %s, %s, %s, %s, %s, CONVERT(char(10), %s), CONVERT(char(10), %s), CONVERT(char(400), %s), CONVERT(char(400), %s), CONVERT(char(100), %s), CONVERT(char(100), %s), CONVERT(char(1600), %s), CONVERT(char(1600), %s), %s)", GetOptionalVarCharVal(&this.CharId, false),
+		GetOptionalVarCharVal(&this.AccountId, false),
+		GetOptionalVarCharVal(&this.OpId, false),
+		GetOptionalVarCharVal(&this.OpIP, false),
 		GetOptionalByteArrayVal(&this.OldUserValue, false),
 		GetOptionalByteArrayVal(&this.NewUserValue, false),
 		GetOptionalByteArrayVal(&this.OldUserSkill, true),
@@ -90,7 +91,7 @@ func (this UserEditor) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this UserEditor) GetCreateTableString() string {
-	query := "CREATE TABLE [USER_EDITOR] (\n\t[strCharID] char(21) NOT NULL,\n\t[strAccountID] char(21) NOT NULL,\n\t[strOpID] char(21) NOT NULL,\n\t[strOpIP] char(21) NOT NULL,\n\t[strOldUserValue] char(600) NOT NULL,\n\t[strNewUserValue] char(600) NOT NULL,\n\t[strOldUserSkill] char(10) NOT NULL,\n\t[strNewUserSkill] char(10) NOT NULL,\n\t[strOldUserItem] char(400) NOT NULL,\n\t[strNewUserItem] char(400) NOT NULL,\n\t[strOldWHValue] char(100) NOT NULL,\n\t[strNewWHValue] char(100) NOT NULL,\n\t[strOldWHItem] char(1600) NOT NULL,\n\t[strNewWHItem] char(1600) NOT NULL,\n\t[EditorTime] smalldatetime NOT NULL\n\n)\nGO\nALTER TABLE [USER_EDITOR] ADD CONSTRAINT [DF_USER_EDITOR_EditorTime] DEFAULT getdate() FOR [EditorTime]\nGO\n"
+	query := "CREATE TABLE [USER_EDITOR] (\n\t[strCharID] varchar(21) NOT NULL,\n\t[strAccountID] varchar(21) NOT NULL,\n\t[strOpID] varchar(21) NOT NULL,\n\t[strOpIP] varchar(21) NOT NULL,\n\t[strOldUserValue] char(600) NOT NULL,\n\t[strNewUserValue] char(600) NOT NULL,\n\t[strOldUserSkill] char(10) NOT NULL,\n\t[strNewUserSkill] char(10) NOT NULL,\n\t[strOldUserItem] char(400) NOT NULL,\n\t[strNewUserItem] char(400) NOT NULL,\n\t[strOldWHValue] char(100) NOT NULL,\n\t[strNewWHValue] char(100) NOT NULL,\n\t[strOldWHItem] char(1600) NOT NULL,\n\t[strNewWHItem] char(1600) NOT NULL,\n\t[EditorTime] smalldatetime NOT NULL\n\n)\nGO\nALTER TABLE [USER_EDITOR] ADD CONSTRAINT [DF_USER_EDITOR_EditorTime] DEFAULT getdate() FOR [EditorTime]\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

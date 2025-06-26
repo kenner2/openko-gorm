@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	_HomeDatabaseNbr = 1
+	_HomeDatabaseNbr = "GAME"
 	_HomeTableName   = "HOME"
 )
 
@@ -42,7 +42,7 @@ type Home struct {
 
 // GetDatabaseName Returns the table's database name
 func (this Home) GetDatabaseName() string {
-	return GetDatabaseName(DbType(_HomeDatabaseNbr))
+	return GetDatabaseName(_HomeDatabaseNbr)
 }
 
 // TableName Returns the table name
@@ -77,7 +77,7 @@ func (this Home) GetInsertString() string {
 
 // GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
 func (this Home) GetInsertHeader() string {
-	return "INSERT INTO [HOME] (Nation, ElmoZoneX, ElmoZoneZ, ElmoZoneLX, ElmoZoneLZ, KarusZoneX, KarusZoneZ, KarusZoneLX, KarusZoneLZ, FreeZoneX, FreeZoneZ, FreeZoneLX, FreeZoneLZ, BattleZoneX, BattleZoneZ, BattleZoneLX, BattleZoneLZ, BattleZone2X, BattleZone2Z, BattleZone2LX, BattleZone2LZ) VALUES\n"
+	return "INSERT INTO [HOME] ([Nation], [ElmoZoneX], [ElmoZoneZ], [ElmoZoneLX], [ElmoZoneLZ], [KarusZoneX], [KarusZoneZ], [KarusZoneLX], [KarusZoneLZ], [FreeZoneX], [FreeZoneZ], [FreeZoneLX], [FreeZoneLZ], [BattleZoneX], [BattleZoneZ], [BattleZoneLX], [BattleZoneLZ], [BattleZone2X], [BattleZone2Z], [BattleZone2LX], [BattleZone2LZ]) VALUES\n"
 }
 
 // GetInsertData Returns the record data for the table insert dump

@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	_ZoneInfoDatabaseNbr = 1
+	_ZoneInfoDatabaseNbr = "GAME"
 	_ZoneInfoTableName   = "ZONE_INFO"
 )
 
@@ -31,7 +31,7 @@ type ZoneInfo struct {
 
 // GetDatabaseName Returns the table's database name
 func (this ZoneInfo) GetDatabaseName() string {
-	return GetDatabaseName(DbType(_ZoneInfoDatabaseNbr))
+	return GetDatabaseName(_ZoneInfoDatabaseNbr)
 }
 
 // TableName Returns the table name
@@ -54,7 +54,7 @@ func (this ZoneInfo) GetInsertString() string {
 
 // GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
 func (this ZoneInfo) GetInsertHeader() string {
-	return "INSERT INTO [ZONE_INFO] (ServerNo, ZoneNo, strZoneName, InitX, InitZ, InitY, Type, RoomEvent, bz) VALUES\n"
+	return "INSERT INTO [ZONE_INFO] ([ServerNo], [ZoneNo], [strZoneName], [InitX], [InitZ], [InitY], [Type], [RoomEvent], [bz]) VALUES\n"
 }
 
 // GetInsertData Returns the record data for the table insert dump

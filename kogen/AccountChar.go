@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	_AccountCharDatabaseNbr = 1
+	_AccountCharDatabaseNbr = "GAME"
 	_AccountCharTableName   = "ACCOUNT_CHAR"
 )
 
@@ -28,7 +28,7 @@ type AccountChar struct {
 
 // GetDatabaseName Returns the table's database name
 func (this AccountChar) GetDatabaseName() string {
-	return GetDatabaseName(DbType(_AccountCharDatabaseNbr))
+	return GetDatabaseName(_AccountCharDatabaseNbr)
 }
 
 // TableName Returns the table name
@@ -48,7 +48,7 @@ func (this AccountChar) GetInsertString() string {
 
 // GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
 func (this AccountChar) GetInsertHeader() string {
-	return "INSERT INTO [ACCOUNT_CHAR] (strAccountID, bNation, bCharNum, strCharID1, strCharID2, strCharID3) VALUES\n"
+	return "INSERT INTO [ACCOUNT_CHAR] ([strAccountID], [bNation], [bCharNum], [strCharID1], [strCharID2], [strCharID3]) VALUES\n"
 }
 
 // GetInsertData Returns the record data for the table insert dump

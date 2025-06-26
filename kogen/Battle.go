@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	_BattleDatabaseNbr = 1
+	_BattleDatabaseNbr = "GAME"
 	_BattleTableName   = "BATTLE"
 )
 
@@ -40,7 +40,7 @@ type Battle struct {
 
 // GetDatabaseName Returns the table's database name
 func (this Battle) GetDatabaseName() string {
-	return GetDatabaseName(DbType(_BattleDatabaseNbr))
+	return GetDatabaseName(_BattleDatabaseNbr)
 }
 
 // TableName Returns the table name
@@ -72,7 +72,7 @@ func (this Battle) GetInsertString() string {
 
 // GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
 func (this Battle) GetInsertHeader() string {
-	return "INSERT INTO [BATTLE] (sIndex, byNation, strUserName, byElmoArea, byKarusArea, byElmoAdvantage, byKarusAdvantage, byArea_1, byArea_2, byArea_3, byArea_4, byArea_5, byArea_6, byArea_7, byArea_8, byArea_9, byArea_10, byArea_11) VALUES\n"
+	return "INSERT INTO [BATTLE] ([sIndex], [byNation], [strUserName], [byElmoArea], [byKarusArea], [byElmoAdvantage], [byKarusAdvantage], [byArea_1], [byArea_2], [byArea_3], [byArea_4], [byArea_5], [byArea_6], [byArea_7], [byArea_8], [byArea_9], [byArea_10], [byArea_11]) VALUES\n"
 }
 
 // GetInsertData Returns the record data for the table insert dump

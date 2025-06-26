@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	_KnightsAllianceDatabaseNbr = 1
+	_KnightsAllianceDatabaseNbr = "GAME"
 	_KnightsAllianceTableName   = "KNIGHTS_ALLIANCE"
 )
 
@@ -25,7 +25,7 @@ type KnightsAlliance struct {
 
 // GetDatabaseName Returns the table's database name
 func (this KnightsAlliance) GetDatabaseName() string {
-	return GetDatabaseName(DbType(_KnightsAllianceDatabaseNbr))
+	return GetDatabaseName(_KnightsAllianceDatabaseNbr)
 }
 
 // TableName Returns the table name
@@ -43,7 +43,7 @@ func (this KnightsAlliance) GetInsertString() string {
 
 // GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
 func (this KnightsAlliance) GetInsertHeader() string {
-	return "INSERT INTO [KNIGHTS_ALLIANCE] (sMainAllianceKnights, sSubAllianceKnights, sMercenaryClan_1, sMercenaryClan_2) VALUES\n"
+	return "INSERT INTO [KNIGHTS_ALLIANCE] ([sMainAllianceKnights], [sSubAllianceKnights], [sMercenaryClan_1], [sMercenaryClan_2]) VALUES\n"
 }
 
 // GetInsertData Returns the record data for the table insert dump

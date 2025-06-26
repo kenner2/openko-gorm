@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	_FriendListDatabaseNbr = 1
+	_FriendListDatabaseNbr = "GAME"
 	_FriendListTableName   = "FRIEND_LIST"
 )
 
@@ -47,7 +47,7 @@ type FriendList struct {
 
 // GetDatabaseName Returns the table's database name
 func (this FriendList) GetDatabaseName() string {
-	return GetDatabaseName(DbType(_FriendListDatabaseNbr))
+	return GetDatabaseName(_FriendListDatabaseNbr)
 }
 
 // TableName Returns the table name
@@ -86,7 +86,7 @@ func (this FriendList) GetInsertString() string {
 
 // GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
 func (this FriendList) GetInsertHeader() string {
-	return "INSERT INTO [FRIEND_LIST] (strUserID, strFriend1, strFriend2, strFriend3, strFriend4, strFriend5, strFriend6, strFriend7, strFriend8, strFriend9, strFriend10, strFriend11, strFriend12, strFriend13, strFriend14, strFriend15, strFriend16, strFriend17, strFriend18, strFriend19, strFriend20, strFriend21, strFriend22, strFriend23, strFriend24) VALUES\n"
+	return "INSERT INTO [FRIEND_LIST] ([strUserID], [strFriend1], [strFriend2], [strFriend3], [strFriend4], [strFriend5], [strFriend6], [strFriend7], [strFriend8], [strFriend9], [strFriend10], [strFriend11], [strFriend12], [strFriend13], [strFriend14], [strFriend15], [strFriend16], [strFriend17], [strFriend18], [strFriend19], [strFriend20], [strFriend21], [strFriend22], [strFriend23], [strFriend24]) VALUES\n"
 }
 
 // GetInsertData Returns the record data for the table insert dump

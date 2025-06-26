@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	_VersionDatabaseNbr = 1
+	_VersionDatabaseNbr = "GAME"
 	_VersionTableName   = "VERSION"
 )
 
@@ -26,7 +26,7 @@ type Version struct {
 
 // GetDatabaseName Returns the table's database name
 func (this Version) GetDatabaseName() string {
-	return GetDatabaseName(DbType(_VersionDatabaseNbr))
+	return GetDatabaseName(_VersionDatabaseNbr)
 }
 
 // TableName Returns the table name
@@ -44,7 +44,7 @@ func (this Version) GetInsertString() string {
 
 // GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
 func (this Version) GetInsertHeader() string {
-	return "INSERT INTO [VERSION] (sVersion, strFileName, strCompressName, sHistoryVersion) VALUES\n"
+	return "INSERT INTO [VERSION] ([sVersion], [strFileName], [strCompressName], [sHistoryVersion]) VALUES\n"
 }
 
 // GetInsertData Returns the record data for the table insert dump

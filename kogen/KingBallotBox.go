@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	_KingBallotBoxDatabaseNbr = 1
+	_KingBallotBoxDatabaseNbr = "GAME"
 	_KingBallotBoxTableName   = "KING_BALLOT_BOX"
 )
 
@@ -26,7 +26,7 @@ type KingBallotBox struct {
 
 // GetDatabaseName Returns the table's database name
 func (this KingBallotBox) GetDatabaseName() string {
-	return GetDatabaseName(DbType(_KingBallotBoxDatabaseNbr))
+	return GetDatabaseName(_KingBallotBoxDatabaseNbr)
 }
 
 // TableName Returns the table name
@@ -44,7 +44,7 @@ func (this KingBallotBox) GetInsertString() string {
 
 // GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
 func (this KingBallotBox) GetInsertHeader() string {
-	return "INSERT INTO [KING_BALLOT_BOX] (strAccountID, strCharID, byNation, strCandidacyID) VALUES\n"
+	return "INSERT INTO [KING_BALLOT_BOX] ([strAccountID], [strCharID], [byNation], [strCandidacyID]) VALUES\n"
 }
 
 // GetInsertData Returns the record data for the table insert dump

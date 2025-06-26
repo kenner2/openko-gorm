@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	_MagicType3DatabaseNbr = 1
+	_MagicType3DatabaseNbr = "GAME"
 	_MagicType3TableName   = "MAGIC_TYPE3"
 )
 
@@ -33,7 +33,7 @@ type MagicType3 struct {
 
 // GetDatabaseName Returns the table's database name
 func (this MagicType3) GetDatabaseName() string {
-	return GetDatabaseName(DbType(_MagicType3DatabaseNbr))
+	return GetDatabaseName(_MagicType3DatabaseNbr)
 }
 
 // TableName Returns the table name
@@ -58,7 +58,7 @@ func (this MagicType3) GetInsertString() string {
 
 // GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
 func (this MagicType3) GetInsertHeader() string {
-	return "INSERT INTO [MAGIC_TYPE3] (iNum, Name, Description, Radius, Angle, DirectType, FirstDamage, EndDamage, TimeDamage, Duration, Attribute) VALUES\n"
+	return "INSERT INTO [MAGIC_TYPE3] ([iNum], [Name], [Description], [Radius], [Angle], [DirectType], [FirstDamage], [EndDamage], [TimeDamage], [Duration], [Attribute]) VALUES\n"
 }
 
 // GetInsertData Returns the record data for the table insert dump

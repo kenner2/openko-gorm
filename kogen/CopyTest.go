@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	_CopyTestDatabaseNbr = 1
+	_CopyTestDatabaseNbr = "GAME"
 	_CopyTestTableName   = "COPY_TEST"
 )
 
@@ -22,7 +22,7 @@ type CopyTest struct {
 
 // GetDatabaseName Returns the table's database name
 func (this CopyTest) GetDatabaseName() string {
-	return GetDatabaseName(DbType(_CopyTestDatabaseNbr))
+	return GetDatabaseName(_CopyTestDatabaseNbr)
 }
 
 // TableName Returns the table name
@@ -37,7 +37,7 @@ func (this CopyTest) GetInsertString() string {
 
 // GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
 func (this CopyTest) GetInsertHeader() string {
-	return "INSERT INTO [COPY_TEST] (ITEMSERIAL) VALUES\n"
+	return "INSERT INTO [COPY_TEST] ([ITEMSERIAL]) VALUES\n"
 }
 
 // GetInsertData Returns the record data for the table insert dump

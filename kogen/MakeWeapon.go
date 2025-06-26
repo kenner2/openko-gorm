@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	_MakeWeaponDatabaseNbr = 1
+	_MakeWeaponDatabaseNbr = "GAME"
 	_MakeWeaponTableName   = "MAKE_WEAPON"
 )
 
@@ -34,7 +34,7 @@ type MakeWeapon struct {
 
 // GetDatabaseName Returns the table's database name
 func (this MakeWeapon) GetDatabaseName() string {
-	return GetDatabaseName(DbType(_MakeWeaponDatabaseNbr))
+	return GetDatabaseName(_MakeWeaponDatabaseNbr)
 }
 
 // TableName Returns the table name
@@ -61,7 +61,7 @@ func (this MakeWeapon) GetInsertString() string {
 
 // GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
 func (this MakeWeapon) GetInsertHeader() string {
-	return "INSERT INTO [MAKE_WEAPON] (byLevel, sClass_1, sClass_2, sClass_3, sClass_4, sClass_5, sClass_6, sClass_7, sClass_8, sClass_9, sClass_10, sClass_11, sClass_12) VALUES\n"
+	return "INSERT INTO [MAKE_WEAPON] ([byLevel], [sClass_1], [sClass_2], [sClass_3], [sClass_4], [sClass_5], [sClass_6], [sClass_7], [sClass_8], [sClass_9], [sClass_10], [sClass_11], [sClass_12]) VALUES\n"
 }
 
 // GetInsertData Returns the record data for the table insert dump

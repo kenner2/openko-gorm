@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	_NpcDatabaseNbr = 1
+	_NpcDatabaseNbr = "GAME"
 	_NpcTableName   = "K_NPC"
 )
 
@@ -68,7 +68,7 @@ type Npc struct {
 
 // GetDatabaseName Returns the table's database name
 func (this Npc) GetDatabaseName() string {
-	return GetDatabaseName(DbType(_NpcDatabaseNbr))
+	return GetDatabaseName(_NpcDatabaseNbr)
 }
 
 // TableName Returns the table name
@@ -128,7 +128,7 @@ func (this Npc) GetInsertString() string {
 
 // GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
 func (this Npc) GetInsertHeader() string {
-	return "INSERT INTO [K_NPC] (sSid, strName, sPid, sSize, iWeapon1, iWeapon2, byGroup, byActType, byType, byFamily, byRank, byTitle, iSellingGroup, sLevel, iExp, iLoyalty, iHpPoint, sMpPoint, sAtk, sAc, sHitRate, sEvadeRate, sDamage, sAttackDelay, bySpeed1, bySpeed2, sStandtime, iMagic1, iMagic2, iMagic3, sFireR, sColdR, sLightningR, sMagicR, sDiseaseR, sPoisonR, sLightR, sBulk, byAttackRange, bySearchRange, byTracingRange, iMoney, sItem, byDirectAttack, byMagicAttack, byMoneyType) VALUES\n"
+	return "INSERT INTO [K_NPC] ([sSid], [strName], [sPid], [sSize], [iWeapon1], [iWeapon2], [byGroup], [byActType], [byType], [byFamily], [byRank], [byTitle], [iSellingGroup], [sLevel], [iExp], [iLoyalty], [iHpPoint], [sMpPoint], [sAtk], [sAc], [sHitRate], [sEvadeRate], [sDamage], [sAttackDelay], [bySpeed1], [bySpeed2], [sStandtime], [iMagic1], [iMagic2], [iMagic3], [sFireR], [sColdR], [sLightningR], [sMagicR], [sDiseaseR], [sPoisonR], [sLightR], [sBulk], [byAttackRange], [bySearchRange], [byTracingRange], [iMoney], [sItem], [byDirectAttack], [byMagicAttack], [byMoneyType]) VALUES\n"
 }
 
 // GetInsertData Returns the record data for the table insert dump

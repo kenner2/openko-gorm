@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	_MakeItemDatabaseNbr = 1
+	_MakeItemDatabaseNbr = "GAME"
 	_MakeItemTableName   = "MAKE_ITEM"
 )
 
@@ -26,7 +26,7 @@ type MakeItem struct {
 
 // GetDatabaseName Returns the table's database name
 func (this MakeItem) GetDatabaseName() string {
-	return GetDatabaseName(DbType(_MakeItemDatabaseNbr))
+	return GetDatabaseName(_MakeItemDatabaseNbr)
 }
 
 // TableName Returns the table name
@@ -44,7 +44,7 @@ func (this MakeItem) GetInsertString() string {
 
 // GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
 func (this MakeItem) GetInsertHeader() string {
-	return "INSERT INTO [MAKE_ITEM] (sIndex, strItemInfo, iItemCode, byItemLevel) VALUES\n"
+	return "INSERT INTO [MAKE_ITEM] ([sIndex], [strItemInfo], [iItemCode], [byItemLevel]) VALUES\n"
 }
 
 // GetInsertData Returns the record data for the table insert dump

@@ -9,7 +9,7 @@ import (
 )
 
 const (
-	_ProgramListLogDatabaseNbr = 1
+	_ProgramListLogDatabaseNbr = "GAME"
 	_ProgramListLogTableName   = "PROGRAMLIST_LOG"
 )
 
@@ -28,7 +28,7 @@ type ProgramListLog struct {
 
 // GetDatabaseName Returns the table's database name
 func (this ProgramListLog) GetDatabaseName() string {
-	return GetDatabaseName(DbType(_ProgramListLogDatabaseNbr))
+	return GetDatabaseName(_ProgramListLogDatabaseNbr)
 }
 
 // TableName Returns the table name
@@ -47,7 +47,7 @@ func (this ProgramListLog) GetInsertString() string {
 
 // GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
 func (this ProgramListLog) GetInsertHeader() string {
-	return "INSERT INTO [PROGRAMLIST_LOG] (id, strAccountID, strCharID, strHackToolName, tWriteTime) VALUES\n"
+	return "INSERT INTO [PROGRAMLIST_LOG] ([id], [strAccountID], [strCharID], [strHackToolName], [tWriteTime]) VALUES\n"
 }
 
 // GetInsertData Returns the record data for the table insert dump

@@ -2,13 +2,14 @@ package kogen
 
 import (
 	"fmt"
+	mssql "github.com/microsoft/go-mssqldb"
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 	"time"
 )
 
 const (
-	_RentalItemListDatabaseNbr = 1
+	_RentalItemListDatabaseNbr = "GAME"
 	_RentalItemListTableName   = "RENTAL_ITEM_LIST"
 )
 
@@ -18,26 +19,26 @@ func init() {
 
 // RentalItemList Rental item list
 type RentalItemList struct {
-	RentalIndex       int        `gorm:"column:nRentalIndex;type:int;not null" json:"nRentalIndex"`
-	ItemIndex         int        `gorm:"column:nItemIndex;type:int;not null" json:"nItemIndex"`
-	Durability        int16      `gorm:"column:sDurability;type:smallint;not null;default:0" json:"sDurability"`
-	SerialNumber      int64      `gorm:"column:nSerialNumber;type:bigint;not null" json:"nSerialNumber"`
-	RegType           uint8      `gorm:"column:byRegType;type:tinyint;not null;default:0" json:"byRegType"`
-	ItemType          uint8      `gorm:"column:byItemType;type:tinyint;not null" json:"byItemType"`
-	Class             uint8      `gorm:"column:byClass;type:tinyint;not null" json:"byClass"`
-	RentalTime        int16      `gorm:"column:sRentalTime;type:smallint;not null" json:"sRentalTime"`
-	RentalMoney       int        `gorm:"column:nRentalMoney;type:int;not null" json:"nRentalMoney"`
-	LenderCharId      []byte     `gorm:"column:strLenderCharID;type:char(21);not null" json:"strLenderCharID"`
-	LenderAccountId   []byte     `gorm:"column:strLenderAcID;type:char(21);not null" json:"strLenderAcID"`
-	BorrowerCharId    *[]byte    `gorm:"column:strBorrowerCharID;type:char(21)" json:"strBorrowerCharID,omitempty"`
-	BorrowerAccountId *[]byte    `gorm:"column:strBorrowerAcID;type:char(21)" json:"strBorrowerAcID,omitempty"`
-	LendTime          *time.Time `gorm:"column:timeLender;type:smalldatetime" json:"timeLender,omitempty"`
-	RegisterTime      time.Time  `gorm:"column:timeRegister;type:smalldatetime;not null;default:getdate()" json:"timeRegister"`
+	RentalIndex       int            `gorm:"column:nRentalIndex;type:int;not null" json:"nRentalIndex"`
+	ItemIndex         int            `gorm:"column:nItemIndex;type:int;not null" json:"nItemIndex"`
+	Durability        int16          `gorm:"column:sDurability;type:smallint;not null;default:0" json:"sDurability"`
+	SerialNumber      int64          `gorm:"column:nSerialNumber;type:bigint;not null" json:"nSerialNumber"`
+	RegType           uint8          `gorm:"column:byRegType;type:tinyint;not null;default:0" json:"byRegType"`
+	ItemType          uint8          `gorm:"column:byItemType;type:tinyint;not null" json:"byItemType"`
+	Class             uint8          `gorm:"column:byClass;type:tinyint;not null" json:"byClass"`
+	RentalTime        int16          `gorm:"column:sRentalTime;type:smallint;not null" json:"sRentalTime"`
+	RentalMoney       int            `gorm:"column:nRentalMoney;type:int;not null" json:"nRentalMoney"`
+	LenderCharId      mssql.VarChar  `gorm:"column:strLenderCharID;type:varchar(21);not null" json:"strLenderCharID"`
+	LenderAccountId   mssql.VarChar  `gorm:"column:strLenderAcID;type:varchar(21);not null" json:"strLenderAcID"`
+	BorrowerCharId    *mssql.VarChar `gorm:"column:strBorrowerCharID;type:varchar(21)" json:"strBorrowerCharID,omitempty"`
+	BorrowerAccountId *mssql.VarChar `gorm:"column:strBorrowerAcID;type:varchar(21)" json:"strBorrowerAcID,omitempty"`
+	LendTime          *time.Time     `gorm:"column:timeLender;type:smalldatetime" json:"timeLender,omitempty"`
+	RegisterTime      time.Time      `gorm:"column:timeRegister;type:smalldatetime;not null;default:getdate()" json:"timeRegister"`
 }
 
 // GetDatabaseName Returns the table's database name
 func (this RentalItemList) GetDatabaseName() string {
-	return GetDatabaseName(DbType(_RentalItemListDatabaseNbr))
+	return GetDatabaseName(_RentalItemListDatabaseNbr)
 }
 
 // TableName Returns the table name
@@ -56,17 +57,17 @@ func (this RentalItemList) GetInsertString() string {
 		GetOptionalDecVal(&this.Class),
 		GetOptionalDecVal(&this.RentalTime),
 		GetOptionalDecVal(&this.RentalMoney),
-		GetOptionalByteArrayVal(&this.LenderCharId, false),
-		GetOptionalByteArrayVal(&this.LenderAccountId, false),
-		GetOptionalByteArrayVal(this.BorrowerCharId, false),
-		GetOptionalByteArrayVal(this.BorrowerAccountId, false),
+		GetOptionalVarCharVal(&this.LenderCharId, false),
+		GetOptionalVarCharVal(&this.LenderAccountId, false),
+		GetOptionalVarCharVal(this.BorrowerCharId, false),
+		GetOptionalVarCharVal(this.BorrowerAccountId, false),
 		GetDateTimeExportFmt(this.LendTime),
 		GetDateTimeExportFmt(&this.RegisterTime))
 }
 
 // GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
 func (this RentalItemList) GetInsertHeader() string {
-	return "INSERT INTO [RENTAL_ITEM_LIST] (nRentalIndex, nItemIndex, sDurability, nSerialNumber, byRegType, byItemType, byClass, sRentalTime, nRentalMoney, strLenderCharID, strLenderAcID, strBorrowerCharID, strBorrowerAcID, timeLender, timeRegister) VALUES\n"
+	return "INSERT INTO [RENTAL_ITEM_LIST] ([nRentalIndex], [nItemIndex], [sDurability], [nSerialNumber], [byRegType], [byItemType], [byClass], [sRentalTime], [nRentalMoney], [strLenderCharID], [strLenderAcID], [strBorrowerCharID], [strBorrowerAcID], [timeLender], [timeRegister]) VALUES\n"
 }
 
 // GetInsertData Returns the record data for the table insert dump
@@ -80,17 +81,17 @@ func (this RentalItemList) GetInsertData() string {
 		GetOptionalDecVal(&this.Class),
 		GetOptionalDecVal(&this.RentalTime),
 		GetOptionalDecVal(&this.RentalMoney),
-		GetOptionalByteArrayVal(&this.LenderCharId, false),
-		GetOptionalByteArrayVal(&this.LenderAccountId, false),
-		GetOptionalByteArrayVal(this.BorrowerCharId, false),
-		GetOptionalByteArrayVal(this.BorrowerAccountId, false),
+		GetOptionalVarCharVal(&this.LenderCharId, false),
+		GetOptionalVarCharVal(&this.LenderAccountId, false),
+		GetOptionalVarCharVal(this.BorrowerCharId, false),
+		GetOptionalVarCharVal(this.BorrowerAccountId, false),
 		GetDateTimeExportFmt(this.LendTime),
 		GetDateTimeExportFmt(&this.RegisterTime))
 }
 
 // GetCreateTableString Returns the create table statement for this object
 func (this RentalItemList) GetCreateTableString() string {
-	query := "CREATE TABLE [RENTAL_ITEM_LIST] (\n\t[nRentalIndex] int NOT NULL,\n\t[nItemIndex] int NOT NULL,\n\t[sDurability] smallint NOT NULL,\n\t[nSerialNumber] bigint NOT NULL,\n\t[byRegType] tinyint NOT NULL,\n\t[byItemType] tinyint NOT NULL,\n\t[byClass] tinyint NOT NULL,\n\t[sRentalTime] smallint NOT NULL,\n\t[nRentalMoney] int NOT NULL,\n\t[strLenderCharID] char(21) NOT NULL,\n\t[strLenderAcID] char(21) NOT NULL,\n\t[strBorrowerCharID] char(21),\n\t[strBorrowerAcID] char(21),\n\t[timeLender] smalldatetime,\n\t[timeRegister] smalldatetime NOT NULL\n\n)\nGO\nALTER TABLE [RENTAL_ITEM_LIST] ADD CONSTRAINT [DF_RENTAL_ITEM_LIST_sDurability] DEFAULT 0 FOR [sDurability]\nGO\nALTER TABLE [RENTAL_ITEM_LIST] ADD CONSTRAINT [DF_RENTAL_ITEM_LIST_byRegType] DEFAULT 0 FOR [byRegType]\nGO\nALTER TABLE [RENTAL_ITEM_LIST] ADD CONSTRAINT [DF_RENTAL_ITEM_LIST_timeRegister] DEFAULT getdate() FOR [timeRegister]\nGO\n"
+	query := "CREATE TABLE [RENTAL_ITEM_LIST] (\n\t[nRentalIndex] int NOT NULL,\n\t[nItemIndex] int NOT NULL,\n\t[sDurability] smallint NOT NULL,\n\t[nSerialNumber] bigint NOT NULL,\n\t[byRegType] tinyint NOT NULL,\n\t[byItemType] tinyint NOT NULL,\n\t[byClass] tinyint NOT NULL,\n\t[sRentalTime] smallint NOT NULL,\n\t[nRentalMoney] int NOT NULL,\n\t[strLenderCharID] varchar(21) NOT NULL,\n\t[strLenderAcID] varchar(21) NOT NULL,\n\t[strBorrowerCharID] varchar(21),\n\t[strBorrowerAcID] varchar(21),\n\t[timeLender] smalldatetime,\n\t[timeRegister] smalldatetime NOT NULL\n\n)\nGO\nALTER TABLE [RENTAL_ITEM_LIST] ADD CONSTRAINT [DF_RENTAL_ITEM_LIST_sDurability] DEFAULT 0 FOR [sDurability]\nGO\nALTER TABLE [RENTAL_ITEM_LIST] ADD CONSTRAINT [DF_RENTAL_ITEM_LIST_byRegType] DEFAULT 0 FOR [byRegType]\nGO\nALTER TABLE [RENTAL_ITEM_LIST] ADD CONSTRAINT [DF_RENTAL_ITEM_LIST_timeRegister] DEFAULT getdate() FOR [timeRegister]\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

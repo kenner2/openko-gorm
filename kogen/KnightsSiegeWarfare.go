@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	_KnightsSiegeWarfareDatabaseNbr = 1
+	_KnightsSiegeWarfareDatabaseNbr = "GAME"
 	_KnightsSiegeWarfareTableName   = "KNIGHTS_SIEGE_WARFARE"
 )
 
@@ -21,7 +21,7 @@ type KnightsSiegeWarfare struct {
 	MasterKnights      int16   `gorm:"column:sMasterKnights;type:smallint;not null" json:"sMasterKnights"`
 	SiegeType          uint8   `gorm:"column:bySiegeType;type:tinyint;not null" json:"bySiegeType"`
 	WarDay             uint8   `gorm:"column:byWarDay;type:tinyint;not null" json:"byWarDay"`
-	WarTime            uint8   `gorm:"column:byWarTime;type:tinyint;not null" json:"byWarTime"`
+	WarHour            uint8   `gorm:"column:byWarTime;type:tinyint;not null" json:"byWarTime"`
 	WarMinute          uint8   `gorm:"column:byWarMinute;type:tinyint;not null" json:"byWarMinute"`
 	ChallengeList1     int16   `gorm:"column:sChallengeList_1;type:smallint;not null" json:"sChallengeList_1"`
 	ChallengeList2     int16   `gorm:"column:sChallengeList_2;type:smallint;not null" json:"sChallengeList_2"`
@@ -59,7 +59,7 @@ type KnightsSiegeWarfare struct {
 
 // GetDatabaseName Returns the table's database name
 func (this KnightsSiegeWarfare) GetDatabaseName() string {
-	return GetDatabaseName(DbType(_KnightsSiegeWarfareDatabaseNbr))
+	return GetDatabaseName(_KnightsSiegeWarfareDatabaseNbr)
 }
 
 // TableName Returns the table name
@@ -73,7 +73,7 @@ func (this KnightsSiegeWarfare) GetInsertString() string {
 		GetOptionalDecVal(&this.MasterKnights),
 		GetOptionalDecVal(&this.SiegeType),
 		GetOptionalDecVal(&this.WarDay),
-		GetOptionalDecVal(&this.WarTime),
+		GetOptionalDecVal(&this.WarHour),
 		GetOptionalDecVal(&this.WarMinute),
 		GetOptionalDecVal(&this.ChallengeList1),
 		GetOptionalDecVal(&this.ChallengeList2),
@@ -111,7 +111,7 @@ func (this KnightsSiegeWarfare) GetInsertString() string {
 
 // GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
 func (this KnightsSiegeWarfare) GetInsertHeader() string {
-	return "INSERT INTO [KNIGHTS_SIEGE_WARFARE] (sCastleIndex, sMasterKnights, bySiegeType, byWarDay, byWarTime, byWarMinute, sChallengeList_1, sChallengeList_2, sChallengeList_3, sChallengeList_4, sChallengeList_5, sChallengeList_6, sChallengeList_7, sChallengeList_8, sChallengeList_9, sChallengeList_10, byWarRequestDay, byWarRequestTime, byWarRequestMinute, byGuerrillaWarDay, byGuerrillaWarTime, byGuerrillaWarMinute, strChallengeList, sMoradonTariff, sDellosTariff, nDungeonCharge, nMoradonTax, nDellosTax, sRequestList_1, sRequestList_2, sRequestList_3, sRequestList_4, sRequestList_5, sRequestList_6, sRequestList_7, sRequestList_8, sRequestList_9, sRequestList_10) VALUES\n"
+	return "INSERT INTO [KNIGHTS_SIEGE_WARFARE] ([sCastleIndex], [sMasterKnights], [bySiegeType], [byWarDay], [byWarTime], [byWarMinute], [sChallengeList_1], [sChallengeList_2], [sChallengeList_3], [sChallengeList_4], [sChallengeList_5], [sChallengeList_6], [sChallengeList_7], [sChallengeList_8], [sChallengeList_9], [sChallengeList_10], [byWarRequestDay], [byWarRequestTime], [byWarRequestMinute], [byGuerrillaWarDay], [byGuerrillaWarTime], [byGuerrillaWarMinute], [strChallengeList], [sMoradonTariff], [sDellosTariff], [nDungeonCharge], [nMoradonTax], [nDellosTax], [sRequestList_1], [sRequestList_2], [sRequestList_3], [sRequestList_4], [sRequestList_5], [sRequestList_6], [sRequestList_7], [sRequestList_8], [sRequestList_9], [sRequestList_10]) VALUES\n"
 }
 
 // GetInsertData Returns the record data for the table insert dump
@@ -120,7 +120,7 @@ func (this KnightsSiegeWarfare) GetInsertData() string {
 		GetOptionalDecVal(&this.MasterKnights),
 		GetOptionalDecVal(&this.SiegeType),
 		GetOptionalDecVal(&this.WarDay),
-		GetOptionalDecVal(&this.WarTime),
+		GetOptionalDecVal(&this.WarHour),
 		GetOptionalDecVal(&this.WarMinute),
 		GetOptionalDecVal(&this.ChallengeList1),
 		GetOptionalDecVal(&this.ChallengeList2),

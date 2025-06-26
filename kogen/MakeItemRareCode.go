@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	_MakeItemRareCodeDatabaseNbr = 1
+	_MakeItemRareCodeDatabaseNbr = "GAME"
 	_MakeItemRareCodeTableName   = "MAKE_ITEM_LARECODE"
 )
 
@@ -26,7 +26,7 @@ type MakeItemRareCode struct {
 
 // GetDatabaseName Returns the table's database name
 func (this MakeItemRareCode) GetDatabaseName() string {
-	return GetDatabaseName(DbType(_MakeItemRareCodeDatabaseNbr))
+	return GetDatabaseName(_MakeItemRareCodeDatabaseNbr)
 }
 
 // TableName Returns the table name
@@ -45,7 +45,7 @@ func (this MakeItemRareCode) GetInsertString() string {
 
 // GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
 func (this MakeItemRareCode) GetInsertHeader() string {
-	return "INSERT INTO [MAKE_ITEM_LARECODE] (byLevelGrade, sUpgradeItem, sLareItem, sMagicItem, sGereralItem) VALUES\n"
+	return "INSERT INTO [MAKE_ITEM_LARECODE] ([byLevelGrade], [sUpgradeItem], [sLareItem], [sMagicItem], [sGereralItem]) VALUES\n"
 }
 
 // GetInsertData Returns the record data for the table insert dump

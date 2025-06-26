@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	_NpcMoveItemDatabaseNbr = 1
+	_NpcMoveItemDatabaseNbr = "GAME"
 	_NpcMoveItemTableName   = "K_NPC_MOVE_ITEM"
 )
 
@@ -29,7 +29,7 @@ type NpcMoveItem struct {
 
 // GetDatabaseName Returns the table's database name
 func (this NpcMoveItem) GetDatabaseName() string {
-	return GetDatabaseName(DbType(_NpcMoveItemDatabaseNbr))
+	return GetDatabaseName(_NpcMoveItemDatabaseNbr)
 }
 
 // TableName Returns the table name
@@ -51,7 +51,7 @@ func (this NpcMoveItem) GetInsertString() string {
 
 // GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
 func (this NpcMoveItem) GetInsertHeader() string {
-	return "INSERT INTO [K_NPC_MOVE_ITEM] (sCastleIndex, byChangeItem, sChangeSid, byMoveItem, sMoveMinX, sMoveMinY, sMoveMaxX, sMoveMaxY) VALUES\n"
+	return "INSERT INTO [K_NPC_MOVE_ITEM] ([sCastleIndex], [byChangeItem], [sChangeSid], [byMoveItem], [sMoveMinX], [sMoveMinY], [sMoveMaxX], [sMoveMaxY]) VALUES\n"
 }
 
 // GetInsertData Returns the record data for the table insert dump

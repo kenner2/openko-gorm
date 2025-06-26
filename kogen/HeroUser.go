@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	_HeroUserDatabaseNbr = 1
+	_HeroUserDatabaseNbr = "GAME"
 	_HeroUserTableName   = "HERO_USER"
 )
 
@@ -27,7 +27,7 @@ type HeroUser struct {
 
 // GetDatabaseName Returns the table's database name
 func (this HeroUser) GetDatabaseName() string {
-	return GetDatabaseName(DbType(_HeroUserDatabaseNbr))
+	return GetDatabaseName(_HeroUserDatabaseNbr)
 }
 
 // TableName Returns the table name
@@ -46,7 +46,7 @@ func (this HeroUser) GetInsertString() string {
 
 // GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
 func (this HeroUser) GetInsertHeader() string {
-	return "INSERT INTO [HERO_USER] (shIndex, strUserID, strNation, strClass, strAchievement) VALUES\n"
+	return "INSERT INTO [HERO_USER] ([shIndex], [strUserID], [strNation], [strClass], [strAchievement]) VALUES\n"
 }
 
 // GetInsertData Returns the record data for the table insert dump
