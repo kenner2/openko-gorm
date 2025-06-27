@@ -51,7 +51,7 @@ func (this KnightsUser) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this KnightsUser) GetCreateTableString() string {
-	query := "CREATE TABLE [KNIGHTS_USER] (\n\t[sIDNum] smallint NOT NULL,\n\t[strUserID] varchar(21) NOT NULL\n\tCONSTRAINT [PK_KNIGHTS_USER] PRIMARY KEY ([sIDNum], [strUserID])\n)\nGO\n"
+	query := "CREATE TABLE [KNIGHTS_USER] (\n\t[sIDNum] smallint NOT NULL,\n\t[strUserID] varchar(21) NOT NULL\n\tCONSTRAINT [PK_KNIGHTS_USER] PRIMARY KEY CLUSTERED ([sIDNum], [strUserID])\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

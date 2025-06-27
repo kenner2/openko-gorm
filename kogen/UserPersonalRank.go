@@ -82,7 +82,7 @@ func (this UserPersonalRank) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this UserPersonalRank) GetCreateTableString() string {
-	query := "CREATE TABLE [USER_PERSONAL_RANK] (\n\t[nRank] smallint NOT NULL,\n\t[strPosition] varchar(21) NOT NULL,\n\t[nElmoUP] smallint NOT NULL,\n\t[strElmoUserID] varchar(21),\n\t[nElmoLoyaltyMonthly] int,\n\t[nElmoCheck] int NOT NULL,\n\t[nKarusUP] smallint NOT NULL,\n\t[strKarusUserID] varchar(21),\n\t[nKarusLoyaltyMonthly] int,\n\t[nKarusCheck] int NOT NULL,\n\t[nSalary] int NOT NULL,\n\t[UpdateDate] smalldatetime NOT NULL\n\tCONSTRAINT [PK_USER_PERSONAL_RANK] PRIMARY KEY ([nRank])\n)\nGO\nALTER TABLE [USER_PERSONAL_RANK] ADD CONSTRAINT [DF_USER_PERSONAL_RANK_nElmoCheck] DEFAULT 0 FOR [nElmoCheck]\nGO\nALTER TABLE [USER_PERSONAL_RANK] ADD CONSTRAINT [DF_USER_PERSONAL_RANK_nKarusCheck] DEFAULT 0 FOR [nKarusCheck]\nGO\n"
+	query := "CREATE TABLE [USER_PERSONAL_RANK] (\n\t[nRank] smallint NOT NULL,\n\t[strPosition] varchar(21) NOT NULL,\n\t[nElmoUP] smallint NOT NULL,\n\t[strElmoUserID] varchar(21),\n\t[nElmoLoyaltyMonthly] int,\n\t[nElmoCheck] int NOT NULL,\n\t[nKarusUP] smallint NOT NULL,\n\t[strKarusUserID] varchar(21),\n\t[nKarusLoyaltyMonthly] int,\n\t[nKarusCheck] int NOT NULL,\n\t[nSalary] int NOT NULL,\n\t[UpdateDate] smalldatetime NOT NULL\n\tCONSTRAINT [PK_USER_PERSONAL_RANK] PRIMARY KEY CLUSTERED ([nRank])\n)\nGO\nALTER TABLE [USER_PERSONAL_RANK] ADD CONSTRAINT [DF_USER_PERSONAL_RANK_nElmoCheck] DEFAULT 0 FOR [nElmoCheck]\nGO\nALTER TABLE [USER_PERSONAL_RANK] ADD CONSTRAINT [DF_USER_PERSONAL_RANK_nKarusCheck] DEFAULT 0 FOR [nKarusCheck]\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

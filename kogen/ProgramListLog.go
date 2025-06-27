@@ -61,7 +61,7 @@ func (this ProgramListLog) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this ProgramListLog) GetCreateTableString() string {
-	query := "CREATE TABLE [PROGRAMLIST_LOG] (\n\t[id] int NOT NULL,\n\t[strAccountID] varchar(21) NOT NULL,\n\t[strCharID] varchar(21) NOT NULL,\n\t[strHackToolName] varchar(1024) NOT NULL,\n\t[tWriteTime] smalldatetime NOT NULL\n\tCONSTRAINT [PK_PROGRAMLIST_LOG] PRIMARY KEY ([id])\n)\nGO\nALTER TABLE [PROGRAMLIST_LOG] ADD CONSTRAINT [DF_PROGRAMLIST_LOG_tWriteTime] DEFAULT getdate() FOR [tWriteTime]\nGO\n"
+	query := "CREATE TABLE [PROGRAMLIST_LOG] (\n\t[id] int NOT NULL,\n\t[strAccountID] varchar(21) NOT NULL,\n\t[strCharID] varchar(21) NOT NULL,\n\t[strHackToolName] varchar(1024) NOT NULL,\n\t[tWriteTime] smalldatetime NOT NULL\n\tCONSTRAINT [PK_PROGRAMLIST_LOG] PRIMARY KEY CLUSTERED ([id])\n)\nGO\nALTER TABLE [PROGRAMLIST_LOG] ADD CONSTRAINT [DF_PROGRAMLIST_LOG_tWriteTime] DEFAULT getdate() FOR [tWriteTime]\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

@@ -60,7 +60,7 @@ func (this CurrentUser) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this CurrentUser) GetCreateTableString() string {
-	query := "CREATE TABLE [CURRENTUSER] (\n\t[nServerNo] int NOT NULL,\n\t[strServerIP] varchar(20) NOT NULL,\n\t[strAccountID] varchar(20) NOT NULL,\n\t[strCharID] varchar(20) NOT NULL,\n\t[strClientIP] varchar(20) NOT NULL\n\n)\nGO\n"
+	query := "CREATE TABLE [CURRENTUSER] (\n\t[nServerNo] int NOT NULL,\n\t[strServerIP] varchar(20) NOT NULL,\n\t[strAccountID] varchar(20) NOT NULL,\n\t[strCharID] varchar(20) NOT NULL,\n\t[strClientIP] varchar(20) NOT NULL\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

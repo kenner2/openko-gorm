@@ -57,7 +57,7 @@ func (this Version) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this Version) GetCreateTableString() string {
-	query := "CREATE TABLE [VERSION] (\n\t[sVersion] smallint NOT NULL,\n\t[strFileName] varchar(50) NOT NULL,\n\t[strCompressName] varchar(50) NOT NULL,\n\t[sHistoryVersion] smallint NOT NULL\n\tCONSTRAINT [PK_VERSION] PRIMARY KEY ([sVersion])\n)\nGO\n"
+	query := "CREATE TABLE [VERSION] (\n\t[sVersion] smallint NOT NULL,\n\t[strFileName] varchar(50) NOT NULL,\n\t[strCompressName] varchar(50) NOT NULL,\n\t[sHistoryVersion] smallint NOT NULL\n\tCONSTRAINT [PK_VERSION] PRIMARY KEY CLUSTERED ([sVersion])\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

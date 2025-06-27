@@ -76,7 +76,7 @@ func (this WebItemMall) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this WebItemMall) GetCreateTableString() string {
-	query := "CREATE TABLE [WEB_ITEMMALL] (\n\t[strAccountID] varchar(21) NOT NULL,\n\t[strCharID] varchar(21) NOT NULL,\n\t[ServerNo] smallint NOT NULL,\n\t[ItemID] int NOT NULL,\n\t[ItemCount] smallint NOT NULL,\n\t[BuyTime] smalldatetime NOT NULL,\n\t[img_file_name] varchar(50),\n\t[strItemName] varchar(100),\n\t[price] int,\n\t[pay_type] int\n\n)\nGO\nALTER TABLE [WEB_ITEMMALL] ADD CONSTRAINT [DF_WEB_ITEMMALL_ItemCount] DEFAULT 1 FOR [ItemCount]\nGO\nALTER TABLE [WEB_ITEMMALL] ADD CONSTRAINT [DF_WEB_ITEMMALL_BuyTime] DEFAULT getdate() FOR [BuyTime]\nGO\n"
+	query := "CREATE TABLE [WEB_ITEMMALL] (\n\t[strAccountID] varchar(21) NOT NULL,\n\t[strCharID] varchar(21) NOT NULL,\n\t[ServerNo] smallint NOT NULL,\n\t[ItemID] int NOT NULL,\n\t[ItemCount] smallint NOT NULL,\n\t[BuyTime] smalldatetime NOT NULL,\n\t[img_file_name] varchar(50),\n\t[strItemName] varchar(100),\n\t[price] int,\n\t[pay_type] int\n)\nGO\nALTER TABLE [WEB_ITEMMALL] ADD CONSTRAINT [DF_WEB_ITEMMALL_ItemCount] DEFAULT 1 FOR [ItemCount]\nGO\nALTER TABLE [WEB_ITEMMALL] ADD CONSTRAINT [DF_WEB_ITEMMALL_BuyTime] DEFAULT getdate() FOR [BuyTime]\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

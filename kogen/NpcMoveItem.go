@@ -68,7 +68,7 @@ func (this NpcMoveItem) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this NpcMoveItem) GetCreateTableString() string {
-	query := "CREATE TABLE [K_NPC_MOVE_ITEM] (\n\t[sCastleIndex] smallint NOT NULL,\n\t[byChangeItem] int,\n\t[sChangeSid] int,\n\t[byMoveItem] int,\n\t[sMoveMinX] smallint,\n\t[sMoveMinY] smallint,\n\t[sMoveMaxX] smallint,\n\t[sMoveMaxY] smallint\n\tCONSTRAINT [PK_K_NPC_MOVE_ITEM] PRIMARY KEY ([sCastleIndex])\n)\nGO\n"
+	query := "CREATE TABLE [K_NPC_MOVE_ITEM] (\n\t[sCastleIndex] smallint NOT NULL,\n\t[byChangeItem] int,\n\t[sChangeSid] int,\n\t[byMoveItem] int,\n\t[sMoveMinX] smallint,\n\t[sMoveMinY] smallint,\n\t[sMoveMaxX] smallint,\n\t[sMoveMaxY] smallint\n\tCONSTRAINT [PK_K_NPC_MOVE_ITEM] PRIMARY KEY CLUSTERED ([sCastleIndex])\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

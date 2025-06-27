@@ -104,7 +104,7 @@ func (this NpcPos) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this NpcPos) GetCreateTableString() string {
-	query := "CREATE TABLE [K_NPCPOS] (\n\t[ZoneID] smallint,\n\t[NpcID] int,\n\t[ActType] tinyint,\n\t[RegenType] tinyint,\n\t[DungeonFamily] tinyint,\n\t[SpecialType] tinyint,\n\t[TrapNumber] tinyint,\n\t[LeftX] int,\n\t[TopZ] int,\n\t[RightX] int,\n\t[BottomZ] int,\n\t[LimitMinZ] int,\n\t[LimitMinX] int,\n\t[LimitMaxX] int,\n\t[LimitMaxZ] int,\n\t[NumNPC] tinyint,\n\t[RegTime] smallint,\n\t[byDirection] int,\n\t[DotCnt] tinyint,\n\t[path] text\n\n)\nGO\n"
+	query := "CREATE TABLE [K_NPCPOS] (\n\t[ZoneID] smallint,\n\t[NpcID] int,\n\t[ActType] tinyint,\n\t[RegenType] tinyint,\n\t[DungeonFamily] tinyint,\n\t[SpecialType] tinyint,\n\t[TrapNumber] tinyint,\n\t[LeftX] int,\n\t[TopZ] int,\n\t[RightX] int,\n\t[BottomZ] int,\n\t[LimitMinZ] int,\n\t[LimitMinX] int,\n\t[LimitMaxX] int,\n\t[LimitMaxZ] int,\n\t[NumNPC] tinyint,\n\t[RegTime] smallint,\n\t[byDirection] int,\n\t[DotCnt] tinyint,\n\t[path] text\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

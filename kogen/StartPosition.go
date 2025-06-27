@@ -77,7 +77,7 @@ func (this StartPosition) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this StartPosition) GetCreateTableString() string {
-	query := "CREATE TABLE [START_POSITION] (\n\t[ZoneID] smallint NOT NULL,\n\t[sKarusX] smallint NOT NULL,\n\t[sKarusZ] smallint NOT NULL,\n\t[sElmoradX] smallint NOT NULL,\n\t[sElmoradZ] smallint NOT NULL,\n\t[bRangeX] tinyint NOT NULL,\n\t[bRangeZ] tinyint NOT NULL,\n\t[sKarusGateX] smallint NOT NULL,\n\t[sKarusGateZ] smallint NOT NULL,\n\t[sElmoGateX] smallint NOT NULL,\n\t[sElmoGateZ] smallint NOT NULL\n\tCONSTRAINT [PK_START_POSITION] PRIMARY KEY ([ZoneID])\n)\nGO\n"
+	query := "CREATE TABLE [START_POSITION] (\n\t[ZoneID] smallint NOT NULL,\n\t[sKarusX] smallint NOT NULL,\n\t[sKarusZ] smallint NOT NULL,\n\t[sElmoradX] smallint NOT NULL,\n\t[sElmoradZ] smallint NOT NULL,\n\t[bRangeX] tinyint NOT NULL,\n\t[bRangeZ] tinyint NOT NULL,\n\t[sKarusGateX] smallint NOT NULL,\n\t[sKarusGateZ] smallint NOT NULL,\n\t[sElmoGateX] smallint NOT NULL,\n\t[sElmoGateZ] smallint NOT NULL\n\tCONSTRAINT [PK_START_POSITION] PRIMARY KEY CLUSTERED ([ZoneID])\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

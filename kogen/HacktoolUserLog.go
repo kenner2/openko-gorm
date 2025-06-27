@@ -58,7 +58,7 @@ func (this HacktoolUserLog) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this HacktoolUserLog) GetCreateTableString() string {
-	query := "CREATE TABLE [HACKTOOL_USERLOG] (\n\t[strAccountID] varchar(21) NOT NULL,\n\t[strCharID] varchar(21) NOT NULL,\n\t[strHackToolName] varchar(512),\n\t[tWriteTime] smalldatetime NOT NULL\n\n)\nGO\nALTER TABLE [HACKTOOL_USERLOG] ADD CONSTRAINT [DF_HACKTOOL_USERLOG_tWriteTime] DEFAULT getdate() FOR [tWriteTime]\nGO\n"
+	query := "CREATE TABLE [HACKTOOL_USERLOG] (\n\t[strAccountID] varchar(21) NOT NULL,\n\t[strCharID] varchar(21) NOT NULL,\n\t[strHackToolName] varchar(512),\n\t[tWriteTime] smalldatetime NOT NULL\n)\nGO\nALTER TABLE [HACKTOOL_USERLOG] ADD CONSTRAINT [DF_HACKTOOL_USERLOG_tWriteTime] DEFAULT getdate() FOR [tWriteTime]\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

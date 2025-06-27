@@ -72,7 +72,7 @@ func (this UserKnightsRank) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this UserKnightsRank) GetCreateTableString() string {
-	query := "CREATE TABLE [USER_KNIGHTS_RANK] (\n\t[shIndex] smallint NOT NULL,\n\t[strName] varchar(21) NOT NULL,\n\t[strElmoUserID] varchar(21),\n\t[strElmoKnightsName] varchar(21),\n\t[nElmoLoyalty] int,\n\t[strKarusUserID] varchar(21),\n\t[strKarusKnightsName] varchar(21),\n\t[nKarusLoyalty] int,\n\t[nMoney] int NOT NULL\n\tCONSTRAINT [PK_USER_KNIGHTS_RANK] PRIMARY KEY ([shIndex])\n)\nGO\n"
+	query := "CREATE TABLE [USER_KNIGHTS_RANK] (\n\t[shIndex] smallint NOT NULL,\n\t[strName] varchar(21) NOT NULL,\n\t[strElmoUserID] varchar(21),\n\t[strElmoKnightsName] varchar(21),\n\t[nElmoLoyalty] int,\n\t[strKarusUserID] varchar(21),\n\t[strKarusKnightsName] varchar(21),\n\t[nKarusLoyalty] int,\n\t[nMoney] int NOT NULL\n\tCONSTRAINT [PK_USER_KNIGHTS_RANK] PRIMARY KEY CLUSTERED ([shIndex])\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

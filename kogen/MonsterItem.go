@@ -77,7 +77,7 @@ func (this MonsterItem) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this MonsterItem) GetCreateTableString() string {
-	query := "CREATE TABLE [K_MONSTER_ITEM] (\n\t[sIndex] smallint NOT NULL,\n\t[iItem01] int,\n\t[sPersent01] smallint,\n\t[iItem02] int,\n\t[sPersent02] smallint,\n\t[iItem03] int,\n\t[sPersent03] smallint,\n\t[iItem04] int,\n\t[sPersent04] smallint,\n\t[iItem05] int,\n\t[sPersent05] smallint\n\tCONSTRAINT [PK_K_MONSTER_ITEM] PRIMARY KEY ([sIndex])\n)\nGO\n"
+	query := "CREATE TABLE [K_MONSTER_ITEM] (\n\t[sIndex] smallint NOT NULL,\n\t[iItem01] int,\n\t[sPersent01] smallint,\n\t[iItem02] int,\n\t[sPersent02] smallint,\n\t[iItem03] int,\n\t[sPersent03] smallint,\n\t[iItem04] int,\n\t[sPersent04] smallint,\n\t[iItem05] int,\n\t[sPersent05] smallint\n\tCONSTRAINT [PK_K_MONSTER_ITEM] PRIMARY KEY CLUSTERED ([sIndex])\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

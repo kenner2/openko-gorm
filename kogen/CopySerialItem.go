@@ -59,7 +59,7 @@ func (this CopySerialItem) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this CopySerialItem) GetCreateTableString() string {
-	query := "CREATE TABLE [COPY_SERIAL_ITEM] (\n\t[strUserId] char(21),\n\t[byType] tinyint,\n\t[nPos] smallint,\n\t[ItemNum] binary(4),\n\t[ItemSerial] binary(8)\n\n)\nGO\n"
+	query := "CREATE TABLE [COPY_SERIAL_ITEM] (\n\t[strUserId] char(21),\n\t[byType] tinyint,\n\t[nPos] smallint,\n\t[ItemNum] binary(4),\n\t[ItemSerial] binary(8)\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

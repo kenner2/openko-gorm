@@ -59,7 +59,7 @@ func (this ItemUpProbability) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this ItemUpProbability) GetCreateTableString() string {
-	query := "CREATE TABLE [ITEMUP_PROBABILITY] (\n\t[bType] tinyint NOT NULL,\n\t[nMaxSuccess] smallint NOT NULL,\n\t[nMaxFail] smallint NOT NULL,\n\t[nCurSuccess] smallint NOT NULL,\n\t[nCurFail] smallint NOT NULL\n\tCONSTRAINT [PK_ITEMUP_PROBABILITY] PRIMARY KEY ([bType])\n)\nGO\nALTER TABLE [ITEMUP_PROBABILITY] ADD CONSTRAINT [DF_ITEMUP_PROBABILITY_nMaxSuccess] DEFAULT 0 FOR [nMaxSuccess]\nGO\nALTER TABLE [ITEMUP_PROBABILITY] ADD CONSTRAINT [DF_ITEMUP_PROBABILITY_nMaxFail] DEFAULT 0 FOR [nMaxFail]\nGO\nALTER TABLE [ITEMUP_PROBABILITY] ADD CONSTRAINT [DF_ITEMUP_PROBABILITY_nCurSuccess] DEFAULT 0 FOR [nCurSuccess]\nGO\nALTER TABLE [ITEMUP_PROBABILITY] ADD CONSTRAINT [DF_ITEMUP_PROBABILITY_nCurFail] DEFAULT 0 FOR [nCurFail]\nGO\n"
+	query := "CREATE TABLE [ITEMUP_PROBABILITY] (\n\t[bType] tinyint NOT NULL,\n\t[nMaxSuccess] smallint NOT NULL,\n\t[nMaxFail] smallint NOT NULL,\n\t[nCurSuccess] smallint NOT NULL,\n\t[nCurFail] smallint NOT NULL\n\tCONSTRAINT [PK_ITEMUP_PROBABILITY] PRIMARY KEY CLUSTERED ([bType])\n)\nGO\nALTER TABLE [ITEMUP_PROBABILITY] ADD CONSTRAINT [DF_ITEMUP_PROBABILITY_nMaxSuccess] DEFAULT 0 FOR [nMaxSuccess]\nGO\nALTER TABLE [ITEMUP_PROBABILITY] ADD CONSTRAINT [DF_ITEMUP_PROBABILITY_nMaxFail] DEFAULT 0 FOR [nMaxFail]\nGO\nALTER TABLE [ITEMUP_PROBABILITY] ADD CONSTRAINT [DF_ITEMUP_PROBABILITY_nCurSuccess] DEFAULT 0 FOR [nCurSuccess]\nGO\nALTER TABLE [ITEMUP_PROBABILITY] ADD CONSTRAINT [DF_ITEMUP_PROBABILITY_nCurFail] DEFAULT 0 FOR [nCurFail]\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

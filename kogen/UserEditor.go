@@ -91,7 +91,7 @@ func (this UserEditor) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this UserEditor) GetCreateTableString() string {
-	query := "CREATE TABLE [USER_EDITOR] (\n\t[strCharID] varchar(21) NOT NULL,\n\t[strAccountID] varchar(21) NOT NULL,\n\t[strOpID] varchar(21) NOT NULL,\n\t[strOpIP] varchar(21) NOT NULL,\n\t[strOldUserValue] char(600) NOT NULL,\n\t[strNewUserValue] char(600) NOT NULL,\n\t[strOldUserSkill] char(10) NOT NULL,\n\t[strNewUserSkill] char(10) NOT NULL,\n\t[strOldUserItem] char(400) NOT NULL,\n\t[strNewUserItem] char(400) NOT NULL,\n\t[strOldWHValue] char(100) NOT NULL,\n\t[strNewWHValue] char(100) NOT NULL,\n\t[strOldWHItem] char(1600) NOT NULL,\n\t[strNewWHItem] char(1600) NOT NULL,\n\t[EditorTime] smalldatetime NOT NULL\n\n)\nGO\nALTER TABLE [USER_EDITOR] ADD CONSTRAINT [DF_USER_EDITOR_EditorTime] DEFAULT getdate() FOR [EditorTime]\nGO\n"
+	query := "CREATE TABLE [USER_EDITOR] (\n\t[strCharID] varchar(21) NOT NULL,\n\t[strAccountID] varchar(21) NOT NULL,\n\t[strOpID] varchar(21) NOT NULL,\n\t[strOpIP] varchar(21) NOT NULL,\n\t[strOldUserValue] char(600) NOT NULL,\n\t[strNewUserValue] char(600) NOT NULL,\n\t[strOldUserSkill] char(10) NOT NULL,\n\t[strNewUserSkill] char(10) NOT NULL,\n\t[strOldUserItem] char(400) NOT NULL,\n\t[strNewUserItem] char(400) NOT NULL,\n\t[strOldWHValue] char(100) NOT NULL,\n\t[strNewWHValue] char(100) NOT NULL,\n\t[strOldWHItem] char(1600) NOT NULL,\n\t[strNewWHItem] char(1600) NOT NULL,\n\t[EditorTime] smalldatetime NOT NULL\n)\nGO\nALTER TABLE [USER_EDITOR] ADD CONSTRAINT [DF_USER_EDITOR_EditorTime] DEFAULT getdate() FOR [EditorTime]\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

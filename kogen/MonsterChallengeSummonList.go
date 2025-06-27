@@ -74,7 +74,7 @@ func (this MonsterChallengeSummonList) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this MonsterChallengeSummonList) GetCreateTableString() string {
-	query := "CREATE TABLE [MONSTER_CHALLENGE_SUMMON_LIST] (\n\t[sIndex] smallint NOT NULL,\n\t[bLevel] tinyint NOT NULL,\n\t[bStage] tinyint NOT NULL,\n\t[bStageLevel] tinyint NOT NULL,\n\t[sTime] smallint NOT NULL,\n\t[sSid] smallint NOT NULL,\n\t[sCount] smallint NOT NULL,\n\t[sPosX] smallint NOT NULL,\n\t[sPosZ] smallint NOT NULL,\n\t[bRange] tinyint NOT NULL\n\n)\nGO\nALTER TABLE [MONSTER_CHALLENGE_SUMMON_LIST] ADD CONSTRAINT [DF_MONSTER_CHALLENGE_SUMMON_LIST_bStageLevel] DEFAULT 0 FOR [bStageLevel]\nGO\n"
+	query := "CREATE TABLE [MONSTER_CHALLENGE_SUMMON_LIST] (\n\t[sIndex] smallint NOT NULL,\n\t[bLevel] tinyint NOT NULL,\n\t[bStage] tinyint NOT NULL,\n\t[bStageLevel] tinyint NOT NULL,\n\t[sTime] smallint NOT NULL,\n\t[sSid] smallint NOT NULL,\n\t[sCount] smallint NOT NULL,\n\t[sPosX] smallint NOT NULL,\n\t[sPosZ] smallint NOT NULL,\n\t[bRange] tinyint NOT NULL\n)\nGO\nALTER TABLE [MONSTER_CHALLENGE_SUMMON_LIST] ADD CONSTRAINT [DF_MONSTER_CHALLENGE_SUMMON_LIST_bStageLevel] DEFAULT 0 FOR [bStageLevel]\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

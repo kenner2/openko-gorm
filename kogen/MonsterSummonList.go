@@ -60,7 +60,7 @@ func (this MonsterSummonList) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this MonsterSummonList) GetCreateTableString() string {
-	query := "CREATE TABLE [MONSTER_SUMMON_LIST] (\n\t[sSid] smallint NOT NULL,\n\t[strName] varchar(31),\n\t[sLevel] smallint NOT NULL,\n\t[sProbability] smallint NOT NULL,\n\t[bType] tinyint NOT NULL\n\n)\nGO\nALTER TABLE [MONSTER_SUMMON_LIST] ADD CONSTRAINT [DF_MONSTER_SUMMON_LIST_bType] DEFAULT 0 FOR [bType]\nGO\n"
+	query := "CREATE TABLE [MONSTER_SUMMON_LIST] (\n\t[sSid] smallint NOT NULL,\n\t[strName] varchar(31),\n\t[sLevel] smallint NOT NULL,\n\t[sProbability] smallint NOT NULL,\n\t[bType] tinyint NOT NULL\n)\nGO\nALTER TABLE [MONSTER_SUMMON_LIST] ADD CONSTRAINT [DF_MONSTER_SUMMON_LIST_bType] DEFAULT 0 FOR [bType]\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

@@ -54,7 +54,7 @@ func (this ServerResource) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this ServerResource) GetCreateTableString() string {
-	query := "CREATE TABLE [SERVER_RESOURCE] (\n\t[nResourceID] int NOT NULL,\n\t[strName] varchar(50) NOT NULL,\n\t[strResource] varchar(100)\n\tCONSTRAINT [PK_SERVER_RESOURCE] PRIMARY KEY ([nResourceID])\n)\nGO\n"
+	query := "CREATE TABLE [SERVER_RESOURCE] (\n\t[nResourceID] int NOT NULL,\n\t[strName] varchar(50) NOT NULL,\n\t[strResource] varchar(100)\n\tCONSTRAINT [PK_SERVER_RESOURCE] PRIMARY KEY CLUSTERED ([nResourceID])\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

@@ -60,7 +60,7 @@ func (this HeroUser) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this HeroUser) GetCreateTableString() string {
-	query := "CREATE TABLE [HERO_USER] (\n\t[shIndex] smallint NOT NULL,\n\t[strUserID] varchar(21),\n\t[strNation] varchar(20),\n\t[strClass] varchar(30),\n\t[strAchievement] varchar(50)\n\n)\nGO\n"
+	query := "CREATE TABLE [HERO_USER] (\n\t[shIndex] smallint NOT NULL,\n\t[strUserID] varchar(21),\n\t[strNation] varchar(20),\n\t[strClass] varchar(30),\n\t[strAchievement] varchar(50)\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

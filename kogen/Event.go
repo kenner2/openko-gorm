@@ -84,7 +84,7 @@ func (this Event) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this Event) GetCreateTableString() string {
-	query := "CREATE TABLE [EVENT] (\n\t[ZoneNum] tinyint NOT NULL,\n\t[EventNum] smallint NOT NULL,\n\t[Type] tinyint NOT NULL,\n\t[Cond1] varchar(128),\n\t[Cond2] varchar(128),\n\t[Cond3] varchar(128),\n\t[Cond4] varchar(128),\n\t[Cond5] varchar(128),\n\t[Exec1] varchar(128),\n\t[Exec2] varchar(128),\n\t[Exec3] varchar(128),\n\t[Exec4] varchar(128),\n\t[Exec5] varchar(128)\n\n)\nGO\n"
+	query := "CREATE TABLE [EVENT] (\n\t[ZoneNum] tinyint NOT NULL,\n\t[EventNum] smallint NOT NULL,\n\t[Type] tinyint NOT NULL,\n\t[Cond1] varchar(128),\n\t[Cond2] varchar(128),\n\t[Cond3] varchar(128),\n\t[Cond4] varchar(128),\n\t[Cond5] varchar(128),\n\t[Exec1] varchar(128),\n\t[Exec2] varchar(128),\n\t[Exec3] varchar(128),\n\t[Exec4] varchar(128),\n\t[Exec5] varchar(128)\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

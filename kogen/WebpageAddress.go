@@ -51,7 +51,7 @@ func (this WebpageAddress) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this WebpageAddress) GetCreateTableString() string {
-	query := "CREATE TABLE [WEBPAGE_ADDRESS] (\n\t[nIndex] int NOT NULL,\n\t[strWebPageAddress] varchar(100)\n\tCONSTRAINT [PK_WEBPAGE_ADDRESS] PRIMARY KEY ([nIndex])\n)\nGO\n"
+	query := "CREATE TABLE [WEBPAGE_ADDRESS] (\n\t[nIndex] int NOT NULL,\n\t[strWebPageAddress] varchar(100)\n\tCONSTRAINT [PK_WEBPAGE_ADDRESS] PRIMARY KEY CLUSTERED ([nIndex])\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 
