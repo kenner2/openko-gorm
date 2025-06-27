@@ -1,4 +1,4 @@
-module github.com/kenner2/openko-gorm
+module github.com/Open-KO/OpenKO-gorm
 
 go 1.24.1
 
