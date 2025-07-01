@@ -18,11 +18,11 @@ func init() {
 
 // Warehouse The warehouse system is referred to as the Inn in-game.  It is account-level storage for a user
 type Warehouse struct {
-	AccountId mssql.VarChar  `gorm:"column:strAccountID;type:varchar(21);primaryKey;not null" json:"strAccountID"`
+	AccountId mssql.VarChar  `gorm:"column:strAccountID;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS;primaryKey;not null" json:"strAccountID"`
 	Money     int            `gorm:"column:nMoney;type:int;not null;default:0" json:"nMoney"`
 	DwTime    int            `gorm:"column:dwTime;type:int;not null;default:0" json:"dwTime"`
-	ItemData  *mssql.VarChar `gorm:"column:WarehouseData;type:varchar(1600)" json:"WarehouseData,omitempty"`
-	Serial    *mssql.VarChar `gorm:"column:strSerial;type:varchar(1600)" json:"strSerial,omitempty"`
+	ItemData  *mssql.VarChar `gorm:"column:WarehouseData;type:varchar(1600) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"WarehouseData,omitempty"`
+	Serial    *mssql.VarChar `gorm:"column:strSerial;type:varchar(1600) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"strSerial,omitempty"`
 }
 
 // GetDatabaseName Returns the table's database name
@@ -60,7 +60,7 @@ func (this Warehouse) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this Warehouse) GetCreateTableString() string {
-	query := "CREATE TABLE [WAREHOUSE] (\n\t[strAccountID] varchar(21) NOT NULL,\n\t[nMoney] int NOT NULL,\n\t[dwTime] int NOT NULL,\n\t[WarehouseData] varchar(1600),\n\t[strSerial] varchar(1600)\n\tCONSTRAINT [PK_WAREHOUSE] PRIMARY KEY CLUSTERED ([strAccountID])\n)\nGO\nALTER TABLE [WAREHOUSE] ADD CONSTRAINT [DF_WAREHOUSE_nMoney] DEFAULT 0 FOR [nMoney]\nGO\nALTER TABLE [WAREHOUSE] ADD CONSTRAINT [DF_WAREHOUSE_dwTime] DEFAULT 0 FOR [dwTime]\nGO\n"
+	query := "CREATE TABLE [WAREHOUSE] (\n\t[strAccountID] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[nMoney] int NOT NULL,\n\t[dwTime] int NOT NULL,\n\t[WarehouseData] varchar(1600) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[strSerial] varchar(1600) COLLATE SQL_Latin1_General_CP1_CI_AS\n\tCONSTRAINT [PK_WAREHOUSE] PRIMARY KEY CLUSTERED ([strAccountID])\n)\nGO\nALTER TABLE [WAREHOUSE] ADD CONSTRAINT [DF_WAREHOUSE_nMoney] DEFAULT 0 FOR [nMoney]\nGO\nALTER TABLE [WAREHOUSE] ADD CONSTRAINT [DF_WAREHOUSE_dwTime] DEFAULT 0 FOR [dwTime]\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

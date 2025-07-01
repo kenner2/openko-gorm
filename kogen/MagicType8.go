@@ -19,8 +19,8 @@ func init() {
 // MagicType8 Type 8 supports warp magic
 type MagicType8 struct {
 	MagicNumber int            `gorm:"column:iNum;type:int;primaryKey;not null" json:"iNum"`
-	Name        *mssql.VarChar `gorm:"column:Name;type:varchar(50)" json:"Name,omitempty"`
-	Description *mssql.VarChar `gorm:"column:Description;type:varchar(100)" json:"Description,omitempty"`
+	Name        *mssql.VarChar `gorm:"column:Name;type:varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"Name,omitempty"`
+	Description *mssql.VarChar `gorm:"column:Description;type:varchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"Description,omitempty"`
 	Target      uint8          `gorm:"column:Target;type:tinyint;not null" json:"Target"`
 	Radius      int16          `gorm:"column:Radius;type:smallint;not null" json:"Radius"`
 	WarpType    uint8          `gorm:"column:WarpType;type:tinyint;not null" json:"WarpType"`
@@ -66,7 +66,7 @@ func (this MagicType8) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this MagicType8) GetCreateTableString() string {
-	query := "CREATE TABLE [MAGIC_TYPE8] (\n\t[iNum] int NOT NULL,\n\t[Name] varchar(50),\n\t[Description] varchar(100),\n\t[Target] tinyint NOT NULL,\n\t[Radius] smallint NOT NULL,\n\t[WarpType] tinyint NOT NULL,\n\t[ExpRecover] smallint NOT NULL\n\tCONSTRAINT [PK_MAGIC_TYPE8] PRIMARY KEY CLUSTERED ([iNum])\n)\nGO\n"
+	query := "CREATE TABLE [MAGIC_TYPE8] (\n\t[iNum] int NOT NULL,\n\t[Name] varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[Description] varchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[Target] tinyint NOT NULL,\n\t[Radius] smallint NOT NULL,\n\t[WarpType] tinyint NOT NULL,\n\t[ExpRecover] smallint NOT NULL\n\tCONSTRAINT [PK_MAGIC_TYPE8] PRIMARY KEY CLUSTERED ([iNum])\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

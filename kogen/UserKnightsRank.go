@@ -19,12 +19,12 @@ func init() {
 // UserKnightsRank User Knights Ranking
 type UserKnightsRank struct {
 	Index            int16          `gorm:"column:shIndex;type:smallint;primaryKey;not null" json:"shIndex"`
-	Name             mssql.VarChar  `gorm:"column:strName;type:varchar(21);not null" json:"strName"`
-	ElmoUserId       *mssql.VarChar `gorm:"column:strElmoUserID;type:varchar(21)" json:"strElmoUserID,omitempty"`
-	ElmoKnightsName  *mssql.VarChar `gorm:"column:strElmoKnightsName;type:varchar(21)" json:"strElmoKnightsName,omitempty"`
+	Name             mssql.VarChar  `gorm:"column:strName;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS;not null" json:"strName"`
+	ElmoUserId       *mssql.VarChar `gorm:"column:strElmoUserID;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"strElmoUserID,omitempty"`
+	ElmoKnightsName  *mssql.VarChar `gorm:"column:strElmoKnightsName;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"strElmoKnightsName,omitempty"`
 	ElmoLoyalty      *int           `gorm:"column:nElmoLoyalty;type:int" json:"nElmoLoyalty,omitempty"`
-	KarusUserId      *mssql.VarChar `gorm:"column:strKarusUserID;type:varchar(21)" json:"strKarusUserID,omitempty"`
-	KarusKnightsName *mssql.VarChar `gorm:"column:strKarusKnightsName;type:varchar(21)" json:"strKarusKnightsName,omitempty"`
+	KarusUserId      *mssql.VarChar `gorm:"column:strKarusUserID;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"strKarusUserID,omitempty"`
+	KarusKnightsName *mssql.VarChar `gorm:"column:strKarusKnightsName;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"strKarusKnightsName,omitempty"`
 	KarusLoyalty     *int           `gorm:"column:nKarusLoyalty;type:int" json:"nKarusLoyalty,omitempty"`
 	Money            int            `gorm:"column:nMoney;type:int;not null" json:"nMoney"`
 }
@@ -72,7 +72,7 @@ func (this UserKnightsRank) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this UserKnightsRank) GetCreateTableString() string {
-	query := "CREATE TABLE [USER_KNIGHTS_RANK] (\n\t[shIndex] smallint NOT NULL,\n\t[strName] varchar(21) NOT NULL,\n\t[strElmoUserID] varchar(21),\n\t[strElmoKnightsName] varchar(21),\n\t[nElmoLoyalty] int,\n\t[strKarusUserID] varchar(21),\n\t[strKarusKnightsName] varchar(21),\n\t[nKarusLoyalty] int,\n\t[nMoney] int NOT NULL\n\tCONSTRAINT [PK_USER_KNIGHTS_RANK] PRIMARY KEY CLUSTERED ([shIndex])\n)\nGO\n"
+	query := "CREATE TABLE [USER_KNIGHTS_RANK] (\n\t[shIndex] smallint NOT NULL,\n\t[strName] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[strElmoUserID] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[strElmoKnightsName] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[nElmoLoyalty] int,\n\t[strKarusUserID] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[strKarusKnightsName] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[nKarusLoyalty] int,\n\t[nMoney] int NOT NULL\n\tCONSTRAINT [PK_USER_KNIGHTS_RANK] PRIMARY KEY CLUSTERED ([shIndex])\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

@@ -18,7 +18,7 @@ func init() {
 
 // UserSavedMagic User saved magic
 type UserSavedMagic struct {
-	CharId   mssql.VarChar `gorm:"column:strCharID;type:varchar(50);primaryKey;not null" json:"strCharID"`
+	CharId   mssql.VarChar `gorm:"column:strCharID;type:varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS;primaryKey;not null" json:"strCharID"`
 	Skill1   int           `gorm:"column:nSkill1;type:int;not null" json:"nSkill1"`
 	During1  int16         `gorm:"column:nDuring1;type:smallint;not null" json:"nDuring1"`
 	Skill2   int           `gorm:"column:nSkill2;type:int;not null" json:"nSkill2"`
@@ -108,7 +108,7 @@ func (this UserSavedMagic) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this UserSavedMagic) GetCreateTableString() string {
-	query := "CREATE TABLE [USER_SAVED_MAGIC] (\n\t[strCharID] varchar(50) NOT NULL,\n\t[nSkill1] int NOT NULL,\n\t[nDuring1] smallint NOT NULL,\n\t[nSkill2] int NOT NULL,\n\t[nDuring2] smallint NOT NULL,\n\t[nSkill3] int NOT NULL,\n\t[nDuring3] smallint NOT NULL,\n\t[nSkill4] int NOT NULL,\n\t[nDuring4] smallint NOT NULL,\n\t[nSkill5] int NOT NULL,\n\t[nDuring5] smallint NOT NULL,\n\t[nSkill6] int NOT NULL,\n\t[nDuring6] smallint NOT NULL,\n\t[nSkill7] int NOT NULL,\n\t[nDuring7] smallint NOT NULL,\n\t[nSkill8] int NOT NULL,\n\t[nDuring8] smallint NOT NULL,\n\t[nSkill9] int NOT NULL,\n\t[nDuring9] smallint NOT NULL,\n\t[nSkill10] int NOT NULL,\n\t[nDuring10] smallint NOT NULL\n\tCONSTRAINT [PK_USER_SAVED_MAGIC] PRIMARY KEY CLUSTERED ([strCharID])\n)\nGO\n"
+	query := "CREATE TABLE [USER_SAVED_MAGIC] (\n\t[strCharID] varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[nSkill1] int NOT NULL,\n\t[nDuring1] smallint NOT NULL,\n\t[nSkill2] int NOT NULL,\n\t[nDuring2] smallint NOT NULL,\n\t[nSkill3] int NOT NULL,\n\t[nDuring3] smallint NOT NULL,\n\t[nSkill4] int NOT NULL,\n\t[nDuring4] smallint NOT NULL,\n\t[nSkill5] int NOT NULL,\n\t[nDuring5] smallint NOT NULL,\n\t[nSkill6] int NOT NULL,\n\t[nDuring6] smallint NOT NULL,\n\t[nSkill7] int NOT NULL,\n\t[nDuring7] smallint NOT NULL,\n\t[nSkill8] int NOT NULL,\n\t[nDuring8] smallint NOT NULL,\n\t[nSkill9] int NOT NULL,\n\t[nDuring9] smallint NOT NULL,\n\t[nSkill10] int NOT NULL,\n\t[nDuring10] smallint NOT NULL\n\tCONSTRAINT [PK_USER_SAVED_MAGIC] PRIMARY KEY CLUSTERED ([strCharID])\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

@@ -18,12 +18,12 @@ func init() {
 
 // AccountChar Represents the relationship between accounts and characters
 type AccountChar struct {
-	AccountId mssql.VarChar  `gorm:"column:strAccountID;type:varchar(21);primaryKey;not null" json:"strAccountID"`
+	AccountId mssql.VarChar  `gorm:"column:strAccountID;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS;primaryKey;not null" json:"strAccountID"`
 	Nation    uint8          `gorm:"column:bNation;type:tinyint;not null" json:"bNation"`
 	CharNum   uint8          `gorm:"column:bCharNum;type:tinyint;not null;default:0" json:"bCharNum"`
-	CharId1   *mssql.VarChar `gorm:"column:strCharID1;type:varchar(21)" json:"strCharID1,omitempty"`
-	CharId2   *mssql.VarChar `gorm:"column:strCharID2;type:varchar(21)" json:"strCharID2,omitempty"`
-	CharId3   *mssql.VarChar `gorm:"column:strCharID3;type:varchar(21)" json:"strCharID3,omitempty"`
+	CharId1   *mssql.VarChar `gorm:"column:strCharID1;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"strCharID1,omitempty"`
+	CharId2   *mssql.VarChar `gorm:"column:strCharID2;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"strCharID2,omitempty"`
+	CharId3   *mssql.VarChar `gorm:"column:strCharID3;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"strCharID3,omitempty"`
 }
 
 // GetDatabaseName Returns the table's database name
@@ -63,7 +63,7 @@ func (this AccountChar) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this AccountChar) GetCreateTableString() string {
-	query := "CREATE TABLE [ACCOUNT_CHAR] (\n\t[strAccountID] varchar(21) NOT NULL,\n\t[bNation] tinyint NOT NULL,\n\t[bCharNum] tinyint NOT NULL,\n\t[strCharID1] varchar(21),\n\t[strCharID2] varchar(21),\n\t[strCharID3] varchar(21)\n\tCONSTRAINT [PK_ACCOUNT_CHAR] PRIMARY KEY CLUSTERED ([strAccountID])\n)\nGO\nALTER TABLE [ACCOUNT_CHAR] ADD CONSTRAINT [DF_ACCOUNT_CHAR_bCharNum] DEFAULT 0 FOR [bCharNum]\nGO\n"
+	query := "CREATE TABLE [ACCOUNT_CHAR] (\n\t[strAccountID] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[bNation] tinyint NOT NULL,\n\t[bCharNum] tinyint NOT NULL,\n\t[strCharID1] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[strCharID2] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[strCharID3] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS\n\tCONSTRAINT [PK_ACCOUNT_CHAR] PRIMARY KEY CLUSTERED ([strAccountID])\n)\nGO\nALTER TABLE [ACCOUNT_CHAR] ADD CONSTRAINT [DF_ACCOUNT_CHAR_bCharNum] DEFAULT 0 FOR [bCharNum]\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

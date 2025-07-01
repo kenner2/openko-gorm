@@ -21,16 +21,16 @@ type Event struct {
 	ZoneNumber  uint8          `gorm:"column:ZoneNum;type:tinyint;not null" json:"ZoneNum"`
 	EventNumber int16          `gorm:"column:EventNum;type:smallint;not null" json:"EventNum"`
 	EventType   uint8          `gorm:"column:Type;type:tinyint;not null" json:"Type"`
-	Condition1  *mssql.VarChar `gorm:"column:Cond1;type:varchar(128)" json:"Cond1,omitempty"`
-	Condition2  *mssql.VarChar `gorm:"column:Cond2;type:varchar(128)" json:"Cond2,omitempty"`
-	Condition3  *mssql.VarChar `gorm:"column:Cond3;type:varchar(128)" json:"Cond3,omitempty"`
-	Condition4  *mssql.VarChar `gorm:"column:Cond4;type:varchar(128)" json:"Cond4,omitempty"`
-	Condition5  *mssql.VarChar `gorm:"column:Cond5;type:varchar(128)" json:"Cond5,omitempty"`
-	Execute1    *mssql.VarChar `gorm:"column:Exec1;type:varchar(128)" json:"Exec1,omitempty"`
-	Execute2    *mssql.VarChar `gorm:"column:Exec2;type:varchar(128)" json:"Exec2,omitempty"`
-	Execute3    *mssql.VarChar `gorm:"column:Exec3;type:varchar(128)" json:"Exec3,omitempty"`
-	Execute4    *mssql.VarChar `gorm:"column:Exec4;type:varchar(128)" json:"Exec4,omitempty"`
-	Execute5    *mssql.VarChar `gorm:"column:Exec5;type:varchar(128)" json:"Exec5,omitempty"`
+	Condition1  *mssql.VarChar `gorm:"column:Cond1;type:varchar(128) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"Cond1,omitempty"`
+	Condition2  *mssql.VarChar `gorm:"column:Cond2;type:varchar(128) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"Cond2,omitempty"`
+	Condition3  *mssql.VarChar `gorm:"column:Cond3;type:varchar(128) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"Cond3,omitempty"`
+	Condition4  *mssql.VarChar `gorm:"column:Cond4;type:varchar(128) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"Cond4,omitempty"`
+	Condition5  *mssql.VarChar `gorm:"column:Cond5;type:varchar(128) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"Cond5,omitempty"`
+	Execute1    *mssql.VarChar `gorm:"column:Exec1;type:varchar(128) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"Exec1,omitempty"`
+	Execute2    *mssql.VarChar `gorm:"column:Exec2;type:varchar(128) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"Exec2,omitempty"`
+	Execute3    *mssql.VarChar `gorm:"column:Exec3;type:varchar(128) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"Exec3,omitempty"`
+	Execute4    *mssql.VarChar `gorm:"column:Exec4;type:varchar(128) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"Exec4,omitempty"`
+	Execute5    *mssql.VarChar `gorm:"column:Exec5;type:varchar(128) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"Exec5,omitempty"`
 }
 
 // GetDatabaseName Returns the table's database name
@@ -84,7 +84,7 @@ func (this Event) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this Event) GetCreateTableString() string {
-	query := "CREATE TABLE [EVENT] (\n\t[ZoneNum] tinyint NOT NULL,\n\t[EventNum] smallint NOT NULL,\n\t[Type] tinyint NOT NULL,\n\t[Cond1] varchar(128),\n\t[Cond2] varchar(128),\n\t[Cond3] varchar(128),\n\t[Cond4] varchar(128),\n\t[Cond5] varchar(128),\n\t[Exec1] varchar(128),\n\t[Exec2] varchar(128),\n\t[Exec3] varchar(128),\n\t[Exec4] varchar(128),\n\t[Exec5] varchar(128)\n)\nGO\n"
+	query := "CREATE TABLE [EVENT] (\n\t[ZoneNum] tinyint NOT NULL,\n\t[EventNum] smallint NOT NULL,\n\t[Type] tinyint NOT NULL,\n\t[Cond1] varchar(128) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[Cond2] varchar(128) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[Cond3] varchar(128) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[Cond4] varchar(128) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[Cond5] varchar(128) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[Exec1] varchar(128) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[Exec2] varchar(128) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[Exec3] varchar(128) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[Exec4] varchar(128) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[Exec5] varchar(128) COLLATE SQL_Latin1_General_CP1_CI_AS\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

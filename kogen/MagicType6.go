@@ -19,8 +19,8 @@ func init() {
 // MagicType6 Type 6 supports transformation magic
 type MagicType6 struct {
 	MagicNumber          int            `gorm:"column:iNum;type:int;primaryKey;not null" json:"iNum"`
-	Name                 mssql.VarChar  `gorm:"column:Name;type:varchar(50);not null" json:"Name"`
-	Description          *mssql.VarChar `gorm:"column:Description;type:varchar(100)" json:"Description,omitempty"`
+	Name                 mssql.VarChar  `gorm:"column:Name;type:varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS;not null" json:"Name"`
+	Description          *mssql.VarChar `gorm:"column:Description;type:varchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"Description,omitempty"`
 	Size                 int16          `gorm:"column:Size;type:smallint;not null" json:"Size"`
 	TransformId          int16          `gorm:"column:TransformID;type:smallint;not null" json:"TransformID"`
 	Duration             int16          `gorm:"column:Duration;type:smallint;not null" json:"Duration"`
@@ -120,7 +120,7 @@ func (this MagicType6) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this MagicType6) GetCreateTableString() string {
-	query := "CREATE TABLE [MAGIC_TYPE6] (\n\t[iNum] int NOT NULL,\n\t[Name] varchar(50) NOT NULL,\n\t[Description] varchar(100),\n\t[Size] smallint NOT NULL,\n\t[TransformID] smallint NOT NULL,\n\t[Duration] smallint NOT NULL,\n\t[MaxHp] smallint NOT NULL,\n\t[MaxMp] smallint NOT NULL,\n\t[Speed] tinyint NOT NULL,\n\t[AttackSpeed] smallint NOT NULL,\n\t[TotalHit] smallint NOT NULL,\n\t[TotalAc] smallint NOT NULL,\n\t[TotalHitRate] smallint NOT NULL,\n\t[TotalEvasionRate] smallint NOT NULL,\n\t[TotalFireR] smallint NOT NULL,\n\t[TotalColdR] smallint NOT NULL,\n\t[TotalLightningR] smallint NOT NULL,\n\t[TotalMagicR] smallint NOT NULL,\n\t[TotalDiseaseR] smallint NOT NULL,\n\t[TotalPoisonR] smallint NOT NULL,\n\t[Class] smallint NOT NULL,\n\t[UserSkillUse] tinyint NOT NULL,\n\t[NeedItem] tinyint NOT NULL,\n\t[SkillSuccessRate] tinyint NOT NULL,\n\t[MonsterFriendly] tinyint NOT NULL\n\tCONSTRAINT [PK_MAGIC_TYPE6] PRIMARY KEY CLUSTERED ([iNum])\n)\nGO\n"
+	query := "CREATE TABLE [MAGIC_TYPE6] (\n\t[iNum] int NOT NULL,\n\t[Name] varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[Description] varchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[Size] smallint NOT NULL,\n\t[TransformID] smallint NOT NULL,\n\t[Duration] smallint NOT NULL,\n\t[MaxHp] smallint NOT NULL,\n\t[MaxMp] smallint NOT NULL,\n\t[Speed] tinyint NOT NULL,\n\t[AttackSpeed] smallint NOT NULL,\n\t[TotalHit] smallint NOT NULL,\n\t[TotalAc] smallint NOT NULL,\n\t[TotalHitRate] smallint NOT NULL,\n\t[TotalEvasionRate] smallint NOT NULL,\n\t[TotalFireR] smallint NOT NULL,\n\t[TotalColdR] smallint NOT NULL,\n\t[TotalLightningR] smallint NOT NULL,\n\t[TotalMagicR] smallint NOT NULL,\n\t[TotalDiseaseR] smallint NOT NULL,\n\t[TotalPoisonR] smallint NOT NULL,\n\t[Class] smallint NOT NULL,\n\t[UserSkillUse] tinyint NOT NULL,\n\t[NeedItem] tinyint NOT NULL,\n\t[SkillSuccessRate] tinyint NOT NULL,\n\t[MonsterFriendly] tinyint NOT NULL\n\tCONSTRAINT [PK_MAGIC_TYPE6] PRIMARY KEY CLUSTERED ([iNum])\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

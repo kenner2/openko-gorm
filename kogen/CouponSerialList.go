@@ -19,7 +19,7 @@ func init() {
 // CouponSerialList Coupon Serial List
 type CouponSerialList struct {
 	Index      int           `gorm:"column:nIndex;type:int;not null" json:"nIndex"`
-	SerialNum  mssql.VarChar `gorm:"column:strSerialNum;type:varchar(16);not null" json:"strSerialNum"`
+	SerialNum  mssql.VarChar `gorm:"column:strSerialNum;type:varchar(16) COLLATE SQL_Latin1_General_CP1_CI_AS;not null" json:"strSerialNum"`
 	ItemNumber int           `gorm:"column:nItemNum;type:int;not null" json:"nItemNum"`
 	ItemCount  int16         `gorm:"column:sItemCount;type:smallint;not null" json:"sItemCount"`
 }
@@ -57,7 +57,7 @@ func (this CouponSerialList) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this CouponSerialList) GetCreateTableString() string {
-	query := "CREATE TABLE [COUPON_SERIAL_LIST] (\n\t[nIndex] int NOT NULL,\n\t[strSerialNum] varchar(16) NOT NULL,\n\t[nItemNum] int NOT NULL,\n\t[sItemCount] smallint NOT NULL\n)\nGO\n"
+	query := "CREATE TABLE [COUPON_SERIAL_LIST] (\n\t[nIndex] int NOT NULL,\n\t[strSerialNum] varchar(16) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[nItemNum] int NOT NULL,\n\t[sItemCount] smallint NOT NULL\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

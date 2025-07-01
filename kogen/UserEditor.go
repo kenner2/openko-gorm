@@ -19,20 +19,20 @@ func init() {
 
 // UserEditor User editor
 type UserEditor struct {
-	CharId            mssql.VarChar `gorm:"column:strCharID;type:varchar(21);not null" json:"strCharID"`
-	AccountId         mssql.VarChar `gorm:"column:strAccountID;type:varchar(21);not null" json:"strAccountID"`
-	OpId              mssql.VarChar `gorm:"column:strOpID;type:varchar(21);not null" json:"strOpID"`
-	OpIP              mssql.VarChar `gorm:"column:strOpIP;type:varchar(21);not null" json:"strOpIP"`
-	OldUserValue      []byte        `gorm:"column:strOldUserValue;type:char(600);not null" json:"strOldUserValue"`
-	NewUserValue      []byte        `gorm:"column:strNewUserValue;type:char(600);not null" json:"strNewUserValue"`
-	OldUserSkill      []byte        `gorm:"column:strOldUserSkill;type:char(10);not null" json:"strOldUserSkill"`
-	NewUserSkill      []byte        `gorm:"column:strNewUserSkill;type:char(10);not null" json:"strNewUserSkill"`
-	OldUserItem       []byte        `gorm:"column:strOldUserItem;type:char(400);not null" json:"strOldUserItem"`
-	NewUserItem       []byte        `gorm:"column:strNewUserItem;type:char(400);not null" json:"strNewUserItem"`
-	OldWarehouseValue []byte        `gorm:"column:strOldWHValue;type:char(100);not null" json:"strOldWHValue"`
-	NewWarehouseValue []byte        `gorm:"column:strNewWHValue;type:char(100);not null" json:"strNewWHValue"`
-	OldWarehouseItem  []byte        `gorm:"column:strOldWHItem;type:char(1600);not null" json:"strOldWHItem"`
-	NewWarehouseItem  []byte        `gorm:"column:strNewWHItem;type:char(1600);not null" json:"strNewWHItem"`
+	CharId            mssql.VarChar `gorm:"column:strCharID;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS;not null" json:"strCharID"`
+	AccountId         mssql.VarChar `gorm:"column:strAccountID;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS;not null" json:"strAccountID"`
+	OpId              mssql.VarChar `gorm:"column:strOpID;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS;not null" json:"strOpID"`
+	OpIP              mssql.VarChar `gorm:"column:strOpIP;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS;not null" json:"strOpIP"`
+	OldUserValue      []byte        `gorm:"column:strOldUserValue;type:char(600) COLLATE SQL_Latin1_General_CP1_CI_AS;not null" json:"strOldUserValue"`
+	NewUserValue      []byte        `gorm:"column:strNewUserValue;type:char(600) COLLATE SQL_Latin1_General_CP1_CI_AS;not null" json:"strNewUserValue"`
+	OldUserSkill      []byte        `gorm:"column:strOldUserSkill;type:char(10) COLLATE SQL_Latin1_General_CP1_CI_AS;not null" json:"strOldUserSkill"`
+	NewUserSkill      []byte        `gorm:"column:strNewUserSkill;type:char(10) COLLATE SQL_Latin1_General_CP1_CI_AS;not null" json:"strNewUserSkill"`
+	OldUserItem       []byte        `gorm:"column:strOldUserItem;type:char(400) COLLATE SQL_Latin1_General_CP1_CI_AS;not null" json:"strOldUserItem"`
+	NewUserItem       []byte        `gorm:"column:strNewUserItem;type:char(400) COLLATE SQL_Latin1_General_CP1_CI_AS;not null" json:"strNewUserItem"`
+	OldWarehouseValue []byte        `gorm:"column:strOldWHValue;type:char(100) COLLATE SQL_Latin1_General_CP1_CI_AS;not null" json:"strOldWHValue"`
+	NewWarehouseValue []byte        `gorm:"column:strNewWHValue;type:char(100) COLLATE SQL_Latin1_General_CP1_CI_AS;not null" json:"strNewWHValue"`
+	OldWarehouseItem  []byte        `gorm:"column:strOldWHItem;type:char(1600) COLLATE SQL_Latin1_General_CP1_CI_AS;not null" json:"strOldWHItem"`
+	NewWarehouseItem  []byte        `gorm:"column:strNewWHItem;type:char(1600) COLLATE SQL_Latin1_General_CP1_CI_AS;not null" json:"strNewWHItem"`
 	EditorTime        time.Time     `gorm:"column:EditorTime;type:smalldatetime;not null;default:getdate()" json:"EditorTime"`
 }
 
@@ -91,7 +91,7 @@ func (this UserEditor) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this UserEditor) GetCreateTableString() string {
-	query := "CREATE TABLE [USER_EDITOR] (\n\t[strCharID] varchar(21) NOT NULL,\n\t[strAccountID] varchar(21) NOT NULL,\n\t[strOpID] varchar(21) NOT NULL,\n\t[strOpIP] varchar(21) NOT NULL,\n\t[strOldUserValue] char(600) NOT NULL,\n\t[strNewUserValue] char(600) NOT NULL,\n\t[strOldUserSkill] char(10) NOT NULL,\n\t[strNewUserSkill] char(10) NOT NULL,\n\t[strOldUserItem] char(400) NOT NULL,\n\t[strNewUserItem] char(400) NOT NULL,\n\t[strOldWHValue] char(100) NOT NULL,\n\t[strNewWHValue] char(100) NOT NULL,\n\t[strOldWHItem] char(1600) NOT NULL,\n\t[strNewWHItem] char(1600) NOT NULL,\n\t[EditorTime] smalldatetime NOT NULL\n)\nGO\nALTER TABLE [USER_EDITOR] ADD CONSTRAINT [DF_USER_EDITOR_EditorTime] DEFAULT getdate() FOR [EditorTime]\nGO\n"
+	query := "CREATE TABLE [USER_EDITOR] (\n\t[strCharID] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[strAccountID] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[strOpID] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[strOpIP] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[strOldUserValue] char(600) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[strNewUserValue] char(600) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[strOldUserSkill] char(10) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[strNewUserSkill] char(10) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[strOldUserItem] char(400) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[strNewUserItem] char(400) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[strOldWHValue] char(100) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[strNewWHValue] char(100) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[strOldWHItem] char(1600) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[strNewWHItem] char(1600) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[EditorTime] smalldatetime NOT NULL\n)\nGO\nALTER TABLE [USER_EDITOR] ADD CONSTRAINT [DF_USER_EDITOR_EditorTime] DEFAULT getdate() FOR [EditorTime]\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

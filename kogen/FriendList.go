@@ -18,31 +18,31 @@ func init() {
 
 // FriendList User friend list
 type FriendList struct {
-	UserId   mssql.VarChar  `gorm:"column:strUserID;type:varchar(21);primaryKey;not null" json:"strUserID"`
-	Friend1  *mssql.VarChar `gorm:"column:strFriend1;type:varchar(21)" json:"strFriend1,omitempty"`
-	Friend2  *mssql.VarChar `gorm:"column:strFriend2;type:varchar(21)" json:"strFriend2,omitempty"`
-	Friend3  *mssql.VarChar `gorm:"column:strFriend3;type:varchar(21)" json:"strFriend3,omitempty"`
-	Friend4  *mssql.VarChar `gorm:"column:strFriend4;type:varchar(21)" json:"strFriend4,omitempty"`
-	Friend5  *mssql.VarChar `gorm:"column:strFriend5;type:varchar(21)" json:"strFriend5,omitempty"`
-	Friend6  *mssql.VarChar `gorm:"column:strFriend6;type:varchar(21)" json:"strFriend6,omitempty"`
-	Friend7  *mssql.VarChar `gorm:"column:strFriend7;type:varchar(21)" json:"strFriend7,omitempty"`
-	Friend8  *mssql.VarChar `gorm:"column:strFriend8;type:varchar(21)" json:"strFriend8,omitempty"`
-	Friend9  *mssql.VarChar `gorm:"column:strFriend9;type:varchar(21)" json:"strFriend9,omitempty"`
-	Friend10 *mssql.VarChar `gorm:"column:strFriend10;type:varchar(21)" json:"strFriend10,omitempty"`
-	Friend11 *mssql.VarChar `gorm:"column:strFriend11;type:varchar(21)" json:"strFriend11,omitempty"`
-	Friend12 *mssql.VarChar `gorm:"column:strFriend12;type:varchar(21)" json:"strFriend12,omitempty"`
-	Friend13 *mssql.VarChar `gorm:"column:strFriend13;type:varchar(21)" json:"strFriend13,omitempty"`
-	Friend14 *mssql.VarChar `gorm:"column:strFriend14;type:varchar(21)" json:"strFriend14,omitempty"`
-	Friend15 *mssql.VarChar `gorm:"column:strFriend15;type:varchar(21)" json:"strFriend15,omitempty"`
-	Friend16 *mssql.VarChar `gorm:"column:strFriend16;type:varchar(21)" json:"strFriend16,omitempty"`
-	Friend17 *mssql.VarChar `gorm:"column:strFriend17;type:varchar(21)" json:"strFriend17,omitempty"`
-	Friend18 *mssql.VarChar `gorm:"column:strFriend18;type:varchar(21)" json:"strFriend18,omitempty"`
-	Friend19 *mssql.VarChar `gorm:"column:strFriend19;type:varchar(21)" json:"strFriend19,omitempty"`
-	Friend20 *mssql.VarChar `gorm:"column:strFriend20;type:varchar(21)" json:"strFriend20,omitempty"`
-	Friend21 *mssql.VarChar `gorm:"column:strFriend21;type:varchar(21)" json:"strFriend21,omitempty"`
-	Friend22 *mssql.VarChar `gorm:"column:strFriend22;type:varchar(21)" json:"strFriend22,omitempty"`
-	Friend23 *mssql.VarChar `gorm:"column:strFriend23;type:varchar(21)" json:"strFriend23,omitempty"`
-	Friend24 *mssql.VarChar `gorm:"column:strFriend24;type:varchar(21)" json:"strFriend24,omitempty"`
+	UserId   mssql.VarChar  `gorm:"column:strUserID;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS;primaryKey;not null" json:"strUserID"`
+	Friend1  *mssql.VarChar `gorm:"column:strFriend1;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"strFriend1,omitempty"`
+	Friend2  *mssql.VarChar `gorm:"column:strFriend2;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"strFriend2,omitempty"`
+	Friend3  *mssql.VarChar `gorm:"column:strFriend3;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"strFriend3,omitempty"`
+	Friend4  *mssql.VarChar `gorm:"column:strFriend4;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"strFriend4,omitempty"`
+	Friend5  *mssql.VarChar `gorm:"column:strFriend5;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"strFriend5,omitempty"`
+	Friend6  *mssql.VarChar `gorm:"column:strFriend6;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"strFriend6,omitempty"`
+	Friend7  *mssql.VarChar `gorm:"column:strFriend7;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"strFriend7,omitempty"`
+	Friend8  *mssql.VarChar `gorm:"column:strFriend8;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"strFriend8,omitempty"`
+	Friend9  *mssql.VarChar `gorm:"column:strFriend9;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"strFriend9,omitempty"`
+	Friend10 *mssql.VarChar `gorm:"column:strFriend10;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"strFriend10,omitempty"`
+	Friend11 *mssql.VarChar `gorm:"column:strFriend11;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"strFriend11,omitempty"`
+	Friend12 *mssql.VarChar `gorm:"column:strFriend12;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"strFriend12,omitempty"`
+	Friend13 *mssql.VarChar `gorm:"column:strFriend13;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"strFriend13,omitempty"`
+	Friend14 *mssql.VarChar `gorm:"column:strFriend14;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"strFriend14,omitempty"`
+	Friend15 *mssql.VarChar `gorm:"column:strFriend15;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"strFriend15,omitempty"`
+	Friend16 *mssql.VarChar `gorm:"column:strFriend16;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"strFriend16,omitempty"`
+	Friend17 *mssql.VarChar `gorm:"column:strFriend17;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"strFriend17,omitempty"`
+	Friend18 *mssql.VarChar `gorm:"column:strFriend18;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"strFriend18,omitempty"`
+	Friend19 *mssql.VarChar `gorm:"column:strFriend19;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"strFriend19,omitempty"`
+	Friend20 *mssql.VarChar `gorm:"column:strFriend20;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"strFriend20,omitempty"`
+	Friend21 *mssql.VarChar `gorm:"column:strFriend21;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"strFriend21,omitempty"`
+	Friend22 *mssql.VarChar `gorm:"column:strFriend22;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"strFriend22,omitempty"`
+	Friend23 *mssql.VarChar `gorm:"column:strFriend23;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"strFriend23,omitempty"`
+	Friend24 *mssql.VarChar `gorm:"column:strFriend24;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"strFriend24,omitempty"`
 }
 
 // GetDatabaseName Returns the table's database name
@@ -120,7 +120,7 @@ func (this FriendList) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this FriendList) GetCreateTableString() string {
-	query := "CREATE TABLE [FRIEND_LIST] (\n\t[strUserID] varchar(21) NOT NULL,\n\t[strFriend1] varchar(21),\n\t[strFriend2] varchar(21),\n\t[strFriend3] varchar(21),\n\t[strFriend4] varchar(21),\n\t[strFriend5] varchar(21),\n\t[strFriend6] varchar(21),\n\t[strFriend7] varchar(21),\n\t[strFriend8] varchar(21),\n\t[strFriend9] varchar(21),\n\t[strFriend10] varchar(21),\n\t[strFriend11] varchar(21),\n\t[strFriend12] varchar(21),\n\t[strFriend13] varchar(21),\n\t[strFriend14] varchar(21),\n\t[strFriend15] varchar(21),\n\t[strFriend16] varchar(21),\n\t[strFriend17] varchar(21),\n\t[strFriend18] varchar(21),\n\t[strFriend19] varchar(21),\n\t[strFriend20] varchar(21),\n\t[strFriend21] varchar(21),\n\t[strFriend22] varchar(21),\n\t[strFriend23] varchar(21),\n\t[strFriend24] varchar(21)\n\tCONSTRAINT [PK_FRIEND_LIST] PRIMARY KEY CLUSTERED ([strUserID])\n)\nGO\n"
+	query := "CREATE TABLE [FRIEND_LIST] (\n\t[strUserID] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[strFriend1] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[strFriend2] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[strFriend3] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[strFriend4] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[strFriend5] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[strFriend6] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[strFriend7] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[strFriend8] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[strFriend9] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[strFriend10] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[strFriend11] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[strFriend12] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[strFriend13] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[strFriend14] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[strFriend15] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[strFriend16] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[strFriend17] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[strFriend18] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[strFriend19] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[strFriend20] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[strFriend21] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[strFriend22] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[strFriend23] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[strFriend24] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS\n\tCONSTRAINT [PK_FRIEND_LIST] PRIMARY KEY CLUSTERED ([strUserID])\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

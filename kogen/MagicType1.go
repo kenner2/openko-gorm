@@ -19,8 +19,8 @@ func init() {
 // MagicType1 Type 1 covers melee abilities
 type MagicType1 struct {
 	MagicNumber int            `gorm:"column:iNum;type:int;primaryKey;not null" json:"iNum"`
-	Name        *mssql.VarChar `gorm:"column:Name;type:varchar(50)" json:"Name,omitempty"`
-	Description *mssql.VarChar `gorm:"column:Description;type:varchar(100)" json:"Description,omitempty"`
+	Name        *mssql.VarChar `gorm:"column:Name;type:varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"Name,omitempty"`
+	Description *mssql.VarChar `gorm:"column:Description;type:varchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"Description,omitempty"`
 	Type        uint8          `gorm:"column:Type;type:tinyint;not null" json:"Type"`
 	HitRateMod  int16          `gorm:"column:HitRate;type:smallint;not null" json:"HitRate"`
 	DamageMod   int16          `gorm:"column:Hit;type:smallint;not null" json:"Hit"`
@@ -81,7 +81,7 @@ func (this MagicType1) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this MagicType1) GetCreateTableString() string {
-	query := "CREATE TABLE [MAGIC_TYPE1] (\n\t[iNum] int NOT NULL,\n\t[Name] varchar(50),\n\t[Description] varchar(100),\n\t[Type] tinyint NOT NULL,\n\t[HitRate] smallint NOT NULL,\n\t[Hit] smallint NOT NULL,\n\t[AddDamage] smallint NOT NULL,\n\t[Delay] tinyint NOT NULL,\n\t[ComboType] tinyint NOT NULL,\n\t[ComboCount] tinyint NOT NULL,\n\t[ComboDamage] smallint NOT NULL,\n\t[Range] smallint NOT NULL\n\tCONSTRAINT [PK_MAGIC_TYPE1] PRIMARY KEY CLUSTERED ([iNum])\n)\nGO\n"
+	query := "CREATE TABLE [MAGIC_TYPE1] (\n\t[iNum] int NOT NULL,\n\t[Name] varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[Description] varchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[Type] tinyint NOT NULL,\n\t[HitRate] smallint NOT NULL,\n\t[Hit] smallint NOT NULL,\n\t[AddDamage] smallint NOT NULL,\n\t[Delay] tinyint NOT NULL,\n\t[ComboType] tinyint NOT NULL,\n\t[ComboCount] tinyint NOT NULL,\n\t[ComboDamage] smallint NOT NULL,\n\t[Range] smallint NOT NULL\n\tCONSTRAINT [PK_MAGIC_TYPE1] PRIMARY KEY CLUSTERED ([iNum])\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

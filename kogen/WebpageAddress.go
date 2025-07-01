@@ -19,7 +19,7 @@ func init() {
 // WebpageAddress Webpage URL list
 type WebpageAddress struct {
 	Index          int            `gorm:"column:nIndex;type:int;primaryKey;not null" json:"nIndex"`
-	WebPageAddress *mssql.VarChar `gorm:"column:strWebPageAddress;type:varchar(100)" json:"strWebPageAddress,omitempty"`
+	WebPageAddress *mssql.VarChar `gorm:"column:strWebPageAddress;type:varchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"strWebPageAddress,omitempty"`
 }
 
 // GetDatabaseName Returns the table's database name
@@ -51,7 +51,7 @@ func (this WebpageAddress) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this WebpageAddress) GetCreateTableString() string {
-	query := "CREATE TABLE [WEBPAGE_ADDRESS] (\n\t[nIndex] int NOT NULL,\n\t[strWebPageAddress] varchar(100)\n\tCONSTRAINT [PK_WEBPAGE_ADDRESS] PRIMARY KEY CLUSTERED ([nIndex])\n)\nGO\n"
+	query := "CREATE TABLE [WEBPAGE_ADDRESS] (\n\t[nIndex] int NOT NULL,\n\t[strWebPageAddress] varchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS\n\tCONSTRAINT [PK_WEBPAGE_ADDRESS] PRIMARY KEY CLUSTERED ([nIndex])\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

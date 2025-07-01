@@ -28,10 +28,10 @@ type RentalItemList struct {
 	Class             uint8          `gorm:"column:byClass;type:tinyint;not null" json:"byClass"`
 	RentalTime        int16          `gorm:"column:sRentalTime;type:smallint;not null" json:"sRentalTime"`
 	RentalMoney       int            `gorm:"column:nRentalMoney;type:int;not null" json:"nRentalMoney"`
-	LenderCharId      mssql.VarChar  `gorm:"column:strLenderCharID;type:varchar(21);not null" json:"strLenderCharID"`
-	LenderAccountId   mssql.VarChar  `gorm:"column:strLenderAcID;type:varchar(21);not null" json:"strLenderAcID"`
-	BorrowerCharId    *mssql.VarChar `gorm:"column:strBorrowerCharID;type:varchar(21)" json:"strBorrowerCharID,omitempty"`
-	BorrowerAccountId *mssql.VarChar `gorm:"column:strBorrowerAcID;type:varchar(21)" json:"strBorrowerAcID,omitempty"`
+	LenderCharId      mssql.VarChar  `gorm:"column:strLenderCharID;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS;not null" json:"strLenderCharID"`
+	LenderAccountId   mssql.VarChar  `gorm:"column:strLenderAcID;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS;not null" json:"strLenderAcID"`
+	BorrowerCharId    *mssql.VarChar `gorm:"column:strBorrowerCharID;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"strBorrowerCharID,omitempty"`
+	BorrowerAccountId *mssql.VarChar `gorm:"column:strBorrowerAcID;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"strBorrowerAcID,omitempty"`
 	LendTime          *time.Time     `gorm:"column:timeLender;type:smalldatetime" json:"timeLender,omitempty"`
 	RegisterTime      time.Time      `gorm:"column:timeRegister;type:smalldatetime;not null;default:getdate()" json:"timeRegister"`
 }
@@ -91,7 +91,7 @@ func (this RentalItemList) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this RentalItemList) GetCreateTableString() string {
-	query := "CREATE TABLE [RENTAL_ITEM_LIST] (\n\t[nRentalIndex] int NOT NULL,\n\t[nItemIndex] int NOT NULL,\n\t[sDurability] smallint NOT NULL,\n\t[nSerialNumber] bigint NOT NULL,\n\t[byRegType] tinyint NOT NULL,\n\t[byItemType] tinyint NOT NULL,\n\t[byClass] tinyint NOT NULL,\n\t[sRentalTime] smallint NOT NULL,\n\t[nRentalMoney] int NOT NULL,\n\t[strLenderCharID] varchar(21) NOT NULL,\n\t[strLenderAcID] varchar(21) NOT NULL,\n\t[strBorrowerCharID] varchar(21),\n\t[strBorrowerAcID] varchar(21),\n\t[timeLender] smalldatetime,\n\t[timeRegister] smalldatetime NOT NULL\n)\nGO\nALTER TABLE [RENTAL_ITEM_LIST] ADD CONSTRAINT [DF_RENTAL_ITEM_LIST_sDurability] DEFAULT 0 FOR [sDurability]\nGO\nALTER TABLE [RENTAL_ITEM_LIST] ADD CONSTRAINT [DF_RENTAL_ITEM_LIST_byRegType] DEFAULT 0 FOR [byRegType]\nGO\nALTER TABLE [RENTAL_ITEM_LIST] ADD CONSTRAINT [DF_RENTAL_ITEM_LIST_timeRegister] DEFAULT getdate() FOR [timeRegister]\nGO\n"
+	query := "CREATE TABLE [RENTAL_ITEM_LIST] (\n\t[nRentalIndex] int NOT NULL,\n\t[nItemIndex] int NOT NULL,\n\t[sDurability] smallint NOT NULL,\n\t[nSerialNumber] bigint NOT NULL,\n\t[byRegType] tinyint NOT NULL,\n\t[byItemType] tinyint NOT NULL,\n\t[byClass] tinyint NOT NULL,\n\t[sRentalTime] smallint NOT NULL,\n\t[nRentalMoney] int NOT NULL,\n\t[strLenderCharID] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[strLenderAcID] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[strBorrowerCharID] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[strBorrowerAcID] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[timeLender] smalldatetime,\n\t[timeRegister] smalldatetime NOT NULL\n)\nGO\nALTER TABLE [RENTAL_ITEM_LIST] ADD CONSTRAINT [DF_RENTAL_ITEM_LIST_sDurability] DEFAULT 0 FOR [sDurability]\nGO\nALTER TABLE [RENTAL_ITEM_LIST] ADD CONSTRAINT [DF_RENTAL_ITEM_LIST_byRegType] DEFAULT 0 FOR [byRegType]\nGO\nALTER TABLE [RENTAL_ITEM_LIST] ADD CONSTRAINT [DF_RENTAL_ITEM_LIST_timeRegister] DEFAULT getdate() FOR [timeRegister]\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

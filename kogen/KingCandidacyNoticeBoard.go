@@ -18,7 +18,7 @@ func init() {
 
 // KingCandidacyNoticeBoard King candidacy notice board
 type KingCandidacyNoticeBoard struct {
-	CandidateId  mssql.VarChar `gorm:"column:strUserID;type:varchar(21);primaryKey;not null" json:"strUserID"`
+	CandidateId  mssql.VarChar `gorm:"column:strUserID;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS;primaryKey;not null" json:"strUserID"`
 	Nation       uint8         `gorm:"column:byNation;type:tinyint;not null" json:"byNation"`
 	NoticeLength int16         `gorm:"column:sNoticeLen;type:smallint;not null" json:"sNoticeLen"`
 	Notice       []byte        `gorm:"column:strNotice;type:varbinary(1024);not null" json:"strNotice"`
@@ -57,7 +57,7 @@ func (this KingCandidacyNoticeBoard) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this KingCandidacyNoticeBoard) GetCreateTableString() string {
-	query := "CREATE TABLE [KING_CANDIDACY_NOTICE_BOARD] (\n\t[strUserID] varchar(21) NOT NULL,\n\t[byNation] tinyint NOT NULL,\n\t[sNoticeLen] smallint NOT NULL,\n\t[strNotice] varbinary(1024) NOT NULL\n\tCONSTRAINT [PK_KING_CANDIDACY_NOTICE_BOARD] PRIMARY KEY CLUSTERED ([strUserID])\n)\nGO\n"
+	query := "CREATE TABLE [KING_CANDIDACY_NOTICE_BOARD] (\n\t[strUserID] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[byNation] tinyint NOT NULL,\n\t[sNoticeLen] smallint NOT NULL,\n\t[strNotice] varbinary(1024) NOT NULL\n\tCONSTRAINT [PK_KING_CANDIDACY_NOTICE_BOARD] PRIMARY KEY CLUSTERED ([strUserID])\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

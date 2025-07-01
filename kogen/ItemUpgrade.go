@@ -20,8 +20,8 @@ func init() {
 type ItemUpgrade struct {
 	Index        int            `gorm:"column:nIndex;type:int;primaryKey;not null" json:"nIndex"`
 	NpcNumber    int16          `gorm:"column:nNPCNum;type:smallint;not null" json:"nNPCNum"`
-	Name         *mssql.VarChar `gorm:"column:strName;type:varchar(50)" json:"strName,omitempty"`
-	Note         *mssql.VarChar `gorm:"column:strNote;type:varchar(100)" json:"strNote,omitempty"`
+	Name         *mssql.VarChar `gorm:"column:strName;type:varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"strName,omitempty"`
+	Note         *mssql.VarChar `gorm:"column:strNote;type:varchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"strNote,omitempty"`
 	OriginType   int16          `gorm:"column:nOriginType;type:smallint;not null" json:"nOriginType"`
 	OriginItem   int16          `gorm:"column:nOriginItem;type:smallint;not null" json:"nOriginItem"`
 	RequireItem1 int            `gorm:"column:nReqItem1;type:int;not null" json:"nReqItem1"`
@@ -99,7 +99,7 @@ func (this ItemUpgrade) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this ItemUpgrade) GetCreateTableString() string {
-	query := "CREATE TABLE [ITEM_UPGRADE] (\n\t[nIndex] int NOT NULL,\n\t[nNPCNum] smallint NOT NULL,\n\t[strName] varchar(50),\n\t[strNote] varchar(100),\n\t[nOriginType] smallint NOT NULL,\n\t[nOriginItem] smallint NOT NULL,\n\t[nReqItem1] int NOT NULL,\n\t[nReqItem2] int NOT NULL,\n\t[nReqItem3] int NOT NULL,\n\t[nReqItem4] int NOT NULL,\n\t[nReqItem5] int NOT NULL,\n\t[nReqItem6] int NOT NULL,\n\t[nReqItem7] int NOT NULL,\n\t[nReqItem8] int NOT NULL,\n\t[nReqNoah] int NOT NULL,\n\t[bRateType] tinyint NOT NULL,\n\t[nGenRate] smallint NOT NULL,\n\t[nGiveItem] smallint NOT NULL\n\tCONSTRAINT [PK_ITEM_UPGRADE] PRIMARY KEY CLUSTERED ([nIndex])\n)\nGO\n"
+	query := "CREATE TABLE [ITEM_UPGRADE] (\n\t[nIndex] int NOT NULL,\n\t[nNPCNum] smallint NOT NULL,\n\t[strName] varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[strNote] varchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[nOriginType] smallint NOT NULL,\n\t[nOriginItem] smallint NOT NULL,\n\t[nReqItem1] int NOT NULL,\n\t[nReqItem2] int NOT NULL,\n\t[nReqItem3] int NOT NULL,\n\t[nReqItem4] int NOT NULL,\n\t[nReqItem5] int NOT NULL,\n\t[nReqItem6] int NOT NULL,\n\t[nReqItem7] int NOT NULL,\n\t[nReqItem8] int NOT NULL,\n\t[nReqNoah] int NOT NULL,\n\t[bRateType] tinyint NOT NULL,\n\t[nGenRate] smallint NOT NULL,\n\t[nGiveItem] smallint NOT NULL\n\tCONSTRAINT [PK_ITEM_UPGRADE] PRIMARY KEY CLUSTERED ([nIndex])\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

@@ -19,8 +19,8 @@ func init() {
 // MagicType7 Type 7 supports targeting modifications
 type MagicType7 struct {
 	MagicNumber   int            `gorm:"column:nIndex;type:int;primaryKey;not null" json:"nIndex"`
-	Name          *mssql.VarChar `gorm:"column:strName;type:varchar(50)" json:"strName,omitempty"`
-	Note          *mssql.VarChar `gorm:"column:strNote;type:varchar(100)" json:"strNote,omitempty"`
+	Name          *mssql.VarChar `gorm:"column:strName;type:varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"strName,omitempty"`
+	Note          *mssql.VarChar `gorm:"column:strNote;type:varchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"strNote,omitempty"`
 	ValidGroup    uint8          `gorm:"column:byValidGroup;type:tinyint;not null" json:"byValidGroup"`
 	NationChange  uint8          `gorm:"column:byNatoinChange;type:tinyint;not null" json:"byNatoinChange"`
 	MonsterNumber int16          `gorm:"column:shMonsterNum;type:smallint;not null" json:"shMonsterNum"`
@@ -87,7 +87,7 @@ func (this MagicType7) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this MagicType7) GetCreateTableString() string {
-	query := "CREATE TABLE [MAGIC_TYPE7] (\n\t[nIndex] int NOT NULL,\n\t[strName] varchar(50),\n\t[strNote] varchar(100),\n\t[byValidGroup] tinyint NOT NULL,\n\t[byNatoinChange] tinyint NOT NULL,\n\t[shMonsterNum] smallint NOT NULL,\n\t[byTargetChange] tinyint NOT NULL,\n\t[byStateChange] tinyint NOT NULL,\n\t[byRadius] tinyint NOT NULL,\n\t[shHitrate] smallint NOT NULL,\n\t[shDuration] smallint NOT NULL,\n\t[shDamage] smallint NOT NULL,\n\t[byVisoin] tinyint NOT NULL,\n\t[nNeedItem] int NOT NULL\n\tCONSTRAINT [PK_MAGIC_TYPE7] PRIMARY KEY CLUSTERED ([nIndex])\n)\nGO\n"
+	query := "CREATE TABLE [MAGIC_TYPE7] (\n\t[nIndex] int NOT NULL,\n\t[strName] varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[strNote] varchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[byValidGroup] tinyint NOT NULL,\n\t[byNatoinChange] tinyint NOT NULL,\n\t[shMonsterNum] smallint NOT NULL,\n\t[byTargetChange] tinyint NOT NULL,\n\t[byStateChange] tinyint NOT NULL,\n\t[byRadius] tinyint NOT NULL,\n\t[shHitrate] smallint NOT NULL,\n\t[shDuration] smallint NOT NULL,\n\t[shDamage] smallint NOT NULL,\n\t[byVisoin] tinyint NOT NULL,\n\t[nNeedItem] int NOT NULL\n\tCONSTRAINT [PK_MAGIC_TYPE7] PRIMARY KEY CLUSTERED ([nIndex])\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

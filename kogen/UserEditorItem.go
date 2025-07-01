@@ -19,10 +19,10 @@ func init() {
 
 // UserEditorItem User editor item
 type UserEditorItem struct {
-	CharId     mssql.VarChar `gorm:"column:strCharID;type:varchar(21);not null" json:"strCharID"`
-	AccountId  mssql.VarChar `gorm:"column:strAccountID;type:varchar(21);not null" json:"strAccountID"`
-	OpId       mssql.VarChar `gorm:"column:strOpID;type:varchar(21);not null" json:"strOpID"`
-	OpIP       mssql.VarChar `gorm:"column:strOpIP;type:varchar(21);not null" json:"strOpIP"`
+	CharId     mssql.VarChar `gorm:"column:strCharID;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS;not null" json:"strCharID"`
+	AccountId  mssql.VarChar `gorm:"column:strAccountID;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS;not null" json:"strAccountID"`
+	OpId       mssql.VarChar `gorm:"column:strOpID;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS;not null" json:"strOpID"`
+	OpIP       mssql.VarChar `gorm:"column:strOpIP;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS;not null" json:"strOpIP"`
 	DbIndex    int16         `gorm:"column:sDBIndex;type:smallint;not null" json:"sDBIndex"`
 	Pos        int16         `gorm:"column:sPos;type:smallint;not null" json:"sPos"`
 	Type       uint8         `gorm:"column:byType;type:tinyint;not null" json:"byType"`
@@ -76,7 +76,7 @@ func (this UserEditorItem) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this UserEditorItem) GetCreateTableString() string {
-	query := "CREATE TABLE [USER_EDITOR_ITEM] (\n\t[strCharID] varchar(21) NOT NULL,\n\t[strAccountID] varchar(21) NOT NULL,\n\t[strOpID] varchar(21) NOT NULL,\n\t[strOpIP] varchar(21) NOT NULL,\n\t[sDBIndex] smallint NOT NULL,\n\t[sPos] smallint NOT NULL,\n\t[byType] tinyint NOT NULL,\n\t[nItemID1] int NOT NULL,\n\t[nItemID2] int NOT NULL,\n\t[UpdateTime] smalldatetime\n)\nGO\n"
+	query := "CREATE TABLE [USER_EDITOR_ITEM] (\n\t[strCharID] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[strAccountID] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[strOpID] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[strOpIP] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[sDBIndex] smallint NOT NULL,\n\t[sPos] smallint NOT NULL,\n\t[byType] tinyint NOT NULL,\n\t[nItemID1] int NOT NULL,\n\t[nItemID2] int NOT NULL,\n\t[UpdateTime] smalldatetime\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 
