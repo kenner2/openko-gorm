@@ -19,9 +19,9 @@ func init() {
 // Magic Contains the configuration for magic and abilities
 type Magic struct {
 	MagicNumber  int            `gorm:"column:MagicNum;type:int;primaryKey;not null" json:"MagicNum"`
-	EnglishName  *mssql.VarChar `gorm:"column:EnName;type:varchar(50)" json:"EnName,omitempty"`
-	KoreanName   *mssql.VarChar `gorm:"column:KrName;type:varchar(50)" json:"KrName,omitempty"`
-	Description  *mssql.VarChar `gorm:"column:Description;type:varchar(100)" json:"Description,omitempty"`
+	EnglishName  *mssql.VarChar `gorm:"column:EnName;type:varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"EnName,omitempty"`
+	KoreanName   *mssql.VarChar `gorm:"column:KrName;type:varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"KrName,omitempty"`
+	Description  *mssql.VarChar `gorm:"column:Description;type:varchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"Description,omitempty"`
 	BeforeAction uint8          `gorm:"column:BeforeAction;type:tinyint;not null" json:"BeforeAction"`
 	TargetAction uint8          `gorm:"column:TargetAction;type:tinyint;not null" json:"TargetAction"`
 	SelfEffect   uint8          `gorm:"column:SelfEffect;type:tinyint;not null" json:"SelfEffect"`
@@ -117,7 +117,7 @@ func (this Magic) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this Magic) GetCreateTableString() string {
-	query := "CREATE TABLE [MAGIC] (\n\t[MagicNum] int NOT NULL,\n\t[EnName] varchar(50),\n\t[KrName] varchar(50),\n\t[Description] varchar(100),\n\t[BeforeAction] tinyint NOT NULL,\n\t[TargetAction] tinyint NOT NULL,\n\t[SelfEffect] tinyint NOT NULL,\n\t[FlyingEffect] tinyint NOT NULL,\n\t[TargetEffect] smallint NOT NULL,\n\t[Moral] tinyint NOT NULL,\n\t[SkillLevel] smallint NOT NULL,\n\t[Skill] smallint NOT NULL,\n\t[Msp] smallint NOT NULL,\n\t[HP] smallint NOT NULL,\n\t[ItemGroup] tinyint NOT NULL,\n\t[UseItem] int NOT NULL,\n\t[CastTime] tinyint NOT NULL,\n\t[ReCastTime] tinyint NOT NULL,\n\t[SuccessRate] tinyint NOT NULL,\n\t[Type1] tinyint NOT NULL,\n\t[Type2] tinyint NOT NULL,\n\t[Range] smallint NOT NULL,\n\t[Etc] tinyint NOT NULL,\n\t[Event] int\n\tCONSTRAINT [PK_MAGIC] PRIMARY KEY CLUSTERED ([MagicNum])\n)\nGO\n"
+	query := "CREATE TABLE [MAGIC] (\n\t[MagicNum] int NOT NULL,\n\t[EnName] varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[KrName] varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[Description] varchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[BeforeAction] tinyint NOT NULL,\n\t[TargetAction] tinyint NOT NULL,\n\t[SelfEffect] tinyint NOT NULL,\n\t[FlyingEffect] tinyint NOT NULL,\n\t[TargetEffect] smallint NOT NULL,\n\t[Moral] tinyint NOT NULL,\n\t[SkillLevel] smallint NOT NULL,\n\t[Skill] smallint NOT NULL,\n\t[Msp] smallint NOT NULL,\n\t[HP] smallint NOT NULL,\n\t[ItemGroup] tinyint NOT NULL,\n\t[UseItem] int NOT NULL,\n\t[CastTime] tinyint NOT NULL,\n\t[ReCastTime] tinyint NOT NULL,\n\t[SuccessRate] tinyint NOT NULL,\n\t[Type1] tinyint NOT NULL,\n\t[Type2] tinyint NOT NULL,\n\t[Range] smallint NOT NULL,\n\t[Etc] tinyint NOT NULL,\n\t[Event] int\n\tCONSTRAINT [PK_MAGIC] PRIMARY KEY CLUSTERED ([MagicNum])\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

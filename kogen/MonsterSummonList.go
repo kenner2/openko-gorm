@@ -19,7 +19,7 @@ func init() {
 // MonsterSummonList Monster summon list
 type MonsterSummonList struct {
 	MonsterId   int16          `gorm:"column:sSid;type:smallint;not null" json:"sSid"`
-	Name        *mssql.VarChar `gorm:"column:strName;type:varchar(31)" json:"strName,omitempty"`
+	Name        *mssql.VarChar `gorm:"column:strName;type:varchar(31) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"strName,omitempty"`
 	Level       int16          `gorm:"column:sLevel;type:smallint;not null" json:"sLevel"`
 	Probability int16          `gorm:"column:sProbability;type:smallint;not null" json:"sProbability"`
 	Type        uint8          `gorm:"column:bType;type:tinyint;not null;default:0" json:"bType"`
@@ -60,7 +60,7 @@ func (this MonsterSummonList) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this MonsterSummonList) GetCreateTableString() string {
-	query := "CREATE TABLE [MONSTER_SUMMON_LIST] (\n\t[sSid] smallint NOT NULL,\n\t[strName] varchar(31),\n\t[sLevel] smallint NOT NULL,\n\t[sProbability] smallint NOT NULL,\n\t[bType] tinyint NOT NULL\n)\nGO\nALTER TABLE [MONSTER_SUMMON_LIST] ADD CONSTRAINT [DF_MONSTER_SUMMON_LIST_bType] DEFAULT 0 FOR [bType]\nGO\n"
+	query := "CREATE TABLE [MONSTER_SUMMON_LIST] (\n\t[sSid] smallint NOT NULL,\n\t[strName] varchar(31) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[sLevel] smallint NOT NULL,\n\t[sProbability] smallint NOT NULL,\n\t[bType] tinyint NOT NULL\n)\nGO\nALTER TABLE [MONSTER_SUMMON_LIST] ADD CONSTRAINT [DF_MONSTER_SUMMON_LIST_bType] DEFAULT 0 FOR [bType]\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

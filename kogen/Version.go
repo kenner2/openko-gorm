@@ -19,8 +19,8 @@ func init() {
 // Version Version data and patch management
 type Version struct {
 	Version        int16         `gorm:"column:sVersion;type:smallint;primaryKey;not null" json:"sVersion"`
-	FileName       mssql.VarChar `gorm:"column:strFileName;type:varchar(50);not null" json:"strFileName"`
-	CompressName   mssql.VarChar `gorm:"column:strCompressName;type:varchar(50);not null" json:"strCompressName"`
+	FileName       mssql.VarChar `gorm:"column:strFileName;type:varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS;not null" json:"strFileName"`
+	CompressName   mssql.VarChar `gorm:"column:strCompressName;type:varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS;not null" json:"strCompressName"`
 	HistoryVersion int16         `gorm:"column:sHistoryVersion;type:smallint;not null" json:"sHistoryVersion"`
 }
 
@@ -57,7 +57,7 @@ func (this Version) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this Version) GetCreateTableString() string {
-	query := "CREATE TABLE [VERSION] (\n\t[sVersion] smallint NOT NULL,\n\t[strFileName] varchar(50) NOT NULL,\n\t[strCompressName] varchar(50) NOT NULL,\n\t[sHistoryVersion] smallint NOT NULL\n\tCONSTRAINT [PK_VERSION] PRIMARY KEY CLUSTERED ([sVersion])\n)\nGO\n"
+	query := "CREATE TABLE [VERSION] (\n\t[sVersion] smallint NOT NULL,\n\t[strFileName] varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[strCompressName] varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[sHistoryVersion] smallint NOT NULL\n\tCONSTRAINT [PK_VERSION] PRIMARY KEY CLUSTERED ([sVersion])\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

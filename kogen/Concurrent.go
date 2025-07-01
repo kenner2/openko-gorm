@@ -22,7 +22,7 @@ type Concurrent struct {
 	Zone1Count *int16         `gorm:"column:zone1_count;type:smallint" json:"zone1_count,omitempty"`
 	Zone2Count *int16         `gorm:"column:zone2_count;type:smallint" json:"zone2_count,omitempty"`
 	Zone3Count *int16         `gorm:"column:zone3_count;type:smallint" json:"zone3_count,omitempty"`
-	Bz         *mssql.VarChar `gorm:"column:bz;type:varchar(50)" json:"bz,omitempty"`
+	Bz         *mssql.VarChar `gorm:"column:bz;type:varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"bz,omitempty"`
 }
 
 // GetDatabaseName Returns the table's database name
@@ -60,7 +60,7 @@ func (this Concurrent) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this Concurrent) GetCreateTableString() string {
-	query := "CREATE TABLE [CONCURRENT] (\n\t[serverid] tinyint NOT NULL,\n\t[zone1_count] smallint,\n\t[zone2_count] smallint,\n\t[zone3_count] smallint,\n\t[bz] varchar(50)\n\tCONSTRAINT [PK_CONCURRENT] PRIMARY KEY CLUSTERED ([serverid])\n)\nGO\n"
+	query := "CREATE TABLE [CONCURRENT] (\n\t[serverid] tinyint NOT NULL,\n\t[zone1_count] smallint,\n\t[zone2_count] smallint,\n\t[zone3_count] smallint,\n\t[bz] varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS\n\tCONSTRAINT [PK_CONCURRENT] PRIMARY KEY CLUSTERED ([serverid])\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

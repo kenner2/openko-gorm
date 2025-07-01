@@ -20,13 +20,13 @@ func init() {
 type ZoneInfo struct {
 	ServerId  uint8          `gorm:"column:ServerNo;type:tinyint;primaryKey;not null" json:"ServerNo"`
 	ZoneId    int16          `gorm:"column:ZoneNo;type:smallint;primaryKey;not null" json:"ZoneNo"`
-	Name      mssql.VarChar  `gorm:"column:strZoneName;type:varchar(50);not null" json:"strZoneName"`
+	Name      mssql.VarChar  `gorm:"column:strZoneName;type:varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS;not null" json:"strZoneName"`
 	InitX     int            `gorm:"column:InitX;type:int;not null" json:"InitX"`
 	InitZ     int            `gorm:"column:InitZ;type:int;not null" json:"InitZ"`
 	InitY     int            `gorm:"column:InitY;type:int;not null" json:"InitY"`
 	Type      uint8          `gorm:"column:Type;type:tinyint;not null" json:"Type"`
 	RoomEvent uint8          `gorm:"column:RoomEvent;type:tinyint;not null" json:"RoomEvent"`
-	Bz        *mssql.VarChar `gorm:"column:bz;type:varchar(50)" json:"bz,omitempty"`
+	Bz        *mssql.VarChar `gorm:"column:bz;type:varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"bz,omitempty"`
 }
 
 // GetDatabaseName Returns the table's database name
@@ -72,7 +72,7 @@ func (this ZoneInfo) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this ZoneInfo) GetCreateTableString() string {
-	query := "CREATE TABLE [ZONE_INFO] (\n\t[ServerNo] tinyint NOT NULL,\n\t[ZoneNo] smallint NOT NULL,\n\t[strZoneName] varchar(50) NOT NULL,\n\t[InitX] int NOT NULL,\n\t[InitZ] int NOT NULL,\n\t[InitY] int NOT NULL,\n\t[Type] tinyint NOT NULL,\n\t[RoomEvent] tinyint NOT NULL,\n\t[bz] varchar(50)\n\tCONSTRAINT [PK_ZONE_INFO] PRIMARY KEY CLUSTERED ([ServerNo], [ZoneNo])\n)\nGO\n"
+	query := "CREATE TABLE [ZONE_INFO] (\n\t[ServerNo] tinyint NOT NULL,\n\t[ZoneNo] smallint NOT NULL,\n\t[strZoneName] varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[InitX] int NOT NULL,\n\t[InitZ] int NOT NULL,\n\t[InitY] int NOT NULL,\n\t[Type] tinyint NOT NULL,\n\t[RoomEvent] tinyint NOT NULL,\n\t[bz] varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS\n\tCONSTRAINT [PK_ZONE_INFO] PRIMARY KEY CLUSTERED ([ServerNo], [ZoneNo])\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

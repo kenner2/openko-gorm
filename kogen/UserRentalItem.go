@@ -19,8 +19,8 @@ func init() {
 
 // UserRentalItem User rental item
 type UserRentalItem struct {
-	UserId          mssql.VarChar `gorm:"column:strUserID;type:varchar(50);not null" json:"strUserID"`
-	AccountId       mssql.VarChar `gorm:"column:strAccountID;type:varchar(50);not null" json:"strAccountID"`
+	UserId          mssql.VarChar `gorm:"column:strUserID;type:varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS;not null" json:"strUserID"`
+	AccountId       mssql.VarChar `gorm:"column:strAccountID;type:varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS;not null" json:"strAccountID"`
 	RentalType      uint8         `gorm:"column:byRentalType;type:tinyint;not null" json:"byRentalType"`
 	RegTime         uint8         `gorm:"column:byRegType;type:tinyint;not null;default:0" json:"byRegType"`
 	RentalIndex     int           `gorm:"column:nRentalIndex;type:int;not null" json:"nRentalIndex"`
@@ -85,7 +85,7 @@ func (this UserRentalItem) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this UserRentalItem) GetCreateTableString() string {
-	query := "CREATE TABLE [USER_RENTAL_ITEM] (\n\t[strUserID] varchar(50) NOT NULL,\n\t[strAccountID] varchar(50) NOT NULL,\n\t[byRentalType] tinyint NOT NULL,\n\t[byRegType] tinyint NOT NULL,\n\t[nRentalIndex] int NOT NULL,\n\t[nItemIndex] int NOT NULL,\n\t[sDurability] smallint NOT NULL,\n\t[nSerialNumber] bigint NOT NULL,\n\t[nRentalMoney] int NOT NULL,\n\t[sRentalTime] smallint NOT NULL,\n\t[sDuringTime] smallint NOT NULL,\n\t[timeRental] smalldatetime,\n\t[timeRegister] smalldatetime\n)\nGO\nALTER TABLE [USER_RENTAL_ITEM] ADD CONSTRAINT [DF_USER_RENTAL_ITEM_byRegType] DEFAULT 0 FOR [byRegType]\nGO\nALTER TABLE [USER_RENTAL_ITEM] ADD CONSTRAINT [DF_USER_RENTAL_ITEM_sDurability] DEFAULT 0 FOR [sDurability]\nGO\nALTER TABLE [USER_RENTAL_ITEM] ADD CONSTRAINT [DF_USER_RENTAL_ITEM_timeRegister] DEFAULT getdate() FOR [timeRegister]\nGO\n"
+	query := "CREATE TABLE [USER_RENTAL_ITEM] (\n\t[strUserID] varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[strAccountID] varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[byRentalType] tinyint NOT NULL,\n\t[byRegType] tinyint NOT NULL,\n\t[nRentalIndex] int NOT NULL,\n\t[nItemIndex] int NOT NULL,\n\t[sDurability] smallint NOT NULL,\n\t[nSerialNumber] bigint NOT NULL,\n\t[nRentalMoney] int NOT NULL,\n\t[sRentalTime] smallint NOT NULL,\n\t[sDuringTime] smallint NOT NULL,\n\t[timeRental] smalldatetime,\n\t[timeRegister] smalldatetime\n)\nGO\nALTER TABLE [USER_RENTAL_ITEM] ADD CONSTRAINT [DF_USER_RENTAL_ITEM_byRegType] DEFAULT 0 FOR [byRegType]\nGO\nALTER TABLE [USER_RENTAL_ITEM] ADD CONSTRAINT [DF_USER_RENTAL_ITEM_sDurability] DEFAULT 0 FOR [sDurability]\nGO\nALTER TABLE [USER_RENTAL_ITEM] ADD CONSTRAINT [DF_USER_RENTAL_ITEM_timeRegister] DEFAULT getdate() FOR [timeRegister]\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

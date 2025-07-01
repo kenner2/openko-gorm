@@ -19,8 +19,8 @@ func init() {
 // ServerResource Server resource
 type ServerResource struct {
 	ResourceId int            `gorm:"column:nResourceID;type:int;primaryKey;not null" json:"nResourceID"`
-	Name       mssql.VarChar  `gorm:"column:strName;type:varchar(50);not null" json:"strName"`
-	Resource   *mssql.VarChar `gorm:"column:strResource;type:varchar(100)" json:"strResource,omitempty"`
+	Name       mssql.VarChar  `gorm:"column:strName;type:varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS;not null" json:"strName"`
+	Resource   *mssql.VarChar `gorm:"column:strResource;type:varchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"strResource,omitempty"`
 }
 
 // GetDatabaseName Returns the table's database name
@@ -54,7 +54,7 @@ func (this ServerResource) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this ServerResource) GetCreateTableString() string {
-	query := "CREATE TABLE [SERVER_RESOURCE] (\n\t[nResourceID] int NOT NULL,\n\t[strName] varchar(50) NOT NULL,\n\t[strResource] varchar(100)\n\tCONSTRAINT [PK_SERVER_RESOURCE] PRIMARY KEY CLUSTERED ([nResourceID])\n)\nGO\n"
+	query := "CREATE TABLE [SERVER_RESOURCE] (\n\t[nResourceID] int NOT NULL,\n\t[strName] varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[strResource] varchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS\n\tCONSTRAINT [PK_SERVER_RESOURCE] PRIMARY KEY CLUSTERED ([nResourceID])\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

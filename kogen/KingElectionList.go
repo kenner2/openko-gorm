@@ -21,7 +21,7 @@ type KingElectionList struct {
 	Type    uint8          `gorm:"column:byType;type:tinyint;not null" json:"byType"`
 	Nation  uint8          `gorm:"column:byNation;type:tinyint;not null" json:"byNation"`
 	Knights *int16         `gorm:"column:nKnights;type:smallint" json:"nKnights,omitempty"`
-	Name    *mssql.VarChar `gorm:"column:strName;type:varchar(21)" json:"strName,omitempty"`
+	Name    *mssql.VarChar `gorm:"column:strName;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"strName,omitempty"`
 	Money   int            `gorm:"column:nMoney;type:int;not null" json:"nMoney"`
 }
 
@@ -60,7 +60,7 @@ func (this KingElectionList) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this KingElectionList) GetCreateTableString() string {
-	query := "CREATE TABLE [KING_ELECTION_LIST] (\n\t[byType] tinyint NOT NULL,\n\t[byNation] tinyint NOT NULL,\n\t[nKnights] smallint,\n\t[strName] varchar(21),\n\t[nMoney] int NOT NULL\n)\nGO\n"
+	query := "CREATE TABLE [KING_ELECTION_LIST] (\n\t[byType] tinyint NOT NULL,\n\t[byNation] tinyint NOT NULL,\n\t[nKnights] smallint,\n\t[strName] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[nMoney] int NOT NULL\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

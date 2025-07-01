@@ -18,9 +18,9 @@ func init() {
 
 // UserDataSkillShortcut User data skill shortcut
 type UserDataSkillShortcut struct {
-	CharId    mssql.VarChar `gorm:"column:strCharID;type:varchar(21);primaryKey;not null;default:''" json:"strCharID"`
+	CharId    mssql.VarChar `gorm:"column:strCharID;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS;primaryKey;not null;default:''" json:"strCharID"`
 	Count     int16         `gorm:"column:nCount;type:smallint;not null;default:0" json:"nCount"`
-	SkillData mssql.VarChar `gorm:"column:strSkillData;type:varchar(260);not null;default:0x00" json:"strSkillData"`
+	SkillData mssql.VarChar `gorm:"column:strSkillData;type:varchar(260) COLLATE SQL_Latin1_General_CP1_CI_AS;not null;default:0x00" json:"strSkillData"`
 }
 
 // GetDatabaseName Returns the table's database name
@@ -54,7 +54,7 @@ func (this UserDataSkillShortcut) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this UserDataSkillShortcut) GetCreateTableString() string {
-	query := "CREATE TABLE [USERDATA_SKILLSHORTCUT] (\n\t[strCharID] varchar(21) NOT NULL,\n\t[nCount] smallint NOT NULL,\n\t[strSkillData] varchar(260) NOT NULL\n\tCONSTRAINT [PK_USERDATA_SKILLSHORTCUT] PRIMARY KEY CLUSTERED ([strCharID])\n)\nGO\nALTER TABLE [USERDATA_SKILLSHORTCUT] ADD CONSTRAINT [DF_USERDATA_SKILLSHORTCUT_strCharID] DEFAULT '' FOR [strCharID]\nGO\nALTER TABLE [USERDATA_SKILLSHORTCUT] ADD CONSTRAINT [DF_USERDATA_SKILLSHORTCUT_nCount] DEFAULT 0 FOR [nCount]\nGO\nALTER TABLE [USERDATA_SKILLSHORTCUT] ADD CONSTRAINT [DF_USERDATA_SKILLSHORTCUT_strSkillData] DEFAULT 0x00 FOR [strSkillData]\nGO\n"
+	query := "CREATE TABLE [USERDATA_SKILLSHORTCUT] (\n\t[strCharID] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[nCount] smallint NOT NULL,\n\t[strSkillData] varchar(260) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL\n\tCONSTRAINT [PK_USERDATA_SKILLSHORTCUT] PRIMARY KEY CLUSTERED ([strCharID])\n)\nGO\nALTER TABLE [USERDATA_SKILLSHORTCUT] ADD CONSTRAINT [DF_USERDATA_SKILLSHORTCUT_strCharID] DEFAULT '' FOR [strCharID]\nGO\nALTER TABLE [USERDATA_SKILLSHORTCUT] ADD CONSTRAINT [DF_USERDATA_SKILLSHORTCUT_nCount] DEFAULT 0 FOR [nCount]\nGO\nALTER TABLE [USERDATA_SKILLSHORTCUT] ADD CONSTRAINT [DF_USERDATA_SKILLSHORTCUT_strSkillData] DEFAULT 0x00 FOR [strSkillData]\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

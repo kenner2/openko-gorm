@@ -19,14 +19,14 @@ func init() {
 
 // WebItemMallLog Power-up store purchase log
 type WebItemMallLog struct {
-	AccountId   mssql.VarChar  `gorm:"column:strAccountID;type:varchar(21);not null" json:"strAccountID"`
-	CharId      mssql.VarChar  `gorm:"column:strCharID;type:varchar(21);not null" json:"strCharID"`
+	AccountId   mssql.VarChar  `gorm:"column:strAccountID;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS;not null" json:"strAccountID"`
+	CharId      mssql.VarChar  `gorm:"column:strCharID;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS;not null" json:"strCharID"`
 	ServerId    int16          `gorm:"column:ServerNo;type:smallint;not null" json:"ServerNo"`
 	ItemId      int            `gorm:"column:ItemID;type:int;not null" json:"ItemID"`
 	ItemCount   int16          `gorm:"column:ItemCount;type:smallint;not null" json:"ItemCount"`
 	BuyTime     time.Time      `gorm:"column:BuyTime;type:smalldatetime;not null;default:getdate()" json:"BuyTime"`
-	ImgFileName *mssql.VarChar `gorm:"column:img_file_name;type:varchar(50)" json:"img_file_name,omitempty"`
-	ItemName    *mssql.VarChar `gorm:"column:strItemName;type:varchar(100)" json:"strItemName,omitempty"`
+	ImgFileName *mssql.VarChar `gorm:"column:img_file_name;type:varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"img_file_name,omitempty"`
+	ItemName    *mssql.VarChar `gorm:"column:strItemName;type:varchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"strItemName,omitempty"`
 	Price       *int           `gorm:"column:price;type:int" json:"price,omitempty"`
 	PayType     *int           `gorm:"column:pay_type;type:int" json:"pay_type,omitempty"`
 }
@@ -76,7 +76,7 @@ func (this WebItemMallLog) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this WebItemMallLog) GetCreateTableString() string {
-	query := "CREATE TABLE [WEB_ITEMMALL_LOG] (\n\t[strAccountID] varchar(21) NOT NULL,\n\t[strCharID] varchar(21) NOT NULL,\n\t[ServerNo] smallint NOT NULL,\n\t[ItemID] int NOT NULL,\n\t[ItemCount] smallint NOT NULL,\n\t[BuyTime] smalldatetime NOT NULL,\n\t[img_file_name] varchar(50),\n\t[strItemName] varchar(100),\n\t[price] int,\n\t[pay_type] int\n)\nGO\nALTER TABLE [WEB_ITEMMALL_LOG] ADD CONSTRAINT [DF_WEB_ITEMMALL_LOG_BuyTime] DEFAULT getdate() FOR [BuyTime]\nGO\n"
+	query := "CREATE TABLE [WEB_ITEMMALL_LOG] (\n\t[strAccountID] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[strCharID] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[ServerNo] smallint NOT NULL,\n\t[ItemID] int NOT NULL,\n\t[ItemCount] smallint NOT NULL,\n\t[BuyTime] smalldatetime NOT NULL,\n\t[img_file_name] varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[strItemName] varchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[price] int,\n\t[pay_type] int\n)\nGO\nALTER TABLE [WEB_ITEMMALL_LOG] ADD CONSTRAINT [DF_WEB_ITEMMALL_LOG_BuyTime] DEFAULT getdate() FOR [BuyTime]\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

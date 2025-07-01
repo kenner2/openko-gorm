@@ -18,10 +18,10 @@ func init() {
 
 // KingBallotBox King Ballot Box TODO
 type KingBallotBox struct {
-	AccountId   mssql.VarChar `gorm:"column:strAccountID;type:varchar(21);not null" json:"strAccountID"`
-	CharId      mssql.VarChar `gorm:"column:strCharID;type:varchar(21);not null" json:"strCharID"`
+	AccountId   mssql.VarChar `gorm:"column:strAccountID;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS;not null" json:"strAccountID"`
+	CharId      mssql.VarChar `gorm:"column:strCharID;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS;not null" json:"strCharID"`
 	Nation      uint8         `gorm:"column:byNation;type:tinyint;not null" json:"byNation"`
-	CandidateId mssql.VarChar `gorm:"column:strCandidacyID;type:varchar(21);not null" json:"strCandidacyID"`
+	CandidateId mssql.VarChar `gorm:"column:strCandidacyID;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS;not null" json:"strCandidacyID"`
 }
 
 // GetDatabaseName Returns the table's database name
@@ -57,7 +57,7 @@ func (this KingBallotBox) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this KingBallotBox) GetCreateTableString() string {
-	query := "CREATE TABLE [KING_BALLOT_BOX] (\n\t[strAccountID] varchar(21) NOT NULL,\n\t[strCharID] varchar(21) NOT NULL,\n\t[byNation] tinyint NOT NULL,\n\t[strCandidacyID] varchar(21) NOT NULL\n)\nGO\n"
+	query := "CREATE TABLE [KING_BALLOT_BOX] (\n\t[strAccountID] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[strCharID] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[byNation] tinyint NOT NULL,\n\t[strCandidacyID] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

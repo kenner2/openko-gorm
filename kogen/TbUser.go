@@ -19,10 +19,10 @@ func init() {
 
 // TbUser User Account Information
 type TbUser struct {
-	AccountId     mssql.VarChar `gorm:"column:strAccountID;type:varchar(21);primaryKey;not null" json:"strAccountID"`
-	Password      mssql.VarChar `gorm:"column:strPasswd;type:varchar(13);not null" json:"strPasswd"`
-	SocNo         mssql.VarChar `gorm:"column:strSocNo;type:varchar(20);not null;default:''" json:"strSocNo"`
-	Email         mssql.VarChar `gorm:"column:strEmail;type:varchar(250);not null;default:''" json:"strEmail"`
+	AccountId     mssql.VarChar `gorm:"column:strAccountID;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS;primaryKey;not null" json:"strAccountID"`
+	Password      mssql.VarChar `gorm:"column:strPasswd;type:varchar(13) COLLATE SQL_Latin1_General_CP1_CI_AS;not null" json:"strPasswd"`
+	SocNo         mssql.VarChar `gorm:"column:strSocNo;type:varchar(20) COLLATE SQL_Latin1_General_CP1_CI_AS;not null;default:''" json:"strSocNo"`
+	Email         mssql.VarChar `gorm:"column:strEmail;type:varchar(250) COLLATE SQL_Latin1_General_CP1_CI_AS;not null;default:''" json:"strEmail"`
 	Authority     uint8         `gorm:"column:strAuthority;type:tinyint;not null;default:1" json:"strAuthority"`
 	PremiumExpire time.Time     `gorm:"column:PremiumExpire;type:datetime;not null;default:getdate()+(3)" json:"PremiumExpire"`
 }
@@ -64,7 +64,7 @@ func (this TbUser) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this TbUser) GetCreateTableString() string {
-	query := "CREATE TABLE [TB_USER] (\n\t[strAccountID] varchar(21) NOT NULL,\n\t[strPasswd] varchar(13) NOT NULL,\n\t[strSocNo] varchar(20) NOT NULL,\n\t[strEmail] varchar(250) NOT NULL,\n\t[strAuthority] tinyint NOT NULL,\n\t[PremiumExpire] datetime NOT NULL\n\tCONSTRAINT [PK_TB_USER] PRIMARY KEY CLUSTERED ([strAccountID])\n)\nGO\nALTER TABLE [TB_USER] ADD CONSTRAINT [DF_TB_USER_strSocNo] DEFAULT '' FOR [strSocNo]\nGO\nALTER TABLE [TB_USER] ADD CONSTRAINT [DF_TB_USER_strEmail] DEFAULT '' FOR [strEmail]\nGO\nALTER TABLE [TB_USER] ADD CONSTRAINT [DF_TB_USER_strAuthority] DEFAULT 1 FOR [strAuthority]\nGO\nALTER TABLE [TB_USER] ADD CONSTRAINT [DF_TB_USER_PremiumExpire] DEFAULT getdate()+(3) FOR [PremiumExpire]\nGO\n"
+	query := "CREATE TABLE [TB_USER] (\n\t[strAccountID] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[strPasswd] varchar(13) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[strSocNo] varchar(20) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[strEmail] varchar(250) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[strAuthority] tinyint NOT NULL,\n\t[PremiumExpire] datetime NOT NULL\n\tCONSTRAINT [PK_TB_USER] PRIMARY KEY CLUSTERED ([strAccountID])\n)\nGO\nALTER TABLE [TB_USER] ADD CONSTRAINT [DF_TB_USER_strSocNo] DEFAULT '' FOR [strSocNo]\nGO\nALTER TABLE [TB_USER] ADD CONSTRAINT [DF_TB_USER_strEmail] DEFAULT '' FOR [strEmail]\nGO\nALTER TABLE [TB_USER] ADD CONSTRAINT [DF_TB_USER_strAuthority] DEFAULT 1 FOR [strAuthority]\nGO\nALTER TABLE [TB_USER] ADD CONSTRAINT [DF_TB_USER_PremiumExpire] DEFAULT getdate()+(3) FOR [PremiumExpire]\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

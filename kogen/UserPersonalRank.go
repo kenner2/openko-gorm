@@ -20,13 +20,13 @@ func init() {
 // UserPersonalRank User personal ranking
 type UserPersonalRank struct {
 	Rank                int16          `gorm:"column:nRank;type:smallint;primaryKey;not null" json:"nRank"`
-	Position            mssql.VarChar  `gorm:"column:strPosition;type:varchar(21);not null" json:"strPosition"`
+	Position            mssql.VarChar  `gorm:"column:strPosition;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS;not null" json:"strPosition"`
 	ElmoUp              int16          `gorm:"column:nElmoUP;type:smallint;not null" json:"nElmoUP"`
-	ElmoUserId          *mssql.VarChar `gorm:"column:strElmoUserID;type:varchar(21)" json:"strElmoUserID,omitempty"`
+	ElmoUserId          *mssql.VarChar `gorm:"column:strElmoUserID;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"strElmoUserID,omitempty"`
 	ElmoLoyaltyMonthly  *int           `gorm:"column:nElmoLoyaltyMonthly;type:int" json:"nElmoLoyaltyMonthly,omitempty"`
 	ElmoCheck           int            `gorm:"column:nElmoCheck;type:int;not null;default:0" json:"nElmoCheck"`
 	KarusUp             int16          `gorm:"column:nKarusUP;type:smallint;not null" json:"nKarusUP"`
-	KarusUserId         *mssql.VarChar `gorm:"column:strKarusUserID;type:varchar(21)" json:"strKarusUserID,omitempty"`
+	KarusUserId         *mssql.VarChar `gorm:"column:strKarusUserID;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"strKarusUserID,omitempty"`
 	KarusLoyaltyMonthly *int           `gorm:"column:nKarusLoyaltyMonthly;type:int" json:"nKarusLoyaltyMonthly,omitempty"`
 	KarusCheck          int            `gorm:"column:nKarusCheck;type:int;not null;default:0" json:"nKarusCheck"`
 	Salary              int            `gorm:"column:nSalary;type:int;not null" json:"nSalary"`
@@ -82,7 +82,7 @@ func (this UserPersonalRank) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this UserPersonalRank) GetCreateTableString() string {
-	query := "CREATE TABLE [USER_PERSONAL_RANK] (\n\t[nRank] smallint NOT NULL,\n\t[strPosition] varchar(21) NOT NULL,\n\t[nElmoUP] smallint NOT NULL,\n\t[strElmoUserID] varchar(21),\n\t[nElmoLoyaltyMonthly] int,\n\t[nElmoCheck] int NOT NULL,\n\t[nKarusUP] smallint NOT NULL,\n\t[strKarusUserID] varchar(21),\n\t[nKarusLoyaltyMonthly] int,\n\t[nKarusCheck] int NOT NULL,\n\t[nSalary] int NOT NULL,\n\t[UpdateDate] smalldatetime NOT NULL\n\tCONSTRAINT [PK_USER_PERSONAL_RANK] PRIMARY KEY CLUSTERED ([nRank])\n)\nGO\nALTER TABLE [USER_PERSONAL_RANK] ADD CONSTRAINT [DF_USER_PERSONAL_RANK_nElmoCheck] DEFAULT 0 FOR [nElmoCheck]\nGO\nALTER TABLE [USER_PERSONAL_RANK] ADD CONSTRAINT [DF_USER_PERSONAL_RANK_nKarusCheck] DEFAULT 0 FOR [nKarusCheck]\nGO\n"
+	query := "CREATE TABLE [USER_PERSONAL_RANK] (\n\t[nRank] smallint NOT NULL,\n\t[strPosition] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[nElmoUP] smallint NOT NULL,\n\t[strElmoUserID] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[nElmoLoyaltyMonthly] int,\n\t[nElmoCheck] int NOT NULL,\n\t[nKarusUP] smallint NOT NULL,\n\t[strKarusUserID] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[nKarusLoyaltyMonthly] int,\n\t[nKarusCheck] int NOT NULL,\n\t[nSalary] int NOT NULL,\n\t[UpdateDate] smalldatetime NOT NULL\n\tCONSTRAINT [PK_USER_PERSONAL_RANK] PRIMARY KEY CLUSTERED ([nRank])\n)\nGO\nALTER TABLE [USER_PERSONAL_RANK] ADD CONSTRAINT [DF_USER_PERSONAL_RANK_nElmoCheck] DEFAULT 0 FOR [nElmoCheck]\nGO\nALTER TABLE [USER_PERSONAL_RANK] ADD CONSTRAINT [DF_USER_PERSONAL_RANK_nKarusCheck] DEFAULT 0 FOR [nKarusCheck]\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

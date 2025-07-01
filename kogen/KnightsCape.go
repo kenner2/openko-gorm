@@ -19,7 +19,7 @@ func init() {
 // KnightsCape Knights cape information
 type KnightsCape struct {
 	CapeIndex int16         `gorm:"column:sCapeIndex;type:smallint;primaryKey;not null" json:"sCapeIndex"`
-	Name      mssql.VarChar `gorm:"column:strName;type:varchar(30);not null" json:"strName"`
+	Name      mssql.VarChar `gorm:"column:strName;type:varchar(30) COLLATE SQL_Latin1_General_CP1_CI_AS;not null" json:"strName"`
 	BuyPrice  int           `gorm:"column:nBuyPrice;type:int;not null" json:"nBuyPrice"`
 	Duration  int           `gorm:"column:nDuration;type:int;not null" json:"nDuration"`
 	Grade     uint8         `gorm:"column:byGrade;type:tinyint;not null" json:"byGrade"`
@@ -60,7 +60,7 @@ func (this KnightsCape) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this KnightsCape) GetCreateTableString() string {
-	query := "CREATE TABLE [KNIGHTS_CAPE] (\n\t[sCapeIndex] smallint NOT NULL,\n\t[strName] varchar(30) NOT NULL,\n\t[nBuyPrice] int NOT NULL,\n\t[nDuration] int NOT NULL,\n\t[byGrade] tinyint NOT NULL\n\tCONSTRAINT [PK_KNIGHTS_CAPE] PRIMARY KEY CLUSTERED ([sCapeIndex])\n)\nGO\n"
+	query := "CREATE TABLE [KNIGHTS_CAPE] (\n\t[sCapeIndex] smallint NOT NULL,\n\t[strName] varchar(30) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[nBuyPrice] int NOT NULL,\n\t[nDuration] int NOT NULL,\n\t[byGrade] tinyint NOT NULL\n\tCONSTRAINT [PK_KNIGHTS_CAPE] PRIMARY KEY CLUSTERED ([sCapeIndex])\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

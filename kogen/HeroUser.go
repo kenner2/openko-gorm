@@ -19,10 +19,10 @@ func init() {
 // HeroUser TODO Doc
 type HeroUser struct {
 	Index       int16          `gorm:"column:shIndex;type:smallint;not null" json:"shIndex"`
-	UserId      *mssql.VarChar `gorm:"column:strUserID;type:varchar(21)" json:"strUserID,omitempty"`
-	Nation      *mssql.VarChar `gorm:"column:strNation;type:varchar(20)" json:"strNation,omitempty"`
-	ClassName   *mssql.VarChar `gorm:"column:strClass;type:varchar(30)" json:"strClass,omitempty"`
-	Achievement *mssql.VarChar `gorm:"column:strAchievement;type:varchar(50)" json:"strAchievement,omitempty"`
+	UserId      *mssql.VarChar `gorm:"column:strUserID;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"strUserID,omitempty"`
+	Nation      *mssql.VarChar `gorm:"column:strNation;type:varchar(20) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"strNation,omitempty"`
+	ClassName   *mssql.VarChar `gorm:"column:strClass;type:varchar(30) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"strClass,omitempty"`
+	Achievement *mssql.VarChar `gorm:"column:strAchievement;type:varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"strAchievement,omitempty"`
 }
 
 // GetDatabaseName Returns the table's database name
@@ -60,7 +60,7 @@ func (this HeroUser) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this HeroUser) GetCreateTableString() string {
-	query := "CREATE TABLE [HERO_USER] (\n\t[shIndex] smallint NOT NULL,\n\t[strUserID] varchar(21),\n\t[strNation] varchar(20),\n\t[strClass] varchar(30),\n\t[strAchievement] varchar(50)\n)\nGO\n"
+	query := "CREATE TABLE [HERO_USER] (\n\t[shIndex] smallint NOT NULL,\n\t[strUserID] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[strNation] varchar(20) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[strClass] varchar(30) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[strAchievement] varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

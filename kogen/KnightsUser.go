@@ -19,7 +19,7 @@ func init() {
 // KnightsUser Knights to character relationships
 type KnightsUser struct {
 	KnightsId int16         `gorm:"column:sIDNum;type:smallint;primaryKey;not null" json:"sIDNum"`
-	UserId    mssql.VarChar `gorm:"column:strUserID;type:varchar(21);primaryKey;not null" json:"strUserID"`
+	UserId    mssql.VarChar `gorm:"column:strUserID;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS;primaryKey;not null" json:"strUserID"`
 }
 
 // GetDatabaseName Returns the table's database name
@@ -51,7 +51,7 @@ func (this KnightsUser) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this KnightsUser) GetCreateTableString() string {
-	query := "CREATE TABLE [KNIGHTS_USER] (\n\t[sIDNum] smallint NOT NULL,\n\t[strUserID] varchar(21) NOT NULL\n\tCONSTRAINT [PK_KNIGHTS_USER] PRIMARY KEY CLUSTERED ([sIDNum], [strUserID])\n)\nGO\n"
+	query := "CREATE TABLE [KNIGHTS_USER] (\n\t[sIDNum] smallint NOT NULL,\n\t[strUserID] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL\n\tCONSTRAINT [PK_KNIGHTS_USER] PRIMARY KEY CLUSTERED ([sIDNum], [strUserID])\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 
