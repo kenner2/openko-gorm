@@ -19,7 +19,7 @@ func init() {
 
 // Knights Knights are the clan/guild system of the game
 type Knights struct {
-	IdNumber        int16          `gorm:"column:IDNum;type:smallint;primaryKey;not null" json:"IDNum"`
+	ID              int16          `gorm:"column:IDNum;type:smallint;primaryKey;not null" json:"IDNum"`
 	Flag            uint8          `gorm:"column:Flag;type:tinyint;not null;default:1" json:"Flag"`
 	Nation          uint8          `gorm:"column:Nation;type:tinyint;not null" json:"Nation"`
 	Ranking         uint8          `gorm:"column:Ranking;type:tinyint;not null;default:0" json:"Ranking"`
@@ -36,7 +36,7 @@ type Knights struct {
 	Lose            int            `gorm:"column:nLose;type:int;not null;default:0" json:"nLose"`
 	Gold            int64          `gorm:"column:Gold;type:bigint;not null;default:0" json:"Gold"`
 	Domination      int16          `gorm:"column:Domination;type:smallint;not null;default:0" json:"Domination"`
-	Points          *int           `gorm:"column:Points;type:int;default:0" json:"Points,omitempty"`
+	Points          int            `gorm:"column:Points;type:int;not null;default:0" json:"Points"`
 	CreateTime      time.Time      `gorm:"column:CreateTime;type:smalldatetime;not null;default:getdate()" json:"CreateTime"`
 	MarkVersion     int16          `gorm:"column:sMarkVersion;type:smallint;not null;default:0" json:"sMarkVersion"`
 	MarkLength      int16          `gorm:"column:sMarkLen;type:smallint;not null;default:0" json:"sMarkLen"`
@@ -59,7 +59,7 @@ func (this Knights) TableName() string {
 
 // GetInsertString Returns the insert statement for the table populated with record from the object
 func (this Knights) GetInsertString() string {
-	return fmt.Sprintf("INSERT INTO [KNIGHTS] ([IDNum], [Flag], [Nation], [Ranking], [IDName], [Members], [Chief], [ViceChief_1], [ViceChief_2], [ViceChief_3], [strEnemyName], [byOldWarResult], [nWarEnemyID], [nVictory], [nLose], [Gold], [Domination], [Points], [CreateTime], [sMarkVersion], [sMarkLen], [Mark], [Stash], [bySiegeFlag], [sAllianceKnights], [sCape]) VALUES\n(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, CONVERT(varchar(1600), %s), %s, %s, %s)", GetOptionalDecVal(&this.IdNumber),
+	return fmt.Sprintf("INSERT INTO [KNIGHTS] ([IDNum], [Flag], [Nation], [Ranking], [IDName], [Members], [Chief], [ViceChief_1], [ViceChief_2], [ViceChief_3], [strEnemyName], [byOldWarResult], [nWarEnemyID], [nVictory], [nLose], [Gold], [Domination], [Points], [CreateTime], [sMarkVersion], [sMarkLen], [Mark], [Stash], [bySiegeFlag], [sAllianceKnights], [sCape]) VALUES\n(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, CONVERT(varchar(1600), %s), %s, %s, %s)", GetOptionalDecVal(&this.ID),
 		GetOptionalDecVal(&this.Flag),
 		GetOptionalDecVal(&this.Nation),
 		GetOptionalDecVal(&this.Ranking),
@@ -76,7 +76,7 @@ func (this Knights) GetInsertString() string {
 		GetOptionalDecVal(&this.Lose),
 		GetOptionalDecVal(&this.Gold),
 		GetOptionalDecVal(&this.Domination),
-		GetOptionalDecVal(this.Points),
+		GetOptionalDecVal(&this.Points),
 		GetDateTimeExportFmt(&this.CreateTime),
 		GetOptionalDecVal(&this.MarkVersion),
 		GetOptionalDecVal(&this.MarkLength),
@@ -94,7 +94,7 @@ func (this Knights) GetInsertHeader() string {
 
 // GetInsertData Returns the record data for the table insert dump
 func (this Knights) GetInsertData() string {
-	return fmt.Sprintf("(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, CONVERT(varchar(1600), %s), %s, %s, %s)", GetOptionalDecVal(&this.IdNumber),
+	return fmt.Sprintf("(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, CONVERT(varchar(1600), %s), %s, %s, %s)", GetOptionalDecVal(&this.ID),
 		GetOptionalDecVal(&this.Flag),
 		GetOptionalDecVal(&this.Nation),
 		GetOptionalDecVal(&this.Ranking),
@@ -111,7 +111,7 @@ func (this Knights) GetInsertData() string {
 		GetOptionalDecVal(&this.Lose),
 		GetOptionalDecVal(&this.Gold),
 		GetOptionalDecVal(&this.Domination),
-		GetOptionalDecVal(this.Points),
+		GetOptionalDecVal(&this.Points),
 		GetDateTimeExportFmt(&this.CreateTime),
 		GetOptionalDecVal(&this.MarkVersion),
 		GetOptionalDecVal(&this.MarkLength),
@@ -124,7 +124,7 @@ func (this Knights) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this Knights) GetCreateTableString() string {
-	query := "CREATE TABLE [KNIGHTS] (\n\t[IDNum] smallint NOT NULL,\n\t[Flag] tinyint NOT NULL,\n\t[Nation] tinyint NOT NULL,\n\t[Ranking] tinyint NOT NULL,\n\t[IDName] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[Members] smallint NOT NULL,\n\t[Chief] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[ViceChief_1] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[ViceChief_2] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[ViceChief_3] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[strEnemyName] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[byOldWarResult] tinyint NOT NULL,\n\t[nWarEnemyID] int NOT NULL,\n\t[nVictory] int NOT NULL,\n\t[nLose] int NOT NULL,\n\t[Gold] bigint NOT NULL,\n\t[Domination] smallint NOT NULL,\n\t[Points] int,\n\t[CreateTime] smalldatetime NOT NULL,\n\t[sMarkVersion] smallint NOT NULL,\n\t[sMarkLen] smallint NOT NULL,\n\t[Mark] image,\n\t[Stash] varchar(1600) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[bySiegeFlag] tinyint NOT NULL,\n\t[sAllianceKnights] smallint NOT NULL,\n\t[sCape] smallint NOT NULL\n\tCONSTRAINT [PK_KNIGHTS] PRIMARY KEY CLUSTERED ([IDNum])\n)\nGO\nCREATE UNIQUE NONCLUSTERED INDEX [IX_KNIGHTS] ON [KNIGHTS] ([IDName])\nGO\nALTER TABLE [KNIGHTS] ADD CONSTRAINT [DF_KNIGHTS_Flag] DEFAULT 1 FOR [Flag]\nGO\nALTER TABLE [KNIGHTS] ADD CONSTRAINT [DF_KNIGHTS_Ranking] DEFAULT 0 FOR [Ranking]\nGO\nALTER TABLE [KNIGHTS] ADD CONSTRAINT [DF_KNIGHTS_Members] DEFAULT 1 FOR [Members]\nGO\nALTER TABLE [KNIGHTS] ADD CONSTRAINT [DF_KNIGHTS_byOldWarResult] DEFAULT 0 FOR [byOldWarResult]\nGO\nALTER TABLE [KNIGHTS] ADD CONSTRAINT [DF_KNIGHTS_nWarEnemyID] DEFAULT 0 FOR [nWarEnemyID]\nGO\nALTER TABLE [KNIGHTS] ADD CONSTRAINT [DF_KNIGHTS_nVictory] DEFAULT 0 FOR [nVictory]\nGO\nALTER TABLE [KNIGHTS] ADD CONSTRAINT [DF_KNIGHTS_nLose] DEFAULT 0 FOR [nLose]\nGO\nALTER TABLE [KNIGHTS] ADD CONSTRAINT [DF_KNIGHTS_Gold] DEFAULT 0 FOR [Gold]\nGO\nALTER TABLE [KNIGHTS] ADD CONSTRAINT [DF_KNIGHTS_Domination] DEFAULT 0 FOR [Domination]\nGO\nALTER TABLE [KNIGHTS] ADD CONSTRAINT [DF_KNIGHTS_Points] DEFAULT 0 FOR [Points]\nGO\nALTER TABLE [KNIGHTS] ADD CONSTRAINT [DF_KNIGHTS_CreateTime] DEFAULT getdate() FOR [CreateTime]\nGO\nALTER TABLE [KNIGHTS] ADD CONSTRAINT [DF_KNIGHTS_sMarkVersion] DEFAULT 0 FOR [sMarkVersion]\nGO\nALTER TABLE [KNIGHTS] ADD CONSTRAINT [DF_KNIGHTS_sMarkLen] DEFAULT 0 FOR [sMarkLen]\nGO\nALTER TABLE [KNIGHTS] ADD CONSTRAINT [DF_KNIGHTS_bySiegeFlag] DEFAULT 0 FOR [bySiegeFlag]\nGO\nALTER TABLE [KNIGHTS] ADD CONSTRAINT [DF_KNIGHTS_sAllianceKnights] DEFAULT 0 FOR [sAllianceKnights]\nGO\nALTER TABLE [KNIGHTS] ADD CONSTRAINT [DF_KNIGHTS_sCape] DEFAULT -1 FOR [sCape]\nGO\n"
+	query := "CREATE TABLE [KNIGHTS] (\n\t[IDNum] smallint NOT NULL,\n\t[Flag] tinyint NOT NULL,\n\t[Nation] tinyint NOT NULL,\n\t[Ranking] tinyint NOT NULL,\n\t[IDName] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[Members] smallint NOT NULL,\n\t[Chief] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[ViceChief_1] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[ViceChief_2] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[ViceChief_3] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[strEnemyName] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[byOldWarResult] tinyint NOT NULL,\n\t[nWarEnemyID] int NOT NULL,\n\t[nVictory] int NOT NULL,\n\t[nLose] int NOT NULL,\n\t[Gold] bigint NOT NULL,\n\t[Domination] smallint NOT NULL,\n\t[Points] int NOT NULL,\n\t[CreateTime] smalldatetime NOT NULL,\n\t[sMarkVersion] smallint NOT NULL,\n\t[sMarkLen] smallint NOT NULL,\n\t[Mark] image,\n\t[Stash] varchar(1600) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[bySiegeFlag] tinyint NOT NULL,\n\t[sAllianceKnights] smallint NOT NULL,\n\t[sCape] smallint NOT NULL\n\tCONSTRAINT [PK_KNIGHTS] PRIMARY KEY CLUSTERED ([IDNum])\n)\nGO\nCREATE UNIQUE NONCLUSTERED INDEX [IX_KNIGHTS] ON [KNIGHTS] ([IDName])\nGO\nALTER TABLE [KNIGHTS] ADD CONSTRAINT [DF_KNIGHTS_Flag] DEFAULT 1 FOR [Flag]\nGO\nALTER TABLE [KNIGHTS] ADD CONSTRAINT [DF_KNIGHTS_Ranking] DEFAULT 0 FOR [Ranking]\nGO\nALTER TABLE [KNIGHTS] ADD CONSTRAINT [DF_KNIGHTS_Members] DEFAULT 1 FOR [Members]\nGO\nALTER TABLE [KNIGHTS] ADD CONSTRAINT [DF_KNIGHTS_byOldWarResult] DEFAULT 0 FOR [byOldWarResult]\nGO\nALTER TABLE [KNIGHTS] ADD CONSTRAINT [DF_KNIGHTS_nWarEnemyID] DEFAULT 0 FOR [nWarEnemyID]\nGO\nALTER TABLE [KNIGHTS] ADD CONSTRAINT [DF_KNIGHTS_nVictory] DEFAULT 0 FOR [nVictory]\nGO\nALTER TABLE [KNIGHTS] ADD CONSTRAINT [DF_KNIGHTS_nLose] DEFAULT 0 FOR [nLose]\nGO\nALTER TABLE [KNIGHTS] ADD CONSTRAINT [DF_KNIGHTS_Gold] DEFAULT 0 FOR [Gold]\nGO\nALTER TABLE [KNIGHTS] ADD CONSTRAINT [DF_KNIGHTS_Domination] DEFAULT 0 FOR [Domination]\nGO\nALTER TABLE [KNIGHTS] ADD CONSTRAINT [DF_KNIGHTS_Points] DEFAULT 0 FOR [Points]\nGO\nALTER TABLE [KNIGHTS] ADD CONSTRAINT [DF_KNIGHTS_CreateTime] DEFAULT getdate() FOR [CreateTime]\nGO\nALTER TABLE [KNIGHTS] ADD CONSTRAINT [DF_KNIGHTS_sMarkVersion] DEFAULT 0 FOR [sMarkVersion]\nGO\nALTER TABLE [KNIGHTS] ADD CONSTRAINT [DF_KNIGHTS_sMarkLen] DEFAULT 0 FOR [sMarkLen]\nGO\nALTER TABLE [KNIGHTS] ADD CONSTRAINT [DF_KNIGHTS_bySiegeFlag] DEFAULT 0 FOR [bySiegeFlag]\nGO\nALTER TABLE [KNIGHTS] ADD CONSTRAINT [DF_KNIGHTS_sAllianceKnights] DEFAULT 0 FOR [sAllianceKnights]\nGO\nALTER TABLE [KNIGHTS] ADD CONSTRAINT [DF_KNIGHTS_sCape] DEFAULT -1 FOR [sCape]\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

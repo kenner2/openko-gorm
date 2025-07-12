@@ -19,10 +19,10 @@ func init() {
 
 // HacktoolUserLog Tracks possible detections of a hack tool by a user
 type HacktoolUserLog struct {
-	AccountId    mssql.VarChar  `gorm:"column:strAccountID;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS;not null" json:"strAccountID"`
-	CharId       mssql.VarChar  `gorm:"column:strCharID;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS;not null" json:"strCharID"`
-	HackToolName *mssql.VarChar `gorm:"column:strHackToolName;type:varchar(512) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"strHackToolName,omitempty"`
-	WriteTime    time.Time      `gorm:"column:tWriteTime;type:smalldatetime;not null;default:getdate()" json:"tWriteTime"`
+	AccountId    mssql.VarChar `gorm:"column:strAccountID;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS;not null" json:"strAccountID"`
+	CharId       mssql.VarChar `gorm:"column:strCharID;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS;not null" json:"strCharID"`
+	HackToolName mssql.VarChar `gorm:"column:strHackToolName;type:varchar(512) COLLATE SQL_Latin1_General_CP1_CI_AS;not null" json:"strHackToolName"`
+	WriteTime    time.Time     `gorm:"column:tWriteTime;type:smalldatetime;not null;default:getdate()" json:"tWriteTime"`
 }
 
 // GetDatabaseName Returns the table's database name
@@ -39,7 +39,7 @@ func (this HacktoolUserLog) TableName() string {
 func (this HacktoolUserLog) GetInsertString() string {
 	return fmt.Sprintf("INSERT INTO [HACKTOOL_USERLOG] ([strAccountID], [strCharID], [strHackToolName], [tWriteTime]) VALUES\n(%s, %s, %s, %s)", GetOptionalVarCharVal(&this.AccountId, false),
 		GetOptionalVarCharVal(&this.CharId, false),
-		GetOptionalVarCharVal(this.HackToolName, false),
+		GetOptionalVarCharVal(&this.HackToolName, false),
 		GetDateTimeExportFmt(&this.WriteTime))
 }
 
@@ -52,13 +52,13 @@ func (this HacktoolUserLog) GetInsertHeader() string {
 func (this HacktoolUserLog) GetInsertData() string {
 	return fmt.Sprintf("(%s, %s, %s, %s)", GetOptionalVarCharVal(&this.AccountId, false),
 		GetOptionalVarCharVal(&this.CharId, false),
-		GetOptionalVarCharVal(this.HackToolName, false),
+		GetOptionalVarCharVal(&this.HackToolName, false),
 		GetDateTimeExportFmt(&this.WriteTime))
 }
 
 // GetCreateTableString Returns the create table statement for this object
 func (this HacktoolUserLog) GetCreateTableString() string {
-	query := "CREATE TABLE [HACKTOOL_USERLOG] (\n\t[strAccountID] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[strCharID] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[strHackToolName] varchar(512) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[tWriteTime] smalldatetime NOT NULL\n)\nGO\nALTER TABLE [HACKTOOL_USERLOG] ADD CONSTRAINT [DF_HACKTOOL_USERLOG_tWriteTime] DEFAULT getdate() FOR [tWriteTime]\nGO\n"
+	query := "CREATE TABLE [HACKTOOL_USERLOG] (\n\t[strAccountID] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[strCharID] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[strHackToolName] varchar(512) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[tWriteTime] smalldatetime NOT NULL\n)\nGO\nALTER TABLE [HACKTOOL_USERLOG] ADD CONSTRAINT [DF_HACKTOOL_USERLOG_tWriteTime] DEFAULT getdate() FOR [tWriteTime]\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

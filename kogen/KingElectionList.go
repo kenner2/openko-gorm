@@ -18,11 +18,11 @@ func init() {
 
 // KingElectionList King election list
 type KingElectionList struct {
-	Type    uint8          `gorm:"column:byType;type:tinyint;not null" json:"byType"`
-	Nation  uint8          `gorm:"column:byNation;type:tinyint;not null" json:"byNation"`
-	Knights *int16         `gorm:"column:nKnights;type:smallint" json:"nKnights,omitempty"`
-	Name    *mssql.VarChar `gorm:"column:strName;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"strName,omitempty"`
-	Money   int            `gorm:"column:nMoney;type:int;not null" json:"nMoney"`
+	Type    uint8         `gorm:"column:byType;type:tinyint;not null" json:"byType"`
+	Nation  uint8         `gorm:"column:byNation;type:tinyint;not null" json:"byNation"`
+	Knights int16         `gorm:"column:nKnights;type:smallint;not null" json:"nKnights"`
+	Name    mssql.VarChar `gorm:"column:strName;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS;not null" json:"strName"`
+	Money   int           `gorm:"column:nMoney;type:int;not null" json:"nMoney"`
 }
 
 // GetDatabaseName Returns the table's database name
@@ -39,8 +39,8 @@ func (this KingElectionList) TableName() string {
 func (this KingElectionList) GetInsertString() string {
 	return fmt.Sprintf("INSERT INTO [KING_ELECTION_LIST] ([byType], [byNation], [nKnights], [strName], [nMoney]) VALUES\n(%s, %s, %s, %s, %s)", GetOptionalDecVal(&this.Type),
 		GetOptionalDecVal(&this.Nation),
-		GetOptionalDecVal(this.Knights),
-		GetOptionalVarCharVal(this.Name, false),
+		GetOptionalDecVal(&this.Knights),
+		GetOptionalVarCharVal(&this.Name, false),
 		GetOptionalDecVal(&this.Money))
 }
 
@@ -53,14 +53,14 @@ func (this KingElectionList) GetInsertHeader() string {
 func (this KingElectionList) GetInsertData() string {
 	return fmt.Sprintf("(%s, %s, %s, %s, %s)", GetOptionalDecVal(&this.Type),
 		GetOptionalDecVal(&this.Nation),
-		GetOptionalDecVal(this.Knights),
-		GetOptionalVarCharVal(this.Name, false),
+		GetOptionalDecVal(&this.Knights),
+		GetOptionalVarCharVal(&this.Name, false),
 		GetOptionalDecVal(&this.Money))
 }
 
 // GetCreateTableString Returns the create table statement for this object
 func (this KingElectionList) GetCreateTableString() string {
-	query := "CREATE TABLE [KING_ELECTION_LIST] (\n\t[byType] tinyint NOT NULL,\n\t[byNation] tinyint NOT NULL,\n\t[nKnights] smallint,\n\t[strName] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[nMoney] int NOT NULL\n)\nGO\n"
+	query := "CREATE TABLE [KING_ELECTION_LIST] (\n\t[byType] tinyint NOT NULL,\n\t[byNation] tinyint NOT NULL,\n\t[nKnights] smallint NOT NULL,\n\t[strName] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[nMoney] int NOT NULL\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

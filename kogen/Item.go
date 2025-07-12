@@ -18,64 +18,64 @@ func init() {
 
 // Item Item information
 type Item struct {
-	Number              int           `gorm:"column:Num;type:int;primaryKey;not null" json:"Num"`
-	Name                mssql.VarChar `gorm:"column:strName;type:varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS;not null" json:"strName"`
-	Kind                uint8         `gorm:"column:Kind;type:tinyint;not null;default:0" json:"Kind"`
-	Slot                uint8         `gorm:"column:Slot;type:tinyint;not null;default:0" json:"Slot"`
-	Race                uint8         `gorm:"column:Race;type:tinyint;not null;default:0" json:"Race"`
-	ClassId             uint8         `gorm:"column:Class;type:tinyint;not null;default:1" json:"Class"`
-	Damage              int16         `gorm:"column:Damage;type:smallint;not null;default:0" json:"Damage"`
-	Delay               int16         `gorm:"column:Delay;type:smallint;not null;default:0" json:"Delay"`
-	Range               int16         `gorm:"column:Range;type:smallint;not null;default:0" json:"Range"`
-	Weight              int16         `gorm:"column:Weight;type:smallint;not null;default:0" json:"Weight"`
-	Durability          int16         `gorm:"column:Duration;type:smallint;not null" json:"Duration"`
-	BuyPrice            int           `gorm:"column:BuyPrice;type:int;not null;default:0" json:"BuyPrice"`
-	SellPrice           int           `gorm:"column:SellPrice;type:int;not null" json:"SellPrice"`
-	Armor               int16         `gorm:"column:Ac;type:smallint;not null;default:0" json:"Ac"`
-	Countable           uint8         `gorm:"column:Countable;type:tinyint;not null" json:"Countable"`
-	MagicEffect         int           `gorm:"column:Effect1;type:int;not null" json:"Effect1"`
-	SpecialEffect       int           `gorm:"column:Effect2;type:int;not null" json:"Effect2"`
-	RequireLevel        uint8         `gorm:"column:ReqLevel;type:tinyint;not null" json:"ReqLevel"`
-	MaxLevel            uint8         `gorm:"column:ReqLevelMax;type:tinyint;not null" json:"ReqLevelMax"`
-	RequireRank         uint8         `gorm:"column:ReqRank;type:tinyint;not null" json:"ReqRank"`
-	RequireTitle        uint8         `gorm:"column:ReqTitle;type:tinyint;not null" json:"ReqTitle"`
-	RequireStrength     uint8         `gorm:"column:ReqStr;type:tinyint;not null" json:"ReqStr"`
-	RequireStamina      uint8         `gorm:"column:ReqSta;type:tinyint;not null" json:"ReqSta"`
-	RequireDexterity    uint8         `gorm:"column:ReqDex;type:tinyint;not null" json:"ReqDex"`
-	RequireIntelligence uint8         `gorm:"column:ReqIntel;type:tinyint;not null" json:"ReqIntel"`
-	RequireCharisma     uint8         `gorm:"column:ReqCha;type:tinyint;not null" json:"ReqCha"`
-	SellingGroup        uint8         `gorm:"column:SellingGroup;type:tinyint;not null" json:"SellingGroup"`
-	Type                uint8         `gorm:"column:ItemType;type:tinyint;not null" json:"ItemType"`
-	HitRate             int16         `gorm:"column:Hitrate;type:smallint;not null" json:"Hitrate"`
-	EvasionRate         int16         `gorm:"column:Evasionrate;type:smallint;not null" json:"Evasionrate"`
-	DaggerArmor         int16         `gorm:"column:DaggerAc;type:smallint;not null;default:0" json:"DaggerAc"`
-	SwordArmor          int16         `gorm:"column:SwordAc;type:smallint;not null;default:0" json:"SwordAc"`
-	MaceArmor           int16         `gorm:"column:MaceAc;type:smallint;not null;default:0" json:"MaceAc"`
-	AxeArmor            int16         `gorm:"column:AxeAc;type:smallint;not null;default:0" json:"AxeAc"`
-	SpearArmor          int16         `gorm:"column:SpearAc;type:smallint;not null;default:0" json:"SpearAc"`
-	BowArmor            int16         `gorm:"column:BowAc;type:smallint;not null;default:0" json:"BowAc"`
-	FireDamage          uint8         `gorm:"column:FireDamage;type:tinyint;not null" json:"FireDamage"`
-	IceDamage           uint8         `gorm:"column:IceDamage;type:tinyint;not null" json:"IceDamage"`
-	LightningDamage     uint8         `gorm:"column:LightningDamage;type:tinyint;not null" json:"LightningDamage"`
-	PoisonDamage        uint8         `gorm:"column:PoisonDamage;type:tinyint;not null" json:"PoisonDamage"`
-	HpDrain             uint8         `gorm:"column:HPDrain;type:tinyint;not null" json:"HPDrain"`
-	MpDamage            uint8         `gorm:"column:MPDamage;type:tinyint;not null" json:"MPDamage"`
-	MpDrain             uint8         `gorm:"column:MPDrain;type:tinyint;not null" json:"MPDrain"`
-	MirrorDamage        uint8         `gorm:"column:MirrorDamage;type:tinyint;not null;default:0" json:"MirrorDamage"`
-	DropRate            uint8         `gorm:"column:Droprate;type:tinyint;not null;default:0" json:"Droprate"`
-	StrengthBonus       int16         `gorm:"column:StrB;type:smallint;not null;default:0" json:"StrB"`
-	StaminaBonus        int16         `gorm:"column:StaB;type:smallint;not null;default:0" json:"StaB"`
-	DexterityBonus      int16         `gorm:"column:DexB;type:smallint;not null;default:0" json:"DexB"`
-	IntelligenceBonus   int16         `gorm:"column:IntelB;type:smallint;not null;default:0" json:"IntelB"`
-	CharismaBonus       int16         `gorm:"column:ChaB;type:smallint;not null;default:0" json:"ChaB"`
-	MaxHpBonus          int16         `gorm:"column:MaxHpB;type:smallint;not null" json:"MaxHpB"`
-	MaxMpBonus          int16         `gorm:"column:MaxMpB;type:smallint;not null" json:"MaxMpB"`
-	FireResistance      int16         `gorm:"column:FireR;type:smallint;not null;default:0" json:"FireR"`
-	ColdResistance      int16         `gorm:"column:ColdR;type:smallint;not null;default:0" json:"ColdR"`
-	LightningResistance int16         `gorm:"column:LightningR;type:smallint;not null;default:0" json:"LightningR"`
-	MagicResistance     int16         `gorm:"column:MagicR;type:smallint;not null;default:0" json:"MagicR"`
-	PoisonResistance    int16         `gorm:"column:PoisonR;type:smallint;not null;default:0" json:"PoisonR"`
-	CurseResistance     int16         `gorm:"column:CurseR;type:smallint;not null;default:0" json:"CurseR"`
+	ID                   int           `gorm:"column:Num;type:int;primaryKey;not null" json:"Num"`
+	Name                 mssql.VarChar `gorm:"column:strName;type:varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS;not null" json:"strName"`
+	Kind                 uint8         `gorm:"column:Kind;type:tinyint;not null;default:0" json:"Kind"`
+	Slot                 uint8         `gorm:"column:Slot;type:tinyint;not null;default:0" json:"Slot"`
+	Race                 uint8         `gorm:"column:Race;type:tinyint;not null;default:0" json:"Race"`
+	ClassId              uint8         `gorm:"column:Class;type:tinyint;not null;default:1" json:"Class"`
+	Damage               int16         `gorm:"column:Damage;type:smallint;not null;default:0" json:"Damage"`
+	Delay                int16         `gorm:"column:Delay;type:smallint;not null;default:0" json:"Delay"`
+	Range                int16         `gorm:"column:Range;type:smallint;not null;default:0" json:"Range"`
+	Weight               int16         `gorm:"column:Weight;type:smallint;not null;default:0" json:"Weight"`
+	Durability           int16         `gorm:"column:Duration;type:smallint;not null" json:"Duration"`
+	BuyPrice             int           `gorm:"column:BuyPrice;type:int;not null;default:0" json:"BuyPrice"`
+	SellPrice            int           `gorm:"column:SellPrice;type:int;not null" json:"SellPrice"`
+	Armor                int16         `gorm:"column:Ac;type:smallint;not null;default:0" json:"Ac"`
+	Countable            uint8         `gorm:"column:Countable;type:tinyint;not null" json:"Countable"`
+	MagicEffect          int           `gorm:"column:Effect1;type:int;not null" json:"Effect1"`
+	SpecialEffect        int           `gorm:"column:Effect2;type:int;not null" json:"Effect2"`
+	MinLevel             uint8         `gorm:"column:ReqLevel;type:tinyint;not null" json:"ReqLevel"`
+	MaxLevel             uint8         `gorm:"column:ReqLevelMax;type:tinyint;not null" json:"ReqLevelMax"`
+	RequiredRank         uint8         `gorm:"column:ReqRank;type:tinyint;not null" json:"ReqRank"`
+	RequiredTitle        uint8         `gorm:"column:ReqTitle;type:tinyint;not null" json:"ReqTitle"`
+	RequiredStrength     uint8         `gorm:"column:ReqStr;type:tinyint;not null" json:"ReqStr"`
+	RequiredStamina      uint8         `gorm:"column:ReqSta;type:tinyint;not null" json:"ReqSta"`
+	RequiredDexterity    uint8         `gorm:"column:ReqDex;type:tinyint;not null" json:"ReqDex"`
+	RequiredIntelligence uint8         `gorm:"column:ReqIntel;type:tinyint;not null" json:"ReqIntel"`
+	RequiredCharisma     uint8         `gorm:"column:ReqCha;type:tinyint;not null" json:"ReqCha"`
+	SellingGroup         uint8         `gorm:"column:SellingGroup;type:tinyint;not null" json:"SellingGroup"`
+	Type                 uint8         `gorm:"column:ItemType;type:tinyint;not null" json:"ItemType"`
+	HitRate              int16         `gorm:"column:Hitrate;type:smallint;not null" json:"Hitrate"`
+	EvasionRate          int16         `gorm:"column:Evasionrate;type:smallint;not null" json:"Evasionrate"`
+	DaggerArmor          int16         `gorm:"column:DaggerAc;type:smallint;not null;default:0" json:"DaggerAc"`
+	SwordArmor           int16         `gorm:"column:SwordAc;type:smallint;not null;default:0" json:"SwordAc"`
+	MaceArmor            int16         `gorm:"column:MaceAc;type:smallint;not null;default:0" json:"MaceAc"`
+	AxeArmor             int16         `gorm:"column:AxeAc;type:smallint;not null;default:0" json:"AxeAc"`
+	SpearArmor           int16         `gorm:"column:SpearAc;type:smallint;not null;default:0" json:"SpearAc"`
+	BowArmor             int16         `gorm:"column:BowAc;type:smallint;not null;default:0" json:"BowAc"`
+	FireDamage           uint8         `gorm:"column:FireDamage;type:tinyint;not null" json:"FireDamage"`
+	IceDamage            uint8         `gorm:"column:IceDamage;type:tinyint;not null" json:"IceDamage"`
+	LightningDamage      uint8         `gorm:"column:LightningDamage;type:tinyint;not null" json:"LightningDamage"`
+	PoisonDamage         uint8         `gorm:"column:PoisonDamage;type:tinyint;not null" json:"PoisonDamage"`
+	HpDrain              uint8         `gorm:"column:HPDrain;type:tinyint;not null" json:"HPDrain"`
+	MpDamage             uint8         `gorm:"column:MPDamage;type:tinyint;not null" json:"MPDamage"`
+	MpDrain              uint8         `gorm:"column:MPDrain;type:tinyint;not null" json:"MPDrain"`
+	MirrorDamage         uint8         `gorm:"column:MirrorDamage;type:tinyint;not null;default:0" json:"MirrorDamage"`
+	DropRate             uint8         `gorm:"column:Droprate;type:tinyint;not null;default:0" json:"Droprate"`
+	StrengthBonus        int16         `gorm:"column:StrB;type:smallint;not null;default:0" json:"StrB"`
+	StaminaBonus         int16         `gorm:"column:StaB;type:smallint;not null;default:0" json:"StaB"`
+	DexterityBonus       int16         `gorm:"column:DexB;type:smallint;not null;default:0" json:"DexB"`
+	IntelligenceBonus    int16         `gorm:"column:IntelB;type:smallint;not null;default:0" json:"IntelB"`
+	CharismaBonus        int16         `gorm:"column:ChaB;type:smallint;not null;default:0" json:"ChaB"`
+	MaxHpBonus           int16         `gorm:"column:MaxHpB;type:smallint;not null" json:"MaxHpB"`
+	MaxMpBonus           int16         `gorm:"column:MaxMpB;type:smallint;not null" json:"MaxMpB"`
+	FireResist           int16         `gorm:"column:FireR;type:smallint;not null;default:0" json:"FireR"`
+	ColdResist           int16         `gorm:"column:ColdR;type:smallint;not null;default:0" json:"ColdR"`
+	LightningResist      int16         `gorm:"column:LightningR;type:smallint;not null;default:0" json:"LightningR"`
+	MagicResist          int16         `gorm:"column:MagicR;type:smallint;not null;default:0" json:"MagicR"`
+	PoisonResist         int16         `gorm:"column:PoisonR;type:smallint;not null;default:0" json:"PoisonR"`
+	CurseResist          int16         `gorm:"column:CurseR;type:smallint;not null;default:0" json:"CurseR"`
 }
 
 // GetDatabaseName Returns the table's database name
@@ -90,7 +90,7 @@ func (this Item) TableName() string {
 
 // GetInsertString Returns the insert statement for the table populated with record from the object
 func (this Item) GetInsertString() string {
-	return fmt.Sprintf("INSERT INTO [ITEM] ([Num], [strName], [Kind], [Slot], [Race], [Class], [Damage], [Delay], [Range], [Weight], [Duration], [BuyPrice], [SellPrice], [Ac], [Countable], [Effect1], [Effect2], [ReqLevel], [ReqLevelMax], [ReqRank], [ReqTitle], [ReqStr], [ReqSta], [ReqDex], [ReqIntel], [ReqCha], [SellingGroup], [ItemType], [Hitrate], [Evasionrate], [DaggerAc], [SwordAc], [MaceAc], [AxeAc], [SpearAc], [BowAc], [FireDamage], [IceDamage], [LightningDamage], [PoisonDamage], [HPDrain], [MPDamage], [MPDrain], [MirrorDamage], [Droprate], [StrB], [StaB], [DexB], [IntelB], [ChaB], [MaxHpB], [MaxMpB], [FireR], [ColdR], [LightningR], [MagicR], [PoisonR], [CurseR]) VALUES\n(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", GetOptionalDecVal(&this.Number),
+	return fmt.Sprintf("INSERT INTO [ITEM] ([Num], [strName], [Kind], [Slot], [Race], [Class], [Damage], [Delay], [Range], [Weight], [Duration], [BuyPrice], [SellPrice], [Ac], [Countable], [Effect1], [Effect2], [ReqLevel], [ReqLevelMax], [ReqRank], [ReqTitle], [ReqStr], [ReqSta], [ReqDex], [ReqIntel], [ReqCha], [SellingGroup], [ItemType], [Hitrate], [Evasionrate], [DaggerAc], [SwordAc], [MaceAc], [AxeAc], [SpearAc], [BowAc], [FireDamage], [IceDamage], [LightningDamage], [PoisonDamage], [HPDrain], [MPDamage], [MPDrain], [MirrorDamage], [Droprate], [StrB], [StaB], [DexB], [IntelB], [ChaB], [MaxHpB], [MaxMpB], [FireR], [ColdR], [LightningR], [MagicR], [PoisonR], [CurseR]) VALUES\n(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", GetOptionalDecVal(&this.ID),
 		GetOptionalVarCharVal(&this.Name, false),
 		GetOptionalDecVal(&this.Kind),
 		GetOptionalDecVal(&this.Slot),
@@ -107,15 +107,15 @@ func (this Item) GetInsertString() string {
 		GetOptionalDecVal(&this.Countable),
 		GetOptionalDecVal(&this.MagicEffect),
 		GetOptionalDecVal(&this.SpecialEffect),
-		GetOptionalDecVal(&this.RequireLevel),
+		GetOptionalDecVal(&this.MinLevel),
 		GetOptionalDecVal(&this.MaxLevel),
-		GetOptionalDecVal(&this.RequireRank),
-		GetOptionalDecVal(&this.RequireTitle),
-		GetOptionalDecVal(&this.RequireStrength),
-		GetOptionalDecVal(&this.RequireStamina),
-		GetOptionalDecVal(&this.RequireDexterity),
-		GetOptionalDecVal(&this.RequireIntelligence),
-		GetOptionalDecVal(&this.RequireCharisma),
+		GetOptionalDecVal(&this.RequiredRank),
+		GetOptionalDecVal(&this.RequiredTitle),
+		GetOptionalDecVal(&this.RequiredStrength),
+		GetOptionalDecVal(&this.RequiredStamina),
+		GetOptionalDecVal(&this.RequiredDexterity),
+		GetOptionalDecVal(&this.RequiredIntelligence),
+		GetOptionalDecVal(&this.RequiredCharisma),
 		GetOptionalDecVal(&this.SellingGroup),
 		GetOptionalDecVal(&this.Type),
 		GetOptionalDecVal(&this.HitRate),
@@ -142,12 +142,12 @@ func (this Item) GetInsertString() string {
 		GetOptionalDecVal(&this.CharismaBonus),
 		GetOptionalDecVal(&this.MaxHpBonus),
 		GetOptionalDecVal(&this.MaxMpBonus),
-		GetOptionalDecVal(&this.FireResistance),
-		GetOptionalDecVal(&this.ColdResistance),
-		GetOptionalDecVal(&this.LightningResistance),
-		GetOptionalDecVal(&this.MagicResistance),
-		GetOptionalDecVal(&this.PoisonResistance),
-		GetOptionalDecVal(&this.CurseResistance))
+		GetOptionalDecVal(&this.FireResist),
+		GetOptionalDecVal(&this.ColdResist),
+		GetOptionalDecVal(&this.LightningResist),
+		GetOptionalDecVal(&this.MagicResist),
+		GetOptionalDecVal(&this.PoisonResist),
+		GetOptionalDecVal(&this.CurseResist))
 }
 
 // GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
@@ -157,7 +157,7 @@ func (this Item) GetInsertHeader() string {
 
 // GetInsertData Returns the record data for the table insert dump
 func (this Item) GetInsertData() string {
-	return fmt.Sprintf("(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", GetOptionalDecVal(&this.Number),
+	return fmt.Sprintf("(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", GetOptionalDecVal(&this.ID),
 		GetOptionalVarCharVal(&this.Name, false),
 		GetOptionalDecVal(&this.Kind),
 		GetOptionalDecVal(&this.Slot),
@@ -174,15 +174,15 @@ func (this Item) GetInsertData() string {
 		GetOptionalDecVal(&this.Countable),
 		GetOptionalDecVal(&this.MagicEffect),
 		GetOptionalDecVal(&this.SpecialEffect),
-		GetOptionalDecVal(&this.RequireLevel),
+		GetOptionalDecVal(&this.MinLevel),
 		GetOptionalDecVal(&this.MaxLevel),
-		GetOptionalDecVal(&this.RequireRank),
-		GetOptionalDecVal(&this.RequireTitle),
-		GetOptionalDecVal(&this.RequireStrength),
-		GetOptionalDecVal(&this.RequireStamina),
-		GetOptionalDecVal(&this.RequireDexterity),
-		GetOptionalDecVal(&this.RequireIntelligence),
-		GetOptionalDecVal(&this.RequireCharisma),
+		GetOptionalDecVal(&this.RequiredRank),
+		GetOptionalDecVal(&this.RequiredTitle),
+		GetOptionalDecVal(&this.RequiredStrength),
+		GetOptionalDecVal(&this.RequiredStamina),
+		GetOptionalDecVal(&this.RequiredDexterity),
+		GetOptionalDecVal(&this.RequiredIntelligence),
+		GetOptionalDecVal(&this.RequiredCharisma),
 		GetOptionalDecVal(&this.SellingGroup),
 		GetOptionalDecVal(&this.Type),
 		GetOptionalDecVal(&this.HitRate),
@@ -209,12 +209,12 @@ func (this Item) GetInsertData() string {
 		GetOptionalDecVal(&this.CharismaBonus),
 		GetOptionalDecVal(&this.MaxHpBonus),
 		GetOptionalDecVal(&this.MaxMpBonus),
-		GetOptionalDecVal(&this.FireResistance),
-		GetOptionalDecVal(&this.ColdResistance),
-		GetOptionalDecVal(&this.LightningResistance),
-		GetOptionalDecVal(&this.MagicResistance),
-		GetOptionalDecVal(&this.PoisonResistance),
-		GetOptionalDecVal(&this.CurseResistance))
+		GetOptionalDecVal(&this.FireResist),
+		GetOptionalDecVal(&this.ColdResist),
+		GetOptionalDecVal(&this.LightningResist),
+		GetOptionalDecVal(&this.MagicResist),
+		GetOptionalDecVal(&this.PoisonResist),
+		GetOptionalDecVal(&this.CurseResist))
 }
 
 // GetCreateTableString Returns the create table statement for this object

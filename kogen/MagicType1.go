@@ -18,7 +18,7 @@ func init() {
 
 // MagicType1 Supports melee abilities
 type MagicType1 struct {
-	MagicNumber int            `gorm:"column:iNum;type:int;primaryKey;not null" json:"iNum"`
+	ID          int            `gorm:"column:iNum;type:int;primaryKey;not null" json:"iNum"`
 	Name        *mssql.VarChar `gorm:"column:Name;type:varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"Name,omitempty"`
 	Description *mssql.VarChar `gorm:"column:Description;type:varchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"Description,omitempty"`
 	Type        uint8          `gorm:"column:Type;type:tinyint;not null" json:"Type"`
@@ -44,7 +44,7 @@ func (this MagicType1) TableName() string {
 
 // GetInsertString Returns the insert statement for the table populated with record from the object
 func (this MagicType1) GetInsertString() string {
-	return fmt.Sprintf("INSERT INTO [MAGIC_TYPE1] ([iNum], [Name], [Description], [Type], [HitRate], [Hit], [AddDamage], [Delay], [ComboType], [ComboCount], [ComboDamage], [Range]) VALUES\n(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", GetOptionalDecVal(&this.MagicNumber),
+	return fmt.Sprintf("INSERT INTO [MAGIC_TYPE1] ([iNum], [Name], [Description], [Type], [HitRate], [Hit], [AddDamage], [Delay], [ComboType], [ComboCount], [ComboDamage], [Range]) VALUES\n(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", GetOptionalDecVal(&this.ID),
 		GetOptionalVarCharVal(this.Name, false),
 		GetOptionalVarCharVal(this.Description, false),
 		GetOptionalDecVal(&this.Type),
@@ -65,7 +65,7 @@ func (this MagicType1) GetInsertHeader() string {
 
 // GetInsertData Returns the record data for the table insert dump
 func (this MagicType1) GetInsertData() string {
-	return fmt.Sprintf("(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", GetOptionalDecVal(&this.MagicNumber),
+	return fmt.Sprintf("(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", GetOptionalDecVal(&this.ID),
 		GetOptionalVarCharVal(this.Name, false),
 		GetOptionalVarCharVal(this.Description, false),
 		GetOptionalDecVal(&this.Type),

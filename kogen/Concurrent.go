@@ -19,9 +19,9 @@ func init() {
 // Concurrent Keeps track of concurrent user counts
 type Concurrent struct {
 	ServerId   uint8          `gorm:"column:serverid;type:tinyint;primaryKey;not null" json:"serverid"`
-	Zone1Count *int16         `gorm:"column:zone1_count;type:smallint" json:"zone1_count,omitempty"`
-	Zone2Count *int16         `gorm:"column:zone2_count;type:smallint" json:"zone2_count,omitempty"`
-	Zone3Count *int16         `gorm:"column:zone3_count;type:smallint" json:"zone3_count,omitempty"`
+	Zone1Count int16          `gorm:"column:zone1_count;type:smallint;not null" json:"zone1_count"`
+	Zone2Count int16          `gorm:"column:zone2_count;type:smallint;not null" json:"zone2_count"`
+	Zone3Count int16          `gorm:"column:zone3_count;type:smallint;not null" json:"zone3_count"`
 	Bz         *mssql.VarChar `gorm:"column:bz;type:varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"bz,omitempty"`
 }
 
@@ -38,9 +38,9 @@ func (this Concurrent) TableName() string {
 // GetInsertString Returns the insert statement for the table populated with record from the object
 func (this Concurrent) GetInsertString() string {
 	return fmt.Sprintf("INSERT INTO [CONCURRENT] ([serverid], [zone1_count], [zone2_count], [zone3_count], [bz]) VALUES\n(%s, %s, %s, %s, %s)", GetOptionalDecVal(&this.ServerId),
-		GetOptionalDecVal(this.Zone1Count),
-		GetOptionalDecVal(this.Zone2Count),
-		GetOptionalDecVal(this.Zone3Count),
+		GetOptionalDecVal(&this.Zone1Count),
+		GetOptionalDecVal(&this.Zone2Count),
+		GetOptionalDecVal(&this.Zone3Count),
 		GetOptionalVarCharVal(this.Bz, false))
 }
 
@@ -52,15 +52,15 @@ func (this Concurrent) GetInsertHeader() string {
 // GetInsertData Returns the record data for the table insert dump
 func (this Concurrent) GetInsertData() string {
 	return fmt.Sprintf("(%s, %s, %s, %s, %s)", GetOptionalDecVal(&this.ServerId),
-		GetOptionalDecVal(this.Zone1Count),
-		GetOptionalDecVal(this.Zone2Count),
-		GetOptionalDecVal(this.Zone3Count),
+		GetOptionalDecVal(&this.Zone1Count),
+		GetOptionalDecVal(&this.Zone2Count),
+		GetOptionalDecVal(&this.Zone3Count),
 		GetOptionalVarCharVal(this.Bz, false))
 }
 
 // GetCreateTableString Returns the create table statement for this object
 func (this Concurrent) GetCreateTableString() string {
-	query := "CREATE TABLE [CONCURRENT] (\n\t[serverid] tinyint NOT NULL,\n\t[zone1_count] smallint,\n\t[zone2_count] smallint,\n\t[zone3_count] smallint,\n\t[bz] varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS\n\tCONSTRAINT [PK_CONCURRENT] PRIMARY KEY CLUSTERED ([serverid])\n)\nGO\n"
+	query := "CREATE TABLE [CONCURRENT] (\n\t[serverid] tinyint NOT NULL,\n\t[zone1_count] smallint NOT NULL,\n\t[zone2_count] smallint NOT NULL,\n\t[zone3_count] smallint NOT NULL,\n\t[bz] varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS\n\tCONSTRAINT [PK_CONCURRENT] PRIMARY KEY CLUSTERED ([serverid])\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

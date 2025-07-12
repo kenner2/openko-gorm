@@ -17,19 +17,19 @@ func init() {
 
 // MakeWeapon Make weapon
 type MakeWeapon struct {
-	Level   uint8  `gorm:"column:byLevel;type:tinyint;primaryKey;not null" json:"byLevel"`
-	Class1  *int16 `gorm:"column:sClass_1;type:smallint" json:"sClass_1,omitempty"`
-	Class2  *int16 `gorm:"column:sClass_2;type:smallint" json:"sClass_2,omitempty"`
-	Class3  *int16 `gorm:"column:sClass_3;type:smallint" json:"sClass_3,omitempty"`
-	Class4  *int16 `gorm:"column:sClass_4;type:smallint" json:"sClass_4,omitempty"`
-	Class5  *int16 `gorm:"column:sClass_5;type:smallint" json:"sClass_5,omitempty"`
-	Class6  *int16 `gorm:"column:sClass_6;type:smallint" json:"sClass_6,omitempty"`
-	Class7  *int16 `gorm:"column:sClass_7;type:smallint" json:"sClass_7,omitempty"`
-	Class8  *int16 `gorm:"column:sClass_8;type:smallint" json:"sClass_8,omitempty"`
-	Class9  *int16 `gorm:"column:sClass_9;type:smallint" json:"sClass_9,omitempty"`
-	Class10 *int16 `gorm:"column:sClass_10;type:smallint" json:"sClass_10,omitempty"`
-	Class11 *int16 `gorm:"column:sClass_11;type:smallint" json:"sClass_11,omitempty"`
-	Class12 *int16 `gorm:"column:sClass_12;type:smallint" json:"sClass_12,omitempty"`
+	Level   uint8 `gorm:"column:byLevel;type:tinyint;primaryKey;not null" json:"byLevel"`
+	Class1  int16 `gorm:"column:sClass_1;type:smallint;not null" json:"sClass_1"`
+	Class2  int16 `gorm:"column:sClass_2;type:smallint;not null" json:"sClass_2"`
+	Class3  int16 `gorm:"column:sClass_3;type:smallint;not null" json:"sClass_3"`
+	Class4  int16 `gorm:"column:sClass_4;type:smallint;not null" json:"sClass_4"`
+	Class5  int16 `gorm:"column:sClass_5;type:smallint;not null" json:"sClass_5"`
+	Class6  int16 `gorm:"column:sClass_6;type:smallint;not null" json:"sClass_6"`
+	Class7  int16 `gorm:"column:sClass_7;type:smallint;not null" json:"sClass_7"`
+	Class8  int16 `gorm:"column:sClass_8;type:smallint;not null" json:"sClass_8"`
+	Class9  int16 `gorm:"column:sClass_9;type:smallint;not null" json:"sClass_9"`
+	Class10 int16 `gorm:"column:sClass_10;type:smallint;not null" json:"sClass_10"`
+	Class11 int16 `gorm:"column:sClass_11;type:smallint;not null" json:"sClass_11"`
+	Class12 int16 `gorm:"column:sClass_12;type:smallint;not null" json:"sClass_12"`
 }
 
 // GetDatabaseName Returns the table's database name
@@ -45,18 +45,18 @@ func (this MakeWeapon) TableName() string {
 // GetInsertString Returns the insert statement for the table populated with record from the object
 func (this MakeWeapon) GetInsertString() string {
 	return fmt.Sprintf("INSERT INTO [MAKE_WEAPON] ([byLevel], [sClass_1], [sClass_2], [sClass_3], [sClass_4], [sClass_5], [sClass_6], [sClass_7], [sClass_8], [sClass_9], [sClass_10], [sClass_11], [sClass_12]) VALUES\n(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", GetOptionalDecVal(&this.Level),
-		GetOptionalDecVal(this.Class1),
-		GetOptionalDecVal(this.Class2),
-		GetOptionalDecVal(this.Class3),
-		GetOptionalDecVal(this.Class4),
-		GetOptionalDecVal(this.Class5),
-		GetOptionalDecVal(this.Class6),
-		GetOptionalDecVal(this.Class7),
-		GetOptionalDecVal(this.Class8),
-		GetOptionalDecVal(this.Class9),
-		GetOptionalDecVal(this.Class10),
-		GetOptionalDecVal(this.Class11),
-		GetOptionalDecVal(this.Class12))
+		GetOptionalDecVal(&this.Class1),
+		GetOptionalDecVal(&this.Class2),
+		GetOptionalDecVal(&this.Class3),
+		GetOptionalDecVal(&this.Class4),
+		GetOptionalDecVal(&this.Class5),
+		GetOptionalDecVal(&this.Class6),
+		GetOptionalDecVal(&this.Class7),
+		GetOptionalDecVal(&this.Class8),
+		GetOptionalDecVal(&this.Class9),
+		GetOptionalDecVal(&this.Class10),
+		GetOptionalDecVal(&this.Class11),
+		GetOptionalDecVal(&this.Class12))
 }
 
 // GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
@@ -67,23 +67,23 @@ func (this MakeWeapon) GetInsertHeader() string {
 // GetInsertData Returns the record data for the table insert dump
 func (this MakeWeapon) GetInsertData() string {
 	return fmt.Sprintf("(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", GetOptionalDecVal(&this.Level),
-		GetOptionalDecVal(this.Class1),
-		GetOptionalDecVal(this.Class2),
-		GetOptionalDecVal(this.Class3),
-		GetOptionalDecVal(this.Class4),
-		GetOptionalDecVal(this.Class5),
-		GetOptionalDecVal(this.Class6),
-		GetOptionalDecVal(this.Class7),
-		GetOptionalDecVal(this.Class8),
-		GetOptionalDecVal(this.Class9),
-		GetOptionalDecVal(this.Class10),
-		GetOptionalDecVal(this.Class11),
-		GetOptionalDecVal(this.Class12))
+		GetOptionalDecVal(&this.Class1),
+		GetOptionalDecVal(&this.Class2),
+		GetOptionalDecVal(&this.Class3),
+		GetOptionalDecVal(&this.Class4),
+		GetOptionalDecVal(&this.Class5),
+		GetOptionalDecVal(&this.Class6),
+		GetOptionalDecVal(&this.Class7),
+		GetOptionalDecVal(&this.Class8),
+		GetOptionalDecVal(&this.Class9),
+		GetOptionalDecVal(&this.Class10),
+		GetOptionalDecVal(&this.Class11),
+		GetOptionalDecVal(&this.Class12))
 }
 
 // GetCreateTableString Returns the create table statement for this object
 func (this MakeWeapon) GetCreateTableString() string {
-	query := "CREATE TABLE [MAKE_WEAPON] (\n\t[byLevel] tinyint NOT NULL,\n\t[sClass_1] smallint,\n\t[sClass_2] smallint,\n\t[sClass_3] smallint,\n\t[sClass_4] smallint,\n\t[sClass_5] smallint,\n\t[sClass_6] smallint,\n\t[sClass_7] smallint,\n\t[sClass_8] smallint,\n\t[sClass_9] smallint,\n\t[sClass_10] smallint,\n\t[sClass_11] smallint,\n\t[sClass_12] smallint\n\tCONSTRAINT [PK_MAKE_WEAPON] PRIMARY KEY CLUSTERED ([byLevel])\n)\nGO\n"
+	query := "CREATE TABLE [MAKE_WEAPON] (\n\t[byLevel] tinyint NOT NULL,\n\t[sClass_1] smallint NOT NULL,\n\t[sClass_2] smallint NOT NULL,\n\t[sClass_3] smallint NOT NULL,\n\t[sClass_4] smallint NOT NULL,\n\t[sClass_5] smallint NOT NULL,\n\t[sClass_6] smallint NOT NULL,\n\t[sClass_7] smallint NOT NULL,\n\t[sClass_8] smallint NOT NULL,\n\t[sClass_9] smallint NOT NULL,\n\t[sClass_10] smallint NOT NULL,\n\t[sClass_11] smallint NOT NULL,\n\t[sClass_12] smallint NOT NULL\n\tCONSTRAINT [PK_MAKE_WEAPON] PRIMARY KEY CLUSTERED ([byLevel])\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

@@ -18,7 +18,7 @@ func init() {
 
 // MagicType8 Supports warp magic
 type MagicType8 struct {
-	MagicNumber int            `gorm:"column:iNum;type:int;primaryKey;not null" json:"iNum"`
+	ID          int            `gorm:"column:iNum;type:int;primaryKey;not null" json:"iNum"`
 	Name        *mssql.VarChar `gorm:"column:Name;type:varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"Name,omitempty"`
 	Description *mssql.VarChar `gorm:"column:Description;type:varchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"Description,omitempty"`
 	Target      uint8          `gorm:"column:Target;type:tinyint;not null" json:"Target"`
@@ -39,7 +39,7 @@ func (this MagicType8) TableName() string {
 
 // GetInsertString Returns the insert statement for the table populated with record from the object
 func (this MagicType8) GetInsertString() string {
-	return fmt.Sprintf("INSERT INTO [MAGIC_TYPE8] ([iNum], [Name], [Description], [Target], [Radius], [WarpType], [ExpRecover]) VALUES\n(%s, %s, %s, %s, %s, %s, %s)", GetOptionalDecVal(&this.MagicNumber),
+	return fmt.Sprintf("INSERT INTO [MAGIC_TYPE8] ([iNum], [Name], [Description], [Target], [Radius], [WarpType], [ExpRecover]) VALUES\n(%s, %s, %s, %s, %s, %s, %s)", GetOptionalDecVal(&this.ID),
 		GetOptionalVarCharVal(this.Name, false),
 		GetOptionalVarCharVal(this.Description, false),
 		GetOptionalDecVal(&this.Target),
@@ -55,7 +55,7 @@ func (this MagicType8) GetInsertHeader() string {
 
 // GetInsertData Returns the record data for the table insert dump
 func (this MagicType8) GetInsertData() string {
-	return fmt.Sprintf("(%s, %s, %s, %s, %s, %s, %s)", GetOptionalDecVal(&this.MagicNumber),
+	return fmt.Sprintf("(%s, %s, %s, %s, %s, %s, %s)", GetOptionalDecVal(&this.ID),
 		GetOptionalVarCharVal(this.Name, false),
 		GetOptionalVarCharVal(this.Description, false),
 		GetOptionalDecVal(&this.Target),

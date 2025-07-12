@@ -18,7 +18,7 @@ func init() {
 
 // MagicType6 Supports transformation magic
 type MagicType6 struct {
-	MagicNumber          int            `gorm:"column:iNum;type:int;primaryKey;not null" json:"iNum"`
+	ID                   int            `gorm:"column:iNum;type:int;primaryKey;not null" json:"iNum"`
 	Name                 mssql.VarChar  `gorm:"column:Name;type:varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS;not null" json:"Name"`
 	Description          *mssql.VarChar `gorm:"column:Description;type:varchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"Description,omitempty"`
 	Size                 int16          `gorm:"column:Size;type:smallint;not null" json:"Size"`
@@ -57,7 +57,7 @@ func (this MagicType6) TableName() string {
 
 // GetInsertString Returns the insert statement for the table populated with record from the object
 func (this MagicType6) GetInsertString() string {
-	return fmt.Sprintf("INSERT INTO [MAGIC_TYPE6] ([iNum], [Name], [Description], [Size], [TransformID], [Duration], [MaxHp], [MaxMp], [Speed], [AttackSpeed], [TotalHit], [TotalAc], [TotalHitRate], [TotalEvasionRate], [TotalFireR], [TotalColdR], [TotalLightningR], [TotalMagicR], [TotalDiseaseR], [TotalPoisonR], [Class], [UserSkillUse], [NeedItem], [SkillSuccessRate], [MonsterFriendly]) VALUES\n(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", GetOptionalDecVal(&this.MagicNumber),
+	return fmt.Sprintf("INSERT INTO [MAGIC_TYPE6] ([iNum], [Name], [Description], [Size], [TransformID], [Duration], [MaxHp], [MaxMp], [Speed], [AttackSpeed], [TotalHit], [TotalAc], [TotalHitRate], [TotalEvasionRate], [TotalFireR], [TotalColdR], [TotalLightningR], [TotalMagicR], [TotalDiseaseR], [TotalPoisonR], [Class], [UserSkillUse], [NeedItem], [SkillSuccessRate], [MonsterFriendly]) VALUES\n(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", GetOptionalDecVal(&this.ID),
 		GetOptionalVarCharVal(&this.Name, false),
 		GetOptionalVarCharVal(this.Description, false),
 		GetOptionalDecVal(&this.Size),
@@ -91,7 +91,7 @@ func (this MagicType6) GetInsertHeader() string {
 
 // GetInsertData Returns the record data for the table insert dump
 func (this MagicType6) GetInsertData() string {
-	return fmt.Sprintf("(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", GetOptionalDecVal(&this.MagicNumber),
+	return fmt.Sprintf("(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", GetOptionalDecVal(&this.ID),
 		GetOptionalVarCharVal(&this.Name, false),
 		GetOptionalVarCharVal(this.Description, false),
 		GetOptionalDecVal(&this.Size),

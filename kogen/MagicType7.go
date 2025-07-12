@@ -18,7 +18,7 @@ func init() {
 
 // MagicType7 Supports targeting modifications
 type MagicType7 struct {
-	MagicNumber   int            `gorm:"column:nIndex;type:int;primaryKey;not null" json:"nIndex"`
+	ID            int            `gorm:"column:nIndex;type:int;primaryKey;not null" json:"nIndex"`
 	Name          *mssql.VarChar `gorm:"column:strName;type:varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"strName,omitempty"`
 	Note          *mssql.VarChar `gorm:"column:strNote;type:varchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"strNote,omitempty"`
 	ValidGroup    uint8          `gorm:"column:byValidGroup;type:tinyint;not null" json:"byValidGroup"`
@@ -46,7 +46,7 @@ func (this MagicType7) TableName() string {
 
 // GetInsertString Returns the insert statement for the table populated with record from the object
 func (this MagicType7) GetInsertString() string {
-	return fmt.Sprintf("INSERT INTO [MAGIC_TYPE7] ([nIndex], [strName], [strNote], [byValidGroup], [byNatoinChange], [shMonsterNum], [byTargetChange], [byStateChange], [byRadius], [shHitrate], [shDuration], [shDamage], [byVisoin], [nNeedItem]) VALUES\n(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", GetOptionalDecVal(&this.MagicNumber),
+	return fmt.Sprintf("INSERT INTO [MAGIC_TYPE7] ([nIndex], [strName], [strNote], [byValidGroup], [byNatoinChange], [shMonsterNum], [byTargetChange], [byStateChange], [byRadius], [shHitrate], [shDuration], [shDamage], [byVisoin], [nNeedItem]) VALUES\n(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", GetOptionalDecVal(&this.ID),
 		GetOptionalVarCharVal(this.Name, false),
 		GetOptionalVarCharVal(this.Note, false),
 		GetOptionalDecVal(&this.ValidGroup),
@@ -69,7 +69,7 @@ func (this MagicType7) GetInsertHeader() string {
 
 // GetInsertData Returns the record data for the table insert dump
 func (this MagicType7) GetInsertData() string {
-	return fmt.Sprintf("(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", GetOptionalDecVal(&this.MagicNumber),
+	return fmt.Sprintf("(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", GetOptionalDecVal(&this.ID),
 		GetOptionalVarCharVal(this.Name, false),
 		GetOptionalVarCharVal(this.Note, false),
 		GetOptionalDecVal(&this.ValidGroup),

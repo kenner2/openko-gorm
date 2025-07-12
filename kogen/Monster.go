@@ -18,52 +18,52 @@ func init() {
 
 // Monster Monster definitions
 type Monster struct {
-	MonsterId           int16          `gorm:"column:sSid;type:smallint;primaryKey;not null" json:"sSid"`
-	Name                *mssql.VarChar `gorm:"column:strName;type:varchar(30) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"strName,omitempty"`
-	PictureId           int16          `gorm:"column:sPid;type:smallint;not null" json:"sPid"`
-	Size                int16          `gorm:"column:sSize;type:smallint;not null" json:"sSize"`
-	Weapon1             int            `gorm:"column:iWeapon1;type:int;not null" json:"iWeapon1"`
-	Weapon2             int            `gorm:"column:iWeapon2;type:int;not null" json:"iWeapon2"`
-	Group               uint8          `gorm:"column:byGroup;type:tinyint;not null" json:"byGroup"`
-	ActType             uint8          `gorm:"column:byActType;type:tinyint;not null" json:"byActType"`
-	Type                uint8          `gorm:"column:byType;type:tinyint;not null" json:"byType"`
-	Family              uint8          `gorm:"column:byFamily;type:tinyint;not null" json:"byFamily"`
-	Rank                uint8          `gorm:"column:byRank;type:tinyint;not null" json:"byRank"`
-	Title               uint8          `gorm:"column:byTitle;type:tinyint;not null" json:"byTitle"`
-	SellingGroup        int            `gorm:"column:iSellingGroup;type:int;not null" json:"iSellingGroup"`
-	Level               int16          `gorm:"column:sLevel;type:smallint;not null" json:"sLevel"`
-	Exp                 int            `gorm:"column:iExp;type:int;not null" json:"iExp"`
-	Loyalty             int            `gorm:"column:iLoyalty;type:int;not null" json:"iLoyalty"`
-	HitPoints           int            `gorm:"column:iHpPoint;type:int;not null" json:"iHpPoint"`
-	ManaPoints          int16          `gorm:"column:sMpPoint;type:smallint;not null" json:"sMpPoint"`
-	Attack              int16          `gorm:"column:sAtk;type:smallint;not null" json:"sAtk"`
-	Armor               int16          `gorm:"column:sAc;type:smallint;not null" json:"sAc"`
-	HitRate             int16          `gorm:"column:sHitRate;type:smallint;not null" json:"sHitRate"`
-	EvadeRate           int16          `gorm:"column:sEvadeRate;type:smallint;not null" json:"sEvadeRate"`
-	Damage              int16          `gorm:"column:sDamage;type:smallint;not null" json:"sDamage"`
-	AttackDelay         int16          `gorm:"column:sAttackDelay;type:smallint;not null" json:"sAttackDelay"`
-	WalkSpeed           uint8          `gorm:"column:bySpeed1;type:tinyint;not null" json:"bySpeed1"`
-	RunSpeed            uint8          `gorm:"column:bySpeed2;type:tinyint;not null" json:"bySpeed2"`
-	StandTime           int16          `gorm:"column:sStandtime;type:smallint;not null" json:"sStandtime"`
-	Magic1              int            `gorm:"column:iMagic1;type:int;not null" json:"iMagic1"`
-	Magic2              int            `gorm:"column:iMagic2;type:int;not null" json:"iMagic2"`
-	Magic3              int            `gorm:"column:iMagic3;type:int;not null" json:"iMagic3"`
-	FireResistance      int16          `gorm:"column:sFireR;type:smallint;not null" json:"sFireR"`
-	ColdResistance      int16          `gorm:"column:sColdR;type:smallint;not null" json:"sColdR"`
-	LightningResistance int16          `gorm:"column:sLightningR;type:smallint;not null" json:"sLightningR"`
-	MagicResistance     int16          `gorm:"column:sMagicR;type:smallint;not null" json:"sMagicR"`
-	DiseaseResistance   int16          `gorm:"column:sDiseaseR;type:smallint;not null" json:"sDiseaseR"`
-	PoisonResistance    int16          `gorm:"column:sPoisonR;type:smallint;not null" json:"sPoisonR"`
-	LightResistance     int16          `gorm:"column:sLightR;type:smallint;not null" json:"sLightR"`
-	Bulk                int16          `gorm:"column:sBulk;type:smallint;not null" json:"sBulk"`
-	AttackRange         uint8          `gorm:"column:byAttackRange;type:tinyint;not null" json:"byAttackRange"`
-	SearchRange         uint8          `gorm:"column:bySearchRange;type:tinyint;not null" json:"bySearchRange"`
-	TracingRange        uint8          `gorm:"column:byTracingRange;type:tinyint;not null" json:"byTracingRange"`
-	Money               int            `gorm:"column:iMoney;type:int;not null" json:"iMoney"`
-	Item                int16          `gorm:"column:sItem;type:smallint;not null" json:"sItem"`
-	DirectAttack        uint8          `gorm:"column:byDirectAttack;type:tinyint;not null" json:"byDirectAttack"`
-	MagicAttack         uint8          `gorm:"column:byMagicAttack;type:tinyint;not null" json:"byMagicAttack"`
-	MoneyType           uint8          `gorm:"column:byMoneyType;type:tinyint;not null" json:"byMoneyType"`
+	MonsterId       int16          `gorm:"column:sSid;type:smallint;primaryKey;not null" json:"sSid"`
+	Name            *mssql.VarChar `gorm:"column:strName;type:varchar(30) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"strName,omitempty"`
+	PictureId       int16          `gorm:"column:sPid;type:smallint;not null" json:"sPid"`
+	Size            int16          `gorm:"column:sSize;type:smallint;not null" json:"sSize"`
+	Weapon1         int            `gorm:"column:iWeapon1;type:int;not null" json:"iWeapon1"`
+	Weapon2         int            `gorm:"column:iWeapon2;type:int;not null" json:"iWeapon2"`
+	Group           uint8          `gorm:"column:byGroup;type:tinyint;not null" json:"byGroup"`
+	ActType         uint8          `gorm:"column:byActType;type:tinyint;not null" json:"byActType"`
+	Type            uint8          `gorm:"column:byType;type:tinyint;not null" json:"byType"`
+	Family          uint8          `gorm:"column:byFamily;type:tinyint;not null" json:"byFamily"`
+	Rank            uint8          `gorm:"column:byRank;type:tinyint;not null" json:"byRank"`
+	Title           uint8          `gorm:"column:byTitle;type:tinyint;not null" json:"byTitle"`
+	SellingGroup    int            `gorm:"column:iSellingGroup;type:int;not null" json:"iSellingGroup"`
+	Level           int16          `gorm:"column:sLevel;type:smallint;not null" json:"sLevel"`
+	Exp             int            `gorm:"column:iExp;type:int;not null" json:"iExp"`
+	Loyalty         int            `gorm:"column:iLoyalty;type:int;not null" json:"iLoyalty"`
+	HitPoints       int            `gorm:"column:iHpPoint;type:int;not null" json:"iHpPoint"`
+	ManaPoints      int16          `gorm:"column:sMpPoint;type:smallint;not null" json:"sMpPoint"`
+	Attack          int16          `gorm:"column:sAtk;type:smallint;not null" json:"sAtk"`
+	Armor           int16          `gorm:"column:sAc;type:smallint;not null" json:"sAc"`
+	HitRate         int16          `gorm:"column:sHitRate;type:smallint;not null" json:"sHitRate"`
+	EvadeRate       int16          `gorm:"column:sEvadeRate;type:smallint;not null" json:"sEvadeRate"`
+	Damage          int16          `gorm:"column:sDamage;type:smallint;not null" json:"sDamage"`
+	AttackDelay     int16          `gorm:"column:sAttackDelay;type:smallint;not null" json:"sAttackDelay"`
+	WalkSpeed       uint8          `gorm:"column:bySpeed1;type:tinyint;not null" json:"bySpeed1"`
+	RunSpeed        uint8          `gorm:"column:bySpeed2;type:tinyint;not null" json:"bySpeed2"`
+	StandTime       int16          `gorm:"column:sStandtime;type:smallint;not null" json:"sStandtime"`
+	Magic1          int            `gorm:"column:iMagic1;type:int;not null" json:"iMagic1"`
+	Magic2          int            `gorm:"column:iMagic2;type:int;not null" json:"iMagic2"`
+	Magic3          int            `gorm:"column:iMagic3;type:int;not null" json:"iMagic3"`
+	FireResist      int16          `gorm:"column:sFireR;type:smallint;not null" json:"sFireR"`
+	ColdResist      int16          `gorm:"column:sColdR;type:smallint;not null" json:"sColdR"`
+	LightningResist int16          `gorm:"column:sLightningR;type:smallint;not null" json:"sLightningR"`
+	MagicResist     int16          `gorm:"column:sMagicR;type:smallint;not null" json:"sMagicR"`
+	DiseaseResist   int16          `gorm:"column:sDiseaseR;type:smallint;not null" json:"sDiseaseR"`
+	PoisonResist    int16          `gorm:"column:sPoisonR;type:smallint;not null" json:"sPoisonR"`
+	LightResist     int16          `gorm:"column:sLightR;type:smallint;not null" json:"sLightR"`
+	Bulk            int16          `gorm:"column:sBulk;type:smallint;not null" json:"sBulk"`
+	AttackRange     uint8          `gorm:"column:byAttackRange;type:tinyint;not null" json:"byAttackRange"`
+	SearchRange     uint8          `gorm:"column:bySearchRange;type:tinyint;not null" json:"bySearchRange"`
+	TracingRange    uint8          `gorm:"column:byTracingRange;type:tinyint;not null" json:"byTracingRange"`
+	Money           int            `gorm:"column:iMoney;type:int;not null" json:"iMoney"`
+	Item            int16          `gorm:"column:sItem;type:smallint;not null" json:"sItem"`
+	DirectAttack    uint8          `gorm:"column:byDirectAttack;type:tinyint;not null" json:"byDirectAttack"`
+	MagicAttack     uint8          `gorm:"column:byMagicAttack;type:tinyint;not null" json:"byMagicAttack"`
+	MoneyType       uint8          `gorm:"column:byMoneyType;type:tinyint;not null" json:"byMoneyType"`
 }
 
 // GetDatabaseName Returns the table's database name
@@ -108,13 +108,13 @@ func (this Monster) GetInsertString() string {
 		GetOptionalDecVal(&this.Magic1),
 		GetOptionalDecVal(&this.Magic2),
 		GetOptionalDecVal(&this.Magic3),
-		GetOptionalDecVal(&this.FireResistance),
-		GetOptionalDecVal(&this.ColdResistance),
-		GetOptionalDecVal(&this.LightningResistance),
-		GetOptionalDecVal(&this.MagicResistance),
-		GetOptionalDecVal(&this.DiseaseResistance),
-		GetOptionalDecVal(&this.PoisonResistance),
-		GetOptionalDecVal(&this.LightResistance),
+		GetOptionalDecVal(&this.FireResist),
+		GetOptionalDecVal(&this.ColdResist),
+		GetOptionalDecVal(&this.LightningResist),
+		GetOptionalDecVal(&this.MagicResist),
+		GetOptionalDecVal(&this.DiseaseResist),
+		GetOptionalDecVal(&this.PoisonResist),
+		GetOptionalDecVal(&this.LightResist),
 		GetOptionalDecVal(&this.Bulk),
 		GetOptionalDecVal(&this.AttackRange),
 		GetOptionalDecVal(&this.SearchRange),
@@ -163,13 +163,13 @@ func (this Monster) GetInsertData() string {
 		GetOptionalDecVal(&this.Magic1),
 		GetOptionalDecVal(&this.Magic2),
 		GetOptionalDecVal(&this.Magic3),
-		GetOptionalDecVal(&this.FireResistance),
-		GetOptionalDecVal(&this.ColdResistance),
-		GetOptionalDecVal(&this.LightningResistance),
-		GetOptionalDecVal(&this.MagicResistance),
-		GetOptionalDecVal(&this.DiseaseResistance),
-		GetOptionalDecVal(&this.PoisonResistance),
-		GetOptionalDecVal(&this.LightResistance),
+		GetOptionalDecVal(&this.FireResist),
+		GetOptionalDecVal(&this.ColdResist),
+		GetOptionalDecVal(&this.LightningResist),
+		GetOptionalDecVal(&this.MagicResist),
+		GetOptionalDecVal(&this.DiseaseResist),
+		GetOptionalDecVal(&this.PoisonResist),
+		GetOptionalDecVal(&this.LightResist),
 		GetOptionalDecVal(&this.Bulk),
 		GetOptionalDecVal(&this.AttackRange),
 		GetOptionalDecVal(&this.SearchRange),

@@ -18,8 +18,8 @@ func init() {
 
 // WebpageAddress Webpage URL list
 type WebpageAddress struct {
-	Index          int            `gorm:"column:nIndex;type:int;primaryKey;not null" json:"nIndex"`
-	WebPageAddress *mssql.VarChar `gorm:"column:strWebPageAddress;type:varchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"strWebPageAddress,omitempty"`
+	Index          int           `gorm:"column:nIndex;type:int;primaryKey;not null" json:"nIndex"`
+	WebPageAddress mssql.VarChar `gorm:"column:strWebPageAddress;type:varchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS;not null" json:"strWebPageAddress"`
 }
 
 // GetDatabaseName Returns the table's database name
@@ -35,7 +35,7 @@ func (this WebpageAddress) TableName() string {
 // GetInsertString Returns the insert statement for the table populated with record from the object
 func (this WebpageAddress) GetInsertString() string {
 	return fmt.Sprintf("INSERT INTO [WEBPAGE_ADDRESS] ([nIndex], [strWebPageAddress]) VALUES\n(%s, %s)", GetOptionalDecVal(&this.Index),
-		GetOptionalVarCharVal(this.WebPageAddress, false))
+		GetOptionalVarCharVal(&this.WebPageAddress, false))
 }
 
 // GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
@@ -46,12 +46,12 @@ func (this WebpageAddress) GetInsertHeader() string {
 // GetInsertData Returns the record data for the table insert dump
 func (this WebpageAddress) GetInsertData() string {
 	return fmt.Sprintf("(%s, %s)", GetOptionalDecVal(&this.Index),
-		GetOptionalVarCharVal(this.WebPageAddress, false))
+		GetOptionalVarCharVal(&this.WebPageAddress, false))
 }
 
 // GetCreateTableString Returns the create table statement for this object
 func (this WebpageAddress) GetCreateTableString() string {
-	query := "CREATE TABLE [WEBPAGE_ADDRESS] (\n\t[nIndex] int NOT NULL,\n\t[strWebPageAddress] varchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS\n\tCONSTRAINT [PK_WEBPAGE_ADDRESS] PRIMARY KEY CLUSTERED ([nIndex])\n)\nGO\n"
+	query := "CREATE TABLE [WEBPAGE_ADDRESS] (\n\t[nIndex] int NOT NULL,\n\t[strWebPageAddress] varchar(100) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL\n\tCONSTRAINT [PK_WEBPAGE_ADDRESS] PRIMARY KEY CLUSTERED ([nIndex])\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

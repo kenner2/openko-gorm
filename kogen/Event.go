@@ -26,11 +26,11 @@ type Event struct {
 	Condition3  *mssql.VarChar `gorm:"column:Cond3;type:varchar(128) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"Cond3,omitempty"`
 	Condition4  *mssql.VarChar `gorm:"column:Cond4;type:varchar(128) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"Cond4,omitempty"`
 	Condition5  *mssql.VarChar `gorm:"column:Cond5;type:varchar(128) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"Cond5,omitempty"`
-	Execute1    *mssql.VarChar `gorm:"column:Exec1;type:varchar(128) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"Exec1,omitempty"`
-	Execute2    *mssql.VarChar `gorm:"column:Exec2;type:varchar(128) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"Exec2,omitempty"`
-	Execute3    *mssql.VarChar `gorm:"column:Exec3;type:varchar(128) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"Exec3,omitempty"`
-	Execute4    *mssql.VarChar `gorm:"column:Exec4;type:varchar(128) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"Exec4,omitempty"`
-	Execute5    *mssql.VarChar `gorm:"column:Exec5;type:varchar(128) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"Exec5,omitempty"`
+	Execute1    mssql.VarChar  `gorm:"column:Exec1;type:varchar(128) COLLATE SQL_Latin1_General_CP1_CI_AS;not null" json:"Exec1"`
+	Execute2    mssql.VarChar  `gorm:"column:Exec2;type:varchar(128) COLLATE SQL_Latin1_General_CP1_CI_AS;not null" json:"Exec2"`
+	Execute3    mssql.VarChar  `gorm:"column:Exec3;type:varchar(128) COLLATE SQL_Latin1_General_CP1_CI_AS;not null" json:"Exec3"`
+	Execute4    mssql.VarChar  `gorm:"column:Exec4;type:varchar(128) COLLATE SQL_Latin1_General_CP1_CI_AS;not null" json:"Exec4"`
+	Execute5    mssql.VarChar  `gorm:"column:Exec5;type:varchar(128) COLLATE SQL_Latin1_General_CP1_CI_AS;not null" json:"Exec5"`
 }
 
 // GetDatabaseName Returns the table's database name
@@ -53,11 +53,11 @@ func (this Event) GetInsertString() string {
 		GetOptionalVarCharVal(this.Condition3, false),
 		GetOptionalVarCharVal(this.Condition4, false),
 		GetOptionalVarCharVal(this.Condition5, false),
-		GetOptionalVarCharVal(this.Execute1, false),
-		GetOptionalVarCharVal(this.Execute2, false),
-		GetOptionalVarCharVal(this.Execute3, false),
-		GetOptionalVarCharVal(this.Execute4, false),
-		GetOptionalVarCharVal(this.Execute5, false))
+		GetOptionalVarCharVal(&this.Execute1, false),
+		GetOptionalVarCharVal(&this.Execute2, false),
+		GetOptionalVarCharVal(&this.Execute3, false),
+		GetOptionalVarCharVal(&this.Execute4, false),
+		GetOptionalVarCharVal(&this.Execute5, false))
 }
 
 // GetInsertHeader Returns the header for the table insert dump (insert into table (cols) values
@@ -75,16 +75,16 @@ func (this Event) GetInsertData() string {
 		GetOptionalVarCharVal(this.Condition3, false),
 		GetOptionalVarCharVal(this.Condition4, false),
 		GetOptionalVarCharVal(this.Condition5, false),
-		GetOptionalVarCharVal(this.Execute1, false),
-		GetOptionalVarCharVal(this.Execute2, false),
-		GetOptionalVarCharVal(this.Execute3, false),
-		GetOptionalVarCharVal(this.Execute4, false),
-		GetOptionalVarCharVal(this.Execute5, false))
+		GetOptionalVarCharVal(&this.Execute1, false),
+		GetOptionalVarCharVal(&this.Execute2, false),
+		GetOptionalVarCharVal(&this.Execute3, false),
+		GetOptionalVarCharVal(&this.Execute4, false),
+		GetOptionalVarCharVal(&this.Execute5, false))
 }
 
 // GetCreateTableString Returns the create table statement for this object
 func (this Event) GetCreateTableString() string {
-	query := "CREATE TABLE [EVENT] (\n\t[ZoneNum] tinyint NOT NULL,\n\t[EventNum] smallint NOT NULL,\n\t[Type] tinyint NOT NULL,\n\t[Cond1] varchar(128) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[Cond2] varchar(128) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[Cond3] varchar(128) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[Cond4] varchar(128) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[Cond5] varchar(128) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[Exec1] varchar(128) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[Exec2] varchar(128) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[Exec3] varchar(128) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[Exec4] varchar(128) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[Exec5] varchar(128) COLLATE SQL_Latin1_General_CP1_CI_AS\n)\nGO\n"
+	query := "CREATE TABLE [EVENT] (\n\t[ZoneNum] tinyint NOT NULL,\n\t[EventNum] smallint NOT NULL,\n\t[Type] tinyint NOT NULL,\n\t[Cond1] varchar(128) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[Cond2] varchar(128) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[Cond3] varchar(128) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[Cond4] varchar(128) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[Cond5] varchar(128) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[Exec1] varchar(128) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[Exec2] varchar(128) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[Exec3] varchar(128) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[Exec4] varchar(128) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[Exec5] varchar(128) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 
