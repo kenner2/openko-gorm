@@ -16,7 +16,7 @@ func init() {
 	ModelList = append(ModelList, &MagicType7{})
 }
 
-// MagicType7 Type 7 supports targeting modifications
+// MagicType7 Supports targeting modifications
 type MagicType7 struct {
 	MagicNumber   int            `gorm:"column:nIndex;type:int;primaryKey;not null" json:"nIndex"`
 	Name          *mssql.VarChar `gorm:"column:strName;type:varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"strName,omitempty"`

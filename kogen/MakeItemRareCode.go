@@ -17,7 +17,7 @@ func init() {
 
 // MakeItemRareCode Make item rarity codes
 type MakeItemRareCode struct {
-	LevelGrade  uint8 `gorm:"column:byLevelGrade;type:tinyint;not null" json:"byLevelGrade"`
+	LevelGrade  uint8 `gorm:"column:byLevelGrade;type:tinyint;primaryKey;not null" json:"byLevelGrade"`
 	UpgradeItem int16 `gorm:"column:sUpgradeItem;type:smallint;not null;default:0" json:"sUpgradeItem"`
 	RareItem    int16 `gorm:"column:sLareItem;type:smallint;not null;default:0" json:"sLareItem"`
 	MagicItem   int16 `gorm:"column:sMagicItem;type:smallint;not null;default:0" json:"sMagicItem"`
@@ -59,7 +59,7 @@ func (this MakeItemRareCode) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this MakeItemRareCode) GetCreateTableString() string {
-	query := "CREATE TABLE [MAKE_ITEM_LARECODE] (\n\t[byLevelGrade] tinyint NOT NULL,\n\t[sUpgradeItem] smallint NOT NULL,\n\t[sLareItem] smallint NOT NULL,\n\t[sMagicItem] smallint NOT NULL,\n\t[sGereralItem] smallint NOT NULL\n)\nGO\nALTER TABLE [MAKE_ITEM_LARECODE] ADD CONSTRAINT [DF_MAKE_ITEM_LARECODE_sUpgradeItem] DEFAULT 0 FOR [sUpgradeItem]\nGO\nALTER TABLE [MAKE_ITEM_LARECODE] ADD CONSTRAINT [DF_MAKE_ITEM_LARECODE_sLareItem] DEFAULT 0 FOR [sLareItem]\nGO\nALTER TABLE [MAKE_ITEM_LARECODE] ADD CONSTRAINT [DF_MAKE_ITEM_LARECODE_sMagicItem] DEFAULT 0 FOR [sMagicItem]\nGO\nALTER TABLE [MAKE_ITEM_LARECODE] ADD CONSTRAINT [DF_MAKE_ITEM_LARECODE_sGereralItem] DEFAULT 0 FOR [sGereralItem]\nGO\n"
+	query := "CREATE TABLE [MAKE_ITEM_LARECODE] (\n\t[byLevelGrade] tinyint NOT NULL,\n\t[sUpgradeItem] smallint NOT NULL,\n\t[sLareItem] smallint NOT NULL,\n\t[sMagicItem] smallint NOT NULL,\n\t[sGereralItem] smallint NOT NULL\n\tCONSTRAINT [PK_MAKE_ITEM_LARECODE] PRIMARY KEY CLUSTERED ([byLevelGrade])\n)\nGO\nALTER TABLE [MAKE_ITEM_LARECODE] ADD CONSTRAINT [DF_MAKE_ITEM_LARECODE_sUpgradeItem] DEFAULT 0 FOR [sUpgradeItem]\nGO\nALTER TABLE [MAKE_ITEM_LARECODE] ADD CONSTRAINT [DF_MAKE_ITEM_LARECODE_sLareItem] DEFAULT 0 FOR [sLareItem]\nGO\nALTER TABLE [MAKE_ITEM_LARECODE] ADD CONSTRAINT [DF_MAKE_ITEM_LARECODE_sMagicItem] DEFAULT 0 FOR [sMagicItem]\nGO\nALTER TABLE [MAKE_ITEM_LARECODE] ADD CONSTRAINT [DF_MAKE_ITEM_LARECODE_sGereralItem] DEFAULT 0 FOR [sGereralItem]\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

@@ -16,7 +16,7 @@ func init() {
 	ModelList = append(ModelList, &MagicType6{})
 }
 
-// MagicType6 Type 6 supports transformation magic
+// MagicType6 Supports transformation magic
 type MagicType6 struct {
 	MagicNumber          int            `gorm:"column:iNum;type:int;primaryKey;not null" json:"iNum"`
 	Name                 mssql.VarChar  `gorm:"column:Name;type:varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS;not null" json:"Name"`

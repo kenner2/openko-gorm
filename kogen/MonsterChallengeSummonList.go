@@ -17,7 +17,7 @@ func init() {
 
 // MonsterChallengeSummonList Forgotten Temple summon list
 type MonsterChallengeSummonList struct {
-	Index      int16 `gorm:"column:sIndex;type:smallint;not null" json:"sIndex"`
+	Index      int16 `gorm:"column:sIndex;type:smallint;primaryKey;not null" json:"sIndex"`
 	Level      uint8 `gorm:"column:bLevel;type:tinyint;not null" json:"bLevel"`
 	Stage      uint8 `gorm:"column:bStage;type:tinyint;not null" json:"bStage"`
 	StageLevel uint8 `gorm:"column:bStageLevel;type:tinyint;not null;default:0" json:"bStageLevel"`
@@ -74,7 +74,7 @@ func (this MonsterChallengeSummonList) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this MonsterChallengeSummonList) GetCreateTableString() string {
-	query := "CREATE TABLE [MONSTER_CHALLENGE_SUMMON_LIST] (\n\t[sIndex] smallint NOT NULL,\n\t[bLevel] tinyint NOT NULL,\n\t[bStage] tinyint NOT NULL,\n\t[bStageLevel] tinyint NOT NULL,\n\t[sTime] smallint NOT NULL,\n\t[sSid] smallint NOT NULL,\n\t[sCount] smallint NOT NULL,\n\t[sPosX] smallint NOT NULL,\n\t[sPosZ] smallint NOT NULL,\n\t[bRange] tinyint NOT NULL\n)\nGO\nALTER TABLE [MONSTER_CHALLENGE_SUMMON_LIST] ADD CONSTRAINT [DF_MONSTER_CHALLENGE_SUMMON_LIST_bStageLevel] DEFAULT 0 FOR [bStageLevel]\nGO\n"
+	query := "CREATE TABLE [MONSTER_CHALLENGE_SUMMON_LIST] (\n\t[sIndex] smallint NOT NULL,\n\t[bLevel] tinyint NOT NULL,\n\t[bStage] tinyint NOT NULL,\n\t[bStageLevel] tinyint NOT NULL,\n\t[sTime] smallint NOT NULL,\n\t[sSid] smallint NOT NULL,\n\t[sCount] smallint NOT NULL,\n\t[sPosX] smallint NOT NULL,\n\t[sPosZ] smallint NOT NULL,\n\t[bRange] tinyint NOT NULL\n\tCONSTRAINT [PK_MONSTER_CHALLENGE_SUMMON_LIST] PRIMARY KEY CLUSTERED ([sIndex])\n)\nGO\nALTER TABLE [MONSTER_CHALLENGE_SUMMON_LIST] ADD CONSTRAINT [DF_MONSTER_CHALLENGE_SUMMON_LIST_bStageLevel] DEFAULT 0 FOR [bStageLevel]\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

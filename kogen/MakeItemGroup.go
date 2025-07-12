@@ -17,7 +17,7 @@ func init() {
 
 // MakeItemGroup Make item group
 type MakeItemGroup struct {
-	ItemGroupNumber int `gorm:"column:iItemGroupNum;type:int;not null" json:"iItemGroupNum"`
+	ItemGroupNumber int `gorm:"column:iItemGroupNum;type:int;primaryKey;not null" json:"iItemGroupNum"`
 	Item1           int `gorm:"column:iItem_1;type:int;not null" json:"iItem_1"`
 	Item2           int `gorm:"column:iItem_2;type:int;not null" json:"iItem_2"`
 	Item3           int `gorm:"column:iItem_3;type:int;not null" json:"iItem_3"`
@@ -137,7 +137,7 @@ func (this MakeItemGroup) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this MakeItemGroup) GetCreateTableString() string {
-	query := "CREATE TABLE [MAKE_ITEM_GROUP] (\n\t[iItemGroupNum] int NOT NULL,\n\t[iItem_1] int NOT NULL,\n\t[iItem_2] int NOT NULL,\n\t[iItem_3] int NOT NULL,\n\t[iItem_4] int NOT NULL,\n\t[iItem_5] int NOT NULL,\n\t[iItem_6] int NOT NULL,\n\t[iItem_7] int NOT NULL,\n\t[iItem_8] int NOT NULL,\n\t[iItem_9] int NOT NULL,\n\t[iItem_10] int NOT NULL,\n\t[iItem_11] int NOT NULL,\n\t[iItem_12] int NOT NULL,\n\t[iItem_13] int NOT NULL,\n\t[iItem_14] int NOT NULL,\n\t[iItem_15] int NOT NULL,\n\t[iItem_16] int NOT NULL,\n\t[iItem_17] int NOT NULL,\n\t[iItem_18] int NOT NULL,\n\t[iItem_19] int NOT NULL,\n\t[iItem_20] int NOT NULL,\n\t[iItem_21] int NOT NULL,\n\t[iItem_22] int NOT NULL,\n\t[iItem_23] int NOT NULL,\n\t[iItem_24] int NOT NULL,\n\t[iItem_25] int NOT NULL,\n\t[iItem_26] int NOT NULL,\n\t[iItem_27] int NOT NULL,\n\t[iItem_28] int NOT NULL,\n\t[iItem_29] int NOT NULL,\n\t[iItem_30] int NOT NULL\n)\nGO\n"
+	query := "CREATE TABLE [MAKE_ITEM_GROUP] (\n\t[iItemGroupNum] int NOT NULL,\n\t[iItem_1] int NOT NULL,\n\t[iItem_2] int NOT NULL,\n\t[iItem_3] int NOT NULL,\n\t[iItem_4] int NOT NULL,\n\t[iItem_5] int NOT NULL,\n\t[iItem_6] int NOT NULL,\n\t[iItem_7] int NOT NULL,\n\t[iItem_8] int NOT NULL,\n\t[iItem_9] int NOT NULL,\n\t[iItem_10] int NOT NULL,\n\t[iItem_11] int NOT NULL,\n\t[iItem_12] int NOT NULL,\n\t[iItem_13] int NOT NULL,\n\t[iItem_14] int NOT NULL,\n\t[iItem_15] int NOT NULL,\n\t[iItem_16] int NOT NULL,\n\t[iItem_17] int NOT NULL,\n\t[iItem_18] int NOT NULL,\n\t[iItem_19] int NOT NULL,\n\t[iItem_20] int NOT NULL,\n\t[iItem_21] int NOT NULL,\n\t[iItem_22] int NOT NULL,\n\t[iItem_23] int NOT NULL,\n\t[iItem_24] int NOT NULL,\n\t[iItem_25] int NOT NULL,\n\t[iItem_26] int NOT NULL,\n\t[iItem_27] int NOT NULL,\n\t[iItem_28] int NOT NULL,\n\t[iItem_29] int NOT NULL,\n\t[iItem_30] int NOT NULL\n\tCONSTRAINT [PK_MAKE_ITEM_GROUP] PRIMARY KEY CLUSTERED ([iItemGroupNum])\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

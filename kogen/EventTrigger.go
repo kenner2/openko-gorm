@@ -17,7 +17,7 @@ func init() {
 
 // EventTrigger NPC Event Triggers
 type EventTrigger struct {
-	Index         int   `gorm:"column:nIndex;type:int;not null" json:"nIndex"`
+	Index         int   `gorm:"column:nIndex;type:int;primaryKey;not null" json:"nIndex"`
 	NpcType       uint8 `gorm:"column:bNpcType;type:tinyint;not null" json:"bNpcType"`
 	NpcId         int16 `gorm:"column:sNpcID;type:smallint;not null" json:"sNpcID"`
 	TriggerNumber int   `gorm:"column:nTriggerNum;type:int;not null" json:"nTriggerNum"`
@@ -56,7 +56,7 @@ func (this EventTrigger) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this EventTrigger) GetCreateTableString() string {
-	query := "CREATE TABLE [EVENT_TRIGGER] (\n\t[nIndex] int NOT NULL,\n\t[bNpcType] tinyint NOT NULL,\n\t[sNpcID] smallint NOT NULL,\n\t[nTriggerNum] int NOT NULL\n)\nGO\n"
+	query := "CREATE TABLE [EVENT_TRIGGER] (\n\t[nIndex] int NOT NULL,\n\t[bNpcType] tinyint NOT NULL,\n\t[sNpcID] smallint NOT NULL,\n\t[nTriggerNum] int NOT NULL\n\tCONSTRAINT [PK_EVENT_TRIGGER] PRIMARY KEY CLUSTERED ([nIndex])\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

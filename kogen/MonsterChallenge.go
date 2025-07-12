@@ -17,7 +17,7 @@ func init() {
 
 // MonsterChallenge Monster challenge (Forgotten Temple)
 type MonsterChallenge struct {
-	Index      int16 `gorm:"column:sIndex;type:smallint;not null" json:"sIndex"`
+	Index      int16 `gorm:"column:sIndex;type:smallint;primaryKey;not null" json:"sIndex"`
 	StartTime1 uint8 `gorm:"column:bStartTime1;type:tinyint;not null" json:"bStartTime1"`
 	StartTime2 uint8 `gorm:"column:bStartTime2;type:tinyint;not null" json:"bStartTime2"`
 	StartTime3 uint8 `gorm:"column:bStartTime3;type:tinyint;not null" json:"bStartTime3"`
@@ -62,7 +62,7 @@ func (this MonsterChallenge) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this MonsterChallenge) GetCreateTableString() string {
-	query := "CREATE TABLE [MONSTER_CHALLENGE] (\n\t[sIndex] smallint NOT NULL,\n\t[bStartTime1] tinyint NOT NULL,\n\t[bStartTime2] tinyint NOT NULL,\n\t[bStartTime3] tinyint NOT NULL,\n\t[bLevelMin] tinyint NOT NULL,\n\t[bLevelMax] tinyint NOT NULL\n)\nGO\n"
+	query := "CREATE TABLE [MONSTER_CHALLENGE] (\n\t[sIndex] smallint NOT NULL,\n\t[bStartTime1] tinyint NOT NULL,\n\t[bStartTime2] tinyint NOT NULL,\n\t[bStartTime3] tinyint NOT NULL,\n\t[bLevelMin] tinyint NOT NULL,\n\t[bLevelMax] tinyint NOT NULL\n\tCONSTRAINT [PK_MONSTER_CHALLENGE] PRIMARY KEY CLUSTERED ([sIndex])\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

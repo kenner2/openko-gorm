@@ -17,7 +17,7 @@ func init() {
 
 // MakeItemGradeCode Make item grade code
 type MakeItemGradeCode struct {
-	ItemIndex uint8  `gorm:"column:byItemIndex;type:tinyint;not null" json:"byItemIndex"`
+	ItemIndex uint8  `gorm:"column:byItemIndex;type:tinyint;primaryKey;not null" json:"byItemIndex"`
 	Grade1    int16  `gorm:"column:byGrade_1;type:smallint;not null" json:"byGrade_1"`
 	Grade2    *int16 `gorm:"column:byGrade_2;type:smallint" json:"byGrade_2,omitempty"`
 	Grade3    *int16 `gorm:"column:byGrade_3;type:smallint" json:"byGrade_3,omitempty"`
@@ -74,7 +74,7 @@ func (this MakeItemGradeCode) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this MakeItemGradeCode) GetCreateTableString() string {
-	query := "CREATE TABLE [MAKE_ITEM_GRADECODE] (\n\t[byItemIndex] tinyint NOT NULL,\n\t[byGrade_1] smallint NOT NULL,\n\t[byGrade_2] smallint,\n\t[byGrade_3] smallint,\n\t[byGrade_4] smallint,\n\t[byGrade_5] smallint,\n\t[byGrade_6] smallint,\n\t[byGrade_7] smallint,\n\t[byGrade_8] smallint,\n\t[byGrade_9] smallint\n)\nGO\n"
+	query := "CREATE TABLE [MAKE_ITEM_GRADECODE] (\n\t[byItemIndex] tinyint NOT NULL,\n\t[byGrade_1] smallint NOT NULL,\n\t[byGrade_2] smallint,\n\t[byGrade_3] smallint,\n\t[byGrade_4] smallint,\n\t[byGrade_5] smallint,\n\t[byGrade_6] smallint,\n\t[byGrade_7] smallint,\n\t[byGrade_8] smallint,\n\t[byGrade_9] smallint\n\tCONSTRAINT [PK_MAKE_ITEM_GRADECODE] PRIMARY KEY CLUSTERED ([byItemIndex])\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

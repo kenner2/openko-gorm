@@ -18,7 +18,7 @@ func init() {
 
 // Version Version data and patch management
 type Version struct {
-	Version        int16         `gorm:"column:sVersion;type:smallint;primaryKey;not null" json:"sVersion"`
+	Number         int16         `gorm:"column:sVersion;type:smallint;primaryKey;not null" json:"sVersion"`
 	FileName       mssql.VarChar `gorm:"column:strFileName;type:varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS;not null" json:"strFileName"`
 	CompressName   mssql.VarChar `gorm:"column:strCompressName;type:varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS;not null" json:"strCompressName"`
 	HistoryVersion int16         `gorm:"column:sHistoryVersion;type:smallint;not null" json:"sHistoryVersion"`
@@ -36,7 +36,7 @@ func (this Version) TableName() string {
 
 // GetInsertString Returns the insert statement for the table populated with record from the object
 func (this Version) GetInsertString() string {
-	return fmt.Sprintf("INSERT INTO [VERSION] ([sVersion], [strFileName], [strCompressName], [sHistoryVersion]) VALUES\n(%s, %s, %s, %s)", GetOptionalDecVal(&this.Version),
+	return fmt.Sprintf("INSERT INTO [VERSION] ([sVersion], [strFileName], [strCompressName], [sHistoryVersion]) VALUES\n(%s, %s, %s, %s)", GetOptionalDecVal(&this.Number),
 		GetOptionalVarCharVal(&this.FileName, false),
 		GetOptionalVarCharVal(&this.CompressName, false),
 		GetOptionalDecVal(&this.HistoryVersion))
@@ -49,7 +49,7 @@ func (this Version) GetInsertHeader() string {
 
 // GetInsertData Returns the record data for the table insert dump
 func (this Version) GetInsertData() string {
-	return fmt.Sprintf("(%s, %s, %s, %s)", GetOptionalDecVal(&this.Version),
+	return fmt.Sprintf("(%s, %s, %s, %s)", GetOptionalDecVal(&this.Number),
 		GetOptionalVarCharVal(&this.FileName, false),
 		GetOptionalVarCharVal(&this.CompressName, false),
 		GetOptionalDecVal(&this.HistoryVersion))

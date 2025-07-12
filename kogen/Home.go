@@ -17,7 +17,7 @@ func init() {
 
 // Home TODO Doc
 type Home struct {
-	Nation        uint8 `gorm:"column:Nation;type:tinyint;not null" json:"Nation"`
+	Nation        uint8 `gorm:"column:Nation;type:tinyint;primaryKey;not null" json:"Nation"`
 	ElmoZoneX     int   `gorm:"column:ElmoZoneX;type:int;not null" json:"ElmoZoneX"`
 	ElmoZoneZ     int   `gorm:"column:ElmoZoneZ;type:int;not null" json:"ElmoZoneZ"`
 	ElmoZoneLX    uint8 `gorm:"column:ElmoZoneLX;type:tinyint;not null" json:"ElmoZoneLX"`
@@ -107,7 +107,7 @@ func (this Home) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this Home) GetCreateTableString() string {
-	query := "CREATE TABLE [HOME] (\n\t[Nation] tinyint NOT NULL,\n\t[ElmoZoneX] int NOT NULL,\n\t[ElmoZoneZ] int NOT NULL,\n\t[ElmoZoneLX] tinyint NOT NULL,\n\t[ElmoZoneLZ] tinyint NOT NULL,\n\t[KarusZoneX] int NOT NULL,\n\t[KarusZoneZ] int NOT NULL,\n\t[KarusZoneLX] tinyint NOT NULL,\n\t[KarusZoneLZ] tinyint NOT NULL,\n\t[FreeZoneX] int NOT NULL,\n\t[FreeZoneZ] int NOT NULL,\n\t[FreeZoneLX] tinyint NOT NULL,\n\t[FreeZoneLZ] tinyint NOT NULL,\n\t[BattleZoneX] int NOT NULL,\n\t[BattleZoneZ] int NOT NULL,\n\t[BattleZoneLX] tinyint NOT NULL,\n\t[BattleZoneLZ] tinyint NOT NULL,\n\t[BattleZone2X] int NOT NULL,\n\t[BattleZone2Z] int NOT NULL,\n\t[BattleZone2LX] tinyint NOT NULL,\n\t[BattleZone2LZ] tinyint NOT NULL\n)\nGO\n"
+	query := "CREATE TABLE [HOME] (\n\t[Nation] tinyint NOT NULL,\n\t[ElmoZoneX] int NOT NULL,\n\t[ElmoZoneZ] int NOT NULL,\n\t[ElmoZoneLX] tinyint NOT NULL,\n\t[ElmoZoneLZ] tinyint NOT NULL,\n\t[KarusZoneX] int NOT NULL,\n\t[KarusZoneZ] int NOT NULL,\n\t[KarusZoneLX] tinyint NOT NULL,\n\t[KarusZoneLZ] tinyint NOT NULL,\n\t[FreeZoneX] int NOT NULL,\n\t[FreeZoneZ] int NOT NULL,\n\t[FreeZoneLX] tinyint NOT NULL,\n\t[FreeZoneLZ] tinyint NOT NULL,\n\t[BattleZoneX] int NOT NULL,\n\t[BattleZoneZ] int NOT NULL,\n\t[BattleZoneLX] tinyint NOT NULL,\n\t[BattleZoneLZ] tinyint NOT NULL,\n\t[BattleZone2X] int NOT NULL,\n\t[BattleZone2Z] int NOT NULL,\n\t[BattleZone2LX] tinyint NOT NULL,\n\t[BattleZone2LZ] tinyint NOT NULL\n\tCONSTRAINT [PK_HOME] PRIMARY KEY CLUSTERED ([Nation])\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

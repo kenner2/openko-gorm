@@ -17,7 +17,7 @@ func init() {
 
 // MakeWeapon Make weapon
 type MakeWeapon struct {
-	Level   uint8  `gorm:"column:byLevel;type:tinyint;not null" json:"byLevel"`
+	Level   uint8  `gorm:"column:byLevel;type:tinyint;primaryKey;not null" json:"byLevel"`
 	Class1  *int16 `gorm:"column:sClass_1;type:smallint" json:"sClass_1,omitempty"`
 	Class2  *int16 `gorm:"column:sClass_2;type:smallint" json:"sClass_2,omitempty"`
 	Class3  *int16 `gorm:"column:sClass_3;type:smallint" json:"sClass_3,omitempty"`
@@ -83,7 +83,7 @@ func (this MakeWeapon) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this MakeWeapon) GetCreateTableString() string {
-	query := "CREATE TABLE [MAKE_WEAPON] (\n\t[byLevel] tinyint NOT NULL,\n\t[sClass_1] smallint,\n\t[sClass_2] smallint,\n\t[sClass_3] smallint,\n\t[sClass_4] smallint,\n\t[sClass_5] smallint,\n\t[sClass_6] smallint,\n\t[sClass_7] smallint,\n\t[sClass_8] smallint,\n\t[sClass_9] smallint,\n\t[sClass_10] smallint,\n\t[sClass_11] smallint,\n\t[sClass_12] smallint\n)\nGO\n"
+	query := "CREATE TABLE [MAKE_WEAPON] (\n\t[byLevel] tinyint NOT NULL,\n\t[sClass_1] smallint,\n\t[sClass_2] smallint,\n\t[sClass_3] smallint,\n\t[sClass_4] smallint,\n\t[sClass_5] smallint,\n\t[sClass_6] smallint,\n\t[sClass_7] smallint,\n\t[sClass_8] smallint,\n\t[sClass_9] smallint,\n\t[sClass_10] smallint,\n\t[sClass_11] smallint,\n\t[sClass_12] smallint\n\tCONSTRAINT [PK_MAKE_WEAPON] PRIMARY KEY CLUSTERED ([byLevel])\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

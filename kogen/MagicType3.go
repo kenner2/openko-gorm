@@ -16,7 +16,7 @@ func init() {
 	ModelList = append(ModelList, &MagicType3{})
 }
 
-// MagicType3 Type 3 supports Area of Effect and Damage over Time effects
+// MagicType3 Supports Area of Effect and Damage over Time effects
 type MagicType3 struct {
 	MagicNumber int            `gorm:"column:iNum;type:int;primaryKey;not null" json:"iNum"`
 	Name        *mssql.VarChar `gorm:"column:Name;type:varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"Name,omitempty"`

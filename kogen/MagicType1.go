@@ -16,7 +16,7 @@ func init() {
 	ModelList = append(ModelList, &MagicType1{})
 }
 
-// MagicType1 Type 1 covers melee abilities
+// MagicType1 Supports melee abilities
 type MagicType1 struct {
 	MagicNumber int            `gorm:"column:iNum;type:int;primaryKey;not null" json:"iNum"`
 	Name        *mssql.VarChar `gorm:"column:Name;type:varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"Name,omitempty"`

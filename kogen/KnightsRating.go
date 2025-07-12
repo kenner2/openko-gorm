@@ -18,7 +18,7 @@ func init() {
 
 // KnightsRating Knights Ratings
 type KnightsRating struct {
-	Rank   int            `gorm:"column:nRank;type:int;not null" json:"nRank"`
+	Rank   int            `gorm:"column:nRank;type:int;primaryKey;not null" json:"nRank"`
 	Index  *int16         `gorm:"column:shIndex;type:smallint" json:"shIndex,omitempty"`
 	Name   *mssql.VarChar `gorm:"column:strName;type:varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"strName,omitempty"`
 	Points *int           `gorm:"column:nPoints;type:int" json:"nPoints,omitempty"`
@@ -57,7 +57,7 @@ func (this KnightsRating) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this KnightsRating) GetCreateTableString() string {
-	query := "CREATE TABLE [KNIGHTS_RATING] (\n\t[nRank] int NOT NULL,\n\t[shIndex] smallint,\n\t[strName] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[nPoints] int\n)\nGO\n"
+	query := "CREATE TABLE [KNIGHTS_RATING] (\n\t[nRank] int NOT NULL,\n\t[shIndex] smallint,\n\t[strName] varchar(21) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[nPoints] int\n\tCONSTRAINT [PK_KNIGHTS_RATING] PRIMARY KEY CLUSTERED ([nRank])\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

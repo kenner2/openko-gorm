@@ -18,7 +18,7 @@ func init() {
 
 // MakeItem Make item
 type MakeItem struct {
-	Index     int16          `gorm:"column:sIndex;type:smallint;not null" json:"sIndex"`
+	Index     int16          `gorm:"column:sIndex;type:smallint;primaryKey;not null" json:"sIndex"`
 	ItemInfo  *mssql.VarChar `gorm:"column:strItemInfo;type:varchar(20) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"strItemInfo,omitempty"`
 	ItemCode  int            `gorm:"column:iItemCode;type:int;not null" json:"iItemCode"`
 	ItemLevel uint8          `gorm:"column:byItemLevel;type:tinyint;not null;default:0" json:"byItemLevel"`
@@ -57,7 +57,7 @@ func (this MakeItem) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this MakeItem) GetCreateTableString() string {
-	query := "CREATE TABLE [MAKE_ITEM] (\n\t[sIndex] smallint NOT NULL,\n\t[strItemInfo] varchar(20) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[iItemCode] int NOT NULL,\n\t[byItemLevel] tinyint NOT NULL\n)\nGO\nALTER TABLE [MAKE_ITEM] ADD CONSTRAINT [DF_MAKE_ITEM_byItemLevel] DEFAULT 0 FOR [byItemLevel]\nGO\n"
+	query := "CREATE TABLE [MAKE_ITEM] (\n\t[sIndex] smallint NOT NULL,\n\t[strItemInfo] varchar(20) COLLATE SQL_Latin1_General_CP1_CI_AS,\n\t[iItemCode] int NOT NULL,\n\t[byItemLevel] tinyint NOT NULL\n\tCONSTRAINT [PK_MAKE_DEFENSIVE] PRIMARY KEY CLUSTERED ([sIndex])\n)\nGO\nALTER TABLE [MAKE_ITEM] ADD CONSTRAINT [DF_MAKE_ITEM_byItemLevel] DEFAULT 0 FOR [byItemLevel]\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

@@ -16,7 +16,7 @@ func init() {
 	ModelList = append(ModelList, &MagicType5{})
 }
 
-// MagicType5 Type 5 supports recovery skills
+// MagicType5 Supports recovery skills
 type MagicType5 struct {
 	MagicNumber int            `gorm:"column:iNum;type:int;primaryKey;not null" json:"iNum"`
 	Name        *mssql.VarChar `gorm:"column:Name;type:varchar(50) COLLATE SQL_Latin1_General_CP1_CI_AS" json:"Name,omitempty"`
