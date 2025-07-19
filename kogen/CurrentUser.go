@@ -18,11 +18,11 @@ func init() {
 
 // CurrentUser Keeps track of users currently connected to the server
 type CurrentUser struct {
-	ServerNumber int           `gorm:"column:nServerNo;type:int;not null" json:"nServerNo"`
-	ServerIP     mssql.VarChar `gorm:"column:strServerIP;type:varchar(20) COLLATE SQL_Latin1_General_CP1_CI_AS;not null" json:"strServerIP"`
-	AccountId    mssql.VarChar `gorm:"column:strAccountID;type:varchar(20) COLLATE SQL_Latin1_General_CP1_CI_AS;not null" json:"strAccountID"`
-	CharId       mssql.VarChar `gorm:"column:strCharID;type:varchar(20) COLLATE SQL_Latin1_General_CP1_CI_AS;not null" json:"strCharID"`
-	ClientIP     mssql.VarChar `gorm:"column:strClientIP;type:varchar(20) COLLATE SQL_Latin1_General_CP1_CI_AS;not null" json:"strClientIP"`
+	ServerId  int           `gorm:"column:nServerNo;type:int;not null" json:"nServerNo"`
+	ServerIP  mssql.VarChar `gorm:"column:strServerIP;type:varchar(20) COLLATE SQL_Latin1_General_CP1_CI_AS;not null" json:"strServerIP"`
+	AccountId mssql.VarChar `gorm:"column:strAccountID;type:varchar(20) COLLATE SQL_Latin1_General_CP1_CI_AS;primaryKey;not null" json:"strAccountID"`
+	CharId    mssql.VarChar `gorm:"column:strCharID;type:varchar(20) COLLATE SQL_Latin1_General_CP1_CI_AS;not null" json:"strCharID"`
+	ClientIP  mssql.VarChar `gorm:"column:strClientIP;type:varchar(20) COLLATE SQL_Latin1_General_CP1_CI_AS;not null" json:"strClientIP"`
 }
 
 // GetDatabaseName Returns the table's database name
@@ -37,7 +37,7 @@ func (this CurrentUser) TableName() string {
 
 // GetInsertString Returns the insert statement for the table populated with record from the object
 func (this CurrentUser) GetInsertString() string {
-	return fmt.Sprintf("INSERT INTO [CURRENTUSER] ([nServerNo], [strServerIP], [strAccountID], [strCharID], [strClientIP]) VALUES\n(%s, %s, %s, %s, %s)", GetOptionalDecVal(&this.ServerNumber),
+	return fmt.Sprintf("INSERT INTO [CURRENTUSER] ([nServerNo], [strServerIP], [strAccountID], [strCharID], [strClientIP]) VALUES\n(%s, %s, %s, %s, %s)", GetOptionalDecVal(&this.ServerId),
 		GetOptionalVarCharVal(&this.ServerIP, false),
 		GetOptionalVarCharVal(&this.AccountId, false),
 		GetOptionalVarCharVal(&this.CharId, false),
@@ -51,7 +51,7 @@ func (this CurrentUser) GetInsertHeader() string {
 
 // GetInsertData Returns the record data for the table insert dump
 func (this CurrentUser) GetInsertData() string {
-	return fmt.Sprintf("(%s, %s, %s, %s, %s)", GetOptionalDecVal(&this.ServerNumber),
+	return fmt.Sprintf("(%s, %s, %s, %s, %s)", GetOptionalDecVal(&this.ServerId),
 		GetOptionalVarCharVal(&this.ServerIP, false),
 		GetOptionalVarCharVal(&this.AccountId, false),
 		GetOptionalVarCharVal(&this.CharId, false),
@@ -60,7 +60,7 @@ func (this CurrentUser) GetInsertData() string {
 
 // GetCreateTableString Returns the create table statement for this object
 func (this CurrentUser) GetCreateTableString() string {
-	query := "CREATE TABLE [CURRENTUSER] (\n\t[nServerNo] int NOT NULL,\n\t[strServerIP] varchar(20) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[strAccountID] varchar(20) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[strCharID] varchar(20) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[strClientIP] varchar(20) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL\n)\nGO\n"
+	query := "CREATE TABLE [CURRENTUSER] (\n\t[nServerNo] int NOT NULL,\n\t[strServerIP] varchar(20) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[strAccountID] varchar(20) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[strCharID] varchar(20) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,\n\t[strClientIP] varchar(20) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL\n\tCONSTRAINT [PK_CURRENTUSER] PRIMARY KEY CLUSTERED ([strAccountID])\n)\nGO\n"
 	return fmt.Sprintf("USE [%[1]s]\nGO\n\n%[2]s", this.GetDatabaseName(), query)
 }
 

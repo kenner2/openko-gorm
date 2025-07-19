@@ -17,26 +17,26 @@ func init() {
 
 // NpcPos NPC Spawn Positions
 type NpcPos struct {
-	ZoneId        int16   `gorm:"column:ZoneID;type:smallint;not null" json:"ZoneID"`
-	NpcId         int     `gorm:"column:NpcID;type:int;not null" json:"NpcID"`
-	ActType       uint8   `gorm:"column:ActType;type:tinyint;not null" json:"ActType"`
-	RegenType     uint8   `gorm:"column:RegenType;type:tinyint;not null" json:"RegenType"`
-	DungeonFamily uint8   `gorm:"column:DungeonFamily;type:tinyint;not null" json:"DungeonFamily"`
-	SpecialType   uint8   `gorm:"column:SpecialType;type:tinyint;not null" json:"SpecialType"`
-	TrapNumber    uint8   `gorm:"column:TrapNumber;type:tinyint;not null" json:"TrapNumber"`
-	LeftX         int     `gorm:"column:LeftX;type:int;not null" json:"LeftX"`
-	TopZ          int     `gorm:"column:TopZ;type:int;not null" json:"TopZ"`
-	RightX        int     `gorm:"column:RightX;type:int;not null" json:"RightX"`
-	BottomZ       int     `gorm:"column:BottomZ;type:int;not null" json:"BottomZ"`
-	LimitMinZ     int     `gorm:"column:LimitMinZ;type:int;not null" json:"LimitMinZ"`
-	LimitMinX     int     `gorm:"column:LimitMinX;type:int;not null" json:"LimitMinX"`
-	LimitMaxX     int     `gorm:"column:LimitMaxX;type:int;not null" json:"LimitMaxX"`
-	LimitMaxZ     int     `gorm:"column:LimitMaxZ;type:int;not null" json:"LimitMaxZ"`
-	NumNpc        uint8   `gorm:"column:NumNPC;type:tinyint;not null" json:"NumNPC"`
-	RespawnTime   int16   `gorm:"column:RegTime;type:smallint;not null" json:"RegTime"`
-	Direction     int     `gorm:"column:byDirection;type:int;not null" json:"byDirection"`
-	DotCount      uint8   `gorm:"column:DotCnt;type:tinyint;not null" json:"DotCnt"`
-	Path          *[]byte `gorm:"column:path;type:text COLLATE SQL_Latin1_General_CP1_CI_AS" json:"path,omitempty"`
+	ZoneId         int16   `gorm:"column:ZoneID;type:smallint;not null" json:"ZoneID"`
+	NpcId          int     `gorm:"column:NpcID;type:int;not null" json:"NpcID"`
+	ActType        uint8   `gorm:"column:ActType;type:tinyint;not null" json:"ActType"`
+	RegenType      uint8   `gorm:"column:RegenType;type:tinyint;not null" json:"RegenType"`
+	DungeonFamily  uint8   `gorm:"column:DungeonFamily;type:tinyint;not null" json:"DungeonFamily"`
+	SpecialType    uint8   `gorm:"column:SpecialType;type:tinyint;not null" json:"SpecialType"`
+	TrapNumber     uint8   `gorm:"column:TrapNumber;type:tinyint;not null" json:"TrapNumber"`
+	LeftX          int     `gorm:"column:LeftX;type:int;not null" json:"LeftX"`
+	TopZ           int     `gorm:"column:TopZ;type:int;not null" json:"TopZ"`
+	RightX         int     `gorm:"column:RightX;type:int;not null" json:"RightX"`
+	BottomZ        int     `gorm:"column:BottomZ;type:int;not null" json:"BottomZ"`
+	LimitMinZ      int     `gorm:"column:LimitMinZ;type:int;not null" json:"LimitMinZ"`
+	LimitMinX      int     `gorm:"column:LimitMinX;type:int;not null" json:"LimitMinX"`
+	LimitMaxX      int     `gorm:"column:LimitMaxX;type:int;not null" json:"LimitMaxX"`
+	LimitMaxZ      int     `gorm:"column:LimitMaxZ;type:int;not null" json:"LimitMaxZ"`
+	NumNpc         uint8   `gorm:"column:NumNPC;type:tinyint;not null" json:"NumNPC"`
+	RespawnTime    int16   `gorm:"column:RegTime;type:smallint;not null" json:"RegTime"`
+	Direction      int     `gorm:"column:byDirection;type:int;not null" json:"byDirection"`
+	PathPointCount uint8   `gorm:"column:DotCnt;type:tinyint;not null" json:"DotCnt"`
+	Path           *[]byte `gorm:"column:path;type:text COLLATE SQL_Latin1_General_CP1_CI_AS" json:"path,omitempty"`
 }
 
 // GetDatabaseName Returns the table's database name
@@ -69,7 +69,7 @@ func (this NpcPos) GetInsertString() string {
 		GetOptionalDecVal(&this.NumNpc),
 		GetOptionalDecVal(&this.RespawnTime),
 		GetOptionalDecVal(&this.Direction),
-		GetOptionalDecVal(&this.DotCount),
+		GetOptionalDecVal(&this.PathPointCount),
 		GetOptionalByteArrayVal(this.Path, false))
 }
 
@@ -98,7 +98,7 @@ func (this NpcPos) GetInsertData() string {
 		GetOptionalDecVal(&this.NumNpc),
 		GetOptionalDecVal(&this.RespawnTime),
 		GetOptionalDecVal(&this.Direction),
-		GetOptionalDecVal(&this.DotCount),
+		GetOptionalDecVal(&this.PathPointCount),
 		GetOptionalByteArrayVal(this.Path, false))
 }
 
